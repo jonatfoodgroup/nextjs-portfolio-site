@@ -1,4 +1,5 @@
-import Image from "next/image";
+"use client";
+import Button from "./components/Button";
 import ThreeTier from "./components/ThreeTier";
 
 export default function Home() {
@@ -8,38 +9,21 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <section className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-2/3 mt-8 md:mt-0">
-              <h2 className="text-5xl font-regular mb-2 leading-tight mt-20">
+              <h2 className="text-6xl font-medium mb-2 leading-tight mt-10">
                 Hey there! I&apos;m Jon Senterfitt.
                 <br />
                 I&apos;m a web designer and developer.
               </h2>
-              <p className="text-xl text-gray-500 leading-relaxed max-w-lg">
+              <p className="text-2xl text-gray-500 leading-relaxed max-w-4xl">
                 I&apos;m currently available for freelance work. I specialize in
                 creating beautiful, responsive websites with a focus on
                 performance and accessibility.
               </p>
-              <a
-                href="#"
-                className="bg-black text-white pl-4 pr-2 py-2 mt-10 rounded-full inline-flex items-center text-xl"
-              >
-                Get in touch
-                <div className="ml-4 bg-white rounded-full">
-                  <svg
-                    className="w-6 h-6 text-black"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5l7 7-7 7"
-                    ></path>
-                  </svg>
-                </div>
-              </a>
+
+              <div className="flex flex-col md:flex-row mt-10 space-x-2">
+                <Button text="Get in touch" />
+                <Button text="View Portfolio" />
+              </div>
             </div>
           </section>
         </div>

@@ -1,3 +1,4 @@
+import Button from "./Button";
 const Header = () => {
 
   return (
@@ -7,24 +8,22 @@ const Header = () => {
         <nav className="space-x-6">
           <a
             href="#"
-            className="text-black hover:text-white border px-2 py-1 rounded-full border-white"
+            className="text-black hover:text-gray-800 border px-2 py-1 rounded-full border-gray-800"
           >
             Home
           </a>
-          <a href="#" className="text-black hover:text-white">
+          <a href="#" className="text-black hover:text-gray-800">
             About
           </a>
-          <a href="#" className="text-black hover:text-white">
+          <a href="#" className="text-black hover:text-gray-800">
             Services
           </a>
-          <a href="#" className="text-black hover:text-white">
+          <a href="#" className="text-black hover:text-gray-800">
             Portfolio
           </a>
         </nav>
         <div>
-          <button className="bg-white text-black px-4 py-2 rounded-full">
-            Hire Me
-          </button>
+          <Button text="Get in touch" />
         </div>
       </div>
     </header>

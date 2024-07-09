@@ -1,12 +1,12 @@
 import { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans_Condensed } from "next/font/google";
 import Header from "./components/Header";
 import "./globals.css";
 
-const inter = Inter({
+const inter = IBM_Plex_Sans_Condensed({
   subsets: ["latin"],
   weight
-  : ['400', '700'],
+  : ['400', '500','600','700'],
 
 })
 
