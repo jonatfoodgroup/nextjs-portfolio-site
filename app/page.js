@@ -9,11 +9,12 @@ export default function Home() {
           <section className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-2/3 mt-8 md:mt-0">
               <h2 className="text-5xl font-regular mb-2 leading-tight mt-20">
-                Hey there! I'm Jon Senterfitt.<br />
-                I'm a web designer and developer.
+                Hey there! I&apos;m Jon Senterfitt.
+                <br />
+                I&apos;m a web designer and developer.
               </h2>
               <p className="text-xl text-gray-500 leading-relaxed max-w-lg">
-                I'm currently available for freelance work. I specialize in
+                I&apos;m currently available for freelance work. I specialize in
                 creating beautiful, responsive websites with a focus on
                 performance and accessibility.
               </p>
