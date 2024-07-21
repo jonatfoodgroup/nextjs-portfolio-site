@@ -69,6 +69,14 @@ export default function ProposalPage({ params }) {
               </p>
             </div>
 
+            
+
+            <div className="flex flex-col md:flex-row mt-3">
+              <p className="text-lg text-gray-500 leading-relaxed max-w-4xl">
+                Last updated: {proposal.updatedAt} - Status: Awaiting Approval
+              </p>
+            </div>
+
             <div className="flex flex-col md:flex-row mt-3">
               <p className="text-lg text-gray-500 leading-relaxed max-w-4xl">
                 {proposalViews === 1 ? "1 view" : `${proposalViews} views`}
@@ -78,7 +86,7 @@ export default function ProposalPage({ params }) {
         </section>
       </div>
 
-      <section id="Summary" className="py-16 bg-white" >
+      <section id="Summary" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -117,7 +125,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Introduction" className="py-16 bg-white" >
+      <section id="Introduction" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -186,7 +194,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Goals" className="py-16 bg-white" >
+      <section id="Goals" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -234,7 +242,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Scope" className="py-16 bg-white" >
+      <section id="Scope" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -270,7 +278,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Assumptions" className="py-16 bg-white" >
+      <section id="Assumptions" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -297,7 +305,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Timeline" className="py-16 bg-white" >
+      <section id="Timeline" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -316,7 +324,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Budget" className="py-16 bg-white" >
+      <section id="Budget" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -362,11 +370,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section
-        id="RelatedProjects"
-        className="py-16 bg-white"
-        
-      >
+      <section id="RelatedProjects" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:justify-between md:items-start mb-16">
             <h2 className="text-3xl font-medium mb-2 leading-tight">
@@ -388,7 +392,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Signature" className="py-16 bg-white" >
+      <section id="Signature" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -522,20 +526,22 @@ const Item = ({ title, description, setDrawerData }) => {
     "https://plus.unsplash.com/premium_photo-1675018587751-76c5626f5b33?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   );
   return (
-    <div
-      className="flex flex-col mt-10 md:w-1/2 w-full"
-      
-      data-aos-delay="100"
-    >
-      <img
-        src={image}
-        alt="Electric Car"
-        className="mb-8 object-cover object-center rounded-xl hover:shadow-lg hover:scale-105 transition-transform transform duration-200 cursor-pointer"
-        style={{
-          height: "300px",
-        }}
-        onClick={() => setDrawerData({ title, description })}
-      />
+    <div className="flex flex-col mt-10 md:w-1/2 w-full" data-aos-delay="100">
+      <div className="relative">
+        <img
+          src={image}
+          alt="Electric Car"
+          className="mb-6 object-cover w-full object-center rounded-xl hover:shadow-lg hover:scale-105 transition-transform transform duration-200 cursor-pointer"
+          style={{
+            height: "300px",
+          }}
+          onClick={() => setDrawerData({ title, description })}
+        />
+        <div className="absolute top-4 right-4 opacity-20 hover:opacity-100 p-4" data-tooltip-id={title} data-tooltip-place="top" data-tooltip-content="Scan to view">
+          <Tooltip id={title} place="top" />
+          <QRCode value={window.location.href} size={48} />
+        </div>
+      </div>
       <div className="flex flex-col">
         <h2 className="text-3xl font-semibold mb-8">{title}</h2>
         <p className="text-gray-500 pr-16">{description}</p>
