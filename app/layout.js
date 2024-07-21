@@ -5,7 +5,6 @@ import "./globals.css";
 import { DataProvider } from "./providers/DataProvider";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { GoogleAnalytics } from '@next/third-parties/google'
 
 const inter = IBM_Plex_Sans_Condensed({
   subsets: ["latin"],
@@ -25,7 +24,6 @@ export default function RootLayout({ children }) {
           {children}
         </DataProvider>
       </body>
-      <GoogleAnalytics gaId="G-1PZR9P1E9V" />
     </html>
   );
 }
