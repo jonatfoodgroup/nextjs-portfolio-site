@@ -3,6 +3,13 @@ import Button from "./components/Button";
 import ThreeTier from "./components/ThreeTier";
 import Timeline from "./components/Timeline";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import LogoWall from "./components/LogoWall";
+import Social from "./components/Social";
+
+import projects from "./data/projects";
+import history from "./data/work-history";
+import logos from "./data/logos";
+import social from "./data/social";
 
 export default function Home() {
   return (
@@ -27,39 +34,15 @@ export default function Home() {
                 <Button text="View Portfolio" />
               </div>
 
-              <div className="flex flex-col md:flex-row mt-10 space-x-4">
-                {/* use icons and add facebook, linkedin, instagram, and discord icons */}
-                <a
-                  href="#"
-                  className="text-2xl text-gray-500 hover:text-gray-700"
-                >
-                  <Icon icon="akar-icons:facebook-fill" />
-                </a>
-                <a
-                  href="#"
-                  className="text-2xl text-gray-500 hover:text-gray-700"
-                >
-                  <Icon icon="akar-icons:linkedin-fill" />
-                </a>
-                <a
-                  href="#"
-                  className="text-2xl text-gray-500 hover:text-gray-700"
-                >
-                  <Icon icon="akar-icons:instagram-fill" />
-                </a>
-                <a
-                  href="#"
-                  className="text-2xl text-gray-500 hover:text-gray-700"
-                >
-                  <Icon icon="akar-icons:discord-fill" />
-                </a>
-              </div>
+              <Social items={social} />
+              
             </div>
           </section>
         </div>
       </section>
-      <ThreeTier />
-      <Timeline />
+      <ThreeTier items={projects} />
+      <Timeline items={history} />
+      <LogoWall items={logos} />
     </>
   );
 }

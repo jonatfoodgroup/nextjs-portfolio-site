@@ -9,11 +9,11 @@ const Button = ({
   return (
     <a
       href="#"
-      className="bg-black text-white pl-4 pr-2 py-2 rounded-full inline-flex items-center text-xl hover:bg-gray-800"
+      className="bg-black text-white pl-4 pr-2 py-2 rounded-full inline-flex items-center text-md hover:bg-gray-800"
     >
       {text}
-      <div className="ml-4 bg-white rounded-full p-2">
-        <Icon icon="akar-icons:arrow-right" className="text-black text-xl" />
+      <div className="ml-2 bg-white rounded-full p-1">
+        <Icon icon="akar-icons:arrow-right" className="text-black text-md" />
       </div>
     </a>
   );

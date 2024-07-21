@@ -10,9 +10,13 @@
   },
   "dependencies": {
     "@iconify/react": "^4.1.1",
+    "aos": "^2.3.4",
+    "firebase": "^10.12.4",
     "next": "14.2.4",
     "react": "^18",
+    "react-data-table-component": "^7.6.2",
     "react-dom": "^18",
+    "react-qr-code": "^2.0.15",
     "react-tooltip": "^5.27.1"
   },
   "devDependencies": {

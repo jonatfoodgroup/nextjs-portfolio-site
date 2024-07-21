@@ -1,0 +1,18 @@
+[
+  {
+    "icon": "akar-icons:facebook-fill",
+    "link": "https://www.facebook.com/"
+  },
+  {
+    "icon": "akar-icons:discord-fill",
+    "link": "https://discord.com/"
+  },
+  {
+    "icon": "akar-icons:instagram-fill",
+    "link": "https://www.instagram.com/"
+  },
+  {
+    "icon": "akar-icons:linkedin-fill",
+    "link": "https://www.linkedin.com/"
+  }
+]
