@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@iconify/react": "^4.1.1",
+    "@next/third-parties": "^14.2.5",
     "aos": "^2.3.4",
     "firebase": "^10.12.4",
     "next": "^14.2.5",
