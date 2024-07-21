@@ -631,7 +631,7 @@ const TableOfContents = ({ isOpen, setIsOpen }) => {
           {data.map((item, index) => (
             <li
               key={index}
-              className={`text-lg cursor-pointer ${
+              className={`text-xl py-2 hover:text-blue-500 cursor-pointer ${
                 active === item.id
                   ? "text-blue-500 font-semibold"
                   : "text-gray-500"
