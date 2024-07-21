@@ -35,7 +35,6 @@ export default function ProposalPage({ params }) {
     AOS.refresh();
   }, []);
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -45,15 +44,17 @@ export default function ProposalPage({ params }) {
   }
 
   return (
-    <div>
+    <div className="relative bg-gray-50 w-full min-h-screen">
+      <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-green-500"></div>
+
       <div className="fixed top-8 right-8">
         <QRCode value={window.location.href} size={48} />
       </div>
       <AccessControls />
-      <div className="container mx-auto px-4">
-        <section className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
-          <div className="md:w-2/3 mt-8 md:mt-0">
-            <h2 className="text-6xl font-medium mb-2 leading-tight mt-40">
+      <div className="container mx-auto md:px-4 px-0">
+        <section className="flex flex-col md:flex-row md:justify-between md:items-start mb-16 w-full">
+          <div className="md:w-2/3 mt-8 md:mt-0 w-full">
+            <h2 className="text-5xl font-medium mb-2 leading-tight md:mt-40 mt-20 md:text-6xl">
               KwikLok Website & Integration Enhancement Strategy
             </h2>
             <h5 className="text-2xl font-light text-gray-500 leading-relaxed max-w-4xl">
@@ -77,7 +78,7 @@ export default function ProposalPage({ params }) {
         </section>
       </div>
 
-      <section id="Summary" className="py-16 bg-white" data-aos="fade-in">
+      <section id="Summary" className="py-16 bg-white" >
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -98,8 +99,12 @@ export default function ProposalPage({ params }) {
               </p>
 
               <div className="flex flex-col mt-8">
-                <div className="flex flex-row space-x-8">
-                  <Item title="Redesign site" description="Redesign the site" setDrawerData={setDrawerData} />
+                <div className="flex md:flex-row md:space-x-4 flex-col">
+                  <Item
+                    title="Redesign site"
+                    description="Redesign the site"
+                    setDrawerData={setDrawerData}
+                  />
                   <Item
                     title="Improve site performance"
                     description="Improve site performance"
@@ -112,7 +117,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Introduction" className="py-16 bg-white" data-aos="fade-in">
+      <section id="Introduction" className="py-16 bg-white" >
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -120,10 +125,10 @@ export default function ProposalPage({ params }) {
                 Introduction
               </h2>
             </div>
-            <div className="md:w-3/4 mt-8 md:mt-0">
+            <div className="md:w-3/4 mt-8 md:mt-0 w-full">
               {/* Avatar large */}
               <div className="flex flex-row gap-12">
-                <div className="flex flex-row gap-4">
+                <div className="flex md:flex-row gap-4 flex-col">
                   <img
                     src="https://cdn.theorg.com/45fd5607-18f0-437b-a652-d790c63c5b2a_thumb.jpg"
                     alt="Jon Senterfitt"
@@ -131,7 +136,9 @@ export default function ProposalPage({ params }) {
                   />
                   <div className="flex flex-col">
                     <h3 className="text-2xl font-medium">Jon Senterfitt</h3>
-                    <h5 className="text-md font-medium">Lead Strategist & Developer</h5>
+                    <h5 className="text-md font-medium">
+                      Lead Strategist & Developer
+                    </h5>
                     <div className="flex flex-row gap-4 mt-2">
                       <a
                         href="https://www.linkedin.com/in/jonsenterfitt/"
@@ -148,7 +155,7 @@ export default function ProposalPage({ params }) {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-row gap-4">
+                <div className="flex md:flex-row gap-4 flex-col">
                   <img
                     src="https://media.licdn.com/dms/image/C5603AQFzo4mfy2jQyg/profile-displayphoto-shrink_200_200/0/1517491655088?e=2147483647&v=beta&t=iP0KxdowUnv-uFfcsvpH8BeSIjKt9bbmZ8_BOj1TVSk"
                     alt="Jon Senterfitt"
@@ -179,14 +186,14 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Goals" className="py-16 bg-white" data-aos="fade-in">
+      <section id="Goals" className="py-16 bg-white" >
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
               <h2 className="text-3xl font-medium mb-2 leading-tight">Goals</h2>
             </div>
             <div className="md:w-3/4 mt-8 md:mt-0">
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-8 grid-cols-1">
                 <div className="flex flex-col">
                   <h3 className="text-2xl font-medium">Redesign site</h3>
                   <p className="text-gray-500">
@@ -227,7 +234,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Scope" className="py-16 bg-white" data-aos="fade-in">
+      <section id="Scope" className="py-16 bg-white" >
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -236,24 +243,26 @@ export default function ProposalPage({ params }) {
               </h2>
             </div>
             <div className="md:w-3/4 mt-8 md:mt-0 flex flex-col space-y-12">
-              <div className="flex flex-col w-2/3">
+              <div className="flex flex-col md:w-2/3 w-full">
                 <h3 className="text-2xl font-medium">Gather & Identify</h3>
                 <h5 className="text-md font-medium">1-3 weeks</h5>
                 <p className="text-gray-500">
                   We kick off by diving deep into your company, customers,
-                  products, and competitors. We&apos;ll start with your analytics to
-                  see what&apos;s working, what needs improvement, and how we can
-                  enhance user experience and distribution strategy.
+                  products, and competitors. We&apos;ll start with your
+                  analytics to see what&apos;s working, what needs improvement,
+                  and how we can enhance user experience and distribution
+                  strategy.
                 </p>
               </div>
-              <div className="flex flex-col w-2/3">
+              <div className="flex flex-col md:w-2/3 w-full">
                 <h3 className="text-2xl font-medium">Gather & Identify</h3>
                 <h5 className="text-md font-medium">1-3 weeks</h5>
                 <p className="text-gray-500">
                   We kick off by diving deep into your company, customers,
-                  products, and competitors. We&apos;ll start with your analytics to
-                  see what&apos;s working, what needs improvement, and how we can
-                  enhance user experience and distribution strategy.
+                  products, and competitors. We&apos;ll start with your
+                  analytics to see what&apos;s working, what needs improvement,
+                  and how we can enhance user experience and distribution
+                  strategy.
                 </p>
               </div>
             </div>
@@ -261,7 +270,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Assumptions" className="py-16 bg-white" data-aos="fade-in">
+      <section id="Assumptions" className="py-16 bg-white" >
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -288,7 +297,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Timeline" className="py-16 bg-white" data-aos="fade-in">
+      <section id="Timeline" className="py-16 bg-white" >
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -307,7 +316,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Budget" className="py-16 bg-white" data-aos="fade-in">
+      <section id="Budget" className="py-16 bg-white" >
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -353,17 +362,25 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="RelatedProjects" className="py-16 bg-white" data-aos="fade-in">
+      <section
+        id="RelatedProjects"
+        className="py-16 bg-white"
+        
+      >
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:justify-between md:items-start mb-16">
             <h2 className="text-3xl font-medium mb-2 leading-tight">
               Related Projects
             </h2>
             <div className="mt-8 md:mt-0 w-full">
-              <div className="flex flex-row gap-8">
+              <div className="flex md:flex-row gap-8 flex-col">
                 {/* limit to 2 projects */}
                 {projects.slice(0, 3).map((project, index) => (
-                  <Item key={index} {...project} setDrawerData={setDrawerData} />
+                  <Item
+                    key={index}
+                    {...project}
+                    setDrawerData={setDrawerData}
+                  />
                 ))}
               </div>
             </div>
@@ -371,7 +388,7 @@ export default function ProposalPage({ params }) {
         </div>
       </section>
 
-      <section id="Signature" className="py-16 bg-white" data-aos="fade-in">
+      <section id="Signature" className="py-16 bg-white" >
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-16">
             <div className="md:w-1/4 mt-8 md:mt-0">
@@ -505,7 +522,11 @@ const Item = ({ title, description, setDrawerData }) => {
     "https://plus.unsplash.com/premium_photo-1675018587751-76c5626f5b33?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   );
   return (
-    <div className="flex flex-col mt-10 w-1/2" data-aos="fade-in" data-aos-delay="100">
+    <div
+      className="flex flex-col mt-10 md:w-1/2 w-full"
+      
+      data-aos-delay="100"
+    >
       <img
         src={image}
         alt="Electric Car"
@@ -528,7 +549,10 @@ const Drawer = ({ data = null, setDrawerData }) => {
     return null;
   }
   return (
-    <div className="fixed top-0 right-0 h-full w-1/2 bg-white shadow-lg p-8" id="drawer">
+    <div
+      className="fixed top-0 right-0 h-full w-1/2 bg-white shadow-lg p-8"
+      id="drawer"
+    >
       <h2 className="text-3xl font-semibold">{data.title}</h2>
     </div>
   );
@@ -579,14 +603,14 @@ const TableOfContents = ({ isOpen, setIsOpen }) => {
   return (
     <>
       <button
-        className="fixed top-0 left-0 p-4 bg-gray-100 text-gray-600 px-4 py-2 rounded flex flex-row gap-4"
+        className="fixed top-1 left-0 p-4 bg-gray-100 text-gray-600 px-4 py-2 rounded flex flex-row gap-4"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Icon icon="mdi:table-of-contents" width="24" height="24" />
         Table of Contents
       </button>
       <div
-        className={`fixed top-0 left-0 h-full w-1/4 bg-white shadow-lg p-8 ${
+        className={`fixed top-1 left-0 h-full md:w-1/4 bg-white shadow-lg w-full p-8 ${
           isOpen ? "block" : "hidden"
         }`}
       >
@@ -602,7 +626,9 @@ const TableOfContents = ({ isOpen, setIsOpen }) => {
             <li
               key={index}
               className={`text-lg cursor-pointer ${
-                active === item.id ? "text-blue-500 font-semibold" : "text-gray-500"
+                active === item.id
+                  ? "text-blue-500 font-semibold"
+                  : "text-gray-500"
               }`}
               onClick={() => handleClick(item.id)}
             >
