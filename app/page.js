@@ -14,7 +14,7 @@ import social from "./data/social";
 export default function Home() {
   return (
     <>
-      <p>Coming Soon...</p>
+      <p>Agency Client Portal</p>
     </>
   );
 }
