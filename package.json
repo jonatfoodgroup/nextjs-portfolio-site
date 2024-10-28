@@ -12,13 +12,21 @@
     "@iconify/react": "^4.1.1",
     "@next/third-parties": "^14.2.5",
     "aos": "^2.3.4",
+    "axios": "^1.7.7",
     "firebase": "^10.12.4",
+    "firebase-admin": "^12.6.0",
+    "html-entities": "^2.5.2",
+    "jsonwebtoken": "^9.0.2",
+    "memory-cache": "^0.2.0",
     "next": "^14.2.5",
     "react": "^18",
     "react-data-table-component": "^7.6.2",
     "react-dom": "^18",
     "react-qr-code": "^2.0.15",
-    "react-tooltip": "^5.27.1"
+    "react-slick": "^0.30.2",
+    "react-tooltip": "^5.27.1",
+    "slick-carousel": "^1.8.1",
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
     "eslint": "^8",

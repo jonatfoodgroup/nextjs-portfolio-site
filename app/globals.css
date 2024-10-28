@@ -2,10 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background: #ffffff;
+  --foreground: #15485F;
+  --foreground-hover: #2D3748;
+  --text: #15485F;
+  --pale: #7A9BAA;
+  --body: #7A9BAA;
+  --gray: #E6E6E6;
+}
+
+/* dark mode vars */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1A202C;
+    --foreground: #E2E8F0;
+    --text: #E2E8F0;
+    --pale: #718096;
+    --body: #718096;
+    --gray: #4A5568;
+  }
+}
+
+html body {
+  background-color: var(--background);
+  /* color: var(--text); */
+}
+
+.bg-background {
+  background-color: var(--background);
+}
+
+.text-foreground {
+  color: var(--foreground);
+}
+
+.hover:text-foreground {
+  color: var(--foreground-hover);
+}
+
+.border-background {
+  border-color: var(--background);
+}
+
 html body .container {
-  max-width: 90rem;
+  max-width: 85rem;
   padding-left: 3rem;
   padding-right: 3rem;
+}
+
+html body .showcase-content p {
+  font-size: 1.25rem;
+  /* Increase font size for better readability */
+  line-height: 2rem;
+  /* Increase line height for more breathing room */
+  margin-bottom: 2rem;
+  /* Increase margin to add more space between paragraphs */
+}
+
+
+html body .showcase-content h2 {
+  font-size: 2.25rem;
+  line-height: 2.75rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+html body .showcase-content h3 {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  margin-bottom: 1.5rem;
+}
+
+html body .showcase-content a {
+  text-decoration: underline;
+}
+
+html body .showcase-content img {
+  max-width: 600px;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: auto;
+  margin: 1rem auto .5rem;
+  aspect-ratio: 16/9;
+  /* Choose a consistent aspect ratio */
+  object-fit: cover;
+  /* Ensures the image covers the frame neatly */
+}
+
+html body img {
+  /* add a grayscale */
+  filter: grayscale(100%);
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+}
+
+html body img:hover {
+  /* remove grayscale and also zoom in on the photo */
+  filter: grayscale(0%);  
+}
+
+html body .breadcrumb {
+  background: #f0f0f0 !important;
 }
 
 @media all and (max-width: 1024px) {

@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAAaoXdPdJIaAsCyBi7xghfYE4u9PgQ85w",
   authDomain: "drone-delivery-f1133.firebaseapp.com",
