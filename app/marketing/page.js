@@ -17,13 +17,13 @@ export const generateMetadata = () => {
 export default function Marketing() {
     return (
         <div>
-        <Header />
-        <HeroSection />
-        <Introduction />
-        <ImageGrid images={['https://johannesippen.com/img/blog/design-sprint/ideas.jpg','https://standuply.com/blog/wp-content/uploads/2022/04/war-room-1024x576-1.jpg']} />
-        <FeatureSection />
-        <Callout />
-        <GetStarted />
+            <Header />
+            <HeroSection />
+            <Introduction />
+            <ImageGrid images={['https://johannesippen.com/img/blog/design-sprint/ideas.jpg', 'https://standuply.com/blog/wp-content/uploads/2022/04/war-room-1024x576-1.jpg']} />
+            <FeatureSection />
+            <Callout />
+            <GetStarted />
         </div>
     );
-    }
+}

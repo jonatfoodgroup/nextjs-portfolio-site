@@ -2,14 +2,14 @@
 import React from "react";
 
 const ImageGrid = ({
-    images = []
+    content = null
 }) => {
-    let image = 'https://plus.unsplash.com/premium_photo-1675018587751-76c5626f5b33?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+    if (!content) return null;
     return (
         <section className="py-4">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-2 gap-8">
-                    {images.map((image, index) => (
+                    {content.images.map((image, index) => (
                         <ImageItem 
                         key={index} image={image} index={index} />
                     ))}

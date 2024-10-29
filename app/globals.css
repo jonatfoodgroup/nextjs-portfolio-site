@@ -26,6 +26,7 @@
 
 html body {
   background-color: var(--background);
+  overflow-x: hidden;
   /* color: var(--text); */
 }
 
@@ -49,6 +50,20 @@ html body .container {
   max-width: 85rem;
   padding-left: 3rem;
   padding-right: 3rem;
+}
+
+html body .carousel {
+  width: 100vw !important;
+  margin-left: 8rem;
+  overflow: visible;
+}
+
+.slick-list {
+  overflow: visible;
+}
+
+.slick-slide {
+  padding: 0 10px;
 }
 
 html body .showcase-content p {
