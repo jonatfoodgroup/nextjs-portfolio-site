@@ -2,24 +2,46 @@
 import React from 'react';
 import Slider from 'react-slick';
 
+const debounce = (func, wait) => {
+    let timeout;
+    return function (...args) {
+        const context = this;
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            timeout = null;
+            func.apply(context, args);
+        }, wait);
+    };
+}
 const Carousel = ({
     content = null
 }) => {
+    const ref = React.useRef(null);
     let settings = {
         dots: true,
         speed: 300,
         slidesToShow: 3,
-        infinite: false,
+        infinite: true,
         arrows: true,
         slidesToScroll: 1,
-      adaptiveHeight: true,
-      className: "carousel",
+        adaptiveHeight: true,
+        className: "carousel",
     }
+
+    const onWheelSlider = debounce((e, ref) => {
+        if (!ref.current) return;
+
+        if (e.deltaX > 0) {
+            ref.current.slickNext();
+        } else if (e.deltaX < 0) {
+            ref.current.slickPrev();
+        }
+    }, 20);
 
     if (!content) return null;
     return (
-        <section className="bg-white">
-            <Slider {...settings}>
+        <section className="bg-white cursor-pointer" onWheel={(e) => onWheelSlider(e, ref)}>
+            <Slider {...settings} ref={ref}>
                 {content.images.map((image, index) => {
                     return (
                         <Slide key={index} image={image} />

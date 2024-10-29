@@ -9,16 +9,20 @@ const Topbar = ({
     if (!content) null;
     return (
         <div>
-            <div className="bg-white h-10">
+            <div className="bg-white">
                 <div className="container mx-auto px-4">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between align-middle py-2">
                         <div>
                             {/* <a href="/" className="text-white font-bold text-xl">Luxor</a> */}
                         </div>
-                        <div className='flex items-end pt-2'>
-                            <Link href="tel:+14158248888" className="text-gray-500 hover:text-gray-700 text-sm flex items-center space-x-2">
-                                <Icon icon="line-md:phone-call-loop" className="text-lg" />
-                            <span>415.824.8888</span></Link>
+                        <div className='flex items-end align-middle'>
+                           {
+                            content.nav.map((nav, index) => (
+                                <Link key={index} href={nav.url} className="text-gray-500 text-xs hover:text-gray-800 ml-4 font-semibold">
+                                        {nav.label()}
+                                </Link>
+                            ))
+                           }
                         </div>
                     </div>
                 </div>

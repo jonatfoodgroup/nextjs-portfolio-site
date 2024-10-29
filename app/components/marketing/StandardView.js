@@ -16,7 +16,7 @@ const StandardView = ({
     if (!content) null;
     return (
         <div>
-            <Topbar content={content.header} />
+            <Topbar content={content.topbar} />
             <Header content={content.header} />
             <HeroSection content={content.hero} />
             <Introduction content={content.introduction} />

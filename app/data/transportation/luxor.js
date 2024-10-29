@@ -1,10 +1,39 @@
 "use client";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 let luxor = {
     "meta": {
         "title": "Luxor Executive Car Service",
         "description": "Experience unmatched reliability and sophistication with Luxor Executive Car Service. Whether for business or pleasure, our fleet and expert chauffeurs deliver unparalleled comfort and style.",
     },
+    "topbar": {
+        "nav": [
+            {
+                "label": () => {
+                    return (
+                        <span className="text-gray-500 flex items-center">
+                            <Icon 
+                            icon="bx:bx-log-in"
+                            className="text-xl mr-2" />
+                            Member Login
+                        </span>
+                    )
+                },
+                "url": "/login"
+            },{
+            "label": () => {
+                 return (
+                    <span className="text-gray-500 flex items-center">
+                        <Icon icon="bx:bx-phone-call" className="text-xl mr-2" />
+                        Call Us: 415.824.8888
+                    </span>
+                )
+            },
+            "url": "tel:14158248888"
+        },
+        ]
+    },
+
     "header": {
         "company_name": "Luxor",
         "logo_url": "",
