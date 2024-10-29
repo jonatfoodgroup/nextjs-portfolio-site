@@ -1,12 +1,16 @@
 "use client";
 
 let luxor = {
+    "meta": {
+        "title": "Luxor Executive Car Service",
+        "description": "Experience unmatched reliability and sophistication with Luxor Executive Car Service. Whether for business or pleasure, our fleet and expert chauffeurs deliver unparalleled comfort and style.",
+    },
     "header": {
         "company_name": "Luxor",
         "logo_url": "",
         "nav": [
             {
-                "label": "About",
+                "label": "About Us",
                 "url": "/about"
             },
             {
@@ -14,7 +18,7 @@ let luxor = {
                 "url": "/services"
             },
             {
-                "label": "Fleet",
+                "label": "Our Fleet",
                 "url": "/fleet"
             },
         ],

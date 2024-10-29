@@ -1,7 +1,12 @@
 import StandardView from "../components/marketing/StandardView";
-import content_settings from "../data/content_settings";
 import luxor from "../data/transportation/luxor";
-import InquiryForm from "../components/booking/InquiryForm";
+
+export const generateMetadata = () => {
+    return {
+        title: "Luxor",
+        description: "Experience unmatched reliability and sophistication with Luxor Executive Car Service. Whether for business or pleasure, our fleet and expert chauffeurs deliver unparalleled comfort and style.",
+    };
+}
 
 const SpecPage = () => {
     return (
