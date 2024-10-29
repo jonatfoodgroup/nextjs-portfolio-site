@@ -22,9 +22,10 @@ const StandardView = ({
             <Introduction content={content.introduction} />
             <ImageGrid content={content.image_grid} />
             <FeatureSection content={content.feature_section} />
-            <Carousel content={content.carousel} />
+            
             <Callout content={content.callout} />
             <GetStarted content={content.get_started} />
+            <Carousel content={content.carousel} />
         </div>
     );
     }

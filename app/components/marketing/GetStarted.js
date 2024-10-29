@@ -7,7 +7,7 @@ const GetStarted = ({
 }) => {
     if (!content) return null;
     return (
-        <section className="bg-white p-6">
+        <section className="bg-white p-6 py-20">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="text-left pr-20 w-1/2">
                     <h2 className="text-5xl font-regular text-gray-800 mb-3" data-aos="fade-in">

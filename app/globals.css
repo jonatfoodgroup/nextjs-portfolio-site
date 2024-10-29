@@ -107,7 +107,7 @@ html body .showcase-content img {
 
 html body img {
   /* add a grayscale */
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
   transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
