@@ -8,6 +8,7 @@ const HeroSection = ({
     if (!content) return null;
     return (
         <section className="relative bg-cover bg-center h-screen"
+            data-aos="fade-in"
             style={{
                 maxHeight: "95vh",
                 backgroundImage: `url('${content.bg_image}')`

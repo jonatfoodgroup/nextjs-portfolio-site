@@ -22,12 +22,16 @@ const Header = ({
                 <nav className="space-x-6">
                     {
                         content.nav.map((item, index) => (
-                            <Link key={index} href={item.url} className="text-white hover:text-white">{item.label}</Link>
+                            <Link key={index} href={item.url} 
+                                data-aos="fade-in"
+                                data-aos-delay={(index + 1) * 100}
+                            className="text-white hover:text-white">{item.label}</Link>
                         ))
                     }
                 </nav>
-                <div className="text-white" data-aos="fade-in">
+                <div className="text-white" data-aos="fade-in" data-aos-delay="400">
                     <Link
+
                         href={content.cta.url}
                         className="bg-white text-black px-4 py-2 rounded-full">
                         {content.cta.label}
