@@ -7,7 +7,7 @@ const Masthead = () => {
         <div className="bg-background pt-16 flex items-center justify-center md:pt-24">
             <div className="container mx-auto">
                 <div className="w-full md:w-2/3"> 
-                <h1 className="text-6xl font-bold text-text mt-48">
+                <h1 className="text-4xl md:text-6xl font-bold text-text mt-20 md:mt-48">
                     We make software and marketing simple.
                 </h1>
                 <p className="text-xl text-text mt-4">
