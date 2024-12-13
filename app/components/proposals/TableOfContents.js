@@ -47,7 +47,7 @@ const TableOfContents = ({ isOpen, setIsOpen }) => {
     return (
       <>
         <button
-          className="fixed top-1 left-0 p-4 bg-background px-4 py-2 rounded flex flex-row gap-4"
+          className="fixed top-1 left-0 p-4 bg-background px-4 py-2 rounded flex flex-row gap-4 text-gray-600 hover:text-blue-500 cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         >
           <Icon icon="mdi:table-of-contents" width="24" height="24" />

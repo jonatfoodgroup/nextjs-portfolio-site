@@ -20,14 +20,14 @@ const GetStarted = ({
                         href={content.cta.url}
                         data-aos="fade-in"
                         data-aos-delay="400"
-                        className="mt-4 bg-black text-white font-semibold py-2 px-4 rounded hover:bg-gray-700 transition duration-300">
+                        className="mt-4 bg-black text-white font-semibold py-2 px-4 rounded-full hover:bg-gray-700 transition duration-300">
                         {content.cta.label}
                     </Link>
                 </div>
                 <img className="w-1/2 object-cover rounded-2xl"
                     data-aos="fade-in"
                     src={content.image}
-                    alt="Carsova Electric Car" style={{ height: "400px" }} />
+                    alt="" style={{ height: "400px" }} />
             </div>
         </section>
     )

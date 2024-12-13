@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "title": "What AI Agents Can Do for Small Business Data Integration",
+        "description": "Discover why AI agents are key for small businesses to unify data from tools like CRMs, marketing, and inventory.",
+        "slug": "what-ai-agents-small-business-data-integration"
+    },
+    {
+        "id": 2,
+        "title": "Why Small Teams Should Use AI for Automating Data Updates",
+        "description": "Understand how AI prevents errors and saves time by automating data syncs across platforms for small teams.",
+        "slug": "why-small-teams-use-ai-automating-data"
+    },
+    {
+        "id": 3,
+        "title": "How AI Agents Help Small Businesses Avoid Data Silos",
+        "description": "Learn why integrating AI agents stops data silos and ensures every tool in your stack works in sync for success.",
+        "slug": "how-ai-agents-avoid-data-silos"
+    },
+    {
+        "id": 4,
+        "title": "What AI Brings to Real-Time Analytics for Small Teams",
+        "description": "Explore how AI agents deliver real-time insights from multiple sources, empowering small teams to act faster.",
+        "slug": "ai-real-time-analytics-small-teams"
+    },
+    {
+        "id": 5,
+        "title": "Why AI Is the Best Tool for Scaling Small Business Operations",
+        "description": "See how AI agents enable small businesses to scale smarter by automating repetitive data management tasks.",
+        "slug": "why-ai-scaling-small-business-operations"
+    }
+]

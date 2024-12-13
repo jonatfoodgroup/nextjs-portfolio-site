@@ -2,16 +2,19 @@
   {
     "title": "Rearchitecting rewardStyle's Corporate Presence for Big International Growth",
     "description": "This is a description of project 1",
-    "image": "project1.jpg"
+    "image": "project1.jpg",
+    "slug": "rewardStyle"
   },
   {
     "title": "Leading Digital Strategy of Campbell's Foodservice",
     "description": "This is a description of project 2",
-    "image": "project2.jpg"
+    "image": "project2.jpg",
+    "slug": "campbells"
   },
   {
-    "title": "Building a New Digital Platform for a Major US Airline",
+    "title": "Scaling a Non-Profit to Serve 792 Cities and 1.5 Million People",
     "description": "This is a description of project 3",
-    "image": "project3.jpg"
+    "image": "project3.jpg",
+    "slug": "march-for-science"
   }
 ]

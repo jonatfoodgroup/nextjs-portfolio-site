@@ -1,37 +1,49 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, Suspense } from "react";
 import { db } from "../../firebase/config";
-import { ref, onValue } from "firebase/database";
-import Signature from "../../components/proposals/SignatureForm";
+import { ref, get } from "firebase/database";
+import createBlocks from "../../utils/create-blocks";
 import TableOfContents from "../../components/proposals/TableOfContents";
-import Header from "../../components/proposals/Header";
-import Introduction from "../../components/proposals/Introduction";
-import Summary from "../../components/proposals/Summary";
-import RelatedProjects from "../../components/proposals/RelatedProjects";
-import Scope from "../../components/proposals/Scope";
-import Budget from "../../components/proposals/BudgetTable";
-import Goals from "../../components/proposals/Goals";
-import Assumptions from "../../components/proposals/Assumptions";
-import Timeline from "../../components/proposals/Timeline";
 
 export default function ProposalPage({ params }) {
-  const [proposal, setProposal] = useState({});
+  const [proposal, setProposal] = useState(null);
   const [loading, setLoading] = useState(true);
   const [tocIsOpen, setTocIsOpen] = useState(false);
+  const [blocks, setBlocks] = useState([]);
 
+  // Fetch proposal data from Firebase
   useEffect(() => {
-    const dbRef = ref(db, `proposals/${params.id}`);
-    onValue(dbRef, (snapshot) => {
-      let prop = snapshot.val();
-      prop.id = params.id;
-      setProposal(prop);
-      setLoading(false);
-    });
+    const fetchProposal = async () => {
+      try {
+        const snapshot = await get(ref(db, `proposals/${params.id}`));
+        const prop = snapshot.val();
 
-  }, []);
+        if (prop) {
+          prop.id = params.id; // Attach the ID to the proposal
+          setProposal(prop);
+        } else {
+          setProposal(null);
+        }
+      } catch (error) {
+        console.error("Error fetching proposal:", error);
+        setProposal(null);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchProposal();
+  }, [params.id]);
 
+  // Generate blocks once proposal is fetched
+  useEffect(() => {
+    if (proposal) {
+      setBlocks(createBlocks(proposal));
+    }
+  }, [proposal]);
 
+  // Loading or error states
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -43,21 +55,14 @@ export default function ProposalPage({ params }) {
   return (
     <div className="relative bg-background w-full min-h-screen">
       <div className="container mx-auto md:px-4 px-0">
-        <Header proposal={proposal} />
+        <Suspense fallback={<div>Loading block...</div>}>
+          {blocks.map((block) => {
+            const Component = block.component;
+            return <Component key={block.id} {...block.props} />;
+          })}
+        </Suspense>
+        <TableOfContents isOpen={tocIsOpen} setIsOpen={setTocIsOpen} />
       </div>
-      <Summary />
-      <Introduction />
-      <Scope proposal={proposal} />
-      <Goals />
-      <Assumptions />
-      <Timeline />
-      <Budget />
-      <RelatedProjects />
-      <Signature proposal={proposal} />
-      <TableOfContents isOpen={tocIsOpen} setIsOpen={setTocIsOpen} />
     </div>
   );
 }
-
-
-

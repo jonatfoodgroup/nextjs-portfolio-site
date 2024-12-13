@@ -33,7 +33,7 @@ const Feature = ({ title, description, image, index, cta = null }) => {
     <div className="flex flex-row mt-10" data-aos="fade-in" data-aos-delay={(index + 1) * 50}>
       <img
         src={image}
-        alt="Electric Car" className="w-1/3 mb-8 object-cover object-center rounded-xl" style={{ height: "300px" }} />
+        alt="" className="w-1/3 mb-8 object-cover object-center rounded-xl" style={{ height: "300px" }} />
       <div className="flex flex-col w-2/3 pl-8">
         <h2 className="text-3xl font-semibold mb-4 w-3/4 mt-4">{title}</h2>
         <p className="text-gray-500 pr-16">{description}</p>

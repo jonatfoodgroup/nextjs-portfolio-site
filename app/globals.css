@@ -4,24 +4,31 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #15485F;
+  --foreground: #1a1a1a;
   --foreground-hover: #2D3748;
-  --text: #15485F;
+  --text: #1a1a1a;
   --pale: #7A9BAA;
   --body: #7A9BAA;
   --gray: #E6E6E6;
 }
 
+html body .swiper-button-prev, html body .swiper-button-next {
+  display: none;
+}
 /* dark mode vars */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1A202C;
+    --background: #1a1a1a;
     --foreground: #E2E8F0;
     --text: #E2E8F0;
     --pale: #718096;
     --body: #718096;
     --gray: #4A5568;
   }
+}
+
+.text-text {
+  color: var(--text);
 }
 
 html body {
@@ -129,4 +136,10 @@ html body .breadcrumb {
     padding-right: 20px;
     width: 100%;
   }
+}
+
+html body .outer-container {
+  padding-left: 0rem;
+    max-width: 87rem;
+    padding-right: 0rem;
 }

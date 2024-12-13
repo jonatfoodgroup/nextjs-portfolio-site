@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const Callout = ({
     content = null
@@ -15,7 +16,7 @@ const Callout = ({
             <div className="absolute inset-0 bg-black opacity-50"></div>
             <div
                 className="container mx-auto h-full flex flex-col justify-end items-start space-y-4 text-white px-4 relative z-50 pb-20">
-                <div className="flex flex-col w-1/2">
+                <div className="flex flex-col w-2/3">
                     <h2 
                     data-aos="fade-in"
                     data-aos-delay="100"
@@ -33,8 +34,10 @@ const Callout = ({
                 href={content.cta.url}
                 data-aos="fade-in"
                 data-aos-delay="300"
-                className="bg-white text-black px-4 py-2 rounded-full mt-8">
-                    {content.cta.label}
+                className="bg-white text-black px-4 py-2 mt-8 font-semibold flex items-center space-x-2">
+                    <span>{content.cta.label}</span>
+                    <Icon icon="akar-icons:arrow-right" className="text-black" />
+
                 </Link>
             </div>
         </section>

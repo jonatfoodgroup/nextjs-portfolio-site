@@ -1,27 +1,40 @@
 "use client";
 import React from 'react';
+import GetStarted from '../GetStarted';
+import Logo from '../Logo';
+import Link from 'next/link';
+import services from '../../data/services';
 
-const Footer = ({
-    content = null
-}) => {
-    if (!content) return null;
+const Footer = () => {
+    services.sort((a, b) => a.title.localeCompare(b.title));
     return (
-        <footer className="bg-gray-800 text-white py-10">
-            <div className="container mx-auto flex justify-between items-center">
-                <div className="text-left pr-20 w-1/2">
-                    <h2 className="text-5xl font-regular mb-3" data-aos="fade-in">
-                        {content.title}
-                    </h2>
-                    <p className="mb-10" data-aos="fade-in" data-aos-delay="200">
-                        {content.description}
-                    </p>
-                </div>
-                <div className="w-1/2 flex justify-between">
-                    {content.links.map((link, index) => (
-                        <a key={index} href={link.url} className="hover:text-gray-500" data-aos="fade-in" data-aos-delay={(index + 1) * 100}>
-                            {link.label}
-                        </a>
-                    ))}
+        <footer className="bg-background text-black py-10">
+            <GetStarted />
+            <div className="container mx-auto">
+                <div className="flex md:space-x-8 md:flex-row flex-col space-y-8 md:space-y-0">
+                    <div className="w-full md:w-1/4">
+                        <Logo />
+                        <p className="mt-4 text-text">
+                            We are a team of designers, developers, and marketers who are excited to help you grow your business.
+                        </p>
+                    </div>
+                    <div className="w-full md:w-2/4">
+                        <h3 className="text-lg font-bold text-text">Services</h3>
+                        <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
+                            {services.map((service, index) => (
+                                <Link key={index} href={`/services/${service.slug}`}  className="text-text underline">{service.title}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-full md:w-1/4">
+                        <h3 className="text-lg font-bold text-text">Contact</h3>
+                        <p className="mt-4 text-text">123 Main Street</p>
+                        <p className="text-text">New York, NY 10001</p>
+                        <p className="text-text">
+                            <a href="tel:555-555-5555">555-555-5555</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>

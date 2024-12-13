@@ -12,15 +12,12 @@ const Item = ({ title, description }) => {
           <img
             src={image}
             alt="Electric Car"
-            className="mb-6 object-cover w-full object-center rounded-xl hover:shadow-lg hover:scale-105 transition-transform transform duration-200 cursor-pointer"
-            style={{
-              height: "300px",
-            }}
+            className="mb-4 object-cover w-full object-center rounded-xl hover:shadow-lg hover:scale-105 transition-transform transform duration-200 cursor-pointer h-[200px]"
             onClick={() => setDrawerData({ title, description })}
           />
         </div>
         <div className="flex flex-col">
-          <h2 className="text-3xl font-semibold mb-8">{title}</h2>
+          <h2 className="text-2xl font-semibold mb-8 text-text">{title}</h2>
           <p className="text-gray-500 pr-16">{description}</p>
         </div>
       </div>

@@ -18,13 +18,13 @@ const HeroSection = ({
                 <div className="max-w-2xl mb-20">
                     <h1
                         data-aos="fade-in"
-                        className="text-4xl md:text-6xl font-bold mb-10">
+                        className="text-4xl md:text-6xl font-bold mb-4">
                         <span dangerouslySetInnerHTML={{ __html: content.title() }} />
                     </h1>
                     <p
                         data-aos="fade-in"
                         data-aos-delay="200"
-                        className="text-lg">
+                        className="text-lg mb-4">
                         {content.description}
                     </p>
                     <br />

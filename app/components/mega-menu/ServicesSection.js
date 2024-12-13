@@ -8,15 +8,18 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 
 const ServicesSection = () => {
     let iconSize = 'h-12 w-12';
+
+    // sort services by title
+    services.sort((a, b) => a.title.localeCompare(b.title));
   return (
-    <div className="flex flex-row items-start">
+    <div className="flex flex-col md:flex-row items-start">
       {/* Audiences Section */}
       <div style={{ minWidth: '160px' }}>
-        <h4 className="text-foreground uppercase text-sm font-normal mb-4 mt-0 tracking-wide">Solutions For</h4>
-        <ul className="mt-6">
+        <h4 className="text-foreground uppercase text-xs font-normal mb-0 mt-0 tracking-wide">Solutions For</h4>
+        <ul className="mt-3">
           {audiences.map((audience) => (
             <li className="mb-2" key={audience.title}>
-              <Link href={audience.link} className="text-md font-regular leading-6 text-foreground hover:text-foreground flex items-center gap-x-2">
+              <Link href={audience.link} className="text-xs font-extrabold leading-6 text-foreground hover:text-blue-500 flex items-center gap-x-2">
                 <Icon icon={audience.icon} className="text-md text-foreground" />
                 {audience.title}
               </Link>
@@ -28,7 +31,7 @@ const ServicesSection = () => {
       {/* Services Section */}
       <div className="ml-4">
         <section className="d-block">
-          <div className="grid grid-cols-1 gap-y-1 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-y-8 sm:grid-cols-3">
             {services.map((service) => (
               <Link href={`/services/${service.link}`} key={service.title} className="text-lg font-semibold leading-6 hover:text-foreground group pr-6 py-1">
                 <div className="flex">
@@ -38,10 +41,10 @@ const ServicesSection = () => {
                     </div>
                   </div>
                   <div className="ml-4">
-                    <h4 className="text-lg font-normal text-foreground leading-6 hover:text-foreground mt-0 mb-0">
+                    <h4 className="text-lg font-semibold text-foreground leading-6 hover:text-blue-500 mt-0 mb-0">
                       {service.title}
                     </h4>
-                    <p className="text-xs line-clamp-2 font-regular text-slate-500 leading-relaxed mt-1">
+                    <p className="text-xs line-clamp-2 font-light text-slate-500 leading-relaxed mt-1">
                       {service.description}
                     </p>
                   </div>

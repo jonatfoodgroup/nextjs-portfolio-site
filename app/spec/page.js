@@ -1,5 +1,7 @@
 import StandardView from "../components/marketing/StandardView";
 import luxor from "../data/transportation/luxor";
+import forOrganizers from "../data/landings/for-organizers";
+import forVenues from "../data/landings/for-venues";
 
 export const generateMetadata = () => {
     return {
@@ -12,7 +14,7 @@ const SpecPage = () => {
     return (
         <>
             {/* <InquiryForm /> */}
-            <StandardView content={luxor} />
+            <StandardView content={forVenues} />
         </>
     );
 }

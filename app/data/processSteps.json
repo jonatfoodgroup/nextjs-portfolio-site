@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "title": "Plan",
+      "description": "We dive deep into your business goals, identify challenges, and create a tailored roadmap to align technology with your objectives.",
+      "icon": "mdi:lightbulb-outline",
+      "services": ["User Experience", "Web Design", "Audits", "AI Roadmap", "Prototyping"]
+    },
+    {
+      "id": 2,
+      "title": "Build",
+      "description": "Transform your ideas into cutting-edge digital solutions with scalable, high-performing platforms and integrations.",
+      "icon": "mdi:hammer-wrench",
+      "services": ["Custom Websites", "Ecommerce","Integrations", "API Platforms", "Web Performance & Security"]
+    },
+    {
+      "id": 3,
+      "title": "Manage",
+      "description": "Keep your systems secure and performing at their best with ongoing support and infrastructure management.",
+      "icon": "mdi:shield-check-outline",
+      "services": ["Cloud Management", "Digital Project Management", "Security & Compliance", "Performance Optimization", "Support & Maintenance"]
+    }
+  ]

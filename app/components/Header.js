@@ -5,6 +5,7 @@ import MegaMenu from './MegaMenu';
 import Link from 'next/link';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { usePathname } from 'next/navigation';
+import Logo from './Logo';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,8 +15,12 @@ const Header = () => {
 
 
   const handleMenuToggle = (menuName) => {
-    setMenuOpen((prev) => (prev && activeMenu === menuName ? false : true));
-    setActiveMenu(menuName);
+    if (menuOpen && activeMenu === menuName) {
+      closeMenu();
+    } else {
+      setMenuOpen(true);
+      setActiveMenu(menuName);
+    }
   };
 
   const closeMenu = () => {
@@ -51,19 +56,11 @@ const Header = () => {
 
 
   return (
-    <header className="bg-background fixed w-full z-50">
+    <header className="bg-background fixed w-full z-50 border-b-2 border-primary">
       <div className="relative bg-background" style={{ zIndex: 999 }}>
-        <nav className="mx-auto flex max-w-7xl items-center justify-between py-2 lg:px-8" aria-label="Global">
+        <nav className="mx-auto container flex items-center justify-between py-4" aria-label="Global">
           <div className="flex items-center flex-1">
-            <Link href="/" className="flex items-center gap-x-1 text-md font-semibold leading-6 text-white">
-              {
-                isDarkMode ? (
-                  <img src="/images/logo.png" alt="Belfort" className="h-16 w-auto" />
-                ) : (
-                  <img src="/images/logo-black.png" alt="Belfort" className="h-16 w-auto" />
-                )
-              }
-            </Link>
+            <Logo />
           </div>
           <div className="flex lg:hidden">
             <button
@@ -87,26 +84,27 @@ const Header = () => {
           <div className="hidden lg:flex lg:gap-x-4">
             <button
               onClick={() => handleMenuToggle('services')}
-              className={`flex items-center gap-x-1 text-md font-normal leading-6 text-foreground px-2 py-2 hover:text-foreground ${activeMenu === 'services' ? 'border-b-2 border-background' : ''}`}
+              className={`flex items-center gap-x-1 text-md leading-6  px-2 py-2 hover:text-blue-500 ${activeMenu === 'services' ? 'text-blue-500 font-bold' : 'text-foreground font-semibold'}`}
             >
               What we do
               <Icon icon={`${activeMenu === 'services' ? 'ic:round-check' : 'bi:chevron-down'}`} className="h-2 w-2" />
             </button>
             <button
               onClick={() => handleMenuToggle('insights')}
-              className={`flex items-center gap-x-1 text-md font-normal leading-6 text-foreground px-2 py-2 hover:text-foreground ${activeMenu === 'insights' ? 'border-b-2 border-background' : ''}`}
+              className={`flex items-center gap-x-1 text-md leading-6  px-2 py-2 hover:text-blue-500 ${activeMenu === 'insights' ? 'text-blue-500 font-bold' : 'text-foreground font-semibold'}`}
 >
               What we think
               <Icon icon="bi:chevron-down" className="h-2 w-2" />
             </button>
             <Link href="/company" 
             
-            className="text-md font-normal leading-6 text-foreground px-2 py-2 hover:text-white">
+            className="text-md font-semibold leading-6 text-foreground px-2 py-2 hover:text-blue-500 hover:font-bold">
               Who we are
             </Link>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link href="#" className="text-sm font-semibold leading-6 px-6 py-2 text-foreground hover:bg-background">
+            <Link href="/contact-us" className="text-sm font-semibold leading-6 px-6 py-2 text-white bg-black hover:bg-black flex items-center gap-x-2">
+              <Icon icon="uiw:mail-o" className="h-4 w-4" />
               Contact Us
             </Link>
           </div>

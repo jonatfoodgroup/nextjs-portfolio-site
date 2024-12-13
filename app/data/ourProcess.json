@@ -1,0 +1,60 @@
+[
+    {
+      "title": "Discovery",
+      "color": "bg-gray-800",
+      "steps": [
+        "Stakeholder Interviews",
+        "User Personas",
+        "Accessibility Audit",
+        "Analytics Review",
+        "Technical Audit",
+        "Requirements Matrix"
+      ]
+    },
+    {
+      "title": "Design",
+      "color": "bg-purple-600",
+      "steps": [
+        "Concept Board",
+        "Wireframes",
+        "High Fidelity Mockups",
+        "Site Structure & Mapping",
+        "Migration Planning",
+        "Architecture Diagram"
+      ]
+    },
+    {
+      "title": "Development",
+      "color": "bg-yellow-500",
+      "steps": [
+        "Data Migration",
+        "Application Architecture",
+        "Code Reviews",
+        "Accessibility",
+        "Content Migration",
+        "Quality Assurance"
+      ]
+    },
+    {
+      "title": "Deploy",
+      "color": "bg-blue-500",
+      "steps": [
+        "Continuous Integration",
+        "Security Monitoring",
+        "DNS Management",
+        "Infrastructure Management",
+        "Analytics & Business Intelligence"
+      ]
+    },
+    {
+      "title": "Delight",
+      "color": "bg-gray-800",
+      "steps": [
+        "Digital Project Management",
+        "Training",
+        "Feature Development",
+        "Performance Monitoring",
+        "Retainer"
+      ]
+    }
+  ]
