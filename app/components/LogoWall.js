@@ -41,7 +41,7 @@ const LogoWall = () => {
       ref={sliderRef}
       onSwiper={it => (sliderRef.current = it)}
       modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-      spaceBetween={10}
+      spaceBetween={20}
       slidesPerView={3} // Adjust the number of visible logos
       navigation
       // pagination={{ clickable: true }}
