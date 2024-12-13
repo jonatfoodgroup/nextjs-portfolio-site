@@ -13,9 +13,9 @@ export const generateMetadata = () => {
 export default function Marketing() {
     return (
         <div>
-            <StandardView
+            {/* <StandardView
                 content={content_settings}
-            />
+            /> */}
         </div>
     );
 }
