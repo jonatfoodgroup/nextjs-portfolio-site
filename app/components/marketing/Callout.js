@@ -16,11 +16,11 @@ const Callout = ({
             <div className="absolute inset-0 bg-black opacity-50"></div>
             <div
                 className="container mx-auto h-full flex flex-col justify-end items-start space-y-4 text-white px-4 relative z-50 pb-20">
-                <div className="flex flex-col w-2/3">
+                <div className="flex flex-col w-full md:w-2/3">
                     <h2 
                     data-aos="fade-in"
                     data-aos-delay="100"
-                    className="text-5xl font-regular mb-6">
+                    className="text-2xl md:text-5xl font-regular mb-6">
                         {content.title}
                     </h2>
                     <p 
