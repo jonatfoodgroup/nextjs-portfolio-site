@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 export default function ProcessSteps() {
     const [space, setSpace] = React.useState(16);
     return (
-        <section className="bg-background text-text py-0 md:py-16">
+    <section className="bg-background text-text py-0 md:py-16">
             <div className="container mx-auto">
 
 
@@ -30,12 +30,12 @@ export default function ProcessSteps() {
                                             icon={step.icon}
                                             className="text-4xl text-gray-500 mr-4"
                                         />
-                                        <h3 className="text-5xl font-light">{step.title}</h3>
+                                        <h3 className="text-5xl font-semibold">{step.title}</h3>
                                     </div>
                                 </div>
                                 {/* Column 2: Description */}
                                 <div>
-                                    <p className="text-gray-400 text-lg">{step.description}</p>
+                                    <p className="text-gray-600 text-lg">{step.description}</p>
                                 </div>
                                 {/* Column 3: List of Services */}
                                 <div>

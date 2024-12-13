@@ -49,9 +49,9 @@ const SoftwareList = () => {
                         <img 
                             src={`/images/software-logos/${software.title.toLowerCase()}.webp`} 
                             alt={`${software.title} logo`} 
-                            className="w-full h-10 object-contain mb-2"
+                            className="w-full h-12 object-contain mb-2"
                         />
-                        <h2 className="text-sm text-text">{software.title}</h2>
+                        <h2 className="text-sm text-text font-semibold">{software.title}</h2>
                     </div>
                 ))}
             </div>
