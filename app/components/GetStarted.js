@@ -5,7 +5,7 @@ import Link from "next/link";
 const GetStartedBanner = () => {
     return (
         <div className="container mx-auto outer-container my-16">
-            <section className="py-16 flex flex-row rounded-lg px-16" style={{ border: "2px solid #e5e7eb" }}>
+            <section className="py-16 flex flex-row rounded-lg px-0 md:px-16" style={{ border: "2px solid #e5e7eb" }}>
                 <div className="w-full md:w-2/3">
                     <h2 className="text-6xl font-semibold mb-4 text-text">Work With Us Today</h2>
                     <p className="text-2xl text-gray-600 mb-6 leading-relaxed">
