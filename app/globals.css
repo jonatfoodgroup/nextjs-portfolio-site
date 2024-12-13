@@ -143,3 +143,11 @@ html body .outer-container {
     max-width: 87rem;
     padding-right: 0rem;
 }
+
+@media all and (max-width: 1024px) {
+  html body .outer-container {
+    padding-left: 20px;
+    max-width: 100%;
+    padding-right: 20px;
+  }
+}
