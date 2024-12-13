@@ -9,7 +9,7 @@ const ServiceList = () => {
         <div className="grid md:grid-cols-3 gap-4 mt-8 grid-cols-1">
             {services.map((service) => (
                 <Link href={`/services/${service.slug}`} key={service.slug} className="p-4 shadow rounded-md hover:shadow-lg group">
-                    <h2 className="text-2xl font-semibold text-text flex flex-row group-hover:text-blue-500">
+                    <h2 className="text-2xl font-bold text-text flex flex-row group-hover:text-blue-500">
                         {/* <Icon icon={service.icon} className={`mr-2 bg-white rounded text-2xl text-gray-300`} /> */}
                         {service.title}</h2>
                     <p className="mt-2 text-text text-md">{service.description}</p>
