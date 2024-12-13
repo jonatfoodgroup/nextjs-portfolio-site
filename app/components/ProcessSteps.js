@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 export default function ProcessSteps() {
     const [space, setSpace] = React.useState(16);
     return (
-        <section className="bg-background text-text py-16">
+        <section className="bg-background text-text py-0 md:py-16">
             <div className="container mx-auto">
 
 

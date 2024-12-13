@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { Navigation, Pagination, Scrollbar, A11y,Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -25,7 +25,7 @@ const LogoWall = () => {
       </button>
     );
   };
-  
+
   const PrevButton = () => {
     return (
       <button
@@ -40,7 +40,7 @@ const LogoWall = () => {
     <Swiper
       ref={sliderRef}
       onSwiper={it => (sliderRef.current = it)}
-      modules={[Navigation, Pagination, Scrollbar, A11y,Autoplay]}
+      modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
       spaceBetween={10}
       slidesPerView={2} // Adjust the number of visible logos
       navigation
@@ -65,7 +65,7 @@ const LogoWall = () => {
       }}
     >
       {staticLogos.map((logo, index) => (
-        <SwiperSlide key={index} className='flex justify-center items-center py-16'>
+        <SwiperSlide key={index} className='flex justify-center items-center py-8'>
           <img
             src={logo.src}
             alt={logo.alt}

@@ -13,7 +13,7 @@ export default function Home() {
       <Header />
       <Masthead />
       
-      <div className="container mx-auto pt-24">
+      <div className="container mx-auto mt-8 md:mt-16">
       <LogoWall />
         <ProcessSteps />
         <ServiceList />
