@@ -27,7 +27,7 @@ const SoftwareList = () => {
         <div className="flex flex-col mt-16">
             <div className="flex flex-col md:flex-row justify-between items-top align-top">
                 <div className="flex flex-col w-full md:w-1/2">
-                    <h2 className="text-3xl font-bold text-text mb-4">A broad range of software strategies for your business</h2>
+                    <h2 className="text-4xl font-bold text-text mb-4">A broad range of software strategies for your business</h2>
                     {/* <p className="text-text mb-8">
                         Find the software you need to get the job done.
                     </p> */}
