@@ -9,7 +9,7 @@ import 'swiper/css/scrollbar';
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const LogoWall = () => {
-  const staticLogos = Array.from({ length: 10 }, (_, index) => ({
+  const staticLogos = Array.from({ length: 12 }, (_, index) => ({
     src: `/images/client-logos/${index + 1}.webp`,
     alt: `Client Logo ${index + 1}`,
   }));

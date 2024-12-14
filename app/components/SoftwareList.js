@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import softwares from "../data/softwares";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const SoftwareList = () => {
     const [localSoftwares, setLocalSoftwares] = useState([]);
@@ -32,18 +33,20 @@ const SoftwareList = () => {
                         Find the software you need to get the job done.
                     </p> */}
                 </div>
-                <form className="mb-8 w-full md:w-1/2">
+                <form className="mb-8 w-full md:w-1/2 flex items-center">
+                    
                     <input
                         type="text"
                         placeholder="Search software"
-                        className="p-2 border border-border w-full h-16"
+                        className="p-2 border border-border w-full h-16 px-6"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
+                    <Icon icon="mdi:magnify" className="text-2xl ml-2" />
                 </form>
             </div>
 
-            <div className="grid grid-cols-3 md:grid-cols-7 md:gap-4 gap-2">
+            <div className="grid grid-cols-3 md:grid-cols-7 md:gap-4 gap-2 mt-4">
                 {localSoftwares.map((software) => (
                     <div key={software.title} className="p-4 bg-background hover:shadow-xl rounded-lg transition duration-300 cursor-pointer border border-border flex flex-col items-center justify-center">
                         <img 
