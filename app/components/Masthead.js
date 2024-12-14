@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
 const Masthead = () => {
     return (
-        <div className="bg-background pt-16 flex items-center justify-center md:pt-24">
+        <div className="bg-background pt-16 flex items-center justify-center md:pt-8">
             <div className="container mx-auto">
                 <div className="w-full md:w-2/3">
                     <h1 className="text-4xl md:text-6xl font-bold text-text mt-20 md:mt-48">
