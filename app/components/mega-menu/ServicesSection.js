@@ -36,8 +36,8 @@ const ServicesSection = () => {
               <Link href={`/services/${service.link}`} key={service.title} className="text-lg font-semibold leading-6 hover:text-foreground group pr-6 py-1">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <div className={`flex items-center justify-center ${iconSize} rounded-md bg-slate-200 text-${service.color}-500`}>
-                      <Icon icon={service.icon} className={`text-${service.color}-500 text-xl`} />
+                    <div className={`flex items-center justify-center ${iconSize} rounded-md bg-slate-200`}>
+                      <Icon icon={service.icon} className={`text-3xl`} />
                     </div>
                   </div>
                   <div className="ml-4">

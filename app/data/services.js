@@ -3,7 +3,7 @@ const services = [
     "title": "Analytics & Data Management",
     "slug": "analytics",
     "description": "Transform raw data into actionable insights to drive informed decision-making, optimize performance, and uncover growth opportunities.",
-    "icon": "mingcute:chart-pie-fill",
+    "icon": "carbon:join-inner",
     "color": "green",
     "link": "/analytics",
     "tagline": "Making data work for your business",
@@ -12,12 +12,39 @@ const services = [
         "Our team of experts brings a wealth of experience to every project, working with businesses of all sizes to develop custom analytics solutions that align with their goals. Whether you’re looking to optimize your marketing campaigns, improve your supply chain, or better understand your customers, we have the tools and the know-how to make it happen.",
         "We believe that the best analytics strategies are built on a foundation of data. By analyzing your business processes, your customer interactions, and your industry, we can create a roadmap that guides your analytics efforts and ensures that every dollar you spend delivers a return on investment. From the first data pull to the final dashboard, we’re here to help you succeed."
     ],
+    "services": [
+      {
+        "title": "Data Collection & Integration",
+        "content": "Aggregate data from multiple sources for a comprehensive view.",
+        "icon": "carbon:connect"
+      },
+      {
+        "title": "Migration & Transformation",
+        "content": "Move and optimize data for better insights and performance.",
+        "icon": "carbon:convert-to-cloud"
+      },
+      {
+        "title": "Visualization & Reporting",
+        "content": "Create dashboards that deliver actionable insights.",
+        "icon": "carbon:analytics"
+      },
+      {
+        "title": "Predictive Analytics",
+        "content": "Anticipate trends and optimize operations with AI-driven insights.",
+        "icon": "carbon:ai-recommend"
+      }, 
+      {
+        "title": "Data Governance & Compliance",
+        "content": "Ensure data accuracy and security for meaningful analytics.",
+        "icon": "carbon:ibm-cloud-security-compliance-center"
+      }
+    ]
   },
   {
     "title": "Automation & Integration",
     "slug": "automation",
     "description": "Streamline operations with advanced automation and integration tools, improving efficiency and reducing manual effort across platforms.",
-    "icon": "mingcute:settings-5-fill",
+    "icon": "carbon:data-unstructured",
     "color": "orange",
     "link": "/automation",
     "tagline": "Empowering businesses with smarter processes",
@@ -26,12 +53,39 @@ const services = [
         "Our team of experts brings a wealth of experience to every project, working with businesses of all sizes to develop custom automation and integration solutions that align with their goals. Whether you’re looking to automate your marketing campaigns, integrate your CRM and sales systems, or optimize your supply chain, we have the tools and the know-how to make it happen.",
         "We believe that the best automation strategies are built on a foundation of data. By analyzing your business processes, your customer interactions, and your industry, we can create a roadmap that guides your automation efforts and ensures that every dollar you spend delivers a return on investment. From the first workflow to the final integration, we’re here to help you succeed."
     ],
+    "services": [
+      {
+        "title": "Workflow Automation",
+        "content": "Streamline manual tasks and improve efficiency.",
+        "icon": "carbon:workflow-automation"
+      },
+      {
+        "title": "Integration & API Development",
+        "content": "Connect systems and platforms for seamless operations.",
+        "icon": "carbon:ibm-api-connect"
+      },
+      {
+        "title": "Marketing Automation",
+        "content": "Automate campaigns and nurture leads for better results.",
+        "icon": "carbon:email-new"
+      },
+      {
+        "title": "Sales Automation",
+        "content": "Optimize your sales process and drive conversions.",
+        "icon": "carbon:carbon-for-salesforce"
+      }, 
+      {
+        "title": "Supply Chain Automation",
+        "content": "Improve efficiency and reduce costs with automated processes.",
+        "icon": "carbon:scis-transparent-supply"
+      }
+    ]
   },
   {
     "title": "Content Management & Development",
     "slug": "content-management",
     "description": "Create, manage, and optimize content with robust solutions designed to boost engagement and maintain consistent messaging across all channels.",
-    "icon": "mingcute:content-ai-fill",
+    "icon": "carbon:data-vis-1",
     "color": "blue",
     "link": "/content-management",
     "tagline": "Crafting compelling content that drives results",
@@ -40,12 +94,39 @@ const services = [
         "Our team of experts brings a wealth of experience to every project, working with businesses of all sizes to develop custom content strategies that align with their goals. Whether you’re looking to increase brand awareness, drive traffic to your site, or boost conversions, we have the tools and the know-how to make it happen.",
         "We believe that the best content strategies are built on a foundation of data. By analyzing your audience, your competition, and your industry, we can create a roadmap that guides your content efforts and ensures that every dollar you spend delivers a return on investment. From the first blog post to the final video, we’re here to help you succeed."
     ],
+    "services": [
+      {
+        "title": "Planning & Strategy",
+        "content": "Develop content calendars and strategies that align with business goals.",
+        "icon": "carbon:strategy-play"
+      },
+      {
+        "title": "Content Writing & Editing",
+        "content": "Create compelling, SEO-friendly content that engages your audience.",
+        "icon": "carbon:edit"
+      },
+      {
+        "title": "Publishing & Distribution",
+        "content": "Share content across channels for maximum reach and engagement.",
+        "icon": "carbon:share"
+      },
+      {
+        "title": "SEO & Keyword Optimization",
+        "content": "Boost visibility and drive traffic with targeted content.",
+        "icon": "carbon:search"
+      }, 
+      {
+        "title": "Analytics & Reporting",
+        "content": "Track performance and optimize campaigns for maximum ROI.",
+        "icon": "carbon:analytics"
+      }
+    ]
   },
   {
     "title": "CRM & Sales Enablement",
     "slug": "crm-sales",
     "description": "Empower your sales teams with optimized CRM systems and tools, enhancing client interactions and improving lead-to-customer conversion rates.",
-    "icon": "mingcute:user-follow-fill",
+    "icon": "carbon:carbon-for-salesforce",
     "color": "emerald",
     "link": "/crm-sales",
     "tagline": "Transforming the way businesses sell and connect with customers",
@@ -82,7 +163,7 @@ const services = [
       {
         "title": "Personalized Buyer Journeys",
         "content": "Creating touchpoints that resonate with each customer.",
-        "icon": "carbon:user-role"
+        "icon": "carbon:user-favorite"
       }, 
       {
         "title": "Migrations & Integrations",
@@ -126,7 +207,7 @@ const services = [
     "title": "Customer Experience & Engagement",
     "slug": "customer-experience",
     "description": "Elevate customer satisfaction by delivering personalized experiences that build loyalty and foster meaningful connections across every touchpoint.",
-    "icon": "mingcute:heart-fill",
+    "icon": "carbon:airline-passenger-care",
     "color": "yellow",
     "link": "/customer-experience",
     "tagline": "Creating connections that last",
@@ -135,12 +216,39 @@ const services = [
         "Our team of experts brings a wealth of experience to every project, working with businesses of all sizes to develop custom customer experience strategies that align with their goals. Whether you’re looking to improve your customer service, personalize your marketing campaigns, or optimize your sales process, we have the tools and the know-how to make it happen.",
         "We believe that the best customer experience strategies are built on a foundation of data. By analyzing your customer interactions, your sales process, and your industry, we can create a roadmap that guides your customer experience efforts and ensures that every dollar you spend delivers a return on investment. From the first touchpoint to the final sale, we’re here to help you succeed."
     ],
+    "services": [
+      {
+        "title": "Service Design & Mapping",
+        "content": "Visualize the customer experience and identify opportunities for improvement.",
+        "icon": "carbon:customer"
+      },
+      {
+        "title": "Personalization & Segmentation",
+        "content": "Tailor your marketing and sales efforts to individual customer needs.",
+        "icon": "carbon:person-favorite"
+      },
+      {
+        "title": "Omnichannel Engagement",
+        "content": "Connect with customers across multiple touchpoints for a seamless experience.",
+        "icon": "carbon:network-4"
+      },
+      {
+        "title": "Customer Feedback & Surveys",
+        "content": "Gather insights and feedback to improve the customer experience.",
+        "icon": "carbon:user-feedback"
+      }, 
+      {
+        "title": "Customer Service & Support",
+        "content": "Deliver exceptional service and support to build customer loyalty.",
+        "icon": "carbon:user-service"
+      }
+    ]
   },
   {
     "title": "Digital Marketing & Strategy",
     "slug": "digital-marketing",
     "description": "Drive results with data-backed digital marketing strategies, combining SEO, PPC, and content to maximize reach and achieve business goals.",
-    "icon": "mingcute:speaker-fill",
+    "icon": "carbon:email-new",
     "color": "red",
     "link": "/digital-marketing",
     "tagline": "Empowering businesses to grow through digital marketing",
@@ -158,27 +266,33 @@ const services = [
     "services": [
       {
         "title": "SEO & Content Marketing",
-        "content": "Boost visibility and drive traffic with targeted content."
+        "content": "Boost visibility and drive traffic with targeted content.",
+        "icon": "carbon:search"
       },
       {
         "title": "Community Management",
-        "content": "Engage with customers and build brand loyalty."
+        "content": "Engage with customers and build brand loyalty.",
+        "icon": "carbon:events"
       },
       {
         "title": "PPC & Paid Advertising",
-        "content": "Maximize reach and drive conversions with targeted ads."
+        "content": "Maximize reach and drive conversions with targeted ads.",
+        "icon": "carbon:ibm-bluepay"
       },
       {
         "title": "Social Media Marketing",
-        "content": "Engage with customers and build brand awareness."
+        "content": "Engage with customers and build brand awareness.",
+        "icon": "carbon:logo-facebook"
       }, 
       {
         "title": "Email Marketing",
-        "content": "Nurture leads and drive conversions with targeted campaigns."
+        "content": "Nurture leads and drive conversions with targeted campaigns.",
+        "icon": "carbon:email-new"
       },
       {
         "title": "Analytics & Reporting",
-        "content": "Track performance and optimize campaigns for maximum ROI."
+        "content": "Track performance and optimize campaigns for maximum ROI.",
+        "icon": "carbon:analytics"
       }
     ]
   },
@@ -186,7 +300,7 @@ const services = [
     "title": "Web Development & Design",
     "slug": "web-development",
     "description": "Develop cutting-edge, responsive websites designed to deliver seamless user experiences while aligning with your brand and business objectives.",
-    "icon": "mingcute:code-fill",
+    "icon": "carbon:cics-program",
     "color": "blue",
     "link": "/web-development",
     "tagline": "Building websites that work for your business",
@@ -194,13 +308,41 @@ const services = [
         "Your website is often the first impression customers have of your business. It’s your digital storefront, your brand ambassador, and your best salesperson. At belfort., we specialize in creating custom websites that deliver results. From responsive design to seamless user experiences, we help businesses build websites that work for them.",
         "Our team of experts brings a wealth of experience to every project, working with businesses of all sizes to develop custom websites that align with their goals. Whether you’re looking to increase conversions, improve your SEO, or enhance your brand, we have the tools and the know-how to make it happen.",
         "We believe that the best websites are built on a foundation of data. By analyzing your audience, your competition, and your industry, we can create a roadmap that guides your website development efforts and ensures that every dollar you spend delivers a return on investment. From the first wireframe to the final launch, we’re here to help you succeed."
-    ],
+    ],        
+    "services": [
+      {
+        "title": "Information Architecture",
+        "content": "Organize content and structure for a seamless user experience.",
+        "icon": "carbon:load-balancer-network"
+      },
+      {
+        "title": "UI/UX Design",
+        "content": "Create visually stunning interfaces that engage users.",
+        "icon": "carbon:gui"
+      },
+      {
+        "title": "Modern Development",
+        "content": "Build responsive websites that work on any device.",
+        "icon": "carbon:ibm-watsonx-code-assistant-for-z-refactor"
+      },
+      {
+        "title": "SEO & Performance Optimization",
+        "content": "Boost visibility and drive traffic with targeted content.",
+        "icon": "carbon:search"
+      },
+      {
+        "title": "Tracking & Improvement",
+        "content": "Monitor performance and make data-driven improvements.",
+        "icon": "carbon:sankey-diagram-alt"
+      }
+      
+    ]
   },
   {
     "title": "AI Strategy & Implementation",
     "slug": "ai-strategy",
     "description": "Leverage artificial intelligence to enhance operations, optimize processes, and unlock new opportunities for growth and innovation.",
-    "icon": "mingcute:robot-fill",
+    "icon": "carbon:ai-recommend",
     "color": "purple",
     "link": "/ai-strategy",
     "tagline": "Harnessing the power of AI to drive business success",
@@ -209,6 +351,33 @@ const services = [
         "Our team of experts brings a wealth of experience to every AI project, working with businesses of all sizes to develop custom solutions that align with their goals. Whether you’re looking to automate manual tasks, optimize your supply chain, or improve customer service, we have the tools and the know-how to make it happen.",
         "We believe that the best AI strategies are built on a foundation of data. By analyzing your business processes, your customer interactions, and your industry, we can create a roadmap that guides your AI efforts and ensures that every dollar you spend delivers a return on investment. From the first prototype to the final implementation, we’re here to help you succeed."
     ],
+    "services": [
+      {
+        "title": "Predictive Analytics",
+        "content": "Anticipate customer needs and optimize operations.",
+        "icon": "carbon:ibm-planning-analytics"
+      },
+      {
+        "title": "Machine Learning",
+        "content": "Automate manual tasks and streamline processes.",
+        "icon": "carbon:machine-learning-model"
+      },
+      {
+        "title": "Natural Language Processing",
+        "content": "Improve customer service and engagement with AI-driven chatbots.",
+        "icon": "carbon:ibm-watson-speech-to-text"
+      },
+      {
+        "title": "Computer Vision",
+        "content": "Enhance operations and optimize processes with image recognition.",
+        "icon": "carbon:image-search"
+      }, 
+      {
+        "title": "AI Strategy Consulting",
+        "content": "Develop custom AI solutions that align with your business goals.",
+        "icon": "carbon:strategy-play"
+      }
+    ]
   }
 ]
 

@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay, Grid } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -40,7 +40,7 @@ const LogoWall = () => {
     <Swiper
       ref={sliderRef}
       onSwiper={it => (sliderRef.current = it)}
-      modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+      modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, Grid]}
       spaceBetween={30}
       slidesPerView={4} // Adjust the number of visible logos
       navigation

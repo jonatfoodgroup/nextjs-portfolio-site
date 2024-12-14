@@ -43,7 +43,7 @@ const SoftwareList = () => {
                 </form>
             </div>
 
-            <div className="grid grid-cols-3 md:grid-cols-8 md:gap-4 gap-2">
+            <div className="grid grid-cols-3 md:grid-cols-7 md:gap-4 gap-2">
                 {localSoftwares.map((software) => (
                     <div key={software.title} className="p-4 bg-background hover:shadow-xl rounded-lg transition duration-300 cursor-pointer border border-border flex flex-col items-center justify-center">
                         <img 
