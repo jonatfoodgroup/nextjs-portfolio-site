@@ -10,7 +10,7 @@ const Masthead = () => {
                     <h1 className="text-4xl md:text-6xl font-bold text-text mt-20 md:mt-48">
                         We make software and marketing simple.
                     </h1>
-                    <p className="text-xl text-text mt-4">
+                    <p className="text-md md:text-xl text-text mt-4">
                         Whether you're a small business with a big vision or a large enterprise looking to streamline your operations, we have the tools and expertise to help you succeed.
                     </p>
 

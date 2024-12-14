@@ -19,9 +19,9 @@ export default function ServiceView({ service }) {
                 <Breadcrumb service={service} />
                 <div className="flex mt-16 flex-col md:flex-row">
                     <div className="w-full md:w-2/3">
-                        <h1 className="text-5xl font-bold text-text">{service.title}</h1>
-                        <h2 className="text-2xl font-bold text-text mt-4">{service.tagline}</h2>
-                        <p className="mt-4 text-lg text-text">{(service.content) ? service.content[0] : service.description}</p>
+                        <h1 className="text-4xl md:text-5xl font-bold text-text">{service.title}</h1>
+                        <h2 className="text-xl md:text-2xl font-bold text-text mt-4">{service.tagline}</h2>
+                        <p className="mt-4 text-md md:text-lg text-text">{(service.content) ? service.content[0] : service.description}</p>
                         <div className="inline-flex items-center space-x-8 p-6 border-2 border-gray-200 text-text mt-8">
                             <h3 className="text-xl font-medium">Already know what you need?</h3>
                             <Link href="/contact-us" className="px-4 py-2 text-md font-medium bg-black text-white">
