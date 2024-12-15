@@ -19,7 +19,7 @@ const LogoWall = () => {
     return (
       <button
         onClick={() => sliderRef.current.slideNext()}
-        className="absolute top-1/2 -right-[10px] transform -translate-y-1/2 p-4  rounded-l-md  z-50 hover:bg-gray-100 hover:shadow-lg transition-all"
+        className="absolute top-1/2 -right-[10px] transform -translate-y-1/2 p-4  rounded-l-md  z-50 hover:bg-gray-100 hover:shadow-lg transition-all border border-gray-200"
       >
         <Icon icon="bi:arrow-right" className="text-2xl text-gray-500" />
       </button>
@@ -30,7 +30,7 @@ const LogoWall = () => {
     return (
       <button
         onClick={() => sliderRef.current.slidePrev()}
-        className="absolute top-1/2 -left-[10px] transform -translate-y-1/2 p-4  rounded-r-md z-50 hover:bg-gray-100 hover:shadow-lg transition-all"
+        className="absolute top-1/2 -left-[10px] transform -translate-y-1/2 p-4  rounded-r-md z-50 hover:bg-gray-100 hover:shadow-lg transition-all border border-gray-200"
       >
         <Icon icon="bi:arrow-left" className="text-2xl text-gray-500" />
       </button>
@@ -59,17 +59,17 @@ const LogoWall = () => {
           spaceBetween: 30,
         },
         1440: {
-          slidesPerView: 5,
+          slidesPerView: 6,
           spaceBetween: 10,
         },
       }}
     >
       {staticLogos.map((logo, index) => (
-        <SwiperSlide key={index} className='flex justify-center items-center py-8'>
+        <SwiperSlide key={index} className='flex justify-center items-center py-16 mt-16'>
           <img
             src={logo.src}
             alt={logo.alt}
-            className="h-40 w-40 object-contain rounded-lg mx-auto"
+            className="h-48 w-48 object-contain rounded-lg mx-auto"
           />
         </SwiperSlide>
       ))}

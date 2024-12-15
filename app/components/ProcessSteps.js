@@ -6,8 +6,8 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 export default function ProcessSteps() {
     const [space, setSpace] = React.useState(16);
     return (
-        <section className="bg-background text-text py-0 md:py-8">
-            <div className="container mx-auto">
+        <section className="bg-gray-200 text-text py-0 md:py-8">
+            <div className="container mx-auto inner-container">
 
 
                 {/* Vertical Layout with 3 Columns */}

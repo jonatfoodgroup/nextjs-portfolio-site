@@ -1,12 +1,13 @@
 import articles from '../data/articles';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Icon } from '@iconify/react/dist/iconify.js';
 
 export default function ArticleList({
     items = articles,
 }) {
     return (
-        <div className="grid md:grid-cols-3 gap-4 mt-8 grid-cols-1">
+        <div className="grid md:grid-cols-4 gap-8 mt-8 grid-cols-1">
             {items.map(article => (
                 <Article key={article.id} article={article} />
             ))}
@@ -19,24 +20,24 @@ function Article({ article }) {
         <Link
             href={`/article/${article.slug}`}
             className="p-4 shadow rounded-md hover:shadow-lg cursor-pointer">
-            {/* <Image
-                src={article.image}
-                alt={article.title}
-                width={300}
-                height={150}
-            /> */}
-            <h2 className="text-lg font-semibold text-text mt-4 hover:text-blue-500 mb-1">
+            {
+                article.icon &&
+                <div className="flex items-center justify-center w-12 h-12 bg-black rounded-full">
+                    <Icon icon={article.icon} className="text-3xl text-white" />
+                </div>
+            }
+            <h2 className="text-3xl font-semibold text-text mt-4 hover:text-blue-500 mb-1 transition-all leading-tight">
                 <Link href={`/article/${article.slug}`}>
                     {article.title}
                 </Link>
             </h2>
-            <p className="text-text text-sm"
+            <p className="text-text text-lg mt-4"
             >{article.description}</p>
-            <Link
+            {/* <Link
                 href={`/article/${article.slug}`}
-                className="mt-2 block text-text underline text-sm">
+                className="mt-2 block text-text underline text-sm font-semibold">
                 Read more
-            </Link>
+            </Link> */}
         </Link>
     );
 }

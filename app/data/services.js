@@ -10,7 +10,7 @@ const services = [
     "content": [
         "Data is the lifeblood of modern business. From customer insights to operational efficiency, the ability to collect, analyze, and act on data is what sets successful businesses apart. At belfort., we specialize in helping businesses make the most of their data, turning raw information into actionable insights that drive growth and success.",
         "Our team of experts brings a wealth of experience to every project, working with businesses of all sizes to develop custom analytics solutions that align with their goals. Whether you’re looking to optimize your marketing campaigns, improve your supply chain, or better understand your customers, we have the tools and the know-how to make it happen.",
-        "We believe that the best analytics strategies are built on a foundation of data. By analyzing your business processes, your customer interactions, and your industry, we can create a roadmap that guides your analytics efforts and ensures that every dollar you spend delivers a return on investment. From the first data pull to the final dashboard, we’re here to help you succeed."
+      "We believe that the best analytics strategies are built on a foundation of data. By analyzing your business processes, your customer interactions, and your industry, we can create a roadmap that guides your analytics efforts and ensures that every dollar you spend delivers a return on investment. From the first data pull to the final dashboard, we’re here to help you succeed."
     ],
     "services": [
       {
@@ -37,6 +37,18 @@ const services = [
         "title": "Data Governance & Compliance",
         "content": "Ensure data accuracy and security for meaningful analytics.",
         "icon": "carbon:ibm-cloud-security-compliance-center"
+      }
+    ],
+    "articles": [
+      {
+        "title": "Progressing from Data to Insights",
+        "description": "Learn how to transform raw data into actionable insights that drive business growth and success.",
+        "icon": "carbon:join-inner",          
+      },
+      {
+        "title": "The Future of Data Management",
+        "description": "Explore emerging trends in data management and how businesses can adapt to changing technologies and regulations.",
+        "icon": "carbon:idea"
       }
     ]
   },
@@ -242,6 +254,23 @@ const services = [
         "content": "Deliver exceptional service and support to build customer loyalty.",
         "icon": "carbon:user-service"
       }
+    ],
+    "articles": [
+      {
+        "title": "Mapping the Value of Your Membership Program",
+        "description": "Learn how to create a customer journey map that identifies key touchpoints and opportunities to enhance your membership program.",
+        "icon": "carbon:customer"
+      },
+      {
+        "title": "How Gamification Can Boost Customer Engagement",
+        "description": "Discover how gamification strategies can drive customer loyalty, increase engagement, and improve the overall customer experience.",
+        "icon": "carbon:game-wireless",
+      },
+      {
+        "title": "The Basics of Personalization",
+        "description": "A beginner's guide to personalization strategies that help businesses connect with customers on a deeper level.",
+        "icon": "carbon:person-favorite"
+      }
     ]
   },
   {
@@ -294,6 +323,18 @@ const services = [
         "content": "Track performance and optimize campaigns for maximum ROI.",
         "icon": "carbon:analytics"
       }
+    ],
+    "articles": [
+      {
+        "title": "Why You Need Better Marketing Analytics",
+        "description": "Learn how to leverage marketing analytics to track performance, optimize campaigns, and drive better results.",
+        "icon": "carbon:analytics"
+      },
+      {
+        "title": "SEO in 2025",
+        "description": "Explore the future of SEO and how businesses can adapt to changing algorithms and search trends.",
+        "icon": "carbon:search"
+      }
     ]
   },
   {
@@ -303,7 +344,7 @@ const services = [
     "icon": "carbon:cics-program",
     "color": "blue",
     "link": "/web-development",
-    "tagline": "Building websites that work for your business",
+    "tagline": "Building Powerful Web Solutions For SMBs & Enterprise",
     "content": [
         "Your website is often the first impression customers have of your business. It’s your digital storefront, your brand ambassador, and your best salesperson. At belfort., we specialize in creating custom websites that deliver results. From responsive design to seamless user experiences, we help businesses build websites that work for them.",
         "Our team of experts brings a wealth of experience to every project, working with businesses of all sizes to develop custom websites that align with their goals. Whether you’re looking to increase conversions, improve your SEO, or enhance your brand, we have the tools and the know-how to make it happen.",

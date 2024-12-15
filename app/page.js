@@ -12,11 +12,12 @@ export default function Home() {
     <>
       <Header />
       <Masthead />
-      
-      <div className="container mx-auto mt-4 md:mt-16">
       <LogoWall />
+
+      <div className="container mx-auto mt-4 md:mt-0 inner-container">
+      <ServiceList />
+
         <ProcessSteps />
-        <ServiceList />
         {/* <OurProcess /> */}
         <SoftwareList />
       </div>

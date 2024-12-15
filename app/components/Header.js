@@ -58,7 +58,7 @@ const Header = () => {
   return (
     <header className="bg-background fixed w-full z-50 border-b-2 border-primary">
       <div className="relative bg-background" style={{ zIndex: 999 }}>
-        <nav className="mx-auto container flex items-center justify-between py-4" aria-label="Global">
+        <nav className="mx-auto container inner-container flex items-center justify-between py-4" aria-label="Global">
           <div className="flex items-center flex-1">
             <Logo />
           </div>
@@ -69,42 +69,33 @@ const Header = () => {
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             >
               <span className="sr-only">Open main menu</span>
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
+             <Icon icon="bi:menu" className="h-6 w-6" />
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-4">
             <button
               onClick={() => handleMenuToggle('services')}
-              className={`flex items-center gap-x-1 text-md leading-6  px-2 py-2 hover:text-blue-500 ${activeMenu === 'services' ? 'text-blue-500 font-bold' : 'text-foreground font-semibold'}`}
+              className={`flex items-center gap-x-1 text-xl leading-6  px-2 py-2 hover:text-blue-500 ${activeMenu === 'services' ? 'text-blue-500 font-bold' : 'text-foreground font-semibold'}`}
             >
               What we do
-              <Icon icon={`${activeMenu === 'services' ? 'ic:round-check' : 'bi:chevron-down'}`} className="h-2 w-2" />
+              <Icon icon={`${activeMenu === 'services' ? 'ic:round-check' : 'bi:chevron-down'}`} className="h-4 w-4" />
             </button>
             <button
               onClick={() => handleMenuToggle('insights')}
-              className={`flex items-center gap-x-1 text-md leading-6  px-2 py-2 hover:text-blue-500 ${activeMenu === 'insights' ? 'text-blue-500 font-bold' : 'text-foreground font-semibold'}`}
+              className={`flex items-center gap-x-1 text-xl leading-6  px-2 py-2 hover:text-blue-500 ${activeMenu === 'insights' ? 'text-blue-500 font-bold' : 'text-foreground font-semibold'}`}
 >
               What we think
-              <Icon icon="bi:chevron-down" className="h-2 w-2" />
-            </button>
-            <Link href="/company" 
+              <Icon icon={`${activeMenu === 'insights' ? 'ic:round-check' : 'bi:chevron-down'}`} className="h-4 w-4" />
+            </button>" 
             
-            className="text-md font-semibold leading-6 text-foreground px-2 py-2 hover:text-blue-500 hover:font-bold">
+            <Link href="/who-we-are"
+              className="text-xl font-semibold leading-6 text-foreground px-2 py-2 hover:text-blue-500 hover:font-bold">
               Who we are
             </Link>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link href="/contact-us" className="text-sm font-semibold leading-6 px-6 py-2 text-white bg-black hover:bg-black flex items-center gap-x-2">
-              <Icon icon="uiw:mail-o" className="h-4 w-4" />
+            <Link href="/contact-us" className="text-lg font-semibold leading-6 px-8 py-4 text-white bg-black hover:bg-black flex items-center gap-x-2">
+              <Icon icon="uiw:mail-o" className="h-6 w-6 mr-1" />
               Contact Us
             </Link>
           </div>

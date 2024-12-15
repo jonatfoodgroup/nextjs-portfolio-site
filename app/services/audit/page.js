@@ -10,10 +10,9 @@ export default function Page() {
     return (
         <>
             <Header />
-            <div className="bg-background pt-24 flex items-center justify-center">
-                <div className="container mx-auto">
+            <div className="bg-background pt-24 flex items-center justify-center ">
+                <div className="container mx-auto inner-container">
                     <div className="flex flex-col">
-                        <Breadcrumb service={{ title: "Audit" }} />
                         <div className="flex align-top mt-8 space-x-16">
                             <div className="w-2/3">
                                 <h1 className="text-6xl font-bold text-text mt-8 leading-tighter">

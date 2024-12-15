@@ -151,3 +151,14 @@ html body .outer-container {
     padding-right: 20px;
   }
 }
+
+/* if over 1440, make container max width larger */
+@media all and (min-width: 1440px) {
+  html body .container {
+    max-width: 120rem;
+    /* padding-left: 100px; */
+  }
+  html body .inner-container {
+    max-width: 100rem;
+  }
+}
