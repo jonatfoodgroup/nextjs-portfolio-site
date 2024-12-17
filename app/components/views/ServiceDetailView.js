@@ -23,7 +23,7 @@ export default function ServiceView({ service }) {
                     <div className="w-full md:w-2/3">
                         {/* <h2 className="text-xl md:text-xl font-bold text-text mt-0 mb-4">{service.title} </h2> */}
 
-                        <h1 className="text-4xl md:text-7xl font-bold text-text mt-12">{service.tagline}</h1>
+                        <h1 className="text-4xl md:text-7xl font-bold text-dark-blue mt-12">{service.tagline}</h1>
                         <p className="mt-4 text-md md:text-2xl leading-relaxed text-text">{(service.content) ? service.content[0] : service.description}</p>
                         <div className="inline-flex items-center space-x-8 p-6 border-2 border-gray-200 text-text mt-8">
                             <h3 className="text-xl font-medium">Already know what you need?</h3>
@@ -43,15 +43,7 @@ export default function ServiceView({ service }) {
                     </div>
                 </div>
 
-                {
-                    service.sections &&
-                    service.sections.map((section, index) => (
-                        <div key={index} className="mt-16">
-                            <h2 className="text-3xl font-bold text-text">{section.title}</h2>
-                            <p className="mt-4 text-lg text-text">{section.description}</p>
-                        </div>
-                    ))
-                }
+                
                 <div className="bg-blue-300 p-8 mt-24">
                     {
                         service.services &&
@@ -76,6 +68,15 @@ export default function ServiceView({ service }) {
                         // </div>
                     }
                 </div>
+                {
+                    service.sections &&
+                    service.sections.map((section, index) => (
+                        <div key={index} className="mt-16">
+                            <h2 className="text-3xl font-bold text-text">{section.title}</h2>
+                            <p className="mt-4 text-lg text-text">{section.description}</p>
+                        </div>
+                    ))
+                }
 
                 <LogoWall />
                 <Callout
@@ -94,11 +95,11 @@ export default function ServiceView({ service }) {
 
 
                 <div className="mt-24">
-                    <h2 className="text-2xl font-bold text-text">Latest Articles</h2>
+                    {/* <h2 className="text-2xl font-bold text-text">Latest Articles</h2> */}
                     <ArticleList items={service.articles} />
                 </div>
                 <div className="mt-24">
-                    <h2 className="text-2xl font-bold text-text">Other Services</h2>
+                    {/* <h2 className="text-2xl font-bold text-text">Other Services</h2> */}
                     <ServiceList />
                 </div>
             </div>

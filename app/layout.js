@@ -41,6 +41,7 @@ export default function RootLayout({ children }) {
             </AOSProvider>
           </BrandingProvider>
         </ServiceWorkerProvider>
+        <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/22555624.js"></script>
       </body>
       <GoogleAnalytics gaId="G-1PZR9P1E9V" />
     </html>

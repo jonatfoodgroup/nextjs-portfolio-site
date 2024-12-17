@@ -27,6 +27,26 @@ html body .swiper-button-prev, html body .swiper-button-next {
   }
 }
 
+html body .bg-light-blue {
+  background-color: #E1EBF9;
+}
+
+html body .bg-light-gray {
+  background-color: #EEEEEE;
+}
+
+html body .bg-dark-blue {
+  background-color: #201E44;
+}
+
+html body .text-blue-primary {
+  color: #004C72;
+}
+
+html body .text-dark-blue {
+  color: #201E44;
+}
+
 .text-text {
   color: var(--text);
 }
@@ -161,4 +181,9 @@ html body .outer-container {
   html body .inner-container {
     max-width: 100rem;
   }
+}
+
+html body .bg-gradient-1 {
+  background: linear-gradient(180deg, #201E44 0%, #004C72 100%);
+
 }

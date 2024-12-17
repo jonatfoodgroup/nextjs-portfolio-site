@@ -5,8 +5,11 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 
 const Logo = () => {
     return (
-        <Link href="/" className="flex items-start gap-x-1 text-md font-semibold leading-6 text-white">
-            <h2 className="text-3xl font-bold text-text flex items-center gap-x-1">strongstart</h2>
+        <Link href="/" className="flex items-start text-md font-semibold space-x-2">
+            <div className='flex items-center justify-center w-12 h-12 bg-dark-blue rounded-full'>
+                <Icon icon="carbon:link" className="text-2xl text-white" />
+            </div>
+            <h2 className="text-3xl font-extrabold flex items-center pt-1 text-dark-blue">strongstart</h2>
         </Link>
     )
 }

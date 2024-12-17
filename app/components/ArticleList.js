@@ -26,7 +26,7 @@ function Article({ article }) {
                     <Icon icon={article.icon} className="text-3xl text-white" />
                 </div>
             }
-            <h2 className="text-3xl font-semibold text-text mt-4 hover:text-blue-500 mb-1 transition-all leading-tight">
+            <h2 className="text-2xl font-bold text-text mt-4 hover:text-blue-500 mb-1 transition-all leading-tight">
                 <Link href={`/article/${article.slug}`}>
                     {article.title}
                 </Link>

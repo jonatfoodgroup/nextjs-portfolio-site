@@ -65,7 +65,7 @@ const LogoWall = () => {
       }}
     >
       {staticLogos.map((logo, index) => (
-        <SwiperSlide key={index} className='flex justify-center items-center py-16 mt-16'>
+        <SwiperSlide key={index} className='flex justify-center items-center py-16'>
           <img
             src={logo.src}
             alt={logo.alt}

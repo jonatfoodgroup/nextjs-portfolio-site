@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import softwares from "../data/softwares";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Link from "next/link";
 
 const SoftwareList = () => {
     const [localSoftwares, setLocalSoftwares] = useState([]);
@@ -25,6 +26,7 @@ const SoftwareList = () => {
         }
     }, [search]);
     return (
+        <div className="container mx-auto inner-container">
         <div className="flex flex-col mt-16">
             <div className="flex flex-col md:flex-row justify-between items-top align-top">
                 <div className="flex flex-col w-full md:w-1/2">
@@ -33,7 +35,7 @@ const SoftwareList = () => {
                         Find the software you need to get the job done.
                     </p> */}
                 </div>
-                <form className="mb-8 w-full md:w-1/2 flex items-center">
+                {/* <form className="mb-8 w-full md:w-1/2 flex items-center">
                     
                     <input
                         type="text"
@@ -43,22 +45,23 @@ const SoftwareList = () => {
                         onChange={(e) => setSearch(e.target.value)}
                     />
                     <Icon icon="mdi:magnify" className="text-2xl ml-2" />
-                </form>
+                </form> */}
             </div>
 
             <div className="grid grid-cols-3 md:grid-cols-6 md:gap-4 gap-2 mt-4">
                 {localSoftwares.map((software) => (
-                    <div key={software.title} className="p-4 bg-background hover:shadow-xl rounded-lg transition duration-300 cursor-pointer border border-border flex flex-col items-center justify-center">
+                    <Link key={software.title} className="p-4 bg-background hover:shadow-xl rounded-lg transition duration-300 cursor-pointer border border-border flex flex-col items-center justify-center" href={`/softwares/${software.slug}`}>
                         <img 
                             src={`/images/software-logos/${software.title.toLowerCase()}.webp`} 
                             alt={`${software.title} logo`} 
                             className="w-full md:h-20 object-contain mb-2"
                         />
                         <h2 className="text-sm text-text font-semibold">{software.title}</h2>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
+    </div>
     );
 }
 

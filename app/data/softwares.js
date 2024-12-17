@@ -1,215 +1,384 @@
 const softwares = [
   {
     "title": "Asana",
-    "link": "/asana"
+    "slug": "asana"
   },
   {
     "title": "Airtable",
-    "link": "/airtable"
+    "slug": "airtable"
   },
   {
    "title": "AWS", 
-    "link": "/aws"
+    "slug": "aws"
   },
   {
     "title": "Azure",
-    "link": "/azure"
+    "slug": "azure"
   },
   {
     "title": "Paypal",
-    "link": "/paypal"
+    "slug": "paypal"
   },
   {
     "title": "MySQL",
-    "link": "/mysql"
+    "slug": "mysql"
   },
   {
     "title": "PostgreSQL",
-    "link": "/postgresql"
+    "slug": "postgresql"
   },
   {
     "title": "Umbraco",
-    "link": "/umbraco"
+    "slug": "umbraco"
   },
   {
     "title": "Squarespace",
-    "link": "/squarespace"
+    "slug": "squarespace"
   },
   {
     "title": "Wix",
-    "link": "/wix"
+    "slug": "wix"
   },
   {
     "title": "Webflow",
-    "link": "/webflow"
+    "slug": "webflow"
   },
   {
     "title": "Zapier",
-    "link": "/zapier"
+    "slug": "zapier"
   },
   {
     "title": "Zendesk",
-    "link": "/zendesk"
+    "slug": "zendesk"
   },
   {
     "title": "Zoho",
-    "link": "/zoho"
+    "slug": "zoho"
   },
   {
     "title": "BigQuery",
-    "link": "/bigquery"
+    "slug": "bigquery"
   },
   {
     "title": "Looker",
-    "link": "/looker"
+    "slug": "looker"
   },
   {
     "title": "Github",
-    "link": "/github"
+    "slug": "github"
   },
   {
     "title": "Jira",
-    "link": "/jira"
+    "slug": "jira"
   },
   {
     "title": "MongoDB",
-    "link": "/mongodb"
+    "slug": "mongodb"
   },
   {
     "title": "Twilio",
-    "link": "/twilio"
+    "slug": "twilio"
   },
   {
     "title": "Drupal",
-    "link": "/drupal"
+    "slug": "drupal"
   },
   {
     "title": "Heroku",
-    "link": "/heroku"
+    "slug": "heroku"
   },
   {
     "title": "Vercel",
-    "link": "/vercel"
+    "slug": "vercel"
   },
   {
     "title": "Firebase",
-    "link": "/firebase"
+    "slug": "firebase"
   },
   {
     "title": "Algolia",
-    "link": "/algolia"
+    "slug": "algolia"
   },
   {
     "title": "Monday",
-    "link": "/monday"
+    "slug": "monday"
   },
   {
     "title": "Discord",
-    "link": "/discord"
+    "slug": "discord"
   },
   {
     "title": "Google",
-    "link": "/google"
+    "slug": "google"
   },
   {
     "title": "Adobe",
-    "link": "/adobe"
+    "slug": "adobe"
   },
   {
     "title": "Magento",
-    "link": "/magento"
+    "slug": "magento"
   },
   {
     "title": "Figma",
-    "link": "/figma"
+    "slug": "figma"
   },
   {
     "title": "Segment",
-    "link": "/segment"
+    "slug": "segment"
   },
   {
     "title": "Mailgun",
-    "link": "/mailgun"
+    "slug": "mailgun"
   },
   {
     "title": "WooCommerce",
-    "link": "/woocommerce"
+    "slug": "woocommerce"
   },
   {
     "title": "Pipedrive",
-    "link": "/pipedrive"
+    "slug": "pipedrive"
   },
   {
     "title": "Kubernetes",
-    "link": "/kubernetes"
+    "slug": "kubernetes"
   },
   {
     "title": "Docker",
-    "link": "/docker" 
+    "slug": "docker" 
   },
   {
     "title": "Quickbooks",
-    "link": "/quickbooks"
+    "slug": "quickbooks"
   },
   {
     "title": "Square",
-    "link": "/square"
+    "slug": "square"
   },
   {
     "title": "Mailchimp",
-    "link": "/mailchimp"
+    "slug": "mailchimp"
   },
   {
     "title": "Notion",
-    "link": "/notion"
+    "slug": "notion"
   },
   {
     "title": "Salesforce",
-    "link": "/salesforce"
+    "slug": "salesforce"
   },
   {
     "title": "Stripe",
-    "link": "/stripe"
+    "slug": "stripe"
   },
   {
     "title": "Zoom",
-    "link": "/zoom"
+    "slug": "zoom"
   }, 
   {
     "title": "Microsoft",
-    "link": "/microsoft"
+    "slug": "microsoft"
   },
   {
     "title": "Trello",
-    "link": "/trello"
+    "slug": "trello"
   },
   {
     "title": "Hubspot",
-    "link": "/hubspot"
+    "slug": "hubspot",
+    "features": [
+        {
+          "area": "CRM",
+          "feature": "Contacts",
+          "purpose": "Stores and manages individual contact records."
+        },
+        {
+          "area": "CRM",
+          "feature": "Companies",
+          "purpose": "Tracks organizations and accounts."
+        },
+        {
+          "area": "CRM",
+          "feature": "Deals",
+          "purpose": "Manages sales opportunities."
+        },
+        {
+          "area": "CRM",
+          "feature": "Tasks",
+          "purpose": "Assigns actions/reminders for contacts/deals."
+        },
+        {
+          "area": "CRM",
+          "feature": "Notes",
+          "purpose": "Log important details about contacts."
+        },
+        {
+          "area": "Marketing",
+          "feature": "Email Marketing",
+          "purpose": "Create, send, and analyze email campaigns."
+        },
+        {
+          "area": "Marketing",
+          "feature": "Forms",
+          "purpose": "Capture lead information through forms."
+        },
+        {
+          "area": "Marketing",
+          "feature": "Landing Pages",
+          "purpose": "Design standalone pages for campaigns."
+        },
+        {
+          "area": "Marketing",
+          "feature": "CTAs (Calls-to-Action)",
+          "purpose": "Create clickable buttons for conversion."
+        },
+        {
+          "area": "Marketing",
+          "feature": "Social Media Tools",
+          "purpose": "Schedule, publish, and monitor social posts."
+        },
+        {
+          "area": "Marketing",
+          "feature": "Campaigns",
+          "purpose": "Organize and report on marketing activities."
+        },
+        {
+          "area": "Sales",
+          "feature": "Email Tracking",
+          "purpose": "Tracks email opens, clicks, and replies."
+        },
+        {
+          "area": "Sales",
+          "feature": "Meetings",
+          "purpose": "Schedule meetings with contacts."
+        },
+        {
+          "area": "Sales",
+          "feature": "Sequences",
+          "purpose": "Automate personalized email follow-ups."
+        },
+        {
+          "area": "Sales",
+          "feature": "Playbooks",
+          "purpose": "Provide guidance for sales processes."
+        },
+        {
+          "area": "Sales",
+          "feature": "Quotes",
+          "purpose": "Generate sales quotes for deals."
+        },
+        {
+          "area": "Service",
+          "feature": "Tickets",
+          "purpose": "Log and track customer support issues."
+        },
+        {
+          "area": "Service",
+          "feature": "Knowledge Base",
+          "purpose": "Create help articles and FAQs."
+        },
+        {
+          "area": "Service",
+          "feature": "Feedback Surveys",
+          "purpose": "Collect feedback from customers."
+        },
+        {
+          "area": "Service",
+          "feature": "Customer Portal",
+          "purpose": "Provides customers with a portal to view tickets."
+        },
+        {
+          "area": "Automation",
+          "feature": "Workflows",
+          "purpose": "Automate processes like emails and property updates."
+        },
+        {
+          "area": "Automation",
+          "feature": "Lead Scoring",
+          "purpose": "Score leads based on engagement and fit."
+        },
+        {
+          "area": "Automation",
+          "feature": "Chatflows (Chatbots)",
+          "purpose": "Create automated chatbots for websites."
+        },
+        {
+          "area": "Integrations",
+          "feature": "App Marketplace",
+          "purpose": "Connect third-party tools and platforms."
+        },
+        {
+          "area": "Integrations",
+          "feature": "HubSpot-Salesforce Sync",
+          "purpose": "Sync data between HubSpot and Salesforce."
+        },
+        {
+          "area": "Integrations",
+          "feature": "Google Ads Integration",
+          "purpose": "Connect Google Ads for tracking ROI."
+        },
+        {
+          "area": "Integrations",
+          "feature": "Reporting Integrations",
+          "purpose": "Connect platforms like GA for insights."
+        },
+        {
+          "area": "Reporting",
+          "feature": "Custom Dashboards",
+          "purpose": "Build dashboards for specific metrics."
+        },
+        {
+          "area": "Reporting",
+          "feature": "Analytics Tools",
+          "purpose": "Measure website, email, and campaign performance."
+        },
+        {
+          "area": "Reporting",
+          "feature": "Attribution Reports",
+          "purpose": "Analyze which channels drive conversions."
+        },
+        {
+          "area": "Reporting",
+          "feature": "Funnel Reports",
+          "purpose": "Visualize pipeline progression."
+        }
+      ],
+    "content": {
+      "title": "Hubspot",
+      "description": "HubSpot offers a full stack of software for marketing, sales, and customer service, with a completely free CRM at its core. They’re powerful alone — but even better when used together.",
+      "services": [
+        "Audits",
+        "Integrations",
+        "Migration",
+        "Management",
+        "CMS & Design"
+      ],
+      
+    }
   },
   {
     "title": "OpenAI",
-    "link": "/openai"
+    "slug": "openai"
   },
   {
     "title": "Slack",
-    "link": "/slack"
+    "slug": "slack"
   },
   {
     "title": "Clover",
-    "link": "/clover"
+    "slug": "clover"
   },
   {
     "title": "Shopify",
-    "link": "/shopify"
+    "slug": "shopify"
   },
   {
     "title": "Wordpress",
-    "link": "/wordpress"
+    "slug": "wordpress"
   },
   {
     "title": "React",
-    "link": "/react"
+    "slug": "react"
   }
 ]
 

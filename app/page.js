@@ -1,5 +1,4 @@
 import Header from "./components/Header";
-import OurProcess from "./components/OurProcess";
 import ProcessSteps from "./components/ProcessSteps";
 import Masthead from "./components/Masthead";
 import LogoWall from "./components/LogoWall";
@@ -13,17 +12,16 @@ export default function Home() {
       <Header />
       <Masthead />
       <LogoWall />
-
-      <div className="container mx-auto mt-4 md:mt-0 inner-container">
-      <ServiceList />
-
-        <ProcessSteps />
-        {/* <OurProcess /> */}
-        <SoftwareList />
+      <div className="bg-light-gray py-8 md:py-8">
+        <ServiceList />
       </div>
+      <div className="bg-light-blue py-8 md:py-16">
+        <ProcessSteps />
+      </div>
+      <SoftwareList />
+      <div className="container mx-auto mt-4 md:mt-0 inner-container">
 
-      
-
+      </div>
       <Footer />
     </>
   );
