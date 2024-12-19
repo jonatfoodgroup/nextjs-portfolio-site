@@ -57,7 +57,7 @@ const Header = () => {
 
 
   return (
-    <header className="bg-background fixed w-full z-50 border-b-2 border-primary">
+    <header className="bg-background fixed w-full border-b-2 border-primary" style={{zIndex: 999}}>
       {/* <Topbar /> */}
       <div className="relative bg-background" style={{ zIndex: 999 }}>
         <nav className="mx-auto container flex items-center justify-between py-4" aria-label="Global">
