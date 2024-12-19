@@ -11,6 +11,19 @@
   "dependencies": {
     "@iconify/react": "^4.1.1",
     "@next/third-parties": "^14.2.5",
+    "@react-three/drei": "^9.120.4",
+    "@react-three/fiber": "^8.17.10",
+    "@tiptap/extension-blockquote": "^2.10.3",
+    "@tiptap/extension-bold": "^2.10.3",
+    "@tiptap/extension-bullet-list": "^2.10.3",
+    "@tiptap/extension-code-block": "^2.10.3",
+    "@tiptap/extension-heading": "^2.10.3",
+    "@tiptap/extension-italic": "^2.10.3",
+    "@tiptap/extension-ordered-list": "^2.10.3",
+    "@tiptap/extension-strike": "^2.10.3",
+    "@tiptap/extension-underline": "^2.10.3",
+    "@tiptap/react": "^2.10.3",
+    "@tiptap/starter-kit": "^2.10.3",
     "aos": "^2.3.4",
     "axios": "^1.7.7",
     "firebase": "^10.12.4",
@@ -27,6 +40,7 @@
     "react-tooltip": "^5.27.1",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.15",
+    "three": "^0.171.0",
     "web-push": "^3.6.7"
   },
   "devDependencies": {

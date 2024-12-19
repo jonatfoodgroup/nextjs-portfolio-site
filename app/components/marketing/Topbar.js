@@ -15,7 +15,7 @@ const Topbar = ({
                         <div>
                             {/* <a href="/" className="text-white font-bold text-xl">Luxor</a> */}
                         </div>
-                        <div className='flex items-end align-middle'>
+                        {/* <div className='flex items-end align-middle'>
                            {
                             content.nav.map((nav, index) => (
                                 <Link key={index} href={nav.url} className="text-gray-500 text-xs hover:text-gray-800 ml-4 font-semibold">
@@ -23,7 +23,7 @@ const Topbar = ({
                                 </Link>
                             ))
                            }
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

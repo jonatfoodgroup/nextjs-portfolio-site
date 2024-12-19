@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { usePathname } from 'next/navigation';
 import Logo from './Logo';
+import Topbar from './marketing/Topbar';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -57,6 +58,7 @@ const Header = () => {
 
   return (
     <header className="bg-background fixed w-full z-50 border-b-2 border-primary">
+      {/* <Topbar /> */}
       <div className="relative bg-background" style={{ zIndex: 999 }}>
         <nav className="mx-auto container flex items-center justify-between py-4" aria-label="Global">
           <div className="flex items-center flex-1">

@@ -1,16 +1,18 @@
 import Header from "./components/Header";
 import ProcessSteps from "./components/ProcessSteps";
-import Masthead from "./components/Masthead";
+import FancyMasthead from "./components/FancyMasthead";
 import LogoWall from "./components/LogoWall";
 import Footer from "./components/marketing/Footer";
 import SoftwareList from "./components/SoftwareList";
 import ServiceList from "./components/ServicesList";
+import LatestArticles from "./components/LatestArticles";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <Masthead />
+      <FancyMasthead />
+      <LatestArticles />
       <LogoWall />
       <div className="bg-light-gray py-8 md:py-8">
         <ServiceList />
