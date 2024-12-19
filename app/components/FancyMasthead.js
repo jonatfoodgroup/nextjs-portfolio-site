@@ -5,6 +5,14 @@ import { useEffect, useState, useRef } from "react";
 import * as THREE from "three";
 import services from "../data/services";
 import articles from "../data/articles";
+// Define a color mapping for parent categories
+const colorMapping = {
+    Home: "#ff6347",
+    "What We Do": "#00bcd4",
+    "What We Think": "#8b0000",
+    "Who We Are": "#4caf50",
+    default: "#888888", // Default color if no parent is matched
+};
 
 // Node Component with Glow and Text
 const Node = ({ position, id, isCentral, onHover, onBlur, isHighlighted }) => {
@@ -133,7 +141,7 @@ const SitemapVisualization = ({ data }) => {
     };
 
     return (
-        <Canvas style={{ height: "100vh", width: "100%", background: "#000" }}>
+        <Canvas style={{ height: "80vh", width: "100%", background: "#000" }}>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} />
             <Stars radius={50} depth={50} count={5000} factor={4} fade speed={1} />
@@ -165,7 +173,7 @@ const SitemapVisualization = ({ data }) => {
                 ))}
             </group>
 
-            <OrbitControls autoRotate autoRotateSpeed={0.1} enableZoom enablePan={false} />
+            <OrbitControls autoRotate autoRotateSpeed={0.05} enableZoom enablePan={false} />
         </Canvas>
     );
 };
@@ -202,7 +210,7 @@ export default function FancyMasthead() {
         <div
             className="masthead-container"
             style={{
-                height: "90vh",
+                height: "80vh",
                 width: "100%",
                 overflow: "hidden",
                 backgroundColor: "#000",

@@ -1,17 +1,18 @@
 "use client";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import FancyMasthead from "./FancyMasthead";
 
 
 import Link from "next/link";
 const Masthead = () => {
     return (
-        <div className="bg-light-gray pt-16 pb-36 flex items-center justify-center md:pt-20">
-            <div className="container mx-auto inner-container">
+        <div className="bg-light-gray pt-16 pb-36 flex items-center justify-center md:pt-36 relative">
+            <div className="container mx-auto inner-container relative z-50">
                 <div className="w-full max-w-4xl mx-auto text-center items-center justify-center">
-                    <h1 className="text-4xl md:text-6xl font-bold text-dark-blue mt-8 md:mt-36 leading-relaxed">
-                     Architects & Implementers of the Modern Web.
+                    <h1 className="text-4xl md:text-6xl font-bold text-white mt-8 md:mt-36 leading-relaxed">
+                        Architects & Implementers of the Modern Web.
                     </h1>
-                    <p className="text-md md:text-2xl text-dark-blue mt-4 md:mt-6" style={{ lineHeight: "1.4" }}>
+                    <p className="text-md md:text-2xl text-white mt-4 md:mt-6" style={{ lineHeight: "1.4" }}>
                         We design, build and optimize web properties for competitive businesses.
                     </p>
 
@@ -26,6 +27,9 @@ const Masthead = () => {
                             View Our Services</Link>
                     </div>
                 </div>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0">
+                <FancyMasthead />
             </div>
         </div>
     );
