@@ -93,7 +93,7 @@ const SitemapVisualization = ({ data }) => {
         const parsedNodes = data.map((page, index) => {
             // Define sectors
             const sectors = {
-                Home: { center: [0, 0, 0], radius: 3 },
+                Home: { center: [-2, 0, -3], radius: 5 },
                 "What We Do": { center: [10, 0, 0], radius: 5 },
                 "What We Think": { center: [-10, 0, 0], radius: 5 },
                 "Who We Are": { center: [0, 10, 0], radius: 5 },
@@ -217,7 +217,7 @@ export default function FancyMasthead() {
             }}
         >
             <SitemapVisualization data={sitemapData} />
-            <div className="bg-overlay" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.5)" }}>
+            <div className="bg-overlay" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.3)" }}>
             </div>
         </div>
     );

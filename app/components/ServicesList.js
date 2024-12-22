@@ -6,8 +6,8 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 const ServiceList = () => {
     services.sort((a, b) => a.title.localeCompare(b.title));
     return (
-        <div className="container mx-auto inner-container">
-            <div className="grid md:grid-cols-3 gap-8 grid-cols-1 py-0">
+        <div className="container mx-auto">
+            <div className="grid md:grid-cols-4 gap-8 grid-cols-1 py-0">
                 {services.map((service) => (
                     <Link href={`/services/${service.slug}`} key={service.slug} className="p-8 shadow rounded-md hover:shadow-lg group relative border border-gray-200 bg-white">
                         <Icon icon={service.icon} className="text-6xl text-dark-blue mb-4 bg-light-blue p-2 rounded-md" />

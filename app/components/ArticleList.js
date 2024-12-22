@@ -1,3 +1,4 @@
+"use client";
 import articles from '../data/articles';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -27,17 +28,12 @@ function Article({ article }) {
                 </div>
             }
             <h2 className="text-2xl font-bold text-text mt-4 hover:text-blue-500 mb-1 transition-all leading-tight">
-                <Link href={`/article/${article.slug}`}>
+                <Link href={`/articles/${article.slug}`}>
                     {article.title}
                 </Link>
             </h2>
             <p className="text-text text-lg mt-4"
             >{article.description}</p>
-            {/* <Link
-                href={`/article/${article.slug}`}
-                className="mt-2 block text-text underline text-sm font-semibold">
-                Read more
-            </Link> */}
         </Link>
     );
 }

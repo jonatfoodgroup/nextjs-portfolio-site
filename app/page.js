@@ -14,16 +14,13 @@ export default function Home() {
       <Masthead />
       <LatestArticles />
       <LogoWall />
-      <div className="bg-light-gray py-8 md:py-8">
+      <div className="bg-light-blue py-8 md:py-8">
         <ServiceList />
       </div>
       <div className="bg-light-blue py-8 md:py-16">
         <ProcessSteps />
       </div>
       <SoftwareList />
-      <div className="container mx-auto mt-4 md:mt-0 inner-container">
-
-      </div>
       <Footer />
     </>
   );

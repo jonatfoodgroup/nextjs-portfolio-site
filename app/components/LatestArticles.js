@@ -36,8 +36,8 @@ const LatestArticles = () => {
                         className="py-8"
                     >
                         {articles.map((article) => (
-                            <SwiperSlide key={article.id} className="pb-8">
-                                <div className="bg-white shadow-lg rounded-lg p-8 flex flex-col h-full">
+                            <SwiperSlide key={article.id} className="pb-8 cursor-pointer">
+                                <Link className="bg-white shadow-lg rounded-lg p-8 flex flex-col h-full" href={`/articles/${article.slug}`}>
                                     {/* <Icon icon="akar-icons:arrow-right" className="text-dark-blue mb-4" /> */}
                                     <h2 className="text-xl font-bold text-dark-blue mb-2">
                                         {article.title}
@@ -46,15 +46,15 @@ const LatestArticles = () => {
                                         {article.description}
                                     </p>
                                     <div className="mt-auto">
-                                        <Link
-                                            href={`/articles/${article.id}`}
+                                        <div
+                                            
                                             className="bg-light-blue text-dark-blue text-xl font-bold px-8 py-4 mt-4 flex items-center hover:shadow-xl transition-all duration-300"
                                         >
                                             Read More                                            <Icon icon="akar-icons:arrow-right" className="mr-2" />
 
-                                        </Link>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                             </SwiperSlide>
                         ))}
                     </Swiper>

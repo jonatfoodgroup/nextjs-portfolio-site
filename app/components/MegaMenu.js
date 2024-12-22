@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
 import ServicesSection from './mega-menu/ServicesSection';
+import WhatWeThink from './mega-menu/WhatWeThink';
 
 const MegaMenu = ({ activeMenu, closeMenu }) => {
   const menuRef = useRef(null);
@@ -27,12 +28,7 @@ const MegaMenu = ({ activeMenu, closeMenu }) => {
         )}
         {activeMenu === 'insights' && (
           <div id="insights-menu" className="interior-menu">
-            <h4 className="text-xl font-bold mt-0">Insights</h4>
-            <ul>
-              <li><a href="/insight1">Insight 1</a></li>
-              <li><a href="/insight2">Insight 2</a></li>
-              <li><a href="/insight3">Insight 3</a></li>
-            </ul>
+            <WhatWeThink />
           </div>
         )}
         <div onClick={closeMenu} className="absolute top-0 right-0 p-4 cursor-pointer">
