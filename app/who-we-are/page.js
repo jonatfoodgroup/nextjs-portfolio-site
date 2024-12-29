@@ -1,10 +1,10 @@
-import Header from '../components/header';
-import Footer from '../components/marketing/footer';
+// import Header from '../components/header';
+// import Footer from '../components/marketing/footer';
 export default function Page() {
     return (
         <>
-            <Header />
-            <Footer />
+            {/* <Header /> */}
+            {/* <Footer /> */}
         </>
     )
 }
