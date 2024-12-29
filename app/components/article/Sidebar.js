@@ -6,12 +6,14 @@ import ServiceItem from "../ServiceItem";
 import SoftwareCard from "../SoftwareCard";
 import { useWordpress } from "../../providers/WordpressProvider";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import AuthorCard from "./AuthorCard";
 
 export default function Sidebar({ article }) {
     const { posts } = useWordpress();
     return (
         <div className="hidden lg:block">
-            <div className="sticky top-20">
+            <div className="sticky top-20 pt-20">
+                <AuthorCard authorId={article.author} />
                 {
                     posts &&
                     <div className="my-8">

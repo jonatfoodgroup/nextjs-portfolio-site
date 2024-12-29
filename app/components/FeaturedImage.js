@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function FeaturedImage({ mediaId }) {
+export default function FeaturedImage({ mediaId, width = 64, height = 64 }) {
 
     const [image, setImage] = useState(null);
     // let baseUrl = process.env.WORDPRESS_URL;
@@ -24,9 +24,9 @@ export default function FeaturedImage({ mediaId }) {
         <Image
             src={image.source_url}
             alt={image.alt_text}
-            width={image.media_details.width}
-            height={image.media_details.height}
-            className="rounded-md shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1 object-cover object-top w-full h-96 bg-gray-200"
+            width={width}
+            height={height}
+            className="rounded-full"
         />
     );
 }

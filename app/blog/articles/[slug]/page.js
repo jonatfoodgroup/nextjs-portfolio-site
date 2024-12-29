@@ -5,6 +5,7 @@ import ArticleContent from "../../../components/article/ArticleContent";
 import { decode } from "html-entities";
 import Sidebar from "../../../components/article/Sidebar";
 import { Breadcrumb } from "../../../components/article/Breadcrumb";
+
 export async function generateStaticParams() {
     const baseUrl = "https://jonsenterfitt.com/wp-json/wp/v2";
     let allServices = [];
@@ -79,6 +80,8 @@ export default async function SingleArticle({ params }) {
     const baseUrl = "https://jonsenterfitt.com/wp-json/wp/v2";
     const response = await fetch(`${baseUrl}/posts?slug=${slug}`);
     const article = await response.json();
+
+    console.log(article);
 
     if (!article || article.length === 0) {
         return {

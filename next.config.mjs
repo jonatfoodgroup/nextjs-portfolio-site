@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost'], // Add your hostname here
+    domains: ['localhost','jonsenterfitt.com'], // Add your hostname here
   },
   eslint: {
     ignoreDuringBuilds: true,
