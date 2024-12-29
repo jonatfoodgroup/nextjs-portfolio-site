@@ -2,20 +2,25 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y, Autoplay, Scrollbar } from "swiper/modules";
-import articles from "../data/articles";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useWordpress } from "../providers/WordpressProvider";
+import {decode, encode} from 'html-entities';
 
 const LatestArticles = () => {
     const [localArticles, setLocalArticles] = useState([]);
+    const { posts } = useWordpress();
 
     useEffect(() => {
-        setLocalArticles(articles);
-    }, []);
+        setLocalArticles(posts);
+    }, [posts]);
 
+    if (localArticles.length === 0) {
+        return null;
+    }
     return (
         <div className="flex items-center justify-center md:pt-20 -mt-48">
             <div className="container mx-auto inner-container">
@@ -35,19 +40,19 @@ const LatestArticles = () => {
                         }}
                         className="py-8"
                     >
-                        {articles.map((article) => (
+                        {localArticles.map((article) => (
                             <SwiperSlide key={article.id} className="pb-8 cursor-pointer">
-                                <Link className="bg-white shadow-lg rounded-lg p-8 flex flex-col h-full" href={`/articles/${article.slug}`}>
+                                <Link className="bg-white shadow-lg rounded-lg p-8 flex flex-col h-full" href={`/blog/articles/${article.slug}`}>
                                     {/* <Icon icon="akar-icons:arrow-right" className="text-dark-blue mb-4" /> */}
                                     <h2 className="text-xl font-bold text-dark-blue mb-2">
-                                        {article.title}
+                                        {article.title.rendered}
                                     </h2>
-                                    <p className="text-md text-dark-blue mt-2 line-clamp-2">
-                                        {article.description}
+                                    <p className="text-md text-dark-blue mt-2 line-clamp-2" dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }}>
+                                        
                                     </p>
                                     <div className="mt-auto">
                                         <div
-                                            
+
                                             className="bg-light-blue text-dark-blue text-xl font-bold px-8 py-4 mt-4 flex items-center hover:shadow-xl transition-all duration-300"
                                         >
                                             Read More                                            <Icon icon="akar-icons:arrow-right" className="mr-2" />

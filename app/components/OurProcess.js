@@ -12,7 +12,7 @@ export default function OurProcess() {
                     {ourProcess.map((step, index) => (
                         <div
                             key={index}
-                            className={`p-6 rounded-lg bg-background text-text`}
+                            className={`p-6 rounded-lg bg-white text-text`}
                         >
                             <h3 className="text-xl font-bold mb-4">{step.title}</h3>
                             <ul className="space-y-2">

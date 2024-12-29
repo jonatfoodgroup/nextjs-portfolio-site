@@ -47,19 +47,19 @@ const TableOfContents = ({ isOpen, setIsOpen }) => {
     return (
       <>
         <button
-          className="fixed top-1 left-0 p-4 bg-background px-4 py-2 rounded flex flex-row gap-4 text-gray-600 hover:text-blue-500 cursor-pointer"
+          className="fixed top-1 left-0 p-4 bg-white px-4 py-2 rounded flex flex-row gap-4 text-gray-600 hover:text-blue-500 cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         >
           <Icon icon="mdi:table-of-contents" width="24" height="24" />
           Table of Contents
         </button>
         <div
-          className={`fixed top-1 left-0 h-full md:w-[300px] bg-background shadow-lg w-full p-8 ${
+          className={`fixed top-1 left-0 h-full md:w-[300px] bg-white shadow-lg w-full p-8 ${
             isOpen ? "block" : "hidden"
           }`}
         >
           <button
-            className="bg-background text-foreground px-4 py-2 rounded"
+            className="bg-white text-foreground px-4 py-2 rounded"
             onClick={() => setIsOpen(false)}
           >
             Close

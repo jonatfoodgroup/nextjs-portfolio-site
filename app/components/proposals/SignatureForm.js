@@ -23,7 +23,7 @@ const Signature = ({ proposal }) => {
 
 const SignatureForm = () => {
   return (
-    <form className="flex flex-col align-top justify-start bg-background border-border border p-8 space-y-2">
+    <form className="flex flex-col align-top justify-start bg-white border-border border p-8 space-y-2">
       <div className="grid grid-cols-2 gap-4">
         <div className="flex flex-col">
           <label className="text-lg font-semibold mb-0" htmlFor="name">

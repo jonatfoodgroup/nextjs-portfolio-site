@@ -10,7 +10,7 @@ export default function Page() {
     return (
         <>
             <Header />
-            <div className="bg-background pt-24 flex items-center justify-center ">
+            <div className="bg-white pt-24 flex items-center justify-center ">
                 <div className="container mx-auto inner-container">
                     <div className="flex flex-col">
                         <div className="flex align-top mt-8 space-x-16">

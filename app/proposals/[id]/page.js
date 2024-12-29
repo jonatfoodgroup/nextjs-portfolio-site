@@ -53,7 +53,7 @@ export default function ProposalPage({ params }) {
   }
 
   return (
-    <div className="relative bg-background w-full min-h-screen">
+    <div className="relative bg-white w-full min-h-screen">
       <div className="container mx-auto md:px-4 px-0">
         <Suspense fallback={<div>Loading block...</div>}>
           {blocks.map((block) => {

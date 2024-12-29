@@ -3,19 +3,22 @@ import React from 'react';
 import GetStarted from '../GetStarted';
 import Logo from '../Logo';
 import Link from 'next/link';
-import services from '../../data/services';
+import { useWordpress } from '../../providers/WordpressProvider';
+import { decode } from 'html-entities';
+import { Icon } from '@iconify/react/dist/iconify.js';
 
 const Footer = () => {
-    services.sort((a, b) => a.title.localeCompare(b.title));
+    const { services } = useWordpress();
+
     return (
-        <footer className=" text-white py-10">
+        <footer className="bg-white text-white">
             <GetStarted />
-            <div className="bg-dark-blue py-8">
+            <div className="bg-black py-8">
             <div className="container mx-auto">
                 <div className="flex md:space-x-8 md:flex-row flex-col space-y-8 md:space-y-0">
-                <div className="w-full md:w-1/3">
+                <div className="w-full md:w-1/4">
                         <Logo color='white' />
-                        <p className="mt-4 text-white text-xl mb-8">
+                        <p className="mt-4 text-white text-md mb-8">
                             We are a team of designers, developers, and marketers who are excited to help you grow your business.
                         </p>
                         {/* <h3 className="text-lg font-bold text-text">Contact</h3> */}
@@ -25,11 +28,13 @@ const Footer = () => {
                         {/* <p className="mt-4 text-text">123 Main Street, New York, NY 10001</p> */}
                        
                     </div>
-                    <div className="w-full md:w-3/4">
-                        <h3 className="text-lg font-light text-white">Services</h3>
-                        <div className="grid grid-cols-3 gap-4 mt-4 md:grid-cols-4">
+                    <div className="w-full md:w-1/2">
+                        {/* <h3 className="text-lg font-light text-white">Services</h3> */}
+                        <div className="grid grid-cols-3 gap-4 md:grid-cols-4 text-center">
                             {services.map((service, index) => (
-                                <Link key={index} href={`/services/${service.slug}`}  className="text-white font-normal underline text-md">{service.title}
+                                <Link key={index} href={`/services/${service.slug}`}  className="text-white font-normal  text-md">
+                                    <Icon icon={service.acf.icon} className="text-2xl text-white w-16 h-16 p-4 mx-auto" />
+                                    {decode(service.title?.rendered)}
                                 </Link>
                             ))}
                         </div>

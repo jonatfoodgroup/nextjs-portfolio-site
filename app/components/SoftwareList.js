@@ -50,7 +50,7 @@ const SoftwareList = () => {
 
             <div className="grid grid-cols-3 md:grid-cols-6 md:gap-4 gap-2 mt-4">
                 {localSoftwares.map((software) => (
-                    <Link key={software.title} className="p-4 bg-background hover:shadow-xl rounded-lg transition duration-300 cursor-pointer border border-border flex flex-col items-center justify-center" href={`/softwares/${software.slug}`}>
+                    <Link key={software.title} className="p-4 bg-white hover:shadow-xl rounded-lg transition duration-300 cursor-pointer border border-border flex flex-col items-center justify-center" href={`/softwares/${software.slug}`}>
                         <img 
                             src={`/images/software-logos/${software.title.toLowerCase()}.webp`} 
                             alt={`${software.title} logo`} 

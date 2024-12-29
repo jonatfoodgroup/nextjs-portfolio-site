@@ -1,14 +1,9 @@
+// next.config.mjs
 const nextConfig = {
-    images: {
-        remotePatterns: [
-          {
-            protocol: 'https',
-            hostname: 'placeholder.co',
-            port: '',
-            pathname: '/**',
-          },
-        ],
-      },
+  reactStrictMode: true,
+  images: {
+    domains: ['localhost'], // Add your hostname here
+  },
 };
 
 export default nextConfig;

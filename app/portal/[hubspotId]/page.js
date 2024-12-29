@@ -8,35 +8,19 @@ export default function Page({ params }) {
   const { hubspotId } = params;
 
   const [company, setCompany] = useState(null);
-  const [ideas, setIdeas] = useState([]);
   const [loadingCompany, setLoadingCompany] = useState(true);
-  const [loadingIdeas, setLoadingIdeas] = useState(true);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
+    if (!hubspotId) return;
+    if (company) return
     // Fetch company details
     fetch(`/api/hubspot/get-companies/${hubspotId}`)
       .then((res) => res.json())
       .then((data) => setCompany(data.company))
       .finally(() => setLoadingCompany(false));
 
-    // Fetch ideas for the company
-    fetch(`/api/ideas/${hubspotId}`)
-      .then((res) => res.json())
-      .then((data) => setIdeas(data.ideas))
-      .finally(() => setLoadingIdeas(false));
   }, [hubspotId]);
 
-  const handleSave = async (content) => {
-    await fetch(`/api/ideas/${hubspotId}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content }),
-    });
-
-    setIsDrawerOpen(false);
-    setIdeas((prevIdeas) => [...prevIdeas, { content }]);
-  }
 
   return (
   <>
@@ -53,24 +37,7 @@ export default function Page({ params }) {
         </>
       )}
 
-      {/* New Idea Button */}
-      <button
-        onClick={() => setIsDrawerOpen(true)}
-        className="mt-4 mb-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-      >
-        + New Idea
-      </button>
-
-        <IdeaList hubspotId={hubspotId} />
     </div>
-       {/* Render the Idea Drawer */}
-    {isDrawerOpen && (
-      <NewIdeaDrawer
-        hubspotId={hubspotId}
-        onClose={() => setIsDrawerOpen(false)}
-        onSave={handleSave}
-      />
-    )}
    </>
   );
 }
