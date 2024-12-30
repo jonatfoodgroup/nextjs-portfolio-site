@@ -94,10 +94,10 @@ export default function ServiceView({ service, children }) {
                                             data-aos="fade-in"
                                         >
                                             {/* Content Section */}
-                                            <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "pr-40" : "pl-10"} p-8 bg-gray-100 rounded-md`}>
+                                            <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pr-40" : "md:pl-10"} md:p-8 p-2 bg-gray-100 rounded-md`}>
 
 
-                                                <h2 className="text-4xl font-bold text-gray-900">
+                                                <h2 className="text-xl md:text-4xl font-bold text-gray-900">
                                                     {decode(child.acf.masthead.masthead_title)}
                                                 </h2>
                                                 <p className="text-gray-700 mt-4">
@@ -110,7 +110,7 @@ export default function ServiceView({ service, children }) {
                                                             className="text-white w-8 h-8"
                                                         />
                                                     </div>
-                                                    <h4 className="text-xl font-semibold text-gray-900 mt-4 mb-4 pl-2 cursor-pointer">
+                                                    <h4 className="text-xl font-semibold text-gray-900 mt-4 mb-4 md:pl-2 cursor-pointer">
                                                         {decode(child.title.rendered)}
                                                     </h4>
                                                     <Icon icon="bx:bx-right-arrow-alt" className="text-2xl text-black" />
@@ -119,14 +119,14 @@ export default function ServiceView({ service, children }) {
                                             </div>
 
                                             {/* Icon Section */}
-                                            <div className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${index + 1} rounded-md h-96`} >
+                                            <div className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${index + 1} rounded-md h-64 md:h-96`} >
                                                 {/* {
                                                 child.featured_media &&
                                                 <FeaturedImage mediaId={child.featured_media} />
                                             } */}
                                                 <Icon
                                                     icon={child.acf.icon}
-                                                    className="text-white h-64 w-64"
+                                                    className="text-white h-48 w-48 md:h-64 md:w-64"
                                                 />
                                             </div>
                                         </Link>
