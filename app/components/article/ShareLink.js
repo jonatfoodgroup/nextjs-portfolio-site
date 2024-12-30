@@ -7,7 +7,7 @@ export default function ShareLink({ title, text, url }) {
                 await navigator.share({
                     title: title || "Check this out!",
                     text: text || "Here's something interesting I found:",
-                    url: url || (typeof window !== "undefined" ? window.location.href : ""),
+                    url: url,
                 });
                 console.log("Content shared successfully!");
             } catch (error) {
