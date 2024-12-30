@@ -250,6 +250,9 @@ html body .article-callout {
 html body .article-title {
   @apply text-4xl font-bold text-gray-900 mb-6;
 }
+html body .article-subheading {
+  @apply text-2xl font-semibold text-gray-800 mt-8 mb-4;
+}
 
 .gradient-1 {
   background-color: #0093E9;
