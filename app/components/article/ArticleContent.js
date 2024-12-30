@@ -1,9 +1,15 @@
-"use client";
-import { decode, encode } from "html-entities";
-import WordCount from "./WordCount";
-import TimeToRead from "./TimeToRead";
-import ShareLink from "./ShareLink";
+import { useEffect, useState } from "react";
+
 export default function ArticleContent({ article }) {
+    const [url, setUrl] = useState("");
+
+    useEffect(() => {
+        // Check if running on the client and set the URL
+        if (typeof window !== "undefined") {
+            setUrl(window.location.href);
+        }
+    }, []);
+
     return (
         <div>
             <div className="container inner-container mx-auto">
@@ -13,12 +19,19 @@ export default function ArticleContent({ article }) {
                     <span className="mx-2">•</span>
                     <TimeToRead content={decode(article.content.rendered)} />
                     <span className="mx-2">•</span>
-                    <ShareLink title={decode(article.title.rendered)} text="Check out this article:" url={window.location.href} />
+                    {url && (
+                        <ShareLink
+                            title={decode(article.title.rendered)}
+                            text="Check out this article:"
+                            url={url}
+                        />
+                    )}
                 </div>
-                <div className="text-lg mt-4" dangerouslySetInnerHTML={{ __html: decode(article.content.rendered) }}></div>
+                <div
+                    className="text-lg mt-4"
+                    dangerouslySetInnerHTML={{ __html: decode(article.content.rendered) }}
+                ></div>
             </div>
         </div>
     );
 }
-
-
