@@ -95,11 +95,11 @@ export default async function SingleArticle({ params }) {
         <Header />
         <Breadcrumb article={article[0]} />
         <div className="container inner-container mx-auto px-4">
-          <div className="flex flex-row justify-center items-start">
-            <div className="w-2/3 pr-4">
+          <div className="flex flex-col md:flex-row justify-center items-start">
+            <div className="w-full md:w-2/3 md:pr-4">
               <ArticleContent article={article[0]} />
             </div>
-            <div className="w-1/3 pl-4">
+            <div className="w-full md:w-1/3 md:pl-4">
               <Sidebar article={article[0]} />
             </div>
           </div>

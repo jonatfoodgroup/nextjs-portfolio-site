@@ -30,11 +30,11 @@ const Footer = () => {
                     </div>
                     <div className="w-full md:w-1/2">
                         {/* <h3 className="text-lg font-light text-white">Services</h3> */}
-                        <div className="grid grid-cols-3 gap-4 md:grid-cols-4 text-center">
+                        <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:text-center">
                             {services.map((service, index) => (
-                                <Link key={index} href={`/services/${service.slug}`}  className="text-white font-normal  text-md">
-                                    <Icon icon={service.acf.icon} className="text-2xl text-white w-16 h-16 p-4 mx-auto" />
-                                    {decode(service.title?.rendered)}
+                                <Link key={index} href={`/services/${service.slug}`}  className="text-white font-normal  text-md flex items-center justify-start hover:underline">
+                                    <Icon icon={service.acf.icon} className="text-2xl text-white w-16 h-16 p-4 md:mx-auto" />
+                                    <span>{decode(service.title?.rendered)}</span>
                                 </Link>
                             ))}
                         </div>

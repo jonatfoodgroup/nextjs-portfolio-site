@@ -60,7 +60,7 @@ const Header = () => {
     <header className="bg-white fixed w-full border-b-2 border-primary" style={{zIndex: 999}}>
       {/* <Topbar /> */}
       <div className="relative bg-white" style={{ zIndex: 999 }}>
-        <nav className="mx-auto container flex items-center justify-between py-4" aria-label="Global">
+        <nav className="mx-auto container flex items-center justify-center md:justify-between py-2 md:py-4" aria-label="Global">
           <div className="flex items-center flex-1">
             <Logo />
           </div>
@@ -68,10 +68,10 @@ const Header = () => {
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black relative z-50"
             >
               <span className="sr-only">Open main menu</span>
-             <Icon icon="bi:menu" className="h-6 w-6" />
+             <Icon icon="bi:menu" className="h-6 w-6 text-black" />
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-4">

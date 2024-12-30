@@ -42,7 +42,7 @@ const LogoWall = () => {
       onSwiper={it => (sliderRef.current = it)}
       modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, Grid]}
       spaceBetween={30}
-      slidesPerView={4} // Adjust the number of visible logos
+      slidesPerView={3} // Adjust the number of visible logos
       navigation
       // pagination={{ clickable: true }}
       keyboard={{ enabled: true }}
@@ -65,7 +65,7 @@ const LogoWall = () => {
       }}
     >
       {staticLogos.map((logo, index) => (
-        <SwiperSlide key={index} className='flex justify-center items-center py-16'>
+        <SwiperSlide key={index} className='flex justify-center items-center md:py-16'>
           <img
             src={logo.src}
             alt={logo.alt}

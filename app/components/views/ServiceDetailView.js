@@ -17,10 +17,9 @@ export default function ServiceView({ service, children }) {
             <div className="relative bg-white">
                 <Breadcrumb service={service} />
                 <div className="container inner-container  mx-auto">
-                    <div className="flex mt-16 flex-col md:flex-row">
-                        <div className="w-full md:w-1/2 pr-20">
-                            <h1 className="text-4xl md:text-5xl font-extrabold text-black mt-12 leading-relaxed
-                            ">{service.acf.masthead?.masthead_title}</h1>
+                    <div className="flex mt-0 md:mt-16 flex-col md:flex-row">
+                        <div className="w-full md:w-1/2 pr-0 md:pr-20">
+                            <h1 className="text-4xl md:text-5xl font-extrabold text-black mt-12">{service.acf.masthead?.masthead_title}</h1>
                             <p className="mt-4 text-md md:text-2xl leading-relaxed text-darker-gray font-regular">{(service.acf.masthead?.masthead_content) ? decode(service.acf.masthead.masthead_content) : decode(service.acf.masthead.masthead_title)}</p>
                             <Link href="/contact-us" className="inline-flex mt-8"
                                 data-aos="fade-in" data-aos-delay="400">
@@ -44,7 +43,7 @@ export default function ServiceView({ service, children }) {
                                     {children.map((child, index) => (
                                         <Link
                                             href={`/services/${child.slug}`}
-                                            key={index} className="flex items-center flex-col my-4 px-8 py-8  rounded-md bg-light-gray shadow-md hover:shadow-2xl transition-shadow duration-300 cursor-pointer border-2 border-gray-200"
+                                            key={index} className="flex items-center flex-col md:my-4 px-8 py-8  rounded-md bg-light-gray shadow-md hover:shadow-2xl transition-shadow duration-300 cursor-pointer border-2 border-gray-200"
                                             data-aos="fade-in"
                                             data-aos-delay={index * 50}
                                         >
@@ -189,7 +188,7 @@ const Breadcrumb = ({ service }) => {
 
     return (
         <div className="bg-light-gray py-4 pt-24">
-            <div className="container mx-auto flex justify-between items-center" data-aos="fade-in" data-aos-delay="200">
+            <div className="container mx-auto flex justify-between items-center md:flex" data-aos="fade-in" data-aos-delay="200">
                 {/* Left: Breadcrumb Navigation */}
                 <nav className="flex items-center space-x-3 text-sm text-darker-gray">
                     <Link

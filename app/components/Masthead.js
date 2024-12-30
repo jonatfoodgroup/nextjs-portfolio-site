@@ -9,7 +9,7 @@ const Masthead = () => {
         <div className="bg-black pt-16 pb-36 flex items-center justify-center md:pt-36 relative">
             <div className="container mx-auto inner-container relative z-50">
                 <div className="w-full max-w-4xl mx-auto text-center items-center justify-center">
-                    <h1 className="text-4xl md:text-6xl font-bold text-white mt-8 md:mt-36 leading-relaxed">
+                    <h1 className="text-4xl md:text-6xl font-bold text-white mt-16 md:mt-36 md:leading-relaxed">
                         Architecting & Implementing the Modern Web
                     </h1>
                     <p className="text-md md:text-2xl text-white mt-4 md:mt-6" style={{ lineHeight: "1.4" }}>

@@ -203,6 +203,12 @@ html body .outer-container {
     max-width: 100%;
     padding-right: 20px;
   }
+  html body .inner-container {
+    max-width: 100%;
+  }
+  html body .inner-container .inner-container {
+    padding: 0px;
+  }
 }
 
 /* if over 1440, make container max width larger */

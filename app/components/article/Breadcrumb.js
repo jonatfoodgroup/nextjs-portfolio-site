@@ -6,7 +6,7 @@ export const Breadcrumb = ({ article }) => {
     return (
         <div className="bg-light-gray pt-20">
             <div className="container mx-auto" data-aos="fade-in" data-aos-delay="200">
-                <nav className="flex items-center space-x-2 text-sm text-darker-gray mx-auto p-4 rounded-md">
+                <nav className="flex items-center space-x-2 text-sm text-darker-gray mx-auto p-4 rounded-md md:flex hidden">
                     <Link href="/" className="underline hover:text-black">Home</Link>
                     <span>/</span>
                     <Link href="/blog"

@@ -11,7 +11,7 @@ import AuthorCard from "./AuthorCard";
 export default function Sidebar({ article }) {
     const { posts } = useWordpress();
     return (
-        <div className="hidden lg:block">
+        <div className="md:block">
             <div className="sticky top-20 pt-20">
                 <AuthorCard authorId={article.author} />
                 {

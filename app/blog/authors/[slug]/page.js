@@ -94,13 +94,22 @@ export default async function getPageData({ params }) {
     // get the author's posts
     const postsResponse = await fetch(`${baseUrl}/posts?author=${author[0].id}`);
     const posts = await postsResponse.json();
-    
+
     return (
         <>
             <Header />
-            <div className="container mx-auto pt-20 px-4">
-                <h2>Posts by {author[0].name}</h2>
-                <FeaturedImage mediaId={author[0].acf.profile_image} width={96} height={96} />
+            <div className="container mx-auto pt-20 px-4 text-center space-y-8 items-center justify-center align-middle">
+                <div className="flex flex-col items-center justify-center align-middle mt-4 md:mt-16">
+                    
+                    {
+                        author[0].acf.profile_image && (
+                            <FeaturedImage mediaId={author[0].acf.profile_image} width={96} height={96} />
+                        )
+                    }
+                    <h2 className="text-4xl font-bold mt-8"
+                    >Posts by {author[0].name}</h2>
+                    <p className="text-md mt-4 max-w-4xl">{author[0].description}</p>
+                </div>
                 <PostList posts={posts} />
             </div>
             <Footer />
