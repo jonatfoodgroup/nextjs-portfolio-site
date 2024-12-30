@@ -1,5 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
+import { decode } from "html-entities";
+import ShareLink from "./ShareLink";
+import TimeToRead from "./TimeToRead";
+import WordCount from "./WordCount";
+
 
 export default function ArticleContent({ article }) {
     const [url, setUrl] = useState("");
