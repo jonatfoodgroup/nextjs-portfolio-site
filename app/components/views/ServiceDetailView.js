@@ -81,7 +81,7 @@ export default function ServiceView({ service, children }) {
                         <ArticleList filters={{ service_relationship: service.id }} />
                     </div>
 
-                    <div className="bg-light-gray py-16">
+                    <div className="bg-light-gray py-16" id="process">
                         <div className="my-16 container inner-container mx-auto">
                             {children && (
                                 <div className="grid grid-cols-1 gap-12">
@@ -156,7 +156,7 @@ const BreadcrumbSubNav = () => {
     const subNavItems = [
         { label: "Articles", href: "#articles" },
         { label: "Process", href: "#process" },
-        { label: "Features", href: "#features" },
+        // { label: "Features", href: "#features" },
         // { label: "Get Started", href: "#get-started" },
     ];
 
@@ -166,7 +166,7 @@ const BreadcrumbSubNav = () => {
                 <a
                     key={index}
                     href={item.href}
-                    className="text-sm text-gray-600 hover:text-orange-500 transition font-medium">
+                    className="text-sm text-gray-600 hover:text-orange-500 transition font-bold">
                     {item.label}
                 </a>
             ))}
