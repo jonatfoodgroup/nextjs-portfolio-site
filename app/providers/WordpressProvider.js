@@ -61,8 +61,18 @@ export const WordpressProvider = ({ children }) => {
         }
     }
 
+    const fetchPostsByAuthor = async (authorId) => {
+        try {
+            const response = await fetch(`${baseUrl}/posts?author=${authorId}`);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error fetching posts by author:", error);
+        }
+    }
+
     return (
-        <WordpressContext.Provider value={{ posts, services, fetchService,fetchAuthor }}>
+        <WordpressContext.Provider value={{ posts, services, fetchService,fetchAuthor, fetchPostsByAuthor }}>
             {children}
         </WordpressContext.Provider>
     );

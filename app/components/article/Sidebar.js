@@ -7,6 +7,7 @@ import SoftwareCard from "../SoftwareCard";
 import { useWordpress } from "../../providers/WordpressProvider";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import AuthorCard from "./AuthorCard";
+import MoreFromAuthor from "./MoreFromAuthor";
 
 export default function Sidebar({ article }) {
     const { posts } = useWordpress();
@@ -14,6 +15,10 @@ export default function Sidebar({ article }) {
         <div className="md:block">
             <div className="sticky top-20 pt-20">
                 <AuthorCard authorId={article.author} />
+                {
+                    article.author &&
+                    <MoreFromAuthor authorId={article.author} />
+                }
                 {
                     posts &&
                     <div className="my-8">
