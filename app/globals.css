@@ -292,3 +292,38 @@ html body ol ul {
 html body ol {
   margin-bottom: 20px;
 }
+
+.task-content {
+  padding-top: 24px;
+}
+.task-content h1 {
+  font-size: 2.25rem;
+  line-height: 2.75rem;
+  margin-bottom: 3rem;
+  margin-top: 1.5rem;
+  
+}
+
+.task-content h2 {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  /* border-top: #e8e8e8 1px solid; */
+  /* padding-top: 1.5rem; */
+}
+
+.task-content ul {
+  margin-bottom: 1.5rem;
+}
+
+.task-content li {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.task-content ul ul {
+  margin-top: 0.5rem;
+  margin-left: 1.5rem;
+}

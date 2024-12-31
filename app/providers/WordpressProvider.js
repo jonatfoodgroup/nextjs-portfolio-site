@@ -6,6 +6,7 @@ const WordpressContext = createContext();
 export const WordpressProvider = ({ children }) => {
     const [posts, setPosts] = useState([]);
     const [services, setServices] = useState([]);
+    const [pages, setPages] = useState([]);
     const baseUrl = "https://jonsenterfitt.com/wp-json/wp/v2"; // REST API base URL
 
     useEffect(() => {
@@ -41,6 +42,21 @@ export const WordpressProvider = ({ children }) => {
         fetchServices();
     }, []);
 
+    useEffect(() => {
+        // fetch pages
+        const fetchPages = async () => {
+            try {
+                const response = await fetch(`${baseUrl}/pages`);
+                const data = await response.json();
+                setPages(data);
+            } catch (error) {
+                console.error("Error fetching pages:", error);
+            }
+        };
+
+        fetchPages();
+    }, []);
+
     const fetchService = async (slug) => {
         try {
             const response = await fetch(`${baseUrl}/service?slug=${slug}`);
@@ -72,7 +88,7 @@ export const WordpressProvider = ({ children }) => {
     }
 
     return (
-        <WordpressContext.Provider value={{ posts, services, fetchService,fetchAuthor, fetchPostsByAuthor }}>
+        <WordpressContext.Provider value={{ posts, services, fetchService,fetchAuthor, fetchPostsByAuthor, pages }}>
             {children}
         </WordpressContext.Provider>
     );
