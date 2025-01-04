@@ -34,7 +34,7 @@ export default function ArticleContent({ article }) {
                     )}
                 </div>
                 <div
-                    className="text-lg mt-4"
+                    className="text-lg mt-4 article-content"
                     dangerouslySetInnerHTML={{ __html: decode(article.content.rendered) }}
                 ></div>
             </div>

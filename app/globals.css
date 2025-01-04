@@ -331,3 +331,23 @@ html body ol {
   margin-top: 0.5rem;
   margin-left: 1.5rem;
 }
+
+html body .article-content h2 {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  /* border-top: #e8e8e8 1px solid; */
+  /* padding-top: 1.5rem; */
+}
+
+html body ul {
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+html body ul li {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+}
