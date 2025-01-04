@@ -4,7 +4,8 @@ export async function GET(req, { params }) {
     const { companyId } = params; // Extract the company ID from the URL
     const HUBSPOT_API_URL = `https://api.hubapi.com/crm/v3/objects/companies/${companyId}`;
     const ACCESS_TOKEN = process.env.HUBSPOT_ACCESS_TOKEN; // Replace with your actual token
-  
+
+    console.log('getting company by ID:', companyId);
     try {
       // Fetch specific company data from HubSpot API
       const response = await fetch(HUBSPOT_API_URL, {

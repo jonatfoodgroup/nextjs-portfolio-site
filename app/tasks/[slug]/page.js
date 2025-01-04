@@ -1,9 +1,6 @@
 export const revalidate = 60; // Revalidate every 60 seconds\
 import React from 'react';
 import { decode } from 'html-entities';
-import TurndownService from 'turndown';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import Header from '../../components/Header';
 
 export async function generateStaticParams() {
@@ -15,9 +12,6 @@ export async function generateStaticParams() {
             throw new Error(`Error fetching services: ${response.statusText}`);
         }
         const pages = await response.json();
-
-        // Log the fetched slugs for debugging
-        console.log("Static paths being generated:", pages.map(s => s.slug));
 
         return pages.map((page) => ({
             slug: page.slug,

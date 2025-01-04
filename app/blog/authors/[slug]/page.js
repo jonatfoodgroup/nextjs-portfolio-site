@@ -30,9 +30,6 @@ export async function generateStaticParams() {
             }
         }
 
-        // Log the fetched slugs for debugging
-        console.log("Static paths being generated:", allAuthors.map(a => a.slug));
-
         return allAuthors.map((author) => ({
             slug: author.slug,
         }));

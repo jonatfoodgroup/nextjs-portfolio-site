@@ -17,24 +17,26 @@ export default function ServiceView({ service, children }) {
             <div className="relative bg-white">
                 <Breadcrumb service={service} />
                 <div className="container inner-container  mx-auto">
-                    <div className="flex mt-0 md:mt-16 flex-col md:flex-row">
+                    <div className="flex mt-0 md:mt-4 flex-col md:flex-row">
                         <div className="w-full md:w-1/2 pr-0 md:pr-20">
                             <h1 className="text-4xl md:text-5xl font-extrabold text-black mt-12">{service.acf.masthead?.masthead_title}</h1>
-                            <p className="mt-4 text-md md:text-2xl leading-relaxed text-darker-gray font-regular">{(service.acf.masthead?.masthead_content) ? decode(service.acf.masthead.masthead_content) : decode(service.acf.masthead.masthead_title)}</p>
+                            <p className="mt-4 text-md md:text-lg leading-relaxed text-darker-gray font-regular">{(service.acf.masthead?.masthead_content) ? decode(service.acf.masthead.masthead_content) : decode(service.acf.masthead.masthead_title)}</p>
                             <Link href="/contact-us" className="inline-flex mt-8"
                                 data-aos="fade-in" data-aos-delay="400">
-                                <div className="px-8 py-4 text-xl font-bold bg-orange text-white flex items-center space-x-2">
+                                <div className="px-8 py-4 text-lg font-bold bg-orange text-white flex items-center space-x-2">
                                     <Icon icon="bx:bx-chat" className="text-white w-6 h-6 mr-2" />
                                     Chat With Us
                                 </div>
                             </Link>
                         </div>
                         <div className="w-1/2 hidden md:block" data-aos="fade-in" data-aos-delay="200">
-                            <div className="w-full h-96 bg-gray-200 rounded-md"></div>
+                            <div className="w-full h-96 bg-light-gray mt-8 rounded-md border-2 border-light-gray shadow-md">
+                                </div>
                         </div>
                     </div>
+                </div>
 
-
+                <div className="container inner-container mx-auto">
                     <div className="my-16">
                         {
                             children &&
@@ -63,6 +65,7 @@ export default function ServiceView({ service, children }) {
                             </div>
                         }
                     </div>
+                    
 
                     <Callout
                         content={{
@@ -75,66 +78,16 @@ export default function ServiceView({ service, children }) {
                             }
                         }}
                     />
+                    </div>
 
+                    <div className="container inner-container mx-auto">
                     <div className="my-24" id="articles">
                         <h2 className="text-2xl font-bold text-text">Latest Articles in {decode(service.title.rendered)}</h2>
                         <ArticleList filters={{ service_relationship: service.id }} />
                     </div>
-
-                    <div className="bg-light-gray py-16" id="process">
-                        <div className="my-16 container inner-container mx-auto">
-                            {children && (
-                                <div className="grid grid-cols-1 gap-12">
-                                    {children.map((child, index) => (
-                                        <Link
-                                            href={`/services/${child.slug}`}
-                                            key={index}
-                                            className={`flex flex-col md:flex-row ${index % 2 === 0 ? "" : "md:flex-row-reverse"
-                                                } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md hover:shadow-2xl transition-shadow duration-300  my-6 cursor-pointer`}
-                                            data-aos="fade-in"
-                                        >
-                                            {/* Content Section */}
-                                            <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pr-40" : "md:pl-10"} md:p-8 p-2 bg-gray-100 rounded-md`}>
-
-
-                                                <h2 className="text-xl md:text-4xl font-bold text-gray-900">
-                                                    {decode(child.acf.masthead.masthead_title)}
-                                                </h2>
-                                                <p className="text-gray-700 mt-4">
-                                                    {decode(child.acf.masthead.masthead_content)}
-                                                </p>
-                                                <div className="flex flex-row items-center space-x-2 mt-8">
-                                                    <div className={`flex justify-center items-center gradient-${index + 1} w-12 h-12 rounded-md`}>
-                                                        <Icon
-                                                            icon={child.acf.icon}
-                                                            className="text-white w-8 h-8"
-                                                        />
-                                                    </div>
-                                                    <h4 className="text-xl font-semibold text-gray-900 mt-4 mb-4 md:pl-2 cursor-pointer">
-                                                        {decode(child.title.rendered)}
-                                                    </h4>
-                                                    <Icon icon="bx:bx-right-arrow-alt" className="text-2xl text-black" />
-                                                </div>
-
-                                            </div>
-
-                                            {/* Icon Section */}
-                                            <div className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${index + 1} rounded-md h-64 md:h-96`} >
-                                                {/* {
-                                                child.featured_media &&
-                                                <FeaturedImage mediaId={child.featured_media} />
-                                            } */}
-                                                <Icon
-                                                    icon={child.acf.icon}
-                                                    className="text-white h-48 w-48 md:h-64 md:w-64"
-                                                />
-                                            </div>
-                                        </Link>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
                     </div>
+
+                    <BackAndForth children={children} />
 
 
                     <div className="mt-24">
@@ -145,10 +98,65 @@ export default function ServiceView({ service, children }) {
                 <ServiceList />
                 <LogoWall />
 
-            </div>
             <Footer />
         </>
     );
+}
+
+const BackAndForth = ({
+    children,
+}) => {
+    return (
+        <div className="bg-light-gray py-16" id="process">
+        <div className="my-16 container inner-container mx-auto">
+            {children && (
+                <div className="grid grid-cols-1 gap-4">
+                    {children.map((child, index) => (
+                        <Link
+                            href={`/services/${child.slug}`}
+                            key={index}
+                            className={`flex flex-col md:flex-row ${index % 2 === 0 ? "" : "md:flex-row-reverse"
+                                } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md  my-4 cursor-pointer`}
+                            data-aos="fade-in"
+                        >
+                            {/* Content Section */}
+                            <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pr-20" : "md:pl-10"} md:p-8 p-2 bg-gray-100 rounded-md`}>
+
+
+                                <h2 className="text-xl md:text-4xl font-bold text-gray-900">
+                                    {decode(child.acf.masthead.masthead_title)}
+                                </h2>
+                                <p className="text-gray-700 mt-4">
+                                    {decode(child.acf.masthead.masthead_content)}
+                                </p>
+                                <div className="flex flex-row items-center space-x-2 mt-8">
+                                    <div className={`flex justify-center items-center gradient-${index + 1} w-12 h-12 rounded-md`}>
+                                        <Icon
+                                            icon={child.acf.icon}
+                                            className="text-white w-8 h-8"
+                                        />
+                                    </div>
+                                    <h4 className="text-xl font-semibold text-gray-900 mt-4 mb-4 md:pl-2 cursor-pointer">
+                                        {decode(child.title.rendered)}
+                                    </h4>
+                                    <Icon icon="bx:bx-right-arrow-alt" className="text-2xl text-black" />
+                                </div>
+
+                            </div>
+
+                            <div className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${index + 1} rounded-md h-64 md:h-96`} >
+                                <Icon
+                                    icon={child.acf.icon}
+                                    className="text-white h-48 w-48 md:h-64 md:w-64 hover:scale-110 transition-transform duration-300"
+                                />
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            )}
+        </div>
+    </div>
+    )
 }
 
 

@@ -87,8 +87,19 @@ export const WordpressProvider = ({ children }) => {
         }
     }
 
+    const fetchCompanyByHubspotId = async (hubspotId) => {
+        try {
+            const response = await fetch(`${baseUrl}/client?hubspotId=${hubspotId}`);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error fetching company by Hubspot ID:", error);
+        }
+    }
+
+
     return (
-        <WordpressContext.Provider value={{ posts, services, fetchService,fetchAuthor, fetchPostsByAuthor, pages }}>
+        <WordpressContext.Provider value={{ posts, services, fetchService, fetchAuthor, fetchPostsByAuthor, pages,fetchCompanyByHubspotId }}>
             {children}
         </WordpressContext.Provider>
     );

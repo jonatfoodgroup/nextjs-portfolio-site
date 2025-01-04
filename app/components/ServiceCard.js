@@ -27,7 +27,7 @@ export default function ServiceCard({ serviceId }) {
         <Link href={`/services/${service.slug}`} key={service.title.rendered} className="text-lg font-semibold leading-6 hover:text-foreground group pr-6 py-1">
             <div className="flex flex-col">
                 <div className="ml-4 mb-4 flex items-center">
-                    <div className={`flex items-center justify-center ${iconSize} rounded-md bg-light-blue text-dark-blue`}>
+                    <div className={`flex items-center justify-center ${iconSize} rounded-md bg-light-orange text-orange`}>
                         <Icon icon={service.acf?.icon} className={`text-2xl`} />
                     </div>
                 </div>

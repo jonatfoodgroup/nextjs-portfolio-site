@@ -7,6 +7,8 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import { usePathname } from 'next/navigation';
 import Logo from './Logo';
 import Topbar from './marketing/Topbar';
+import { Tooltip } from "react-tooltip";
+
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -77,14 +79,14 @@ const Header = () => {
           <div className="hidden lg:flex lg:gap-x-4">
             <button
               onClick={() => handleMenuToggle('services')}
-              className={`flex items-center gap-x-1 text-xl leading-6  px-2 py-2 hover:text-blue-500 ${activeMenu === 'services' ? 'text-blue-500 font-bold' : 'text-black font-bold'}`}
+              className={`flex items-center gap-x-1 text-xl leading-6  px-2 py-2 hover:text-orange-500 ${activeMenu === 'services' ? 'text-orange-500 font-bold' : 'text-black font-bold'}`}
             >
               What we do
               <Icon icon={`${activeMenu === 'services' ? 'ic:round-check' : 'bi:chevron-down'}`} className="h-4 w-4" />
             </button>
             <button
               onClick={() => handleMenuToggle('insights')}
-              className={`flex items-center gap-x-1 text-xl leading-6  px-2 py-2 hover:text-blue-500 ${activeMenu === 'insights' ? 'text-blue-500 font-bold' : 'text-black font-bold'}`}
+              className={`flex items-center gap-x-1 text-xl leading-6  px-2 py-2 hover:text-orange-500 ${activeMenu === 'insights' ? 'text-orange-500 font-bold' : 'text-black font-bold'}`}
 >
               What we think
               <Icon icon={`${activeMenu === 'insights' ? 'ic:round-check' : 'bi:chevron-down'}`} className="h-4 w-4" />
@@ -95,17 +97,31 @@ const Header = () => {
               Who we are
             </Link>
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link href="/contact-us" className="text-md font-semibold leading-6 px-6 py-3 text-orange bg-white flex items-center gap-x-2">
-              <Icon icon="uiw:mail-o" className="h-6 w-6 mr-1" />
-              Contact Us
-            </Link>
-          </div>
+          <NavIcons />
         </nav>
       </div>
       {menuOpen && <MegaMenu activeMenu={activeMenu} closeMenu={closeMenu} />}
     </header>
   );
 };
+
+const NavIcons = () => {
+  let items = [
+    { icon: 'carbon:search', onclick: () => console.log('search'), tooltip: 'Search' },
+    { icon: 'carbon:user-avatar', onclick: () => console.log('profile'), tooltip: 'Profile' },
+    { icon: 'carbon:chat', onclick: () => console.log('chat'), tooltip: 'Chat' },
+  ];
+
+  return (
+    <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+      {items.map((item, index) => (
+        <button key={index} onClick={item.onclick} className="text-md font-semibold p-3 text-orange bg-white flex items-center hover:bg-gray-200 rounded-full" data-tooltip-id={item.tooltip} data-tooltip-place="bottom" data-tooltip-content={item.tooltip}>
+          <Icon icon={item.icon} className="h-6 w-6" />
+          <Tooltip id={item.tooltip} place="bottom" />
+        </button>
+      ))}
+    </div>
+  )
+}
 
 export default Header;

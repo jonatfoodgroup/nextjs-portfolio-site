@@ -6,48 +6,61 @@ import { decode } from "html-entities";
 import Sidebar from "../../../components/article/Sidebar";
 import { Breadcrumb } from "../../../components/article/Breadcrumb";
 
-export async function generateStaticParams() {
-    const baseUrl = "https://jonsenterfitt.com/wp-json/wp/v2";
-    let allServices = [];
-    let page = 1;
-    let hasMore = true;
-  
-    try {
-      while (hasMore) {
-        const response = await fetch(`${baseUrl}/posts?page=${page}`);
-        if (!response.ok) {
-          // If we hit a 400-level error, it may be because we've exhausted pages
-          if (response.status === 400) break;
-          throw new Error(`Error fetching services: ${response.statusText}`);
-        }
-        const services = await response.json();
-  
-        // Break the loop if no more posts are returned
-        if (services.length === 0) {
-          hasMore = false;
-        } else {
-          allServices = [...allServices, ...services];
-          page++;
-        }
-      }
-  
-      // Log the fetched slugs for debugging
-      console.log("Static paths being generated:", allServices.map(s => s.slug));
-  
-      return allServices.map((service) => ({
-        slug: service.slug,
-      }));
-    } catch (error) {
-      console.error("Error fetching services for static params:", error);
-      return [];
-    }
-  }
+export async function generateStaticPaths() {
+  console.log('Fired');
+  const paths = await generateStaticParams();
+  console.log('Generated Static Paths:', paths);
+  return { paths, fallback: 'blocking' }; // Or 'true' if fallback pages are allowed
+}
 
+export async function generateStaticParams() {
+  const baseUrl = "https://jonsenterfitt.com/wp-json/wp/v2";
+  let allServices = [];
+  let page = 1;
+  let totalPages = null;
+
+  console.log('Fetching services for static params');
+  try {
+    while (true) {
+      const response = await fetch(`${baseUrl}/posts?page=${page}`);
+
+      if (!response.ok) {
+        throw new Error(`Error fetching services: ${response.statusText}`);
+      }
+
+      // Get total pages from response headers on the first fetch
+      if (totalPages === null) {
+        totalPages = parseInt(response.headers.get('X-WP-TotalPages'), 10);
+      }
+
+      const services = await response.json();
+
+      // Append fetched services to allServices
+      allServices = [...allServices, ...services];
+
+      // Break the loop if the current page is the last one
+      if (page >= totalPages) {
+        break;
+      }
+
+      // Increment the page counter
+      page++;
+    }
+
+    console.log('All fetched services:', allServices.length);
+    return allServices.map((service) => ({
+      slug: service.slug,
+    }));
+  } catch (error) {
+    console.error("Error fetching services for static params:", error);
+    return [];
+  }
+}
 export async function generateMetadata({ params }) {
     const { slug } = params;
     const baseUrl = "https://jonsenterfitt.com/wp-json/wp/v2";
 
-
+    console.log('slug', slug);
     try {
         const response = await fetch(`${baseUrl}/posts?slug=${slug}`);
         if (!response.ok) {
@@ -81,7 +94,6 @@ export default async function SingleArticle({ params }) {
     const response = await fetch(`${baseUrl}/posts?slug=${slug}`);
     const article = await response.json();
 
-    console.log(article);
 
     if (!article || article.length === 0) {
         return {

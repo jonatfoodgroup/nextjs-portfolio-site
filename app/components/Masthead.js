@@ -1,6 +1,6 @@
 "use client";
 import { Icon } from "@iconify/react/dist/iconify.js";
-// import FancyMasthead from "./FancyMasthead";
+import FancyMasthead from "./FancyMasthead";
 
 
 import Link from "next/link";
@@ -29,7 +29,7 @@ const Masthead = () => {
                 </div>
             </div>
             <div className="absolute bottom-0 left-0 right-0">
-                {/* <FancyMasthead /> */}
+                <FancyMasthead />
             </div>
         </div>
     );

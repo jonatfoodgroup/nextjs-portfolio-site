@@ -12,8 +12,9 @@ export default function Home() {
     <>
       <Header />
       <Masthead />
-      <LatestArticles />
+      
       <LogoWall />
+      <LatestArticles />
       <div className="bg-light-blue py-8 md:py-8">
         <ServiceList />
       </div>

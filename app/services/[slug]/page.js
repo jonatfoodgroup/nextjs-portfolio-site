@@ -15,8 +15,6 @@ export async function generateStaticParams() {
     }
     const services = await response.json();
 
-    // Log the fetched slugs for debugging
-    console.log("Static paths being generated:", services.map(s => s.slug));
 
     return services.map((service) => ({
       slug: service.slug,

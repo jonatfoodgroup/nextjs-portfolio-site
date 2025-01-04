@@ -37,8 +37,12 @@ html body .bg-orange {
   background-color: #FF5600;
 }
 
+html body .bg-light-orange {
+  background-color: #FFF1EA;
+}
+
 html body .bg-light-gray {
-  background: #E0E0E0;
+  background: #f9f9f9 !important;
 }
 
 html body .text-medium-gray {
