@@ -8,8 +8,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useWordpress } from "../providers/WordpressProvider";
-import {decode, encode} from 'html-entities';
+import { decode, encode } from 'html-entities';
 import AuthorCard from "./article/AuthorCard";
+import ArticleCard from "./article/ArticleCard";
 
 const LatestArticles = () => {
     const [localArticles, setLocalArticles] = useState([]);
@@ -43,17 +44,7 @@ const LatestArticles = () => {
                     >
                         {localArticles.map((article) => (
                             <SwiperSlide key={article.id} className="pb-8 cursor-pointer">
-                                <div className="bg-white shadow-lg rounded-lg p-8 flex flex-col h-full" >
-                                    <Link href={`/blog/articles/${article.slug}`}>
-                                    <h2 className="text-xl font-bold text-dark-blue mb-2">
-                                        {article.title.rendered}
-                                    </h2>
-                                    <p className="text-md text-dark-blue mt-0 line-clamp-2" dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }}>
-                                        
-                                    </p>
-                                    </Link>
-                                    <AuthorCard authorId={article.author} />
-                                </div>
+                                <ArticleCard article={article} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
