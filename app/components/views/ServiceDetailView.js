@@ -145,7 +145,7 @@ const BackAndForth = ({ children }) => {
                                         : "md:pl-10"
                                         } md:p-8 p-2 bg-gray-100 rounded-md`}
                                 >
-                                    <h2 className="text-xl md:text-4xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300">
+                                    <h2 className="text-xl md:text-4xl font-bold text-gray-900 transition-colors duration-300">
                                         {decode(child.acf.masthead.masthead_title)}
                                     </h2>
                                     <p className="text-gray-700 mt-4">
