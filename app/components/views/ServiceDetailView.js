@@ -79,6 +79,15 @@ export default function ServiceView({ service, children }) {
                     </div>
 
 
+                </div>
+                <BackAndForth children={children} />
+                <div className="container inner-container mx-auto">
+                    <div className="my-24" id="articles">
+                        <h2 className="text-2xl font-bold text-text">Latest Articles in {decode(service.title.rendered)}</h2>
+                        <ArticleList filters={{ service_relationship: service.id }} />
+                    </div>
+                </div>
+                <div className="container inner-container mx-auto">
                     <Callout
                         content={{
                             title: service.acf.masthead?.masthead_title,
@@ -92,21 +101,19 @@ export default function ServiceView({ service, children }) {
                     />
                 </div>
 
-                <div className="container inner-container mx-auto">
-                    <div className="my-24" id="articles">
-                        <h2 className="text-2xl font-bold text-text">Latest Articles in {decode(service.title.rendered)}</h2>
-                        <ArticleList filters={{ service_relationship: service.id }} />
-                    </div>
+                <div className="container inner-container mx-auto my-8">
+                    <LogoWall />
                 </div>
 
-                <BackAndForth children={children} />
+                
 
 
             </div >
-            <div className="bg-light-orange py-8">
+            
+            <div className="bg-light-orange py-20 my-20">
                 <ServiceList />
             </div>
-            <LogoWall />
+            
 
             <Footer />
         </>
@@ -120,12 +127,16 @@ const BackAndForth = ({ children }) => {
                 {children && (
                     <div className="grid grid-cols-1 gap-4">
                         {children.map((child, index) => (
+                            <div
+                                data-aos="fade-in"
+                                data-aos-delay={index * 50}
+                                key={index}
+                                className="flex justify-center items-center">
                             <Link
                                 href={`/services/${child.slug}`}
-                                key={index}
                                 className={`flex flex-col md:flex-row ${index % 2 === 0 ? "" : "md:flex-row-reverse"
-                                    } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md  my-4 cursor-pointer`}
-                                data-aos="fade-in"
+                                    } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md group  my-4 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2`}
+                                
                             >
                                 {/* Content Section */}
                                 <div
@@ -166,10 +177,11 @@ const BackAndForth = ({ children }) => {
                                 >
                                     <Icon
                                         icon={child.acf.icon}
-                                        className="text-white h-48 w-48 md:h-64 md:w-64 hover:scale-110 transition-transform duration-300"
+                                        className="text-white h-48 w-48 md:h-64 md:w-64 transition-transform duration-300 group-hover:scale-110"
                                     />
                                 </div>
                             </Link>
+                            </div>
                         ))}
                     </div>
                 )}
