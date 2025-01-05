@@ -58,6 +58,26 @@ export const WordpressProvider = ({ children }) => {
         fetchPages();
     }, []);
 
+    useEffect(() => {
+        // Fetch all authors
+        const fetchAllAuthors = async () => {
+            try {
+                const response = await fetch(`${baseUrl}/users`);
+                const data = await response.json();
+                // Cache all authors
+                const authorCacheMap = data.reduce((cache, author) => {
+                    cache[author.id] = author;
+                    return cache;
+                }, {});
+                setAuthorCache(authorCacheMap);
+            } catch (error) {
+                console.error("Error fetching all authors:", error);
+            }
+        };
+    
+        fetchAllAuthors();
+    }, []);
+
     const fetchService = async (slug) => {
         try {
             const response = await fetch(`${baseUrl}/service?slug=${slug}`);
@@ -115,7 +135,6 @@ export const WordpressProvider = ({ children }) => {
             console.error("Error fetching company by Hubspot ID:", error);
         }
     }
-
 
     return (
         <WordpressContext.Provider value={{ posts, services, fetchService, fetchAuthor, fetchPostsByAuthor, pages,fetchCompanyByHubspotId }}>

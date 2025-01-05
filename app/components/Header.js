@@ -132,6 +132,7 @@ const Header = () => {
 const NavIcons = () => {
   const items = [
     { icon: "carbon:search", onclick: () => console.log("search"), tooltip: "Search StrongStart" },
+    { icon: "carbon:bookmark", onclick: () => console.log("bookmark"), tooltip: "Bookmarks" },
     { icon: "carbon:notification", onclick: () => console.log("notification"), tooltip: "Updates" },
     { icon: "carbon:user-avatar", onclick: () => console.log("profile"), tooltip: "Sign In" },
     { icon: "carbon:chat", onclick: () => console.log("chat"), tooltip: "Chat" },
