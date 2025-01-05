@@ -4,7 +4,7 @@ import { useWordpress } from "../../providers/WordpressProvider";
 import Link from "next/link";
 import FeaturedImage from "../FeaturedImage";
 
-const AuthorCard = ({ authorId }) => {
+const AuthorCard = ({ authorId, size = 32 }) => {
     const { fetchAuthor } = useWordpress();
     const [author, setAuthor] = useState(null);
 
@@ -21,11 +21,10 @@ const AuthorCard = ({ authorId }) => {
         <div>
             {author && (
                 <div>
-                    <h3 className="text-xl font-bold mb-2">About the Author</h3>
-                    <Link href={`/blog/authors/${author.slug}`} className="flex items-center">
+                    <Link href={`/blog/authors/${author.slug}`} className="flex items-center mt-4">
                     {
                         author.acf.profile_image && (
-                            <FeaturedImage mediaId={author.acf.profile_image} width={64} height={64} />
+                            <FeaturedImage mediaId={author.acf.profile_image} width={size} height={size} />
                         )
                     }
                             <h4

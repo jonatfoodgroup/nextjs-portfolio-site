@@ -18,7 +18,7 @@ export default function FeaturedImage({ mediaId, width = 64, height = 64 }) {
     }, [mediaId]);
 
     if (!image) {
-        return <div>Loading...</div>;
+        return <></>;
     }
     return (
         <Image

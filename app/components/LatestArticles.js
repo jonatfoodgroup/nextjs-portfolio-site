@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useWordpress } from "../providers/WordpressProvider";
 import {decode, encode} from 'html-entities';
+import AuthorCard from "./article/AuthorCard";
 
 const LatestArticles = () => {
     const [localArticles, setLocalArticles] = useState([]);
@@ -42,24 +43,17 @@ const LatestArticles = () => {
                     >
                         {localArticles.map((article) => (
                             <SwiperSlide key={article.id} className="pb-8 cursor-pointer">
-                                <Link className="bg-white shadow-lg rounded-lg p-8 flex flex-col h-full" href={`/blog/articles/${article.slug}`}>
-                                    {/* <Icon icon="akar-icons:arrow-right" className="text-dark-blue mb-4" /> */}
+                                <div className="bg-white shadow-lg rounded-lg p-8 flex flex-col h-full" >
+                                    <Link href={`/blog/articles/${article.slug}`}>
                                     <h2 className="text-xl font-bold text-dark-blue mb-2">
                                         {article.title.rendered}
                                     </h2>
-                                    <p className="text-md text-dark-blue mt-2 line-clamp-2" dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }}>
+                                    <p className="text-md text-dark-blue mt-0 line-clamp-2" dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }}>
                                         
                                     </p>
-                                    <div className="mt-auto">
-                                        <div
-
-                                            className="bg-light-blue text-dark-blue text-xl font-bold px-8 py-4 mt-4 flex items-center hover:shadow-xl transition-all duration-300"
-                                        >
-                                            Read More                                            <Icon icon="akar-icons:arrow-right" className="mr-2" />
-
-                                        </div>
-                                    </div>
-                                </Link>
+                                    </Link>
+                                    <AuthorCard authorId={article.author} />
+                                </div>
                             </SwiperSlide>
                         ))}
                     </Swiper>
