@@ -7,6 +7,7 @@ export const WordpressProvider = ({ children }) => {
     const [posts, setPosts] = useState([]);
     const [services, setServices] = useState([]);
     const [pages, setPages] = useState([]);
+    const [authorCache, setAuthorCache] = useState({}); // Cac
     const baseUrl = "https://jonsenterfitt.com/wp-json/wp/v2"; // REST API base URL
 
     useEffect(() => {
@@ -68,15 +69,33 @@ export const WordpressProvider = ({ children }) => {
     }
 
     const fetchAuthor = async (authorId) => {
+        // Check if the author is already cached
+        if (authorCache[authorId]) {
+            return authorCache[authorId];
+        }
+    
         try {
             const response = await fetch(`${baseUrl}/users/${authorId}`);
+            
+            if (!response.ok) {
+                console.error(`Error fetching author ${authorId}: ${response.statusText}`);
+                return null;
+            }
+            
             const data = await response.json();
+    
+            // Cache the fetched author
+            setAuthorCache((prevCache) => ({
+                ...prevCache,
+                [authorId]: data,
+            }));
+    
             return data;
         } catch (error) {
-            console.error("Error fetching author:", error);
+            console.error(`Error fetching author ${authorId}:`, error);
+            return null; // Ensure consistent return value
         }
-    }
-
+    };
     const fetchPostsByAuthor = async (authorId) => {
         try {
             const response = await fetch(`${baseUrl}/posts?author=${authorId}`);
