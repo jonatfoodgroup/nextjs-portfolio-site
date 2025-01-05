@@ -216,7 +216,7 @@ const Breadcrumb = ({ service }) => {
         <div className="bg-light-orange py-4 pt-24">
             <div className="container mx-auto flex justify-between items-center md:flex" data-aos="fade-in" data-aos-delay="200">
                 {/* Left: Breadcrumb Navigation */}
-                <nav className="flex items-center space-x-3 text-sm text-darker-gray">
+                <nav className="flex items-center space-x-1 text-sm text-darker-gray">
                     <Link
                         className="underline transition flex items-center space-x-1"
                         href="/">

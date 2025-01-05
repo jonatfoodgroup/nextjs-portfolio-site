@@ -15,9 +15,11 @@ export default function Home() {
         <>
             <Header />
                 <Breadcrumb />
+                <div className="bg-light-orange">
                 <div className="container mx-auto py-8">
                     <ServiceList />
                 </div>
+            </div>
             <Footer />
         </>
     );
@@ -25,9 +27,9 @@ export default function Home() {
 
 const Breadcrumb = ({ service }) => {
     return (
-        <div className="bg-light-gray py-4 pt-20">
+        <div className="bg-light-orange py-4 pt-20">
             <div className="container mx-auto">
-                <nav className="flex items-center space-x-2 text-sm p-4 text-black">
+                <nav className="flex items-center space-x-1 text-sm py-4 text-black">
                     <Link
                         className="underline hover:text-blue-500 transition flex items-center space-x-12"
                         href="/">
