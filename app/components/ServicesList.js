@@ -5,24 +5,48 @@ import { useWordpress } from "../providers/WordpressProvider";
 import { decode } from "html-entities";
 
 const ServiceList = () => {
-    const { services } = useWordpress();
-    return (
-        <div className="container mx-auto">
-            <div className="grid md:grid-cols-4 gap-8 grid-cols-1 py-0">
-                {services.map((service, index) => (
-                    <div data-aos="fade-up" data-aos-delay={index * 100} data-aos-offset="200" key={service.id}>
-                        <Link href={`/services/${service.slug}`} className="p-8 shadow rounded-md hover:shadow-lg border border-gray-200 bg-white z-10 flex flex-col items-start justify-start group hover:-translate-y-2 hover:shadow-xl transition-transform duration-300 min-h-[400px]">
-                            <Icon icon={service.acf.icon} className="text-6xl text-orange mb-0 bg-light-orange p-2 rounded-md" />
-                            <h2 className="text-2xl font-bold text-dark-blue mt-6 flex flex-row group-hover:text-orange-500">
-                                {decode(service.title.rendered)}
-                            </h2>
-                            <h3 className="text-md font-regular text-dark-blue mt-2 mb-2 sm:text-sm md:text-md">{service.acf.masthead.masthead_content}</h3>
-                        </Link>
-                    </div>
-                ))}
+  const { services } = useWordpress();
+
+  return (
+    <div className="container mx-auto">
+      <div className="grid md:grid-cols-4 gap-8 grid-cols-1 py-0">
+        {services.map((service, index) => (
+          <div
+          data-aos="fade-up"
+          data-aos-delay={index * 50}
+          key={service.title.rendered}
+          className="flex justify-center items-center"
+        >
+          <Link
+            href={`/services/${service.slug}`}
+            className="group p-4 bg-white shadow-md rounded-lg transition-transform duration-300 cursor-pointer border border-gray-200 flex flex-col justify-center items-center hover:-translate-y-2 hover:shadow-xl min-h-[240px] max-h-[240px]"
+          >
+            <div className="flex flex-col justify-center items-center h-full w-full">
+              <div className="flex items-center justify-center mb-4">
+                <div
+                  className={`flex items-center justify-center rounded-md bg-light-orange text-orange`}
+                >
+                  <Icon
+                    icon={service.acf?.icon}
+                    className={`text-3xl m-2 hover:transform hover:scale-110 transition-transform`}
+                  />
+                </div>
+              </div>
+              <div className="text-center">
+                <h4 className="text-xl font-bold text-black leading-6 group-hover:text-orange-500 transition-colors duration-300">
+                  {decode(service.title.rendered)}
+                </h4>
+                <p className="text-sm line-clamp-3 font-light text-slate-500 leading-normal mt-2">
+                  {decode(service.acf?.masthead?.masthead_content)}
+                </p>
+              </div>
             </div>
+          </Link>
         </div>
-    );
-}
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default ServiceList;
