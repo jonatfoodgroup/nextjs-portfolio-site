@@ -6,6 +6,8 @@ import { decode } from "html-entities";
 import Sidebar from "../../../components/article/Sidebar";
 import { Breadcrumb } from "../../../components/article/Breadcrumb";
 import TableOfContents from "../../../components/article/TOC";
+import SaveLink from "../../../components/article/SaveLink";
+import Actions from "../../../components/article/Actions";
 
 export async function generateStaticPaths() {
   console.log('Fired');
@@ -111,6 +113,7 @@ export default async function SingleArticle({ params }) {
           <div className="flex flex-col md:flex-row justify-center items-start">
             <div className="hidden md:block w-1/4 sticky top-20 pt-4">
               <TableOfContents article={article[0]} />
+              <Actions article={article[0]} />
             </div>
             <div className="w-full md:w-2/3 md:pr-4">
               <ArticleContent article={article[0]} />

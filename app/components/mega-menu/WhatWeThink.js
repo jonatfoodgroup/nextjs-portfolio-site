@@ -7,7 +7,7 @@ export default function WhatWeThink() {
     const { posts } = useWordpress();
 
     return (
-        <div className="">
+        <div>
             <div className="container mx-auto">
                 <div className="grid md:grid-cols-4 gap-8 grid-cols-1">
                     {posts.map((article, index) => (

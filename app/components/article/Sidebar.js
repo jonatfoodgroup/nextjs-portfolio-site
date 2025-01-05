@@ -12,10 +12,10 @@ import MoreFromAuthor from "./MoreFromAuthor";
 export default function Sidebar({ article }) {
     const { posts } = useWordpress();
     return (
-        <div className="md:block hidden relative opacity-20 hover:opacity-100 transition-opacity duration-300">
-            <div className="sticky top-20">
+        <div className="md:block hidden relative">
+            <div className="sticky top-20 pr-40">
                 <div data-aos="fade-up">
-                <AuthorCard authorId={article.author} />
+                <AuthorCard authorId={article.author} size={64} />
                 {
                     article.author &&
                     <MoreFromAuthor authorId={article.author} />
@@ -27,7 +27,7 @@ export default function Sidebar({ article }) {
                         <ul className="space-y-2">
                             {posts.slice(0, 5).map((post, index) => (
                                 <li key={index}>
-                                    <Link href={`/blog/articles/${post.slug}`} className="hover:underline text-black font-semibold flex items-center justify-start text-sm">
+                                    <Link href={`/blog/articles/${post.slug}`} className="hover:underline text-black font-regular flex items-center justify-start text-sm">
                                         <span>{decode(post.title.rendered)}</span>
                                     </Link>
                                 </li>

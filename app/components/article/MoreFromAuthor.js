@@ -22,7 +22,7 @@ const MoreFromAuthor = ({ authorId }) => {
             <ul className="space-y-2">
                 {posts.map((post) => (
                     <li key={post.id} className="text-sm mb-0">
-                        <Link href={`/blog/articles/${post.slug}`}  className="text-black font-semibold hover:underline mb-0">{post.title.rendered}
+                        <Link href={`/blog/articles/${post.slug}`}  className="text-black font-regular hover:underline mb-0">{post.title.rendered}
                         </Link>
                     </li>
                 ))}

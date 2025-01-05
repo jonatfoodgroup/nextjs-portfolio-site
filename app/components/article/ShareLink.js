@@ -24,9 +24,9 @@ export default function ShareLink({ title, text, url }) {
     return (
         <button
             onClick={handleShare}
-            className="focus:outline-none focus:ring focus:ring-primary-500 focus:ring-opacity-50 hover:text-primary-500 flex items-center space-x-1"
+            className="focus:outline-none focus:ring text-xs focus:ring-primary-500 focus:ring-opacity-50 hover:text-primary-500 flex items-center space-x-1"
         >
-            <Icon icon="carbon:share" className="text-lg" />
+            <Icon icon="carbon:share" className="text-xl" />
             <span>Share</span>
             
         </button>
