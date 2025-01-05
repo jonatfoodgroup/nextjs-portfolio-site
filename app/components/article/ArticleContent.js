@@ -4,8 +4,8 @@ import { decode } from "html-entities";
 import ShareLink from "./ShareLink";
 import TimeToRead from "./TimeToRead";
 import WordCount from "./WordCount";
-import { Icon } from "@iconify/react/dist/iconify.js";
-
+import SaveLink from "./SaveLink";
+import PrintLink from "./PrintLink";
 export default function ArticleContent({ article }) {
     const [url, setUrl] = useState("");
 
@@ -66,6 +66,10 @@ export default function ArticleContent({ article }) {
                             url={url}
                         />
                     )}
+                    <span className="mx-2">•</span>
+                    <SaveLink article={article} />
+                    <span className="mx-2">•</span>
+                    <PrintLink />
                 </div>
                 <div
                     className="text-lg mt-4 article-content"

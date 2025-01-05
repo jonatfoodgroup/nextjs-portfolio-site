@@ -27,13 +27,11 @@ const CustomCursor = () => {
     const handleMouseLeave = () => setHovered(false);
   
     const updateEventListeners = () => {
-      // Clean up existing listeners
       elements.forEach((el) => {
         el.removeEventListener("mouseenter", handleMouseEnter);
         el.removeEventListener("mouseleave", handleMouseLeave);
       });
   
-      // Reselect elements and attach listeners
       const updatedElements = document.querySelectorAll("a, button");
       updatedElements.forEach((el) => {
         el.addEventListener("mouseenter", handleMouseEnter);
@@ -41,20 +39,17 @@ const CustomCursor = () => {
       });
     };
   
-    // Attach initial listeners
     elements.forEach((el) => {
       el.addEventListener("mouseenter", handleMouseEnter);
       el.addEventListener("mouseleave", handleMouseLeave);
     });
   
-    // Observe DOM changes
     const observer = new MutationObserver(updateEventListeners);
     observer.observe(document.body, {
       childList: true,
       subtree: true,
     });
   
-    // Cleanup on unmount
     return () => {
       observer.disconnect();
       elements.forEach((el) => {
@@ -87,9 +82,21 @@ const CustomCursor = () => {
           transition: transform 0.15s ease, width 0.15s ease, height 0.15s ease;
         }
         .custom-cursor.hovered {
-          transform: translate(-50%, -50%) scale(1.5);
+          transform: translate(-50%, -50%) scale(1.2);
           background: rgba(255, 86, 1, 0.5);
           border: none;
+          animation: pulse 5s infinite;
+        }
+        @keyframes pulse {
+          0% {
+            transform: translate(-50%, -50%) scale(1.2);
+          }
+          50% {
+            transform: translate(-50%, -50%) scale(1.4);
+          }
+          100% {
+            transform: translate(-50%, -50%) scale(1.2);
+          }
         }
       `}</style>
     </div>

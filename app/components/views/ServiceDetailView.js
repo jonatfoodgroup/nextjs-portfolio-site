@@ -101,9 +101,7 @@ export default function ServiceView({ service, children }) {
     );
 }
 
-const BackAndForth = ({
-    children,
-}) => {
+const BackAndForth = ({ children }) => {
     return (
         <div className="bg-light-orange py-4" id="process">
             <div className="my-16 container inner-container mx-auto">
@@ -113,36 +111,51 @@ const BackAndForth = ({
                             <Link
                                 href={`/services/${child.slug}`}
                                 key={index}
-                                className={`flex flex-col md:flex-row ${index % 2 === 0 ? "" : "md:flex-row-reverse"
-                                    } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md  my-4 cursor-pointer`}
+                                className={`flex flex-col md:flex-row ${
+                                    index % 2 === 0 ? "" : "md:flex-row-reverse"
+                                } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md  my-4 cursor-pointer`}
                                 data-aos="fade-in"
                             >
                                 {/* Content Section */}
-                                <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pr-20" : "md:pl-10"} md:p-8 p-2 bg-gray-100 rounded-md`}>
-
-
-                                    <h2 className="text-xl md:text-4xl font-bold text-gray-900">
+                                <div
+                                    className={`w-full md:w-1/2 ${
+                                        index % 2 === 0
+                                            ? "md:pr-20"
+                                            : "md:pl-10"
+                                    } md:p-8 p-2 bg-gray-100 rounded-md`}
+                                >
+                                    <h2 className="text-xl md:text-4xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300">
                                         {decode(child.acf.masthead.masthead_title)}
                                     </h2>
                                     <p className="text-gray-700 mt-4">
                                         {decode(child.acf.masthead.masthead_content)}
                                     </p>
                                     <div className="flex flex-row items-center space-x-2 mt-8">
-                                        <div className={`flex justify-center items-center gradient-${index + 1} w-12 h-12 rounded-md`}>
+                                        <div
+                                            className={`flex justify-center items-center gradient-${
+                                                index + 1
+                                            } w-12 h-12 rounded-md`}
+                                        >
                                             <Icon
                                                 icon={child.acf.icon}
                                                 className="text-white w-8 h-8"
                                             />
                                         </div>
-                                        <h4 className="text-xl font-semibold text-gray-900 mt-4 mb-4 md:pl-2 cursor-pointer">
+                                        <h4 className="text-xl font-semibold text-gray-900 hover:text-orange-500 transition-colors duration-300 mt-4 mb-4 md:pl-2 cursor-pointer">
                                             {decode(child.title.rendered)}
                                         </h4>
-                                        <Icon icon="bx:bx-right-arrow-alt" className="text-2xl text-black" />
+                                        <Icon
+                                            icon="bx:bx-right-arrow-alt"
+                                            className="text-2xl text-black"
+                                        />
                                     </div>
-
                                 </div>
 
-                                <div className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${index + 1} rounded-md h-64 md:h-96`} >
+                                <div
+                                    className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${
+                                        index + 1
+                                    } rounded-md h-64 md:h-96`}
+                                >
                                     <Icon
                                         icon={child.acf.icon}
                                         className="text-white h-48 w-48 md:h-64 md:w-64 hover:scale-110 transition-transform duration-300"
@@ -154,9 +167,8 @@ const BackAndForth = ({
                 )}
             </div>
         </div>
-    )
-}
-
+    );
+};
 
 const BreadcrumbSubNav = () => {
     const subNavItems = [

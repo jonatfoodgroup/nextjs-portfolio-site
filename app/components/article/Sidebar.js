@@ -14,6 +14,7 @@ export default function Sidebar({ article }) {
     return (
         <div className="md:block hidden relative">
             <div className="sticky top-20">
+                <div data-aos="fade-up">
                 <AuthorCard authorId={article.author} />
                 {
                     article.author &&
@@ -21,7 +22,7 @@ export default function Sidebar({ article }) {
                 }
                 {
                     posts &&
-                    <div className="my-8">
+                    <div className="my-8" data-aos="fade-up">
                         <h2 className="text-2xl font-bold mb-2">Latest Articles</h2>
                         <ul className="space-y-2">
                             {posts.slice(0, 5).map((post, index) => (
@@ -34,9 +35,10 @@ export default function Sidebar({ article }) {
                         </ul>
                     </div>
                 }
+                </div>
                 {
                     article.acf?.service_relationships &&
-                    <div className="my-8 sticky top-20">
+                    <div className="my-8 sticky top-20" data-aos="fade-up" data-aos-delay="200">
                         <h2 className="text-2xl font-bold mb-2">Related Services</h2>
                         {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4"> */}
                         {article.acf.service_relationships.map((serviceId, index) => (

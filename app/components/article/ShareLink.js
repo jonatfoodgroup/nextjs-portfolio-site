@@ -1,5 +1,7 @@
 "use client";
 
+import { Icon } from "@iconify/react/dist/iconify.js";
+
 export default function ShareLink({ title, text, url }) {
     const handleShare = async () => {
         if (navigator.share) {
@@ -21,9 +23,11 @@ export default function ShareLink({ title, text, url }) {
     return (
         <button
             onClick={handleShare}
-            className="focus:outline-none focus:ring"
+            className="focus:outline-none focus:ring focus:ring-primary-500 focus:ring-opacity-50 hover:text-primary-500 flex items-center space-x-1"
         >
-            Share
+            <Icon icon="carbon:share" className="text-lg" />
+            <span>Share</span>
+            
         </button>
     );
 }
