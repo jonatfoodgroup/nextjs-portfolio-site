@@ -3,6 +3,10 @@ import Link from "next/link";
 import AuthorCard from "./AuthorCard";
 
 const ArticleCard = ({ article }) => {
+
+    if (!article) {
+        return null;
+    }
     return (
         <div className="bg-white shadow-lg rounded-lg p-8 flex flex-col h-full text-start group hover:-translate-y-2 hover:shadow-xl transition-transform duration-300">
             <Link href={`/blog/articles/${article.slug}`}>

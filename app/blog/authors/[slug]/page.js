@@ -4,6 +4,7 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/marketing/Footer";
 import PostList from "../../../components/article/PostList";
 import FeaturedImage from "../../../components/FeaturedImage";
+import FollowAuthor from "../../../components/FollowAuthor";
 
 export async function generateStaticParams() {
     const baseUrl = "https://jonsenterfitt.com/wp-json/wp/v2";
@@ -105,7 +106,9 @@ export default async function getPageData({ params }) {
                     }
                     <h2 className="text-4xl font-bold mt-8"
                     >Posts by {author[0].name}</h2>
-                    <p className="text-md mt-4 max-w-4xl">{author[0].description}</p>
+                    
+                    <p className="text-md mt-4 max-w-4xl mb-8">{author[0].description}</p>
+                    <FollowAuthor authorId={author[0].id} name={author[0].name} />
                 </div>
                 <PostList posts={posts} />
             </div>
