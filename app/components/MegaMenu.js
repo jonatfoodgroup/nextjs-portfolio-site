@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import ServicesSection from './mega-menu/ServicesSection';
 import WhatWeThink from './mega-menu/WhatWeThink';
 
-const MegaMenu = ({ activeMenu, closeMenu }) => {
+const MegaMenu = ({ activeMenu,  closeMenu }) => {
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -21,16 +21,19 @@ const MegaMenu = ({ activeMenu, closeMenu }) => {
   return (
     <div ref={menuRef} className="mega-menu bg-light-orange py-4 shadow-2xl border-t-2 border-primary pb-8">
       <div className="mx-auto flex container p-4 lg:px-0" aria-label="Global">
+        {/* Conditional rendering for Services menu */}
         {activeMenu === 'services' && (
           <div id="services-menu" className="interior-menu">
             <ServicesSection />
           </div>
         )}
+        {/* Conditional rendering for Insights menu */}
         {activeMenu === 'insights' && (
           <div id="insights-menu" className="interior-menu">
             <WhatWeThink />
           </div>
         )}
+        {/* Close Button */}
         <div onClick={closeMenu} className="absolute top-0 right-0 p-4 cursor-pointer">
           <span className="text-white">Close</span>
         </div>

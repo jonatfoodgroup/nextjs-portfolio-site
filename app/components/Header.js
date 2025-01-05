@@ -35,20 +35,29 @@ const Header = () => {
   ];
 
   const handleMenuToggle = (menuName) => {
-    if (menuOpen && activeMenu === menuName) {
-      closeMenu();
-    } else {
-      setMenuOpen(true);
+    if (menuOpen === false) {
       setActiveMenu(menuName);
+    } else {
+      if (activeMenu === menuName) {
+        closeMenu();
+      } else {
+        setActiveMenu(menuName);
+      }
     }
+
+    if (activeMenu === menuName) {
+      setActiveMenu(null);
+    }
+    
   };
 
   const closeMenu = () => {
     setMenuOpen(false);
-    setActiveMenu(null);
+    // setActiveMenu(null);
   };
 
   useEffect(() => {
+    
     closeMenu();
   }, [router]);
 
@@ -63,6 +72,10 @@ const Header = () => {
       return () => darkModeQuery.removeEventListener("change", handleChange);
     }
   }, []);
+
+  useEffect(() => {
+    console.log('menuOpen', activeMenu);
+  }, [activeMenu]);
 
   return (
     <header className="bg-white fixed w-full border-b-2 border-primary" style={{ zIndex: 999 }}>
@@ -124,7 +137,7 @@ const Header = () => {
           <NavIcons />
         </nav>
       </div>
-      {menuOpen && <MegaMenu activeMenu={activeMenu} closeMenu={closeMenu} />}
+      {activeMenu && <MegaMenu activeMenu={activeMenu} closeMenu={closeMenu} />}
     </header>
   );
 };
