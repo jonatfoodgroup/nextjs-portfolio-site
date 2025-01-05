@@ -50,8 +50,11 @@ const SoftwareList = () => {
 
             <div className="grid grid-cols-4 md:grid-cols-6 md:gap-4 gap-2 mt-4">
                 {localSoftwares.map((software) => (
-                    <Link key={software.title} className="p-4 bg-white hover:shadow-xl rounded-lg transition duration-300 cursor-pointer border border-border flex flex-col items-center justify-center" href={`/softwares/${software.slug}`}>
-                        <img 
+                    <Link 
+    key={software.title} 
+    className="p-4 bg-white hover:shadow-xl hover:-translate-y-2 rounded-lg transition-transform duration-300 cursor-pointer border border-gray-200 flex flex-col items-center justify-center" 
+    href={`/softwares/${software.slug}`}
+>                        <img 
                             src={`/images/software-logos/${software.title.toLowerCase()}.webp`} 
                             alt={`${software.title} logo`} 
                             className="w-full md:h-20 object-contain mb-2"

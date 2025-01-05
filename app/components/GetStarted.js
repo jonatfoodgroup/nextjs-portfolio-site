@@ -13,9 +13,10 @@ const GetStartedBanner = () => {
                     </p>
                     <Link
                         href="/contact-us"
-                        className="inline-block px-6 py-3 text-lg font-medium bg-black text-white"
+                        className="px-6 py-3 text-lg font-medium bg-orange text-white shiny-button"
                     >
                         Work With Us
+                        <span className="shiny-effect"></span>
                     </Link>
                 </div>
             </section>

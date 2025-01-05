@@ -19,18 +19,21 @@ const Masthead = () => {
                     </p>
 
                     {/* Two buttons: 1. Schedule an Audit (Shiny) 2. Learn Our Process */}
-                    <div className="flex mt-8 justify-center items-center">
+                    <div className="flex mt-8 justify-center items-center space-x-4">
+                        {/* Primary Button */}
                         <Link
                             href="/services/audit"
-                            className="shiny-button bg-orange text-white text-xl font-bold px-8 py-4 mr-4 flex items-center relative overflow-hidden"
+                            className="shiny-button bg-orange text-white text-lg font-bold px-6 py-3 flex items-center relative overflow-hidden rounded-lg hover:-translate-y-2 hover:shadow-xl transition-transform duration-300"
                         >
                             <Icon icon="qlementine-icons:preview-16" className="mr-2" />
                             Schedule an Audit
                             <span className="shiny-effect"></span>
                         </Link>
+
+                        {/* Secondary Button */}
                         <Link
                             href="/services"
-                            className="hidden bg-light-orange text-orange text-xl font-bold px-8 py-4 border border-text flex items-center md:flex"
+                            className="bg-white text-black text-lg font-bold px-6 py-3 flex items-center border border-gray-300 rounded-lg hover:bg-gray-100 hover:shadow-lg hover:-translate-y-2 transition-transform duration-300"
                         >
                             <Icon icon="fluent-mdl2:learning-tools" className="mr-2" />
                             View Our Services

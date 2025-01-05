@@ -39,32 +39,43 @@ export default function ServiceView({ service, children }) {
 
                 <div className="container inner-container mx-auto">
                     <div className="my-16">
-                        {
-                            children &&
+                        {children && (
                             <div>
                                 <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                                     {children.map((child, index) => (
-                                        <Link
-                                            href={`/services/${child.slug}`}
-                                            key={index} className="flex items-center flex-col md:my-4 px-8 py-8  rounded-md bg-light-gray shadow-md hover:shadow-2xl transition-shadow duration-300 cursor-pointer border-2 border-gray-200"
+                                        <div
                                             data-aos="fade-in"
                                             data-aos-delay={index * 50}
-                                        >
-                                            <div className="flex flex-col items-center  rounded-md">
-                                                <div className={`gradient-${index + 1} flex items-center justify-center rounded-full mb-4`}>
-                                                    <Icon icon={child.acf.icon} className="text-2xl text-white w-16 h-16 p-4" />
+                                            key={index}>
+                                            <Link
+                                                href={`/services/${child.slug}`}
+                                                className="flex items-center flex-col md:my-4 px-8 py-8 rounded-md bg-white shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer "
+
+                                            >
+                                                <div className="flex flex-col items-center rounded-md">
+                                                    <div
+                                                        className={`gradient-${index + 1} flex items-center justify-center rounded-full mb-4 -mt-16`}
+                                                    >
+                                                        <Icon
+                                                            icon={child.acf.icon}
+                                                            className="text-2xl text-white w-16 h-16 p-4"
+                                                        />
+                                                    </div>
+                                                    <div className="flex flex-col items-center text-center">
+                                                        <h4 className="text-md font-extrabold text-black hover:text-orange-500 transition-colors duration-300">
+                                                            {decode(child.title.rendered)}
+                                                        </h4>
+                                                        <p className="text-gray-400 text-xs mt-2 leading-relaxed hidden md:hidden">
+                                                            {decode(child.acf.masthead.masthead_content)}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                <div className="flex flex-col items-center text-center">
-                                                    <h4 className="text-md font-extrabold text-black">{decode(child.title.rendered)}</h4>
-                                                    <p className="text-gray-400 text-xs mt-2 leading-relaxed hidden md:hidden
-                                                    ">{decode(child.acf.masthead.masthead_content)}</p>
-                                                </div>
-                                            </div>
-                                        </Link>
+                                            </Link>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
-                        }
+                        )}
                     </div>
 
 
@@ -91,7 +102,7 @@ export default function ServiceView({ service, children }) {
                 <BackAndForth children={children} />
 
 
-            </div>
+            </div >
             <div className="bg-light-orange py-8">
                 <ServiceList />
             </div>
@@ -112,18 +123,16 @@ const BackAndForth = ({ children }) => {
                             <Link
                                 href={`/services/${child.slug}`}
                                 key={index}
-                                className={`flex flex-col md:flex-row ${
-                                    index % 2 === 0 ? "" : "md:flex-row-reverse"
-                                } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md  my-4 cursor-pointer`}
+                                className={`flex flex-col md:flex-row ${index % 2 === 0 ? "" : "md:flex-row-reverse"
+                                    } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md  my-4 cursor-pointer`}
                                 data-aos="fade-in"
                             >
                                 {/* Content Section */}
                                 <div
-                                    className={`w-full md:w-1/2 ${
-                                        index % 2 === 0
-                                            ? "md:pr-20"
-                                            : "md:pl-10"
-                                    } md:p-8 p-2 bg-gray-100 rounded-md`}
+                                    className={`w-full md:w-1/2 ${index % 2 === 0
+                                        ? "md:pr-20"
+                                        : "md:pl-10"
+                                        } md:p-8 p-2 bg-gray-100 rounded-md`}
                                 >
                                     <h2 className="text-xl md:text-4xl font-bold text-gray-900 hover:text-orange-500 transition-colors duration-300">
                                         {decode(child.acf.masthead.masthead_title)}
@@ -133,9 +142,8 @@ const BackAndForth = ({ children }) => {
                                     </p>
                                     <div className="flex flex-row items-center space-x-2 mt-8">
                                         <div
-                                            className={`flex justify-center items-center gradient-${
-                                                index + 1
-                                            } w-12 h-12 rounded-md`}
+                                            className={`flex justify-center items-center gradient-${index + 1
+                                                } w-12 h-12 rounded-md`}
                                         >
                                             <Icon
                                                 icon={child.acf.icon}
@@ -153,9 +161,8 @@ const BackAndForth = ({ children }) => {
                                 </div>
 
                                 <div
-                                    className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${
-                                        index + 1
-                                    } rounded-md h-64 md:h-96`}
+                                    className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${index + 1
+                                        } rounded-md h-64 md:h-96`}
                                 >
                                     <Icon
                                         icon={child.acf.icon}

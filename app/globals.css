@@ -359,11 +359,11 @@ html body .article-content a {
 /* Shiny Button Base */
 .shiny-button {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   font-weight: bold;
   text-align: center;
   text-decoration: none;
@@ -392,7 +392,29 @@ html body .article-content a {
 }
 
 .shiny-button:hover .shiny-effect {
-  left: 100%;
+  left: 110%;
   opacity: 1; /* Show only on hover */
   transition: all 0.75s ease;
+}
+
+/* Pulsing Animation */
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 rgba(255, 136, 0, 0.5);
+  }
+  50% {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 136, 0, 0.4);
+  }
+  100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 rgba(255, 136, 0, 0.5);
+  }
+}
+
+/* Pulse Orb Style */
+.pulse-orb {
+  animation: pulse 2s infinite;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
