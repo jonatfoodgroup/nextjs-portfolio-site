@@ -1,25 +1,20 @@
 "use client";
 import Link from "next/link";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import { decode } from 'html-entities';
-
+import AuthorCard from "./AuthorCard";
 
 const ArticleCard = ({ article }) => {
     return (
-        <Link
-            href={`/blog/articles/${article.slug}`}
-            className="p-4 shadow rounded-md hover:shadow-lg cursor-pointer">
-            {article.acf?.icon && (
-                <div className="flex items-center justify-center w-12 h-12 bg-light-orange rounded-full border-2 border-orange">
-                    <Icon icon={article.acf.icon} className="text-3xl text-orange" />
-                </div>
-            )}
-            <h2 className="text-xl text-start font-bold text-text mt-4 hover:text-orange-500 mb-1 transition-all leading-tight">
-                {decode(article.title.rendered)}
-            </h2>
-            <div className="text-text text-start text-md mt-4 line-clamp-3 
-                    " dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} />
-        </Link>
+        <div className="bg-white shadow-lg rounded-lg p-8 flex flex-col h-full" >
+            <Link href={`/blog/articles/${article.slug}`}>
+                <h2 className="text-xl font-bold text-dark-blue mb-2">
+                    {article.title.rendered}
+                </h2>
+                <p className="text-md text-dark-blue mt-0 line-clamp-2" dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }}>
+
+                </p>
+            </Link>
+            <AuthorCard authorId={article.author} />
+        </div>
     )
 }
 

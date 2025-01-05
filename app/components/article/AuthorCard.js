@@ -28,7 +28,7 @@ const AuthorCard = ({ authorId, size = 32 }) => {
                         )
                     }
                             <h4
-                                className="text-lg font-semibold text-black hover:underline ml-2"
+                                className="text-md font-semibold text-black hover:underline ml-2"
                             >{author.name}</h4>
                     </Link>
                 </div>
