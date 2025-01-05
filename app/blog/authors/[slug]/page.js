@@ -58,7 +58,7 @@ export async function generateMetadata({ params }) {
         }
 
         return {
-            title: author[0].name,
+            title: author[0].name + " on StrongStart",
             description: author[0].description,
         };
     }

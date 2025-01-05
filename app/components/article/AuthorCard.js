@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { useWordpress } from "../../providers/WordpressProvider";
 import Link from "next/link";
 import FeaturedImage from "../FeaturedImage";
-import { Tooltip } from "react-tooltip";
 
 const AuthorCard = ({ authorId, size = 32 }) => {
     const { fetchAuthor } = useWordpress();
@@ -35,9 +34,6 @@ const AuthorCard = ({ authorId, size = 32 }) => {
                     <Link
                         href={`/blog/authors/${author.slug}`}
                         className="flex items-center mt-4"
-                        data-tooltip-id={author.slug}
-                        data-tooltip-place="bottom"
-                        data-tooltip-content="View Author"
                     >
                         {author.acf.profile_image && (
                             <FeaturedImage
@@ -49,7 +45,6 @@ const AuthorCard = ({ authorId, size = 32 }) => {
                         <h4 className="text-md font-semibold text-black hover:underline ml-2">
                             {author.name}
                         </h4>
-                        <Tooltip id={author.slug} place="bottom" />
                     </Link>
                 </div>
             )}
