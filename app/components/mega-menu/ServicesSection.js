@@ -20,14 +20,15 @@ const ServicesSection = () => {
               <div
                 data-aos="fade-up"
                 data-aos-delay={index * 50}
-                key={service.title.rendered}>
+                key={service.title.rendered}
+                className="flex justify-center items-center"
+              >
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group p-4 bg-white shadow-md rounded-lg transition-transform duration-300 cursor-pointer border border-gray-200 flex flex-col hover:-translate-y-2 hover:shadow-xl"
-
+                  className="group p-4 bg-white shadow-md rounded-lg transition-transform duration-300 cursor-pointer border border-gray-200 flex flex-col justify-center items-center hover:-translate-y-2 hover:shadow-xl min-h-[240px] max-h-[240px]"
                 >
-                  <div className="flex flex-col">
-                    <div className="ml-4 mb-4 flex items-center">
+                  <div className="flex flex-col justify-center items-center h-full w-full">
+                    <div className="flex items-center justify-center mb-4">
                       <div
                         className={`flex items-center justify-center rounded-md bg-light-orange text-orange`}
                       >
@@ -37,8 +38,8 @@ const ServicesSection = () => {
                         />
                       </div>
                     </div>
-                    <div className="ml-4">
-                      <h4 className="text-xl font-bold text-black leading-6 group-hover:text-orange-500 transition-colors duration-300 mt-0 mb-0">
+                    <div className="text-center">
+                      <h4 className="text-xl font-bold text-black leading-6 group-hover:text-orange-500 transition-colors duration-300">
                         {decode(service.title.rendered)}
                       </h4>
                       <p className="text-sm line-clamp-3 font-light text-slate-500 leading-normal mt-2">

@@ -24,7 +24,7 @@ const LatestArticles = () => {
         return null;
     }
     return (
-        <div className="flex items-center justify-center md:pt-20">
+        <div className="flex items-center justify-center md:pt-20 bg-light-orange">
             <div className="container mx-auto">
                 <div className="w-full max-w-8xl mx-auto text-start items-center justify-center">
                     <h2 className="text-xl font-bold mb-8 mt-10">Latest Articles</h2>
