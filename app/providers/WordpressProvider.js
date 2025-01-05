@@ -6,6 +6,7 @@ const WordpressContext = createContext();
 export const WordpressProvider = ({ children }) => {
     const [posts, setPosts] = useState([]);
     const [services, setServices] = useState([]);
+    const [bounties, setBounties] = useState([]);
     const [pages, setPages] = useState([]);
     const [authorCache, setAuthorCache] = useState({}); // Cac
     const baseUrl = "https://jonsenterfitt.com/wp-json/wp/v2"; // REST API base URL
@@ -136,8 +137,29 @@ export const WordpressProvider = ({ children }) => {
         }
     }
 
+    const fetchBounties = async () => {
+        try {
+            const response = await fetch(`${baseUrl}/bounty`);
+            const data = await response.json();
+            console.log(data);
+            setBounties(data);
+        } catch (error) {
+            console.error("Error fetching bounties:", error);
+        }
+    }
+
+    const fetchQuestById = async (id) => {
+        try {
+            const response = await fetch(`${baseUrl}/quest/${id}`);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error fetching quest by ID:", error);
+        }
+    }
+
     return (
-        <WordpressContext.Provider value={{ posts, services, fetchService, fetchAuthor, fetchPostsByAuthor, pages,fetchCompanyByHubspotId }}>
+        <WordpressContext.Provider value={{ posts, services, fetchService, fetchAuthor, fetchPostsByAuthor, pages,fetchCompanyByHubspotId, fetchBounties, bounties, fetchQuestById }}>
             {children}
         </WordpressContext.Provider>
     );

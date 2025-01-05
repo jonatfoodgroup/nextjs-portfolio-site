@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-const TableOfContents = ({ article }) => {
+const TableOfContents = ({ article, title = "In this article" }) => {
     const [headings, setHeadings] = useState([]);
     const [activeId, setActiveId] = useState(null);
 
@@ -76,7 +76,7 @@ const TableOfContents = ({ article }) => {
 
     return (
         <div className="table-of-contents">
-            <h2 className="font-bold text-lg mb-4">In this article</h2>
+            <h2 className="font-bold text-lg mb-4">{title}</h2>
             <ul className="list-none">
                 {headings.map((heading) => (
                     <li

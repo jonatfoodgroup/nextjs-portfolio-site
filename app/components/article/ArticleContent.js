@@ -20,7 +20,7 @@ export default function ArticleContent({ article }) {
     // Add anchor links to headings in article content
     useEffect(() => {
         if (!article) return;
-
+        console.log(article);
         // Helper to make URL-friendly IDs
         const makeId = (text) => {
             return text.toLowerCase().replace(/ /g, "-").replace(/[^a-zA-Z0-9-]/g, "");
