@@ -16,6 +16,7 @@ export default function ShareLink({ title, text, url }) {
                 console.error("Error sharing content:", error);
             }
         } else {
+            console.log("Sharing is not supported on your browser.");
             // alert("Sharing is not supported on your browser.");
         }
     };
