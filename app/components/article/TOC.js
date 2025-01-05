@@ -28,7 +28,7 @@ const TableOfContents = ({ article }) => {
 
                 return {
                     title: heading.innerText,
-                    level: parseInt(heading.tagName.charAt(1)),
+                    level: parseInt(heading.tagName.charAt(1)), // Extract heading level (e.g., 2 for h2)
                     id,
                 };
             });
@@ -77,11 +77,11 @@ const TableOfContents = ({ article }) => {
     return (
         <div className="table-of-contents">
             <h2 className="font-bold text-lg mb-4">In this article</h2>
-            <ul className="list-none space-y-2">
+            <ul className="list-none">
                 {headings.map((heading) => (
                     <li
                         key={heading.id}
-                        className={`ml-${heading.level * 2} text-sm mb-0 ${
+                        className={`ml-${(heading.level - 2) * 4} text-sm mb-2 ${
                             activeId === heading.id ? "font-bold text-blue-500" : ""
                         }`}
                     >

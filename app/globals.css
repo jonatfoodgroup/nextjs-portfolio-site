@@ -435,3 +435,41 @@ html body .article-content a {
   animation: pulse 2s infinite;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
+
+html body .article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  text-align: left;
+}
+
+html body .article-content th,
+html body .article-content td {
+  border: 1px solid var(--gray);
+  padding: 0.75rem;
+}
+
+html body .article-content th {
+  background-color: var(--pale);
+  font-weight: 600;
+  color: var(--text);
+}
+
+html body .article-content tr:nth-child(even) {
+  background-color: var(--gray);
+}
+
+html body .article-content tr:hover {
+  background-color: var(--foreground-hover);
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+html body .article-content caption {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--text);
+}
