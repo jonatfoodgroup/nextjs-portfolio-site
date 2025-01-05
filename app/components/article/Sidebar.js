@@ -12,7 +12,7 @@ import MoreFromAuthor from "./MoreFromAuthor";
 export default function Sidebar({ article }) {
     const { posts } = useWordpress();
     return (
-        <div className="md:block hidden relative">
+        <div className="md:block hidden relative opacity-20 hover:opacity-100 transition-opacity duration-300">
             <div className="sticky top-20">
                 <div data-aos="fade-up">
                 <AuthorCard authorId={article.author} />

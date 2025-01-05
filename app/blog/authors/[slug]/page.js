@@ -96,6 +96,7 @@ export default async function getPageData({ params }) {
     return (
         <>
             <Header />
+            <div className="bg-light-orange">
             <div className="container mx-auto pt-20 px-4 text-center space-y-8 items-center justify-center align-middle">
                 <div className="flex flex-col items-center justify-center align-middle mt-4 md:mt-16">
                     
@@ -111,6 +112,7 @@ export default async function getPageData({ params }) {
                     <FollowAuthor authorId={author[0].id} name={author[0].name} />
                 </div>
                 <PostList posts={posts} />
+            </div>
             </div>
             <Footer />
         </>
