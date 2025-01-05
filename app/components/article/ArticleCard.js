@@ -10,7 +10,7 @@ const ArticleCard = ({ article }) => {
             href={`/blog/articles/${article.slug}`}
             className="p-4 shadow rounded-md hover:shadow-lg cursor-pointer">
             {article.acf?.icon && (
-                <div className="flex items-center justify-center w-12 h-12 bg-light-orange rounded-full">
+                <div className="flex items-center justify-center w-12 h-12 bg-light-orange rounded-full border-2 border-orange">
                     <Icon icon={article.acf.icon} className="text-3xl text-orange" />
                 </div>
             )}

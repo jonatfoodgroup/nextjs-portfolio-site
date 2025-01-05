@@ -17,7 +17,7 @@ export default function ServiceView({ service, children }) {
             <div className="relative bg-white">
                 <Breadcrumb service={service} />
                 <div className="container inner-container  mx-auto">
-                    <div className="flex mt-0 md:mt-4 flex-col md:flex-row">
+                    <div className="flex mt-0 md:mt-8 flex-col md:flex-row">
                         <div className="w-full md:w-1/2 pr-0 md:pr-20">
                             <h1 className="text-4xl md:text-5xl font-extrabold text-black mt-12">{service.acf.masthead?.masthead_title}</h1>
                             <p className="mt-4 text-md md:text-lg leading-relaxed text-darker-gray font-regular">{(service.acf.masthead?.masthead_content) ? decode(service.acf.masthead.masthead_content) : decode(service.acf.masthead.masthead_title)}</p>
@@ -31,7 +31,7 @@ export default function ServiceView({ service, children }) {
                         </div>
                         <div className="w-1/2 hidden md:block" data-aos="fade-in" data-aos-delay="200">
                             <div className="w-full h-96 bg-light-gray mt-8 rounded-md border-2 border-light-gray shadow-md">
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ export default function ServiceView({ service, children }) {
                             </div>
                         }
                     </div>
-                    
+
 
                     <Callout
                         content={{
@@ -78,25 +78,23 @@ export default function ServiceView({ service, children }) {
                             }
                         }}
                     />
-                    </div>
+                </div>
 
-                    <div className="container inner-container mx-auto">
+                <div className="container inner-container mx-auto">
                     <div className="my-24" id="articles">
                         <h2 className="text-2xl font-bold text-text">Latest Articles in {decode(service.title.rendered)}</h2>
                         <ArticleList filters={{ service_relationship: service.id }} />
                     </div>
-                    </div>
-
-                    <BackAndForth children={children} />
-
-
-                    <div className="mt-24">
-                        {/* <h2 className="text-2xl font-bold text-text">Other Services</h2> */}
-                    </div>
-
                 </div>
+
+                <BackAndForth children={children} />
+
+
+            </div>
+            <div className="bg-light-orange py-8">
                 <ServiceList />
-                <LogoWall />
+            </div>
+            <LogoWall />
 
             <Footer />
         </>
@@ -107,55 +105,55 @@ const BackAndForth = ({
     children,
 }) => {
     return (
-        <div className="bg-light-gray py-16" id="process">
-        <div className="my-16 container inner-container mx-auto">
-            {children && (
-                <div className="grid grid-cols-1 gap-4">
-                    {children.map((child, index) => (
-                        <Link
-                            href={`/services/${child.slug}`}
-                            key={index}
-                            className={`flex flex-col md:flex-row ${index % 2 === 0 ? "" : "md:flex-row-reverse"
-                                } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md  my-4 cursor-pointer`}
-                            data-aos="fade-in"
-                        >
-                            {/* Content Section */}
-                            <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pr-20" : "md:pl-10"} md:p-8 p-2 bg-gray-100 rounded-md`}>
+        <div className="bg-light-orange py-16" id="process">
+            <div className="my-16 container inner-container mx-auto">
+                {children && (
+                    <div className="grid grid-cols-1 gap-4">
+                        {children.map((child, index) => (
+                            <Link
+                                href={`/services/${child.slug}`}
+                                key={index}
+                                className={`flex flex-col md:flex-row ${index % 2 === 0 ? "" : "md:flex-row-reverse"
+                                    } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md  my-4 cursor-pointer`}
+                                data-aos="fade-in"
+                            >
+                                {/* Content Section */}
+                                <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pr-20" : "md:pl-10"} md:p-8 p-2 bg-gray-100 rounded-md`}>
 
 
-                                <h2 className="text-xl md:text-4xl font-bold text-gray-900">
-                                    {decode(child.acf.masthead.masthead_title)}
-                                </h2>
-                                <p className="text-gray-700 mt-4">
-                                    {decode(child.acf.masthead.masthead_content)}
-                                </p>
-                                <div className="flex flex-row items-center space-x-2 mt-8">
-                                    <div className={`flex justify-center items-center gradient-${index + 1} w-12 h-12 rounded-md`}>
-                                        <Icon
-                                            icon={child.acf.icon}
-                                            className="text-white w-8 h-8"
-                                        />
+                                    <h2 className="text-xl md:text-4xl font-bold text-gray-900">
+                                        {decode(child.acf.masthead.masthead_title)}
+                                    </h2>
+                                    <p className="text-gray-700 mt-4">
+                                        {decode(child.acf.masthead.masthead_content)}
+                                    </p>
+                                    <div className="flex flex-row items-center space-x-2 mt-8">
+                                        <div className={`flex justify-center items-center gradient-${index + 1} w-12 h-12 rounded-md`}>
+                                            <Icon
+                                                icon={child.acf.icon}
+                                                className="text-white w-8 h-8"
+                                            />
+                                        </div>
+                                        <h4 className="text-xl font-semibold text-gray-900 mt-4 mb-4 md:pl-2 cursor-pointer">
+                                            {decode(child.title.rendered)}
+                                        </h4>
+                                        <Icon icon="bx:bx-right-arrow-alt" className="text-2xl text-black" />
                                     </div>
-                                    <h4 className="text-xl font-semibold text-gray-900 mt-4 mb-4 md:pl-2 cursor-pointer">
-                                        {decode(child.title.rendered)}
-                                    </h4>
-                                    <Icon icon="bx:bx-right-arrow-alt" className="text-2xl text-black" />
+
                                 </div>
 
-                            </div>
-
-                            <div className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${index + 1} rounded-md h-64 md:h-96`} >
-                                <Icon
-                                    icon={child.acf.icon}
-                                    className="text-white h-48 w-48 md:h-64 md:w-64 hover:scale-110 transition-transform duration-300"
-                                />
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            )}
+                                <div className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${index + 1} rounded-md h-64 md:h-96`} >
+                                    <Icon
+                                        icon={child.acf.icon}
+                                        className="text-white h-48 w-48 md:h-64 md:w-64 hover:scale-110 transition-transform duration-300"
+                                    />
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
-    </div>
     )
 }
 
@@ -195,7 +193,7 @@ const Breadcrumb = ({ service }) => {
     }, [service]);
 
     return (
-        <div className="bg-light-gray py-4 pt-24">
+        <div className="bg-light-orange py-4 pt-24">
             <div className="container mx-auto flex justify-between items-center md:flex" data-aos="fade-in" data-aos-delay="200">
                 {/* Left: Breadcrumb Navigation */}
                 <nav className="flex items-center space-x-3 text-sm text-darker-gray">

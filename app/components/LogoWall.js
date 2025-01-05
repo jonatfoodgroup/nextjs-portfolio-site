@@ -55,11 +55,11 @@ const LogoWall = () => {
           spaceBetween: 20,
         },
         1024: {
-          slidesPerView: 5,
+          slidesPerView: 4,
           spaceBetween: 30,
         },
         1440: {
-          slidesPerView: 6,
+          slidesPerView: 4,
           spaceBetween: 10,
         },
       }}

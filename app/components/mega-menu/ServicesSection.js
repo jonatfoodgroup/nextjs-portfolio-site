@@ -30,9 +30,9 @@ const ServicesSection = () => {
       {/* Services Section */}
       <div className="ml-4 pt-4 md:pt-0 py-4 md:py-4">
         <section className="d-block">
-          <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
             {services.map((service, index) => (
-              <Link href={`/services/${service.slug}`} key={service.title.rendered} className="text-lg font-semibold leading-6 hover:text-foreground group pr-6 py-1" data-aos="fade-up" data-aos-delay={index * 50}>
+              <Link href={`/services/${service.slug}`} key={service.title.rendered} className="text-lg font-semibold leading-6 hover:text-foreground group p-4 bg-white shadow-md pb-6" data-aos="fade-up" data-aos-delay={index * 50}>
                 <div className="flex flex-col">
                   <div className="ml-4 mb-4 flex items-center">
                     <div className={`flex items-center justify-center  rounded-md bg-light-orange text-orange`}>
