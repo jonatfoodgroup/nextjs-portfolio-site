@@ -10,6 +10,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import LogoWall from "../LogoWall";
 import { decode } from "html-entities";
 import FeaturedImage from "../FeaturedImage";
+import SaveLink from "../service/SaveLink";
 
 export default function ServiceView({ service, children }) {
     return (
@@ -252,12 +253,15 @@ const Breadcrumb = ({ service }) => {
                             </Link>
                         </>
                     )}
-                    <span>/</span>
+                    {/* <span>/</span>
                     <span className="font-bold flex items-center text-black space-x-1">
                         <Icon icon={service.acf.icon} className="text-orange w-4 h-4 mr-1" />
                         {decode(service.title.rendered)}
-                    </span>
+                    </span> */}
+                    <span>/</span>
                     <EditPageLink service={service} />
+                    <span>/</span>
+                    <SaveLink service={service} />
                 </nav>
 
                 {/* Right: Sub-Navigation */}

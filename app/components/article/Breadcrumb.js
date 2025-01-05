@@ -15,8 +15,8 @@ export const Breadcrumb = ({ article }) => {
                     <span
                         className="text-darker-gray font-bold"
                     >
-                        <Icon icon={article.acf?.icon} className="inline-block text-orange w-6 h-6 mr-2" />  
-                        {article.title.rendered}</span>
+                        _
+                    </span>
                     <EditPageLink id={article.id} />
                 </nav>
             </div>
