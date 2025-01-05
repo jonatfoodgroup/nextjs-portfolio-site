@@ -13,6 +13,7 @@ const SaveLink = ({ article }) => {
         setIsSaved(isSaved);
     }, [article]);
 
+
     const handleSave = () => {
         // Get saved articles from localStorage
         const savedArticles = JSON.parse(localStorage.getItem("savedArticles")) || [];
