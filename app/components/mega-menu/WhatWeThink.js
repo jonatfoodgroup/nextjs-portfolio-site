@@ -8,8 +8,8 @@ export default function WhatWeThink() {
 
     return (
         <div className="">
-            <div className="container inner-container mx-auto">
-                <div className="grid md:grid-cols-3 gap-8 grid-cols-1">
+            <div className="container mx-auto">
+                <div className="grid md:grid-cols-4 gap-8 grid-cols-1">
                     {posts.map(article => (
                         <ArticleCard key={article.id} article={article} />
                     ))}

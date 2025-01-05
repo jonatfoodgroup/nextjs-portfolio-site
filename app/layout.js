@@ -19,8 +19,8 @@ const inter = Manrope({
 });
 
 export const metadata = {
-  title: "Blank Title",
-  description: "Portfolio Site",
+  title: "StrongStart Network",
+  description: ""
 };
 
 export default function RootLayout({ children }) {
