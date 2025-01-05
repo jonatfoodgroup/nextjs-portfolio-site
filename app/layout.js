@@ -12,6 +12,7 @@ import { HubspotProvider } from "./providers/HubspotProvider";
 import DrawerProvider from "./providers/DrawerProvider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CustomCursor from "./components/CustomCursor";
 
 const inter = Manrope({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
                     <AuthProvider>
                       <DataProvider>
                         <div>
+                          <CustomCursor />
                           {children}
                         </div>
                       </DataProvider>

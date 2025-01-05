@@ -4,7 +4,7 @@ import { decode } from "html-entities";
 import ShareLink from "./ShareLink";
 import TimeToRead from "./TimeToRead";
 import WordCount from "./WordCount";
-
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function ArticleContent({ article }) {
     const [url, setUrl] = useState("");
@@ -16,10 +16,44 @@ export default function ArticleContent({ article }) {
         }
     }, []);
 
+    // Add anchor links to headings in article content
+    useEffect(() => {
+        if (!article) return;
+
+        // Helper to make URL-friendly IDs
+        const makeId = (text) => {
+            return text.toLowerCase().replace(/ /g, "-").replace(/[^a-zA-Z0-9-]/g, "");
+        };
+
+        // Find all headings in the article content
+        const headings = document.querySelectorAll(
+            ".article-content h2, .article-content h3, .article-content h4, .article-content h5, .article-content h6"
+        );
+
+        headings.forEach((heading) => {
+            // Generate and set an ID for the heading
+            const id = makeId(heading.innerText);
+            if (!heading.id) {
+                heading.id = id;
+            }
+
+            // Add anchor link only if not already added
+            if (!heading.querySelector(".anchor-link")) {
+                const anchor = document.createElement("a");
+                anchor.href = `#${id}`;
+                anchor.className = "anchor-link ml-2 text-gray-500 hover:text-black";
+                anchor.innerHTML = `
+                    link
+                `;
+                heading.appendChild(anchor);
+            }
+        });
+    }, [article]);
+
     return (
         <div>
             <div className="container inner-container mx-auto">
-                <h1 className="text-4xl font-bold mt-8 md:mt-20">{decode(article.title.rendered)}</h1>
+                <h1 className="text-4xl font-bold">{decode(article.title.rendered)}</h1>
                 <div className="text-sm text-gray-500 mt-2 flex items-center">
                     <WordCount content={decode(article.content.rendered)} />
                     <span className="mx-2">•</span>

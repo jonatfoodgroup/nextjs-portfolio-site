@@ -19,10 +19,10 @@ const MoreFromAuthor = ({ authorId }) => {
     return (
         <div>
             <h3 className="text-xl font-bold mb-2 mt-4">More from this Author</h3>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
                 {posts.map((post) => (
-                    <li key={post.id} className="text-md">
-                        <Link href={`/blog/${post.slug}`}  className="text-black hover:underline">{post.title.rendered}
+                    <li key={post.id} className="text-sm mb-0">
+                        <Link href={`/blog/articles/${post.slug}`}  className="text-black font-semibold hover:underline mb-0">{post.title.rendered}
                         </Link>
                     </li>
                 ))}
