@@ -26,7 +26,7 @@ export default function ServiceItem({ serviceId }) {
     return (
         <Link href={`/services/${service.slug}`} key={service.title.rendered} className="text-md font-semibold hover:text-foreground group py-1 flex items-center space-x-2 mb-2">
             <div className="flex flex-col">
-                <h4 className="text-lg font-semibold text-foreground hover:text-blue-500 flex items-center space-x-2">
+                <h4 className="text-lg font-semibold text-foreground hover:text-orange-500 flex items-center space-x-2">
                     <Icon icon={service.acf?.icon} className={`text-2xl`} /> <span>{decode(service.title.rendered)}</span>
                 </h4>
                 <p className="text-sm line-clamp-3 font-light text-slate-500 leading-normal">

@@ -32,7 +32,7 @@ export default function ServiceCard({ serviceId }) {
                     </div>
                 </div>
                 <div className="ml-4">
-                    <h4 className="text-xl font-semibold text-foreground leading-8 hover:text-blue-500 mt-0 mb-0">
+                    <h4 className="text-xl font-semibold text-foreground leading-8 hover:text-orange-500 mt-0 mb-0">
                         {decode(service.title.rendered)}
                     </h4>
                     <p className="text-sm line-clamp-2 font-light text-slate-500 leading-normal mt-2">
