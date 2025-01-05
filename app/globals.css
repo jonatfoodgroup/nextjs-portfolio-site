@@ -338,8 +338,9 @@ html body .article-content h2 {
   margin-bottom: 1.5rem;
   font-weight: 600;
   margin-top: 2rem;
-  /* border-top: #e8e8e8 1px solid; */
-  /* padding-top: 1.5rem; */
+
+  border-top: #e8e8e8 1px solid;
+  padding-top: 1.5rem;
 }
 
 html body .article-content ul {
