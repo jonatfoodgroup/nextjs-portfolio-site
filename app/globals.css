@@ -337,7 +337,7 @@ html body .article-content h2 {
   line-height: 2.25rem;
   margin-bottom: 1.5rem;
   font-weight: 600;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 
   border-top: #e8e8e8 1px solid;
   padding-top: 3rem;
@@ -346,7 +346,7 @@ html body .article-content h2 {
 html body .article-content h3 {
   font-size: 1.5rem;
   line-height: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: .75rem;
   font-weight: 600;
   margin-top: 2rem;
 }
@@ -365,6 +365,12 @@ html body .article-content ol {
 
 html body .article-content ol li {
   @apply font-medium text-gray-800;
+}
+
+html body .article-content p {
+  font-size: 1.25rem;
+  line-height: 2rem;
+  margin-bottom: 2rem;
 }
 
 html body .article-content a {
