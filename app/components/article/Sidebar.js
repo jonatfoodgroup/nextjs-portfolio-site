@@ -12,7 +12,7 @@ import MoreFromAuthor from "./MoreFromAuthor";
 export default function Sidebar({ article }) {
     const { posts } = useWordpress();
     return (
-        <div className="md:block">
+        <div className="md:block hidden relative">
             <div className="sticky top-20">
                 <AuthorCard authorId={article.author} />
                 {
@@ -36,7 +36,7 @@ export default function Sidebar({ article }) {
                 }
                 {
                     article.acf?.service_relationships &&
-                    <div className="my-8">
+                    <div className="my-8 sticky top-20">
                         <h2 className="text-2xl font-bold mb-2">Related Services</h2>
                         {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4"> */}
                         {article.acf.service_relationships.map((serviceId, index) => (

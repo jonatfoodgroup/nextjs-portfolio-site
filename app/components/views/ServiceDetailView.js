@@ -105,7 +105,7 @@ const BackAndForth = ({
     children,
 }) => {
     return (
-        <div className="bg-light-orange py-16" id="process">
+        <div className="bg-light-orange py-4" id="process">
             <div className="my-16 container inner-container mx-auto">
                 {children && (
                     <div className="grid grid-cols-1 gap-4">
