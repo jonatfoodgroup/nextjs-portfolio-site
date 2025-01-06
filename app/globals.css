@@ -482,5 +482,6 @@ html body .article-content caption {
 
 html body .article-content h2:first-of-type {
   border-top: none;
+  margin-top: 0;
   padding-top: 0;
 }

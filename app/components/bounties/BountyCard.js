@@ -35,13 +35,9 @@ const BountyCard = ({ bounty }) => {
 
             {/* Display reward */}
             <div className="flex justify-between items-center mt-4">
-                <span className="text-md font-medium text-dark-blue">
+                {/* <span className="text-md font-medium text-dark-blue">
                     Reward: <strong>${bounty.acf?.reward || "Not specified"}</strong>
-                </span>
-            </div>
-
-            {/* Display status */}
-            <div className="flex justify-between items-center mt-2">
+                </span> */}
                 <span
                     className={`text-xs font-semibold py-1 px-3 rounded-full ${
                         statusColors[bounty.acf?.status] || "bg-gray-200 text-gray-800"
@@ -50,7 +46,6 @@ const BountyCard = ({ bounty }) => {
                     {bounty.acf?.status || "Unknown"}
                 </span>
             </div>
-
             {/* Render quests */}
             <div className="mt-4">
                 {

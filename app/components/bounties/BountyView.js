@@ -46,7 +46,7 @@ export default function BountyView({ bounty }) {
 
                 {/* Reward amount */}
                 <div className="text-xl mt-4">
-                    <span className="font-bold">Reward:</span> ${bounty.acf.reward}
+                    <span>Reward:</span> <span className="font-bold">${bounty.acf.reward}</span>
                 </div>
 
                 {/* Render the content using react-markdown */}
