@@ -10,7 +10,7 @@ const BountyCard = ({ bounty }) => {
 
     // Map status to badge colors or styles
     const statusColors = {
-        open: "bg-green-200 text-green-800",
+        Open: "bg-green-200 text-green-800",
         closed: "bg-red-200 text-red-800",
         pending: "bg-yellow-200 text-yellow-800",
     };
@@ -35,8 +35,8 @@ const BountyCard = ({ bounty }) => {
 
             {/* Display reward */}
             <div className="flex justify-between items-center mt-4">
-                <span className="text-sm font-medium text-dark-blue">
-                    Reward: <strong>{bounty.acf?.reward || "Not specified"}</strong>
+                <span className="text-md font-medium text-dark-blue">
+                    Reward: <strong>${bounty.acf?.reward || "Not specified"}</strong>
                 </span>
             </div>
 
@@ -53,7 +53,9 @@ const BountyCard = ({ bounty }) => {
 
             {/* Render quests */}
             <div className="mt-4">
-                {bounty.acf?.quest?.map((questId) => (
+                {
+                bounty.acf?.quest &&
+                bounty.acf?.quest?.map((questId) => (
                     <QuestCard key={questId} questId={questId} />
                 ))}
             </div>

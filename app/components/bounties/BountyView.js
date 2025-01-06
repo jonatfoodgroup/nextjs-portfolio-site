@@ -40,9 +40,14 @@ export default function BountyView({ bounty }) {
         <div>
             <div className="container inner-container mx-auto">
                 {/* Render the title */}
-                <h1 className="text-4xl font-bold mt-8" data-aos="fade-in">
+                <h1 className="text-5xl font-bold mt-8 leading-tight">
                     {decode(bounty.title.rendered)}
                 </h1>
+
+                {/* Reward amount */}
+                <div className="text-xl mt-4">
+                    <span className="font-bold">Reward:</span> ${bounty.acf.reward}
+                </div>
 
                 {/* Render the content using react-markdown */}
                 <div className="text-lg mt-4 article-content">

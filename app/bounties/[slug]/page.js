@@ -102,7 +102,7 @@ export default async function BountyPage({ params }) {
         <div className="container mx-auto px-4 pt-36">
           <div className="flex flex-col md:flex-row justify-center items-start">
             <div className="hidden md:block w-1/4 sticky top-20">
-              <TableOfContents article={bountyData} title="Bounty TOC" />
+              <TableOfContents article={bountyData} title="In this bounty" />
 
               <h3 className="text-sm font-semibold mt-8 mb-4">Actions</h3>
               <SaveLink bounty={bountyData} />
@@ -111,7 +111,7 @@ export default async function BountyPage({ params }) {
               <BountyView bounty={bountyData} />
             </div>
             <div className="w-full md:w-1/3 md:pl-4">
-              <BountySidebar bounty={bountyData} />
+              {/* <BountySidebar bounty={bountyData} /> */}
             </div>
           </div>
         </div>
