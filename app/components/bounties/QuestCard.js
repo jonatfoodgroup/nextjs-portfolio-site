@@ -4,7 +4,7 @@ import { useWordpress } from "../../providers/WordpressProvider";
 import Link from "next/link";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-const QuestCard = ({ questId, size = 32 }) => {
+const QuestCard = ({ questId, size = 16 }) => {
     const { fetchQuestById } = useWordpress();
     const [quest, setQuest] = useState(null);
     const cacheRef = useRef({}); // Cache to store fetched quests
@@ -36,16 +36,14 @@ const QuestCard = ({ questId, size = 32 }) => {
                 <div>
                     <Link
                         href={`/blog/quests/${quest.slug}`}
-                        className="flex items-center mt-4"
+                        className="flex flex-col items-start space-y-1"
                     >
-                        {quest.acf?.icon && (
-                            <Icon
-                                icon={quest.acf.icon}
-                                className="text-6xl text-orange mb-4 bg-light-orange p-2 rounded-md"
-                            />
-                        )}
-                        <h4 className="text-md font-semibold text-black hover:underline ml-2">
-                            {quest.title.rendered}
+                        <span className="text-xs font-semibold text-gray-300">
+                            Quest
+                        </span>
+                        <h4 className="text-xs font-semibold text-gray-400 hover:underline transition-colors duration-300 flex items-center">
+                            <Icon icon={quest.acf?.icon} className="w-4 h-4 mr-1" />
+                            <span>{quest.title.rendered}</span>
                         </h4>
                     </Link>
                 </div>

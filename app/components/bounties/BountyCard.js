@@ -23,7 +23,7 @@ const BountyCard = ({ bounty }) => {
                         icon={bounty.acf?.icon}
                         className="text-6xl text-orange mb-4 bg-light-orange p-2 rounded-md"
                     />
-                    <h2 className="text-xl text-start font-bold text-dark-blue mb-2 group-hover:text-orange-500 transition-colors duration-300">
+                    <h2 className="text-lg text-start font-bold text-dark-blue mb-2 group-hover:text-orange-500 transition-colors duration-300">
                         {bounty.title.rendered}
                     </h2>
                     <p
