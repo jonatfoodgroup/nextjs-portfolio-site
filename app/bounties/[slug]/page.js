@@ -97,7 +97,7 @@ export default async function BountyPage({ params }) {
     const bountyData = bounty[0];
 
     return (
-      <>
+      <div className="bg-light-orange min-h-screen">
         <Header />
         <div className="container mx-auto px-4 pt-36">
           <div className="flex flex-col md:flex-row justify-center items-start">
@@ -115,7 +115,7 @@ export default async function BountyPage({ params }) {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   } catch (error) {
     console.error("Error fetching bounty data:", error);

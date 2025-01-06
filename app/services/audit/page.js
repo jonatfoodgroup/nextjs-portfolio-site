@@ -15,25 +15,25 @@ export default function Page() {
                     <div className="flex flex-col">
                         <div className="flex align-top mt-8 space-x-16">
                             <div className="w-2/3">
-                                <h1 className="text-6xl font-bold text-text mt-8 leading-tighter">
+                                <h1 className="text-6xl font-bold text-text mt-8 leading-tight">
                                     If you don't know what's wrong, how can you improve?
                                 </h1>
-                                <p className="text-xl text-text mt-4">
+                                <p className="text-xl text-text mt-4 leading-relaxed">
                                     Our audit services are designed to help you understand your current state, identify areas of improvement, and develop a roadmap to success. Whether you're looking to improve your website, marketing strategy, or internal processes, we have the tools and expertise to help you succeed.
                                 </p>
                                 <div className="inline-flex mt-8 flex-col p-8 border border-gray-200 rounded-lg shadow-md bg-white">
                                     <h3 className="text-2xl font-bold text-text">What to expect:</h3>
                                     <ul className="text-text mt-4 space-y-2">
                                         <li className="flex items-center">
-                                            <Icon icon="fluent:checkmark-20" className="text-green-500 mr-2" />
+                                            <Icon icon="carbon:checkmark" className="text-green-500 mr-2" />
                                             <span>Comprehensive review of your current state</span>
                                         </li>
                                         <li className="flex items-center">
-                                            <Icon icon="fluent:checkmark-20" className="text-green-500 mr-2" />
+                                            <Icon icon="carbon:checkmark" className="text-green-500 mr-2" />
                                             <span>Identification of areas of improvement</span>
                                         </li>
                                         <li className="flex items-center">
-                                            <Icon icon="fluent:checkmark-20" className="text-green-500 mr-2" />
+                                            <Icon icon="carbon:checkmark" className="text-green-500 mr-2" />
                                             <span>Development of a roadmap to success</span>
                                         </li>
                                     </ul>

@@ -50,7 +50,7 @@ export default function BountyView({ bounty }) {
                 </div>
 
                 {/* Render the content using react-markdown */}
-                <div className="text-lg mt-4 article-content">
+                <div className="text-lg mt-4 article-content bg-white shadow-lg rounded-lg p-8">
                     <ReactMarkdown>{bounty.content.rendered}</ReactMarkdown>
                 </div>
             </div>

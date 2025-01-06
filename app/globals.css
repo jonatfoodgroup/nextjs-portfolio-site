@@ -479,3 +479,8 @@ html body .article-content caption {
   text-align: center;
   color: var(--text);
 }
+
+html body .article-content h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
