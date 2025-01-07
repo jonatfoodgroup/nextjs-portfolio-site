@@ -39,32 +39,8 @@ export default function Page({ params }) {
           <h1 className="text-2xl font-bold mb-2">
             {company?.properties?.name || "Company Name"}
           </h1>
-          <p>{company?.properties?.description || "No description provided."}</p>
         </>
       )}
-
-      {/* Wordpress Company Section */}
-      {
-        wpCompany ? (
-          <>
-            {
-              wpCompany.acf?.softwares_used ? (
-                <div>
-                  <h2 className="text-xl font-bold mt-4">Software Used</h2>
-                  <ul>
-                    {wpCompany.acf?.softwares_used.map((software, index) => (
-                      <li key={index}>{software}</li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null
-            }
-          </>
-        ) : (
-          <p>Loading company details...</p>
-        )
-      }
-
     </div>
    </>
   );

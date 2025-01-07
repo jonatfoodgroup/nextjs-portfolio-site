@@ -119,7 +119,7 @@ export const WordpressProvider = ({ children }) => {
     };
     const fetchPostsByAuthor = async (authorId) => {
         try {
-            const response = await fetch(`${baseUrl}/posts?author=${authorId}`);
+            const response = await fetch(`${baseUrl}/posts?author=${authorId}&per_page=3`);
             const data = await response.json();
             return data;
         } catch (error) {

@@ -6,6 +6,7 @@ import SoftwareList from "./components/SoftwareList";
 import ServiceList from "./components/ServicesList";
 import LatestArticles from "./components/LatestArticles";
 import Masthead from "./components/Masthead";
+import WhoWeAreBanner from "./components/WhoWeAreBanner";
 
 export default function Home() {
   return (
@@ -13,8 +14,9 @@ export default function Home() {
       <Header />
       <Masthead />
       <div className="container mx-auto inner-container -mt-16 bg-white relative z-50 shadow-lg">
-       <LogoWall />
+        <LogoWall />
       </div>
+      <WhoWeAreBanner />
       <LatestArticles />
       <div className="bg-light-orange py-8 md:py-8">
         <ServiceList />
