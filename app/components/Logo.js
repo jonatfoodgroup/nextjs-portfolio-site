@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
 const Logo = ({
-    color = 'black'
+    color = 'black',
+    size = 'md'
 }) => {
     if (color !== 'black') {
         return (

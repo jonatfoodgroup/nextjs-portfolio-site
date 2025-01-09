@@ -13,6 +13,8 @@ import DrawerProvider from "./providers/DrawerProvider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CustomCursor from "./components/CustomCursor";
+import { FirebaseProvider } from "./providers/FirebaseProvider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Manrope({
   subsets: ["latin"],
@@ -37,12 +39,15 @@ export default function RootLayout({ children }) {
                 <AOSProvider>
                   <DrawerProvider>
                     <AuthProvider>
+                      <FirebaseProvider>
                       <DataProvider>
+                        <Toaster position="top-right" reverseOrder={false} />
                         <div>
                           <CustomCursor />
                           {children}
                         </div>
                       </DataProvider>
+                      </FirebaseProvider>
                     </AuthProvider>
                   </DrawerProvider>
                 </AOSProvider>

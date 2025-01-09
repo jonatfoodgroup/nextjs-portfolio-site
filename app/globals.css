@@ -485,3 +485,17 @@ html body .article-content h2:first-of-type {
   margin-top: 0;
   padding-top: 0;
 }
+
+/* make outlines on click or focus be orange */
+:focus {
+  outline: none !important;
+}
+
+/* also on focus, make the input text orange */
+:focus {
+  font-weight: 600;
+}
+
+input:hover {
+  cursor: pointer;
+}
