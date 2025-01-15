@@ -32,13 +32,35 @@ export const HubspotProvider = ({ children }) => {
     }
   };
 
+  const fetchCompanyById = async (companyId) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`/api/hubspot/get-companies/${companyId}`, {
+        method: 'GET',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      return data.company;
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   // Fetch companies on provider mount
   useEffect(() => {
     fetchCompanies();
   }, []);
 
   return (
-    <HubspotContext.Provider value={{ companies, loading, error, fetchCompanies }}>
+    <HubspotContext.Provider value={{ companies, loading, error, fetchCompanies, fetchCompanyById }}>
       {children}
     </HubspotContext.Provider>
   );

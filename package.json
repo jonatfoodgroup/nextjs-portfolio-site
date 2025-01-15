@@ -34,6 +34,7 @@
     "eslint-config-next": "14.2.4",
     "firebase": "^10.12.4",
     "firebase-admin": "^12.6.0",
+    "googleapis": "^144.0.0",
     "graphql": "^16.10.0",
     "html-entities": "^2.5.2",
     "jsdom": "^25.0.1",
@@ -48,6 +49,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.5.1",
     "react-markdown": "^9.0.1",
+    "react-modal": "^3.16.3",
     "react-qr-code": "^2.0.15",
     "react-select": "^5.9.0",
     "react-slick": "^0.30.2",
@@ -58,6 +60,7 @@
     "tailwindcss": "^3.4.17",
     "three": "^0.171.0",
     "turndown": "^7.2.0",
+    "uuid": "^11.0.4",
     "web-push": "^3.6.7"
   }
 }

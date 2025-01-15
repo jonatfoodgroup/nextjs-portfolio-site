@@ -3,7 +3,6 @@ import "./globals.css";
 import { DataProvider } from "./providers/DataProvider";
 import { BrandingProvider } from "./providers/BrandingProvider";
 import "aos/dist/aos.css";
-// import { GoogleAnalytics } from '@next/third-parties/google'
 import ServiceWorkerProvider from "./providers/ServiceWorkerProvider";
 import AuthProvider from "./providers/AuthProvider";
 import AOSProvider from "./providers/AOSProvider";
@@ -30,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      
+
       <body className={inter.className}>
         <ServiceWorkerProvider>
           <HubspotProvider>
@@ -40,13 +39,13 @@ export default function RootLayout({ children }) {
                   <DrawerProvider>
                     <AuthProvider>
                       <FirebaseProvider>
-                      <DataProvider>
-                        <Toaster position="top-right" reverseOrder={false} />
-                        <div>
-                          <CustomCursor />
-                          {children}
-                        </div>
-                      </DataProvider>
+                          <DataProvider>
+                            <Toaster position="top-right" reverseOrder={false} />
+                            <div>
+                              <CustomCursor />
+                              {children}
+                            </div>
+                          </DataProvider>
                       </FirebaseProvider>
                     </AuthProvider>
                   </DrawerProvider>

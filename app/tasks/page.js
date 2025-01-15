@@ -20,7 +20,7 @@ const Page = () => {
     const [sortOrder, setSortOrder] = useState("desc"); // Default to "most recent first"
     const [filterCategory, setFilterCategory] = useState("All"); // Default filter to "All"
     const [filterCompany, setFilterCompany] = useState("All"); // Default company filter to "All"
-    const [timeframeFilter, setTimeframeFilter] = useState("Today");
+const [timeframeFilter, setTimeframeFilter] = useState("Today");
 
     // Calculate unique companies with task count
     const companiesWithCount = useMemo(() => {
@@ -90,7 +90,14 @@ const Page = () => {
             {/* Left Panel: Tasks */}
             <div className="w-3/4 flex flex-col items-center">
                 <div className="w-full h-screen p-4 overflow-y-auto">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">Tasks <span className="text-sm text-gray-500">({filteredAndSortedTasks.length})</span></h2>
+                    <div className="flex items-center justify-between w-full">
+                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Tasks <span className="text-sm text-gray-500">({filteredAndSortedTasks.length})</span></h2>
+                        <div className="flex items-center space-x-4">
+                            <button onClick={copyTasksToClipboard} className="p-2">
+                                <Icon icon="akar-icons:copy" className="w-6 h-6" />
+                            </button>
+                        </div>
+                    </div>
                     {/* Filter Dropdowns */}
                     <div className="flex items-center px-2 mb-4 w-full rounded-lg shadow-sm sticky top-0 z-10">
                         <ViewFilters
@@ -108,7 +115,6 @@ const Page = () => {
 
                     {/* Task List */}
                     <div className="w-full px-4">
-                        
                         <ul>
                             {filteredAndSortedTasks.map((task) => (
                                 <Task key={task.id} task={task} />
@@ -131,6 +137,13 @@ const Page = () => {
         </div>
     );
 };
+
+const AddTaskFormModal = () => {
+    return (
+        <>
+        </>
+    )
+}
 
 const ViewFilters = ({
     filterCategory,
@@ -182,10 +195,10 @@ const ViewFilters = ({
                     classNamePrefix="react-select"
                 />
             </div>
-            
-            
 
-            
+
+
+
             {/* Timeframe Filter */}
             <div className="flex flex-row w-1/8 items-center space-x-2">
                 <label htmlFor="timeframe-filter" className="text-xs font-bold text-gray-600">
@@ -234,10 +247,10 @@ const BottomBar = () => {
     return (
         <div className="flex items-center justify-between bg-white p-4 shadow-sm fixed bottom-0 w-full">
             <div className="flex items-center space-x-2">
-            <div className='flex items-center justify-center w-8 h-8 bg-orange rounded-full'>
-                <Icon icon="carbon:infinity-symbol" className="text-2xl text-white" />
-            </div>
-            <h2 className="text-xl -mt-1 font-extrabold flex items-center text-black">strongstart</h2>
+                <div className='flex items-center justify-center w-8 h-8 bg-orange rounded-full'>
+                    <Icon icon="carbon:infinity-symbol" className="text-2xl text-white" />
+                </div>
+                <h2 className="text-xl -mt-1 font-extrabold flex items-center text-black">strongstart</h2>
             </div>
             <div className="flex items-center space-x-4">
                 <button className="text-gray-500 hover:text-gray-700">

@@ -8,6 +8,7 @@ export async function GET(req) {
   async function fetchCompanies(after = null) {
     const url = new URL(HUBSPOT_API_URL);
     url.searchParams.append("limit", LIMIT);
+    url.searchParams.append("properties", "is_active,discord_category_id,name,drive_folder_id"); // Include is_active property
     if (after) {
       url.searchParams.append("after", after);
     }
@@ -40,6 +41,9 @@ export async function GET(req) {
       after = paging?.next?.after || null;
       hasMore = !!after; // Continue if there's a next page
     }
+
+    // filter companies where is_active === "Yes"
+    allCompanies = allCompanies.filter(company => company.properties.is_active === "true");
 
     // sort allCompanies by name
     allCompanies.sort((a, b) => a.properties.name.localeCompare(b.properties.name));

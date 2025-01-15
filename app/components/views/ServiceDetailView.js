@@ -50,7 +50,7 @@ export default function ServiceView({ service, children }) {
                                             key={index}>
                                             <Link
                                                 href={`/services/${child.slug}`}
-                                                className="flex items-center flex-col md:my-4 px-8 py-8 rounded-md bg-white shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer "
+                                                className="flex items-center flex-col md:my-4 px-8 py-8 rounded-md bg-white shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer min-h-[120px]"
 
                                             >
                                                 <div className="flex flex-col items-center rounded-md">
@@ -66,9 +66,6 @@ export default function ServiceView({ service, children }) {
                                                         <h4 className="text-md font-extrabold text-black hover:text-orange-500 transition-colors duration-300">
                                                             {decode(child.title.rendered)}
                                                         </h4>
-                                                        <p className="text-gray-400 text-xs mt-2 leading-relaxed hidden md:hidden">
-                                                            {decode(child.acf.masthead.masthead_content)}
-                                                        </p>
                                                     </div>
                                                 </div>
                                             </Link>
