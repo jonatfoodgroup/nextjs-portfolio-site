@@ -3,6 +3,7 @@
 import React from "react";
 import { useProjects } from "../../providers/ProjectsProvider";
 import Link from "next/link";
+import DiscordLinkButton from "../DiscordLinkButton";
 
 const ProjectsTable = () => {
   const { projects, loading, removeProject } = useProjects();
@@ -30,9 +31,14 @@ const ProjectItem = ({ project }) => {
   const jobNumber = project.jobNumber.slice(-5);
 
   return (
-    <Link href={`/portal/${project.hubspotId}/projects/${project.id}`} className=" text-gray-800 hover:text-gray-500">
-      <h3 className="text-sm font-semibold">#{jobNumber}-{project.title}</h3>
+    <div className="flex items-center justify-between w-full">
+    <Link href={`/portal/${project.hubspotId}/projects/${project.id}`} className=" text-gray-800 hover:text-gray-500 flex items-center space-x-2">
+      <h3 className="text-md font-bold">{project.title}</h3>
+      <span className="text-xs text-gray-600">#{jobNumber}</span>
     </Link>
+      
+    <DiscordLinkButton discordChannelId={project.discordChannelId} />
+    </div>
   );
 };
 

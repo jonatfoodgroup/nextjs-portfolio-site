@@ -10,6 +10,7 @@ import StatusUpdateComponent from "./StatusUpdateComponent";
 import DueDate from "./DueDate";
 import Breadcrumb from "./Breadcrumb";
 import StatusUpdates from "./StatusUpdates";
+import AddTask from "./AddTask";
 
 const ProjectPage = ({ project }) => {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
@@ -17,17 +18,12 @@ const ProjectPage = ({ project }) => {
 
   return (
     <TasksProvider projectId={project.id}>
-      <div className="p-6 bg-gray-50 min-h-screen">
+      <div className="p-6 bg-gray-50 min-h-screen pt-10">
         <Breadcrumb hubspotId={project.hubspotId} />
         <div className="flex justify-between items-center mt-4">
           <h2 className="text-2xl font-bold mb-4">#{jobNumber} - {project.title}</h2>
-          <div className="flex space-x-4">
-            <button
-              onClick={() => setShowAddTaskForm(!showAddTaskForm)}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              {showAddTaskForm ? "Cancel" : "Add Task"}
-            </button>
+          <div className="flex space-x-4 justify-end">
+            <AddTask showAddTaskForm={showAddTaskForm} setShowAddTaskForm={setShowAddTaskForm} />
             <DiscordLinkButton discordChannelId={project.discordChannelId} />
           </div>
         </div>

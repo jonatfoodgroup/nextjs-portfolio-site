@@ -1,3 +1,12 @@
+const statusColors = {
+  "On track": 65280, // Green
+  "On hold": 16776960, // Yellow
+  "Off track": '#16711680', // Red
+  "No recent updates": 8421504, // Gray
+  "Complete": 255, // Blue
+};
+
+
 const StatusUpdates = ({ statuses = [] }) => (
     <div className="mt-4">
       <h4 className="text-sm font-semibold">Status Updates</h4>
@@ -6,19 +15,23 @@ const StatusUpdates = ({ statuses = [] }) => (
       ) : (
         <ul className="space-y-2">
           {statuses.map((status, index) => (
-            <li key={index} className="p-2 border border-gray-200 rounded">
-              <p className={`font-bold ${status.status === "Complete" ? "text-green-700" : ""}`}>
-              {status.note}
-              </p>
-              <p className="text-sm text-gray-600">{status.status}</p>
-              <p className="text-xs text-gray-400">
-                Updated: {new Date(status.timestamp).toLocaleString()}
-              </p>
-            </li>
+            <StatusItem key={index} status={status} />
           ))}
         </ul>
       )}
     </div>
+  );
+
+  const StatusItem = ({ status }) => (
+    <li className={`p-4 border border-gray-200 rounded bg-white shadow-sm border-l-4`}>
+      <p className="text-sm text-gray-500 mb-2">
+         {status.status}
+      </p>
+      <p className="text-md font-semibold">
+        {status.note ? status.note : "No additional notes"}
+      </p>
+      
+    </li>
   );
 
   export default StatusUpdates;

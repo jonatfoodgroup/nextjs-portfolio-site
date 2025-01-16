@@ -7,6 +7,7 @@ import AddProjectForm from "../projects/AddProjectForm";
 import { ProjectsProvider } from "../../providers/ProjectsProvider";
 import DriveLinkButton from "../DriveLinkButton";
 import ProjectsTable from "../projects/ProjectsTable";
+import HubspotLinkButton from "./HubspotLinkButton";
 
 export default function PortalPage({ hubspotId }) {
     const [company, setCompany] = useState(null);
@@ -37,20 +38,18 @@ export default function PortalPage({ hubspotId }) {
                     <p>Loading company details...</p>
                 ) : (
                     <>
-
-
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between mb-4">
                             <h1 className="text-2xl font-bold mb-2">
                                 {company?.properties?.name || "Company Name"}
                             </h1>
                             <div className="flex items-center space-x-2">
-                                <span className="text-gray-500">HubSpot ID: {hubspotId}</span>
+                                <HubspotLinkButton hubspotId={hubspotId} />
                                 <DriveLinkButton folderId={company.properties.drive_folder_id} />
                             </div>
                         </div>
                         <Projects hubspotId={hubspotId} />
                         <Goals hubspotId={hubspotId} />
-                        
+
                     </>
                 )}
             </div>
@@ -85,17 +84,15 @@ const Projects = ({
     const [showAddProjectForm, setShowAddProjectForm] = useState(false);
     return (
         <ProjectsProvider hubspotId={hubspotId}>
-            <div className="flex items-center justify-between mt-10">
-                <h2 className="text-xl font-bold mb-2">Projects</h2>
+            <div className="flex items-center justify-between py-4">
+                <h2 className="text-xl font-bold">Projects</h2>
 
-                <div className="mb-4">
                     <button
                         onClick={() => setShowAddProjectForm(!showAddProjectForm)}
-                        className="bg-blue-500 text-white px-4 py-2 rounded"
+                        className="text-gray-800 px-4 py-2 rounded border border-gray-800"
                     >
                         {showAddProjectForm ? "Cancel" : "Add Project"}
                     </button>
-                </div>
             </div>
             {showAddProjectForm && <AddProjectForm />}
             <ProjectsTable />

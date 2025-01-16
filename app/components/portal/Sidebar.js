@@ -13,7 +13,19 @@ const Sidebar = () => {
 
     useEffect(() => {
         if (companies.length) {
-            setClients(companies);
+
+            // sort companies by name
+            const companiesSorted = companies.sort((a, b) => {
+                if (a.properties.name < b.properties.name) {
+                    return -1;
+                }
+                if (a.properties.name > b.properties.name) {
+                    return 1;
+                }
+                return 0;
+            });
+
+            setClients(companiesSorted);
         }
     });
 

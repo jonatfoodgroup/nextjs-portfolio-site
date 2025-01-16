@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const DriveLinkButton = ({ folderId }) => {
   if (!folderId) {
@@ -15,9 +16,9 @@ const DriveLinkButton = ({ folderId }) => {
   return (
     <button
       onClick={() => window.open(driveUrl, "_blank")}
-      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+      className="p-0"
     >
-      Open Drive Folder
+      <Icon icon="simple-icons:googledrive" />
     </button>
   );
 };
