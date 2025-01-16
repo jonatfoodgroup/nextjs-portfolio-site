@@ -11,6 +11,7 @@ import DueDate from "./DueDate";
 import Breadcrumb from "./Breadcrumb";
 import StatusUpdates from "./StatusUpdates";
 import AddTask from "./AddTask";
+import ProjectResourceLinks from "./ProjectResourceLinks";
 
 const ProjectPage = ({ project }) => {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
@@ -33,8 +34,10 @@ const ProjectPage = ({ project }) => {
               <DueDate date={project.dueDate} />
             </div>
             <EditableDescription project={project} />
+            <ProjectResourceLinks projectId={project.id} links={project.resourceLinks} />
             <StatusUpdateComponent project={project} projectId={project.id} hubspotId={project.hubspotId} />
             <StatusUpdates statuses={project.statuses} />
+            
           </div>
           <div className="w-1/2">
             <div className="mt-4">

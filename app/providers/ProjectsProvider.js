@@ -192,8 +192,86 @@ export const ProjectsProvider = ({ children, hubspotId }) => {
         }
     };
 
+    const addResourceLink = async (projectId, newLink) => {
+        const projectRef = doc(firestore, "projects", projectId);
+      
+        try {
+          const projectSnap = await getDoc(projectRef);
+      
+          if (projectSnap.exists()) {
+            const projectData = projectSnap.data();
+            const currentLinks = Array.isArray(projectData.resourceLinks)
+              ? projectData.resourceLinks
+              : [];
+      
+            const updatedLinks = [...currentLinks, newLink];
+      
+            await updateDoc(projectRef, { resourceLinks: updatedLinks });
+      
+            console.log("Resource link added successfully:", newLink);
+          } else {
+            throw new Error("Project does not exist.");
+          }
+        } catch (error) {
+          console.error("Error adding resource link:", error.message);
+          throw new Error("Failed to add resource link.");
+        }
+      };
+      
+      const updateResourceLink = async (projectId, updatedLink, index) => {
+        const projectRef = doc(firestore, "projects", projectId);
+      
+        try {
+          const projectSnap = await getDoc(projectRef);
+      
+          if (projectSnap.exists()) {
+            const projectData = projectSnap.data();
+            const currentLinks = Array.isArray(projectData.resourceLinks)
+              ? projectData.resourceLinks
+              : [];
+      
+            currentLinks[index] = updatedLink;
+      
+            await updateDoc(projectRef, { resourceLinks: currentLinks });
+      
+            console.log("Resource link updated successfully:", updatedLink);
+          } else {
+            throw new Error("Project does not exist.");
+          }
+        } catch (error) {
+          console.error("Error updating resource link:", error.message);
+          throw new Error("Failed to update resource link.");
+        }
+      };
+      
+      const removeResourceLink = async (projectId, indexToRemove) => {
+        const projectRef = doc(firestore, "projects", projectId);
+      
+        try {
+          const projectSnap = await getDoc(projectRef);
+      
+          if (projectSnap.exists()) {
+            const projectData = projectSnap.data();
+            const currentLinks = Array.isArray(projectData.resourceLinks)
+              ? projectData.resourceLinks
+              : [];
+      
+            const updatedLinks = currentLinks.filter((_, index) => index !== indexToRemove);
+      
+            await updateDoc(projectRef, { resourceLinks: updatedLinks });
+      
+            console.log("Resource link removed successfully.");
+          } else {
+            throw new Error("Project does not exist.");
+          }
+        } catch (error) {
+          console.error("Error removing resource link:", error.message);
+          throw new Error("Failed to remove resource link.");
+        }
+      };
+
     return (
-        <ProjectsContext.Provider value={{ projects, loading, addProject, removeProject,getProjectById, updateProject, addStatusUpdate, updateStatus, removeStatus }}>
+        <ProjectsContext.Provider value={{ projects, loading, addProject, removeProject,getProjectById, updateProject, addStatusUpdate, updateStatus, removeStatus, addResourceLink, updateResourceLink, removeResourceLink }}>
             {children}
         </ProjectsContext.Provider>
     );

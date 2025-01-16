@@ -90,7 +90,7 @@ const ProjectSearch = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 // when text is removed from the input, clear the search
-                className="border border-gray-500 rounded px-4 py-2 w-full bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                className="border border-gray-600 text-center rounded px-4 py-2 w-full bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             />
             {filteredProjects.length > 0 && (
                 <div className="absolute top-full left-0 w-full bg-gray-800 border border-gray-500 rounded mt-2 z-10 bg-gray-800 text-gray-300 shadow-lg">

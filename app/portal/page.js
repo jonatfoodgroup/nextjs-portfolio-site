@@ -10,6 +10,11 @@ import { Timestamp } from "firebase/firestore";
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
     const [paddingSize, setPaddingSize] = useState(4);
+    const [filteredProjects, setFilteredProjects] = useState([]);
+    const [filters, setFilters] = useState({
+        search: "",
+        status: "",
+    });
 
     const { companies } = useHubspot();
 
@@ -35,11 +40,11 @@ export default function PortalSelector() {
                 return (
                     <div key={company.id} className="mb-4">
                         <div className="flex items-center space-x-2 mb-4">
-                            <Link className="text-xl font-bold mr-4"
+                            <Link className="text-xl font-bold mr-2"
                                 href={`/portal/${company.id}`}
                             >{company.properties.name}
                             </Link>
-                            <div className="opacity-20 flex items-center space-x-3 hover:opacity-100">
+                            <div className="opacity-30 flex items-center space-x-3 hover:opacity-100">
                                 <HubspotLinkButton hubspotId={company.id} />
                                 <DriveLinkButton folderId={company.properties.drive_folder_id} />
                             </div>
