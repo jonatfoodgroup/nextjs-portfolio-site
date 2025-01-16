@@ -33,7 +33,7 @@ const AuthorCard = ({ authorId, size = 32 }) => {
                 <div>
                     <Link
                         href={`/blog/authors/${author.slug}`}
-                        className="flex items-center mt-4"
+                        className="flex items-center"
                     >
                         {author.acf.profile_image && (
                             <FeaturedImage

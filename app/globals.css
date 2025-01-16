@@ -457,9 +457,9 @@ html body .article-content td {
 }
 
 html body .article-content th {
-  background-color: var(--pale);
+  background-color: black;
   font-weight: 600;
-  color: var(--text);
+  color: white;
 }
 
 html body .article-content tr:nth-child(even) {

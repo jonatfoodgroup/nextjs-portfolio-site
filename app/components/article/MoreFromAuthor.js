@@ -18,7 +18,7 @@ const MoreFromAuthor = ({ authorId }) => {
 
     return (
         <div>
-            <h3 className="text-xl font-bold mb-2 mt-4">More from this Author</h3>
+            <h3 className="text-md font-bold mb-2 mt-4">More from this Author</h3>
             <ul className="space-y-2">
                 {posts.map((post) => (
                     <li key={post.id} className="text-sm mb-0">

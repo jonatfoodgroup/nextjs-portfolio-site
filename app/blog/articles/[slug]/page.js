@@ -6,7 +6,6 @@ import { decode } from "html-entities";
 import Sidebar from "../../../components/article/Sidebar";
 import { Breadcrumb } from "../../../components/article/Breadcrumb";
 import TableOfContents from "../../../components/article/TOC";
-import SaveLink from "../../../components/article/SaveLink";
 import Actions from "../../../components/article/Actions";
 
 export async function generateStaticPaths() {
@@ -109,7 +108,7 @@ export default async function SingleArticle({ params }) {
       <>
         <Header />
         <Breadcrumb article={article[0]} />
-        <div className="container mx-auto px-4 mt-20">
+        <div className="container mx-auto px-4 mt-8">
           <div className="flex flex-col md:flex-row justify-center items-start">
             <div className="hidden md:block w-1/4 sticky top-20 pt-4">
               <TableOfContents article={article[0]} />

@@ -133,7 +133,7 @@ const BackAndForth = ({ children }) => {
                             <Link
                                 href={`/services/${child.slug}`}
                                 className={`flex flex-col md:flex-row ${index % 2 === 0 ? "" : "md:flex-row-reverse"
-                                    } items-center justify-center space-x-8 p-8 py-16 bg-gray-100 rounded-md shadow-md group  my-4 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2`}
+                                    } items-center justify-center space-x-8 p-8 py-16 bg-white rounded-md shadow-md group  my-4 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2`}
                                 
                             >
                                 {/* Content Section */}
@@ -141,7 +141,7 @@ const BackAndForth = ({ children }) => {
                                     className={`w-full md:w-1/2 ${index % 2 === 0
                                         ? "md:pr-20"
                                         : "md:pl-10"
-                                        } md:p-8 p-2 bg-gray-100 rounded-md`}
+                                        } md:p-8 p-2 bg-white rounded-md`}
                                 >
                                     <h2 className="text-xl md:text-4xl font-bold text-gray-900 transition-colors duration-300">
                                         {decode(child.acf.masthead.masthead_title)}

@@ -4,9 +4,9 @@ import AddGoalForm from "../goals/AddGoalForm";
 import { GoalsProvider } from "../../providers/GoalsProvider";
 import GoalsList from "../goals/GoalsList";
 import AddProjectForm from "../projects/AddProjectForm";
-import ProjectsList from "../projects/ProjectsList";
 import { ProjectsProvider } from "../../providers/ProjectsProvider";
 import DriveLinkButton from "../DriveLinkButton";
+import ProjectsTable from "../projects/ProjectsTable";
 
 export default function PortalPage({ hubspotId }) {
     const [company, setCompany] = useState(null);
@@ -98,7 +98,7 @@ const Projects = ({
                 </div>
             </div>
             {showAddProjectForm && <AddProjectForm />}
-            <ProjectsList />
+            <ProjectsTable />
         </ProjectsProvider>
     );
 }

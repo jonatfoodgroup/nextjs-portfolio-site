@@ -5,9 +5,11 @@ import AddTaskForm from "../tasks/AddTaskForm";
 import DiscordLinkButton from "../DiscordLinkButton";
 import ProjectTasks from "../tasks/ProjectTasks";
 import { useState } from "react";
-import { useProjects } from "../../providers/ProjectsProvider";
+import EditableDescription from "./EditableDescription";
+import StatusUpdateComponent from "./StatusUpdateComponent";
 import DueDate from "./DueDate";
 import Breadcrumb from "./Breadcrumb";
+import StatusUpdates from "./StatusUpdates";
 
 const ProjectPage = ({ project }) => {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
@@ -35,6 +37,8 @@ const ProjectPage = ({ project }) => {
               <DueDate date={project.dueDate} />
             </div>
             <EditableDescription project={project} />
+            <StatusUpdateComponent project={project} projectId={project.id} hubspotId={project.hubspotId} />
+            <StatusUpdates statuses={project.statuses} />
           </div>
           <div className="w-1/2">
             <div className="mt-4">
@@ -48,40 +52,5 @@ const ProjectPage = ({ project }) => {
   );
 };
 
-const EditableDescription = ({ project }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [description, setDescription] = useState(project.description);
-  const { updateProject } = useProjects();
-  const handleSave = async () => {
-    setIsEditing(false);
-    await updateProject(project.id, { description });
-  };
-
-  return (
-    <div className="mt-4">
-      <h4 className="text-sm font-semibold">Description</h4>
-      {isEditing ? (
-        <div className="flex">
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 border rounded"
-          />
-          <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded ml-2">
-            Save
-          </button>
-        </div>
-      ) : (
-        <p className="text-sm text-gray-600">{description}</p>
-      )}
-      <button
-        onClick={() => setIsEditing(!isEditing)}
-        className="text-xs text-blue-500 mt-2"
-      >
-        {isEditing ? "Cancel" : "Edit"}
-      </button>
-    </div>
-  );
-}
 
 export default ProjectPage;

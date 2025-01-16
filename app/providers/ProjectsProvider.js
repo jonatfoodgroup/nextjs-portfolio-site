@@ -90,6 +90,39 @@ export const ProjectsProvider = ({ children, hubspotId }) => {
         }
     };
 
+    const addStatusUpdate = async (projectId, newStatus) => {
+        const projectRef = doc(firestore, "projects", projectId);
+      
+        try {
+          // Fetch the current project document
+          const projectSnap = await getDoc(projectRef);
+      
+          if (projectSnap.exists()) {
+            const projectData = projectSnap.data();
+      
+            // Check if 'statuses' exists and is an array
+            const currentStatuses = Array.isArray(projectData.statuses)
+              ? projectData.statuses
+              : [];
+      
+            // Add the new status to the array
+            const updatedStatuses = [...currentStatuses, newStatus];
+      
+            // Update the document with the new statuses array
+            await updateDoc(projectRef, { statuses: updatedStatuses });
+      
+
+        } else {
+            // If the document doesn't exist, initialize it with the new status
+            await setDoc(projectRef, { statuses: [newStatus] }, { merge: true });
+            console.log("Document initialized and status added!");
+          }
+        } catch (error) {
+          console.error("Error updating status:", error.message);
+          throw new Error("Failed to update status");
+        }
+      };
+
     const getProjectById = (projectId) => {
         // query from database
         const projectRef = collection(firestore, "projects").doc(projectId);
@@ -97,8 +130,70 @@ export const ProjectsProvider = ({ children, hubspotId }) => {
         return projectDoc;
     };
 
+    const updateStatus = async (projectId, updatedStatus) => {
+        const projectRef = doc(firestore, "projects", projectId);
+    
+        try {
+            // Fetch the current project document
+            const projectSnap = await getDoc(projectRef);
+    
+            if (projectSnap.exists()) {
+                const projectData = projectSnap.data();
+    
+                // Check if 'statuses' exists and is an array
+                const currentStatuses = Array.isArray(projectData.statuses) ? projectData.statuses : [];
+    
+                // Update the specific status by matching a unique property (e.g., timestamp)
+                const updatedStatuses = currentStatuses.map((status) =>
+                    status.timestamp === updatedStatus.timestamp ? updatedStatus : status
+                );
+    
+                // Update the document with the modified statuses array
+                await updateDoc(projectRef, { statuses: updatedStatuses });
+    
+                console.log("Status successfully updated!");
+            } else {
+                throw new Error("Project does not exist.");
+            }
+        } catch (error) {
+            console.error("Error updating status:", error.message);
+            throw new Error("Failed to update status");
+        }
+    };
+    
+    const removeStatus = async (projectId, statusToRemove) => {
+        const projectRef = doc(firestore, "projects", projectId);
+    
+        try {
+            // Fetch the current project document
+            const projectSnap = await getDoc(projectRef);
+    
+            if (projectSnap.exists()) {
+                const projectData = projectSnap.data();
+    
+                // Check if 'statuses' exists and is an array
+                const currentStatuses = Array.isArray(projectData.statuses) ? projectData.statuses : [];
+    
+                // Filter out the status to be removed by matching a unique property (e.g., timestamp)
+                const updatedStatuses = currentStatuses.filter(
+                    (status) => status.timestamp !== statusToRemove.timestamp
+                );
+    
+                // Update the document with the new statuses array
+                await updateDoc(projectRef, { statuses: updatedStatuses });
+    
+                console.log("Status successfully removed!");
+            } else {
+                throw new Error("Project does not exist.");
+            }
+        } catch (error) {
+            console.error("Error removing status:", error.message);
+            throw new Error("Failed to remove status");
+        }
+    };
+
     return (
-        <ProjectsContext.Provider value={{ projects, loading, addProject, removeProject,getProjectById, updateProject }}>
+        <ProjectsContext.Provider value={{ projects, loading, addProject, removeProject,getProjectById, updateProject, addStatusUpdate, updateStatus, removeStatus }}>
             {children}
         </ProjectsContext.Provider>
     );

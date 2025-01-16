@@ -2,7 +2,7 @@ const WORDPRESS_URL = "https://jonsenterfitt.com/wp-json/wp/v2";
 const decode = require('html-entities').decode;
 
 export async function GET() {
-  const baseUrl = `${WORDPRESS_URL}/posts`;
+  const baseUrl = `${WORDPRESS_URL}/service`;
   let services = [];
   let page = 1;
   let totalPages = 1;
@@ -34,15 +34,11 @@ export async function GET() {
         title: decode(item.title.rendered),
         slug: item.slug,
         link: item.link,
-        tags: item.tags,
-        categories: item.categories,
-        // content: item.content.rendered,
-        icon: item.acf.icon || null,
-        service_relationships: item.acf.service_relationships || null,
-        software_relationships: item.acf.software_relationship || null,
-        industries: item.acf.industries || null,
-        live_link: `https://strongstart.digital/blog/article/${item.slug}`,
+        live_link: `https://strongstart.digital/service/${item.slug}`,
         // acf: item.acf || null, // Include ACF if available
+        masthead_title: item.acf.masthead.masthead_title,
+        masthead_content: item.acf.masthead.masthead_content,
+        icon: item.acf.icon,
         parent: item.parent,
         menu_order: item.menu_order,
       }));
@@ -50,6 +46,14 @@ export async function GET() {
       services = [...services, ...simplifiedData];
       page++;
     } while (page <= totalPages);
+
+    // look up the parent and replace it with the title for parent
+    services.forEach((service) => {
+      const parent = services.find((s) => s.id === service.parent);
+      if (parent) {
+        service.parent = parent.title;
+      }
+    });
 
     return new Response(JSON.stringify(services), {
       status: 200,
