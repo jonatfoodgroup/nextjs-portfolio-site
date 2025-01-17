@@ -1,10 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import Button  from "../Button";
+import { useUsers } from "../../providers/UserProvider";
 
 const TaskTimer = ({ task, project, updateTask }) => {
     const [activeTimer, setActiveTimer] = useState(null);
-  
+    const { data: session } = useSession();
+    const { updateActiveTimer } = useUsers();
     useEffect(() => {
       // Check if there is an active timer when the component mounts
       if (task.activeTimer) {
@@ -31,6 +34,14 @@ const TaskTimer = ({ task, project, updateTask }) => {
       await updateTask(task.id, {
         timeEntries: [...(task.timeEntries || []), newTimeEntry],
         activeTimer: newTimeEntry.id,
+      });
+
+      updateActiveTimer(session.user.id, {
+          taskId: task.id,
+          timeEntryId: newTimeEntry.id,
+          task: task,
+          project: project,
+          startTime: new Date(startTime).toISOString(),
       });
   
       setActiveTimer(newTimeEntry.id);
@@ -72,6 +83,8 @@ const TaskTimer = ({ task, project, updateTask }) => {
         timeEntries: updatedTimeEntries,
         activeTimer: null,
       });
+
+      updateActiveTimer(session.user.id, null);
   
       setActiveTimer(null);
   
@@ -92,7 +105,7 @@ const TaskTimer = ({ task, project, updateTask }) => {
         {activeTimer ? (
           <Button
             onClick={stopTimer}
-            className="bg-red-500 text-white px-4 py-2 rounded"
+            variant="danger"
           >
             Stop Timer
           </Button>

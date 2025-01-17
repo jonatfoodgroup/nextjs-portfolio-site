@@ -6,6 +6,7 @@ import Sidebar from "../components/portal/Sidebar";
 import PortalHeader from "../components/portal/PortalHeader";
 import { SessionProvider } from "next-auth/react";
 import { UserProvider } from "../providers/UserProvider";
+import ActiveTimer from "../components/portal/ActiveTimer";
 
 export default function PortalLayout({ children }) {
     return (
@@ -19,6 +20,7 @@ export default function PortalLayout({ children }) {
                         {children}
                     </div>
                 </div>
+                <ActiveTimer />
             </UserProvider>
         </SessionProvider>
 
