@@ -5,11 +5,10 @@ import DriveLinkButton from "../components/DriveLinkButton";
 import HubspotLinkButton from "../components/portal/HubspotLinkButton";
 import DiscordLinkButton from "../components/DiscordLinkButton";
 import Link from "next/link";
-import { Timestamp } from "firebase/firestore";
-
+import UserList from "../components/users/UserList";
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
-    const [paddingSize, setPaddingSize] = useState(4);
+    const [paddingSize, setPaddingSize] = useState(2);
     const [filteredProjects, setFilteredProjects] = useState([]);
     const [filters, setFilters] = useState({
         search: "",
@@ -50,15 +49,7 @@ export default function PortalSelector() {
                             </div>
                         </div>
                         <table className="min-w-full divide-y divide-gray-200 mt-2 mb-8">
-                            <thead className="bg-gray-50">
-                                <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-96">Project Title</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32 text-center">Status</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32">Job #</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Note</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32 text-center">Actions</th>
-                                </tr>
-                            </thead>
+                            <ProjectTableHeader />
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {companyProjects.map((project) => (
                                     <tr key={project.id}>
@@ -91,6 +82,20 @@ export default function PortalSelector() {
     )
 }
 
+const ProjectTableHeader = () => {
+    return (
+        <thead className="bg-gray-50">
+                                <tr>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-96">Project Title</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32 text-center">Status</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32">Job #</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Note</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32 text-center">Actions</th>
+                                </tr>
+                            </thead>
+    )
+}
+
 const ProjectStatus = ({ status }) => {
     const badgeStyle = (status) => {
         switch (status) {
@@ -118,9 +123,6 @@ const StatusUpdate = ({ note, timestamp, status }) => {
             <span
                 className={`text-sm ${(status === 'Off track') ? 'text-red-600 font-semibold' : 'text-gray-400'}`}
             >{note}</span>
-            {/* {timestamp && (
-                // <span className="text-xs text-gray-300">{new Date(new Timestamp(timestamp).toDate()).toDateString()}</span>
-            )} */}
         </div>
     );
 }

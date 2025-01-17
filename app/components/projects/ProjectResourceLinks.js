@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useProjects } from "../../providers/ProjectsProvider";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Button from "../Button";
 
 const ProjectResourceLinks = ({ projectId, links = [] }) => {
   const [editingIndex, setEditingIndex] = useState(null);
@@ -135,26 +136,17 @@ const ProjectResourceLinks = ({ projectId, links = [] }) => {
           onChange={(e) => setNewLink({ ...newLink, url: e.target.value })}
           placeholder="URL"
         />
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          onClick={handleAddLink}
-        >
-          Add Link
-        </button>
-        <button
-          className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
-          onClick={() => setShowAddLinkForm(false)}
-          >
-            Cancel
-          </button>
+        <Button onClick={handleAddLink} icon="mdi:plus" variant="primary">
+          Add
+        </Button>
+        <Button onClick={() => setShowAddLinkForm(false)} icon="mdi:close" variant="outline">
+          Cancel
+        </Button>
       </div>
         ) : (
-        <button
-            className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600"
-            onClick={() => setShowAddLinkForm(true)}
-            >
-            Add Resource Link
-            </button>
+        <Button onClick={() => setShowAddLinkForm(true)} icon="mdi:plus">
+          Add Link
+        </Button>
         )}
     </div>
   );

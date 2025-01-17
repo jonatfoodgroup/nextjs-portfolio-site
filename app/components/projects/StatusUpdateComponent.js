@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useProjects } from "../../providers/ProjectsProvider";
 import { useHubspot } from "../../providers/HubspotProvider";
+import Button from "../Button";
 
 const StatusUpdateComponent = ({ project,projectId, hubspotId }) => {
   const [selectedStatus, setSelectedStatus] = useState("On track");
@@ -71,12 +72,12 @@ const StatusUpdateComponent = ({ project,projectId, hubspotId }) => {
 
   return (
     <>
-      <button
+      <Button
         onClick={() => setShowAddStatusForm(!showAddStatusForm)}
-        className="w-full px-4 py-2 rounded bg-gray-200 text-black hover:bg-gray-700"
+        className="mt-4"
       >
-        {showAddStatusForm ? "Hide" : "Add Status Update"}
-      </button>
+        {showAddStatusForm ? "Cancel" : "Update Project Status"}
+      </Button>
 
       {
         showAddStatusForm && (
@@ -117,16 +118,13 @@ const StatusUpdateComponent = ({ project,projectId, hubspotId }) => {
               ></textarea>
             </div>
 
-            <button
+            <Button
               onClick={handleSave}
-              className={`w-full px-4 py-2 rounded ${loading
-                  ? "bg-gray-600 cursor-not-allowed"
-                  : "bg-indigo-500 hover:bg-indigo-600 text-white"
-                }`}
               disabled={loading}
-            >
-              {loading ? "Updating..." : "Save Status"}
-            </button>
+              className="w-full"
+              >
+              {loading ? "Saving..." : "Save Status Update"}
+              </Button>
           </div>
         )
       }

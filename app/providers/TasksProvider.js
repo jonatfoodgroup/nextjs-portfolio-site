@@ -86,8 +86,36 @@ export const TasksProvider = ({ children, projectId }) => {
     }
   };
 
+  // === Bounty Integration ===
+  const markAsBounty = async (taskId) => {
+    try {
+      const taskRef = doc(firestore, "tasks", taskId);
+      await updateDoc(taskRef, {
+        isBounty: true,
+        status: "open", // Set the status to open when marking as a bounty
+      });
+      console.log(`Task ${taskId} marked as a bounty.`);
+    } catch (error) {
+      console.error("Error marking task as bounty:", error.message);
+    }
+  };
+
+  const claimBounty = async (taskId, claimerId) => {
+    try {
+      const taskRef = doc(firestore, "tasks", taskId);
+      await updateDoc(taskRef, {
+        status: "claimed",
+        claimedBy: claimerId,
+        claimedAt: new Date().toISOString(),
+      });
+      console.log(`Bounty ${taskId} claimed by ${claimerId}`);
+    } catch (error) {
+      console.error("Error claiming bounty:", error.message);
+    }
+  };
+
   return (
-    <TasksContext.Provider value={{ tasks, loading, addTask,getAllTasks,removeTask, updateTask }}>
+    <TasksContext.Provider value={{ tasks, loading, addTask,getAllTasks,removeTask, updateTask, markAsBounty, claimBounty }}>
       {children}
     </TasksContext.Provider>
   );

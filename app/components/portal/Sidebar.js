@@ -54,6 +54,8 @@ const Sidebar = () => {
                                 className="text-gray-400 text-sm"
                             >{openClients[client.id] ? <Icon icon="akar-icons:chevron-down" className="w-4" /> : <Icon icon="akar-icons:chevron-right" className="w-4" />}</span>
                             <span>{client.properties.name}</span>
+
+                            
                             
                         </div>
                         <div className="border-l-2 border-gray-800 pl-4">

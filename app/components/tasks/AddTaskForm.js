@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTasks } from "../../providers/TasksProvider";
+import Button from "../Button";
 
 const AddTaskForm = () => {
   const { addTask } = useTasks();
@@ -84,12 +85,12 @@ const AddTaskForm = () => {
         onChange={(e) => setAssignee(e.target.value)}
         className="border p-2 w-full mb-2 rounded"
       />
-      <button
+      <Button
         onClick={handleAddTask}
         className="bg-blue-500 text-white px-4 py-2 rounded"
       >
         Add Task
-      </button>
+      </Button>
     </div>
   );
 };
