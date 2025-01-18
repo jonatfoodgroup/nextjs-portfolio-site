@@ -8,7 +8,6 @@ import AuthProvider from "./providers/AuthProvider";
 import AOSProvider from "./providers/AOSProvider";
 import { WordpressProvider } from "./providers/WordpressProvider";
 import { HubspotProvider } from "./providers/HubspotProvider";
-import { DataProvider } from "./providers/DataProvider";
 import DrawerProvider from "./providers/DrawerProvider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
