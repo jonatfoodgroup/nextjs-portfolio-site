@@ -1,4 +1,4 @@
-import { firestore } from "../../../../firebase/config";
+import { firestore } from "../../../firebase/config";
 import { NextResponse } from "next/server";
 import { collection, query, where, getDocs, writeBatch } from "firebase/firestore";
 
