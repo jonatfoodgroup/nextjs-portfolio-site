@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import ProjectPage from "../../../../components/projects/ProjectPage";
 import { useParams } from 'next/navigation'
+import { Icon } from "@iconify/react/dist/iconify.js";
 import { ProjectsProvider } from "../../../../providers/ProjectsProvider";
 
 export default function Page({ params }) {
@@ -24,7 +25,9 @@ export default function Page({ params }) {
                         <ProjectPage project={project} />
                     </ProjectsProvider>
                 ) : (
-                    <p>Loading project...</p>
+                    <div className="flex items-center justify-center h-screen">
+                        <Icon icon="akar-icons:loading" className="animate-spin text-4xl text-gray-300" />
+                    </div>
                 )
             }
             

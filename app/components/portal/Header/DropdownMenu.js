@@ -79,7 +79,7 @@ const DropdownMenu = ({ user }) => {
                             <li key={index} className="text-gray-800">
                                 <button
                                     onClick={link.onClick}
-                                    className="flex items-center space-x-2 px-4 py-2 w-full hover:bg-gray-100 focus:outline-none text-gray-400"
+                                    className="flex items-center space-x-2 px-4 py-2 w-full hover:bg-gray-700 hover:text-white focus:outline-none text-gray-400"
                                 >
                                     <Icon icon={link.icon} className="w-5 h-5" />
                                     <span

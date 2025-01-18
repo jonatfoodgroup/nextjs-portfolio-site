@@ -8,34 +8,29 @@ import TaskTimer from "./TaskTimer";
 import { StepsProvider, useSteps } from "../../providers/StepsProvider";
 import StepsList from "./StepsList";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import TaskEditableDescription from "./TaskEditableDescription";
+import { toast } from "react-hot-toast";
+
 const TaskDetails = ({ task, updateTask, addTask, project }) => {
     const [description, setDescription] = useState(task.description || "");
-    const [newSubtaskName, setNewSubtaskName] = useState("");
 
     const handleDescriptionChange = (e) => {
         setDescription(e.target.value);
         updateTask(task.id, { description: e.target.value });
     };
 
-    const handleAddSubtask = () => {
-        if (!newSubtaskName.trim()) return;
-
-        addTask({
-            name: newSubtaskName,
-            parentTaskId: task.id,
-        });
-
-        setNewSubtaskName("");
-    };
+    const copyId = () => {
+        navigator.clipboard.writeText(task.id);
+        toast.success("Task ID copied to clipboard");
+    }
 
     return (
         <div>
             {/* Task id */}
-            <p className="text-gray-400 text-sm">Task ID: {task.id}</p>
-            <p className="mb-4 text-white mt-4">Description</p>
-            <p className="text-gray-400 text-sm">{task.description}</p>
+            <p className="text-gray-600 text-sm inline-flex space-x-2"><span>Task ID: </span><span>{task.id}</span> <button onClick={copyId} className="text-gray-600"><Icon icon="mdi:content-copy" className="w-5 h-5" />
+            </button></p>
+            <TaskEditableDescription task={task} />
             <div className="mt-4 flex items-center space-x-2">
-                
                 <TaskTimer task={task} updateTask={updateTask} project={project} />
                 <MarkAsBountyButton taskId={task.id} isBounty={task.isBounty} />
             </div>
@@ -90,7 +85,7 @@ const Subtasks = ({ parentTaskId }) => {
                     {subtasks
                         .map((subtask) => (
                             <StepsProvider key={subtask.id} taskId={subtask.id}>
-                            <SubTaskItem key={subtask.id} subtask={subtask} />
+                                <SubTaskItem key={subtask.id} subtask={subtask} />
                             </StepsProvider>
                         ))}
                 </ul>
@@ -121,7 +116,7 @@ const SubTaskItem = ({ subtask }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedName, setEditedName] = useState(subtask.name);
     const [showSteps, setShowSteps] = useState(false); // Tracks if StepsList is visible
-    const { steps, completedSteps} = useSteps();
+    const { steps, completedSteps } = useSteps();
 
     const handleCheckboxChange = async () => {
         await updateTask(subtask.id, {
@@ -150,7 +145,7 @@ const SubTaskItem = ({ subtask }) => {
             key={subtask.id}
             className="flex flex-col p-3 border rounded-xl bg-gray-800 border-gray-700 align-top"
         >
-           
+
             <div className="flex flex-row items-center">
                 <input
                     type="checkbox"
@@ -172,9 +167,8 @@ const SubTaskItem = ({ subtask }) => {
                     ) : (
                         <p
                             onClick={() => setIsEditing(true)}
-                            className={`text-gray-300 cursor-pointer ${
-                                subtask.status === "completed" ? "line-through text-gray-500" : ""
-                            }`}
+                            className={`text-gray-300 cursor-pointer ${subtask.status === "completed" ? "line-through text-gray-500" : ""
+                                }`}
                         >
                             {subtask.name}
                         </p>
@@ -190,7 +184,7 @@ const SubTaskItem = ({ subtask }) => {
                             <span className="text-sm text-gray-600">
                                 {completedSteps.length}/{steps.length}
                             </span>
-                        ) 
+                        )
 
                     }
                     {
@@ -210,7 +204,7 @@ const SubTaskItem = ({ subtask }) => {
             {/* Conditionally render Steps List */}
             {showSteps && (
                 <div className="mt-2 pl-8">
-                        <StepsList />
+                    <StepsList />
                 </div>
             )}
         </li>

@@ -40,7 +40,7 @@ const ProjectTasks = ({ project }) => {
               onClick={() => openModal(task)}
             >
               <div className="flex justify-between items-center">
-                <p className="font-regular text-lg text-gray-400">{task.name}</p>
+                <p className="font-regular text-lg text-gray-400 hover:text-white">{task.name}</p>
                 <p
                   className={`text-sm px-2 py-1 rounded ${
                     task.status === "Completed"

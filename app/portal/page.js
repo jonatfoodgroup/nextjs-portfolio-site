@@ -56,14 +56,14 @@ export default function PortalSelector() {
                                         <td className={`px-6 py-${paddingSize} whitespace-nowrap w-96`}>
                                             <Link
                                                 href={`/portal/${company.id}/projects/${project.id}`}
-                                                className="text-sm font-regular text-gray-400 hover:text-white"
+                                                className="text-sm font-semibold text-gray-300 hover:text-white"
                                             >{project.title}</Link>
                                         </td>
                                         <td className={`px-6 py-${paddingSize} whitespace-nowrap text-center`}>
                                             <ProjectStatus status={project.status?.status} />
                                         </td>
                                         <td className={`px-6 py-${paddingSize} whitespace-nowrap`}>
-                                            <span className="text-sm text-gray-600">{project.jobNumber.slice(-5)}</span>
+                                            <span className="text-xs text-gray-400">{project.jobNumber.slice(-5)}</span>
                                         </td>
                                         <td className={`px-6 py-${paddingSize}`}>
                                             <StatusUpdate note={project.status?.note} status={project.status?.status} timestamp={project.status?.timestamp} />
@@ -85,14 +85,14 @@ export default function PortalSelector() {
 const ProjectTableHeader = () => {
     return (
         <thead className="bg-gray-900">
-                                <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-96">Project Title</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32 text-center">Status</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32">Job #</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Note</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32 text-center">Actions</th>
-                                </tr>
-                            </thead>
+            <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-96">Project Title</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32 text-center">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32">Job #</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Note</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32 text-center">Actions</th>
+            </tr>
+        </thead>
     )
 }
 
@@ -100,18 +100,18 @@ const ProjectStatus = ({ status }) => {
     const badgeStyle = (status) => {
         switch (status) {
             case "On track":
-                return "bg-green-100 text-green-800";
+                return "bg-gray-800 text-green-500";
             case "Off track":
-                return "bg-red-100 text-red-800";
+                return "bg-gray-800 text-red-500";
             case "On hold":
-                return "bg-yellow-100 text-yellow-800";
+                return "bg-gray-800 text-yellow-500";
             default:
-                return "bg-gray-700 text-gray-800";
+                return "bg-gray-800 text-gray-500";
         }
     };
 
     return (
-        <span className={`px-2 py-1 rounded-full text-sm font-medium ${badgeStyle(status)}`}>
+        <span className={`px-2 py-1 rounded-full text-xs font-medium ${badgeStyle(status)}`}>
             {status || "No status"}
         </span>
     );
