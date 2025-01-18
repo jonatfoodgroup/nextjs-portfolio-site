@@ -32,7 +32,7 @@ const EditableDescription = ({ project }) => {
             </button>
           </div>
         ) : (
-          <p className="text-sm text-gray-400">{description}</p>
+          <p className="text-md text-gray-400">{description}</p>
         )}
         
       </div>

@@ -10,34 +10,65 @@ import StepsList from "./StepsList";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import TaskEditableDescription from "./TaskEditableDescription";
 import { toast } from "react-hot-toast";
+import Button from "../Button";
 
 const TaskDetails = ({ task, updateTask, addTask, project }) => {
     const [description, setDescription] = useState(task.description || "");
+    const [status, setStatus] = useState(task.status || "pending");
 
     const handleDescriptionChange = (e) => {
         setDescription(e.target.value);
         updateTask(task.id, { description: e.target.value });
     };
 
+    const handleStatusChange = (e) => {
+        const newStatus = e.target.value;
+        setStatus(newStatus);
+        updateTask(task.id, { status: newStatus });
+    };
+
     const copyId = () => {
         navigator.clipboard.writeText(task.id);
         toast.success("Task ID copied to clipboard");
-    }
+    };
 
     return (
         <div>
-            {/* Task id */}
-            <p className="text-gray-600 text-sm inline-flex space-x-2"><span>Task ID: </span><span>{task.id}</span> <button onClick={copyId} className="text-gray-600"><Icon icon="mdi:content-copy" className="w-5 h-5" />
-            </button></p>
-            <TaskEditableDescription task={task} />
             <div className="mt-4 flex items-center space-x-2">
                 <TaskTimer task={task} updateTask={updateTask} project={project} />
                 <MarkAsBountyButton taskId={task.id} isBounty={task.isBounty} />
             </div>
+
+            {/* Task Status Dropdown */}
+            <div className="mt-4">
+                <label className="text-gray-400 text-sm font-medium mr-2">
+                    Status:
+                </label>
+                <select
+                    value={status}
+                    onChange={handleStatusChange}
+                    className="p-2 border rounded bg-gray-900 text-white border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                >
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+
+            <TaskEditableDescription task={task} />
+
             <div className="mt-6">
                 <Subtasks parentTaskId={task.id} />
             </div>
 
+            {/* Task id */}
+            <p className="text-gray-600 text-xs inline-flex space-x-2">
+                <span>Task ID: </span>
+                <span>{task.id}</span>
+                <button onClick={copyId} className="text-gray-600">
+                    <Icon icon="mdi:content-copy" className="w-4 h-4" />
+                </button>
+            </p>
         </div>
     );
 };
@@ -91,20 +122,20 @@ const Subtasks = ({ parentTaskId }) => {
                 </ul>
 
                 {/* Add Subtask */}
-                <div className="mt-4">
+                <div className="mt-4 flex items-center space-x-2">
                     <input
                         type="text"
                         value={newSubtaskName}
                         onChange={(e) => setNewSubtaskName(e.target.value)}
                         placeholder="New Subtask Name"
-                        className="p-2 border rounded bg-gray-900 text-white w-full border-gray-700"
+                        className="p-2 border rounded bg-gray-900 text-white w-full border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                     />
-                    <button
+                    <Button
+                        variant="outline"
                         onClick={handleAddSubtask}
-                        className="mt-2 px-4 py-2 bg-green-500 text-white rounded"
                     >
                         Add Subtask
-                    </button>
+                    </Button>
                 </div>
             </div >
         </>

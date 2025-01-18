@@ -10,11 +10,14 @@ const ProjectTasks = ({ project }) => {
   const [selectedTask, setSelectedTask] = useState(null);
 
   // Sort tasks by active timers
-  const sortedTasks = [...tasks].sort((a, b) => {
+  let sortedTasks = [...tasks].sort((a, b) => {
     if (a.activeTimer && !b.activeTimer) return -1;
     if (!a.activeTimer && b.activeTimer) return 1;
     return 0;
   });
+
+  // filter out tasks that have been completed
+  sortedTasks = sortedTasks.filter((task) => task.status !== "completed");
 
   const openModal = (task) => {
     setSelectedTask(task);
