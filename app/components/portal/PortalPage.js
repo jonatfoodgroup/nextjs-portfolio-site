@@ -32,27 +32,25 @@ export default function PortalPage({ hubspotId }) {
     }
     return (
         <>
-            <div className="p-4">
-                {/* Company Section */}
-                {loadingCompany ? (
-                    <p>Loading company details...</p>
-                ) : (
-                    <>
-                        <div className="flex items-center justify-between mb-4">
-                            <h1 className="text-2xl font-bold mb-2">
-                                {company?.properties?.name || "Company Name"}
-                            </h1>
-                            <div className="flex items-center space-x-2">
-                                <HubspotLinkButton hubspotId={hubspotId} />
-                                <DriveLinkButton folderId={company.properties.drive_folder_id} />
-                            </div>
+            {/* Company Section */}
+            {loadingCompany ? (
+                <p>Loading company details...</p>
+            ) : (
+                <>
+                    <div className="flex items-center justify-between mb-4">
+                        <h1 className="text-2xl font-regular mb-2 text-white">
+                            {company?.properties?.name || "Company Name"}
+                        </h1>
+                        <div className="flex items-center space-x-2">
+                            <HubspotLinkButton hubspotId={hubspotId} />
+                            <DriveLinkButton folderId={company.properties.drive_folder_id} />
                         </div>
-                        <Projects hubspotId={hubspotId} />
-                        <Goals hubspotId={hubspotId} />
+                    </div>
+                    <Projects hubspotId={hubspotId} />
+                    <Goals hubspotId={hubspotId} />
 
-                    </>
-                )}
-            </div>
+                </>
+            )}
         </>
     );
 }
@@ -64,7 +62,7 @@ const Goals = ({
     return (
         <GoalsProvider hubspotId={hubspotId}>
             <div className="flex items-center justify-between mt-10">
-                <h2 className="text-xl font-bold mb-2">Goals</h2>
+                <h2 className="text-xl font-regular text-gray-400">Goals</h2>
                 <button
                     onClick={() => setShowAddGoalForm(!showAddGoalForm)}
                     className="bg-blue-500 text-white px-4 py-2 rounded"
@@ -85,14 +83,14 @@ const Projects = ({
     return (
         <ProjectsProvider hubspotId={hubspotId}>
             <div className="flex items-center justify-between py-4">
-                <h2 className="text-xl font-bold">Projects</h2>
+                <h2 className="text-xl font-regular text-gray-400">Projects</h2>
 
-                    <button
-                        onClick={() => setShowAddProjectForm(!showAddProjectForm)}
-                        className="text-gray-800 px-4 py-2 rounded border border-gray-800"
-                    >
-                        {showAddProjectForm ? "Cancel" : "Add Project"}
-                    </button>
+                <button
+                    onClick={() => setShowAddProjectForm(!showAddProjectForm)}
+                    className="text-gray-800 px-4 py-2 rounded border border-gray-800"
+                >
+                    {showAddProjectForm ? "Cancel" : "Add Project"}
+                </button>
             </div>
             {showAddProjectForm && <AddProjectForm />}
             <ProjectsTable />

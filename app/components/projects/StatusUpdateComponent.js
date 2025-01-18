@@ -73,15 +73,15 @@ const StatusUpdateComponent = ({ project,projectId, hubspotId }) => {
   return (
     <>
       <Button
+        variant="outline"
         onClick={() => setShowAddStatusForm(!showAddStatusForm)}
-        className="mt-4"
       >
         {showAddStatusForm ? "Cancel" : "Update Project Status"}
       </Button>
 
       {
         showAddStatusForm && (
-          <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md">
+          <div className=" p-4 bg-gray-800 rounded-lg shadow-md">
             <h3 className="text-white text-lg font-semibold mb-2">Update Project Status</h3>
 
             <div className="mb-4">

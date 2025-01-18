@@ -11,7 +11,7 @@ const Button = ({ children, onClick, variant = "outline", size = "sm", disabled 
     secondary: "bg-gray-500 text-white hover:bg-gray-600 focus:ring-gray-500",
     danger: "bg-red-500 text-white hover:bg-red-600 focus:ring-red-500",
     success: "bg-green-500 text-white hover:bg-green-600 focus:ring-green-500",
-    outline: "bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-100 focus:ring-gray-500",
+    outline: "bg-transparent border border-gray-700 text-gray-400 hover:bg-gray-800 focus:ring-gray-500",
   };
 
   const sizes = {

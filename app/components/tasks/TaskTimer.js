@@ -104,6 +104,7 @@ const TaskTimer = ({ task, project, updateTask }) => {
       <div>
         {activeTimer ? (
           <Button
+            icon={"carbon:stop-filled"}
             onClick={stopTimer}
             variant="danger"
           >
@@ -112,6 +113,7 @@ const TaskTimer = ({ task, project, updateTask }) => {
         ) : (
           <Button
             onClick={startTimer}
+            icon={(activeTimer && "carbon:timer") || "carbon:play-filled"}
             className="bg-green-500 text-white px-4 py-2 rounded"
           >
             Start Timer

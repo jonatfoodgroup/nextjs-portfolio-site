@@ -66,10 +66,10 @@ const DropdownMenu = ({ user }) => {
 
             {/* Dropdown Menu */}
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white border rounded-lg shadow-lg z-10">
-                    <div className="px-4 py-2 border-b text-gray-800">
+                <div className="absolute right-0 mt-2 w-56 bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-10">
+                    <div className="px-4 py-2 border-b text-gray-800 border-gray-700">
                         <img src={user.image} alt="Profile" className="w-10 h-10 rounded-full" />
-                        <p className="font-semibold mt-2">{user.name}
+                        <p className="font-semibold mt-2 text-white">{user.name}
                             <span className="w-2 h-2 inline-block bg-green-500 rounded-full ml-1"></span>
                         </p>
                         <p className="text-xs text-gray-500">{user.email}</p>
@@ -79,7 +79,7 @@ const DropdownMenu = ({ user }) => {
                             <li key={index} className="text-gray-800">
                                 <button
                                     onClick={link.onClick}
-                                    className="flex items-center space-x-2 px-4 py-2 w-full hover:bg-gray-100 focus:outline-none"
+                                    className="flex items-center space-x-2 px-4 py-2 w-full hover:bg-gray-100 focus:outline-none text-gray-400"
                                 >
                                     <Icon icon={link.icon} className="w-5 h-5" />
                                     <span

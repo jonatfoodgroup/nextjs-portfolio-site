@@ -55,8 +55,8 @@ const ProjectResourceLinks = ({ projectId, links = [] }) => {
   };
 
   return (
-    <div className="my-4">
-      <h3 className="text-lg font-bold mb-2">Resource Links</h3>
+    <div className="p-6 bg-gray-900 rounded-xl mt-4">
+      <h3 className="text-lg font-regular text-gray-400">Resource Links</h3>
       {links.length > 0 ? (
         <ul className="list-none space-y-2">
           {links.map((link, index) => (
@@ -117,7 +117,7 @@ const ProjectResourceLinks = ({ projectId, links = [] }) => {
           ))}
         </ul>
       ) : (
-        <p className="text-gray-500">No resource links available.</p>
+        <p className="text-gray-500 my-2">No resource links available.</p>
       )}
 
         {showAddLinkForm ? (

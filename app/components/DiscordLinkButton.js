@@ -14,6 +14,7 @@ const DiscordLinkButton = ({ discordChannelId }) => {
   const discordAppUrl = `discord://discord.com/channels/${process.env.NEXT_PUBLIC_DISCORD_GUILD_ID}/${discordChannelId}`;
   return (
     <button
+      className="text-gray-600 hover:text-white"
       onClick={() => window.open(discordAppUrl, "_blank")}
     >
       <Icon icon="akar-icons:discord-fill" />

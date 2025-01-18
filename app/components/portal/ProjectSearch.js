@@ -25,7 +25,6 @@ const ProjectSearch = () => {
 
                 // sort by title
                 projectsWithCompany.sort((a, b) => a.title.localeCompare(b.title));
-                console.log(projectsWithCompany);
                 setProjects(projectsWithCompany);
             })
 
@@ -89,7 +88,6 @@ const ProjectSearch = () => {
                 placeholder={`Use "cmd+k" to search`}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                // when text is removed from the input, clear the search
                 className="border border-gray-600 text-center rounded px-4 py-2 w-full bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             />
             {filteredProjects.length > 0 && (

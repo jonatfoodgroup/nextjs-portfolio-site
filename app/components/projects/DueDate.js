@@ -12,25 +12,25 @@ const DueDate = ({ date }) => {
   const getStyledLabel = () => {
     if (diffDays === 0) {
       return (
-        <span className="text-red-500 font-bold">
+        <span className="text-red-500 font-regular">
           <span className="block text-sm text-gray-500">Due Date:</span> Today
         </span>
       );
     } else if (diffDays === 1) {
       return (
-        <span className="text-yellow-500 font-bold">
+        <span className="text-yellow-500 font-regular">
           <span className="block text-sm text-gray-500">Due Date:</span> Tomorrow
         </span>
       );
     } else if (diffDays < 0) {
       return (
-        <span className="text-red-700 font-bold">
+        <span className="text-red-700 font-regular">
           <span className="block text-sm text-gray-500">Due Date:</span> Past Due
         </span>
       );
     } else {
       return (
-        <span className="text-gray-700 font-bold">
+        <span className="text-gray-700 font-regular">
           <span className="block text-sm text-gray-500">Due Date:</span> {dueDate.toLocaleDateString()}
         </span>
       );

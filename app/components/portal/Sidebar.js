@@ -41,7 +41,7 @@ const Sidebar = () => {
         return null;
     }
     return (
-        <aside className="w-64 bg-gray-900 text-white h-screen fixed top-0 left-0 overflow-y-auto">
+        <aside className="w-64 bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto">
             <div className="p-4 text-xl font-bold">Clients</div>
             <ul className="space-y-2 mt-2">
                 {clients.map((client) => (

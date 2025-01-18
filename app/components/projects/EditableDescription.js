@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useProjects } from "../../providers/ProjectsProvider";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const EditableDescription = ({ project }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -13,27 +14,27 @@ const EditableDescription = ({ project }) => {
   
     return (
       <div className="mt-4">
-        <h4 className="text-sm font-semibold">Description</h4>
+        <h4 className="text-lg font-regular text-gray-200 flex items-center space-x-2 mb-4"><span>About Project</span> <button
+          onClick={() => setIsEditing(!isEditing)}
+          className="text-xs text-gray-500"
+        >
+          {isEditing ? <Icon icon="mdi:close" /> : <Icon icon="mdi:pencil" />}{" "}
+        </button></h4>
         {isEditing ? (
           <div className="flex">
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border bg-gray-800 text-white rounded text-sm border-gray-700"
             />
             <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded ml-2">
               Save
             </button>
           </div>
         ) : (
-          <p className="text-sm text-gray-600">{description}</p>
+          <p className="text-sm text-gray-400">{description}</p>
         )}
-        <button
-          onClick={() => setIsEditing(!isEditing)}
-          className="text-xs text-blue-500 mt-2"
-        >
-          {isEditing ? "Cancel" : "Edit"}
-        </button>
+        
       </div>
     );
   }

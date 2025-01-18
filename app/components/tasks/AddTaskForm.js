@@ -36,54 +36,55 @@ const AddTaskForm = () => {
       setStartDate("");
       setEndDate("");
       setAssignee("");
+      
     } catch (error) {
       console.error("Error adding task:", error.message);
     }
   };
 
   return (
-    <div className="bg-white p-4 shadow rounded">
-      <h3 className="text-lg font-semibold mb-2">Add a New Task</h3>
+    <div className="bg-gray-800 p-4 shadow rounded">
+      <h3 className="text-lg font-semibold mb-2 text-gray-400">Add a New Task</h3>
       <input
         type="text"
         placeholder="Task Name"
         value={taskName}
         onChange={(e) => setTaskName(e.target.value)}
-        className="border p-2 w-full mb-2 rounded"
+        className="border p-2 w-full mb-2 rounded bg-gray-800 border-gray-700 text-white"
       />
       <textarea
         placeholder="Task Description (optional)"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className="border p-2 w-full mb-2 rounded"
+        className="border p-2 w-full mb-2 rounded bg-gray-800 border-gray-700 text-white"
       />
       <input
         type="number"
         placeholder="Estimated Hours"
         value={estimatedHours}
         onChange={(e) => setEstimatedHours(e.target.value)}
-        className="border p-2 w-full mb-2 rounded"
+        className="border p-2 w-full mb-2 rounded bg-gray-800 border-gray-700 text-white"
       />
       <input
         type="date"
         placeholder="Start Date"
         value={startDate}
         onChange={(e) => setStartDate(e.target.value)}
-        className="border p-2 w-full mb-2 rounded"
+        className="border p-2 w-full mb-2 rounded bg-gray-800 border-gray-700 text-white"
       />
       <input
         type="date"
         placeholder="End Date"
         value={endDate}
         onChange={(e) => setEndDate(e.target.value)}
-        className="border p-2 w-full mb-2 rounded"
+        className="border p-2 w-full mb-2 rounded bg-gray-800 border-gray-700 text-white"
       />
       <input
         type="text"
         placeholder="Assignee"
         value={assignee}
         onChange={(e) => setAssignee(e.target.value)}
-        className="border p-2 w-full mb-2 rounded"
+        className="border p-2 w-full mb-2 rounded bg-gray-800 border-gray-700 text-white"
       />
       <Button
         onClick={handleAddTask}

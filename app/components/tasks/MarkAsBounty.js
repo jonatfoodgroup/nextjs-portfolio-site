@@ -37,7 +37,8 @@ const MarkAsBountyButton = ({ taskId, isBounty = false, disabled = false }) => {
     <Button
       onClick={handleMarkAsBounty}
       disabled={disabled || bountyStatus}
-      variant={bountyStatus ? "secondary" : "primary"}
+      variant={bountyStatus ? "outline" : "outline"}
+      icon="carbon:debug"
     >
       {bountyStatus ? "Bounty Details" : "Mark as Bounty"}
     </Button>

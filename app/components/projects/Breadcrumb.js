@@ -17,11 +17,14 @@ export default function Breadcrumb({ hubspotId }) {
     }, [hubspotId]);
 
     return (
-        <nav className="flex items-center space-x-2 text-gray-500 mt-12">
-            <Link href="/portal">Portal</Link>
+        <nav className="flex items-center space-x-2 text-gray-500 text-sm mb-4">
+            <Link 
+                className="hover:text-gray-400"
+            href="/portal">Portal</Link>
             <span>/</span>
             <Link 
                 href={`/portal/${hubspotId}`}
+                className="hover:text-gray-400"
             >
             {company ? <span>{company.properties.name}</span> : <span>Loading...</span>}
             </Link>

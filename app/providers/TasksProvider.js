@@ -1,25 +1,30 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { collection, onSnapshot, query, where, addDoc,deleteDoc, getDocs,doc,updateDoc } from "firebase/firestore";
+import { collection, onSnapshot, query, where, addDoc,deleteDoc, getDocs,doc,updateDoc, orderBy } from "firebase/firestore";
 import { firestore } from "../firebase/config";
+import { toast } from "react-hot-toast";
 
 const TasksContext = createContext();
 
 export const TasksProvider = ({ children, projectId }) => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [subtasks, setSubtasks] = useState([]);
 
   useEffect(() => {
     if (!projectId) return;
 
     // Firestore real-time listener for tasks related to this project
-    const q = query(collection(firestore, "tasks"), where("projectId", "==", projectId));
+    const q = query(
+      collection(firestore, "tasks"),
+      where("projectId", "==", projectId),
+    );
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const tasksData = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      }));
+      })).filter((task) => !task.parentTaskId); // Filter out subtasks
       setTasks(tasksData);
       setLoading(false);
     });
@@ -50,12 +55,13 @@ export const TasksProvider = ({ children, projectId }) => {
       const taskRef = doc(firestore, "tasks", taskId);
       await updateDoc(taskRef, updates);
       console.log(`Task ${taskId} updated successfully`);
+      toast.success("Task updated!");
     } catch (error) {
       console.error("Error updating task:", error.message);
     }
   };
   
-  const addTask = async (task) => {
+  const addTask = async (task, parentTaskId) => {
     try {
       if (!task.name || !projectId) {
         throw new Error("Task name and project ID are required.");
@@ -63,15 +69,20 @@ export const TasksProvider = ({ children, projectId }) => {
 
       // 
 
-      const newTask = {
+      let newTask = {
         ...task,
         projectId,
         status: "pending",
         createdAt: new Date().toISOString(),
       };
 
+      if (parentTaskId) {
+        newTask.parentTaskId = parentTaskId;
+      }
+
       const docRef = await addDoc(collection(firestore, "tasks"), newTask);
-      console.log("Task added successfully:", docRef.id);
+      console.log("Task added with ID:", docRef.id);
+      toast.success(`${parentTaskId ? "Subtask" : "Task"} added!`);
     } catch (error) {
       console.error("Error adding task:", error.message);
     }
@@ -114,8 +125,9 @@ export const TasksProvider = ({ children, projectId }) => {
     }
   };
 
+
   return (
-    <TasksContext.Provider value={{ tasks, loading, addTask,getAllTasks,removeTask, updateTask, markAsBounty, claimBounty }}>
+    <TasksContext.Provider value={{ tasks, loading, addTask,getAllTasks,removeTask, updateTask, markAsBounty, claimBounty, subtasks}}>
       {children}
     </TasksContext.Provider>
   );

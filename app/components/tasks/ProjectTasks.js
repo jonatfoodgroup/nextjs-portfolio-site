@@ -1,24 +1,34 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import { useTasks } from "../../providers/TasksProvider";
-import MarkAsBountyButton from "./MarkAsBounty";
-import TaskTimer from "./TaskTimer";
-import TimeEntries from "./TimeEntries";
-const ProjectTasks = ({
-  project
-}) => {
+import Modal from "../Modal";
+import TaskDetails from "./TaskDetails";
+
+const ProjectTasks = ({ project }) => {
   const { tasks, loading, updateTask } = useTasks();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
 
   // Sort tasks by active timers
   const sortedTasks = [...tasks].sort((a, b) => {
-    if (a.activeTimer && !b.activeTimer) return -1; // Move tasks with active timers to the top
+    if (a.activeTimer && !b.activeTimer) return -1;
     if (!a.activeTimer && b.activeTimer) return 1;
-    return 0; // Maintain order for tasks without active timers
+    return 0;
   });
 
+  const openModal = (task) => {
+    setSelectedTask(task);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedTask(null);
+  };
+
   return (
-    <div>
-      <h3 className="text-lg font-semibold mb-4">Tasks</h3>
+    <div className="p-6 bg-gray-900 rounded-xl">
+      <h3 className="text-lg font-regular mb-4 text-gray-400">Tasks</h3>
       {loading ? (
         <p className="text-gray-500">Loading tasks...</p>
       ) : (
@@ -26,99 +36,37 @@ const ProjectTasks = ({
           {sortedTasks.map((task) => (
             <li
               key={task.id}
-              className="border p-4 rounded-lg shadow-sm bg-white hover:shadow-md transition-shadow"
+              className="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border-gray-800 cursor-pointer"
+              onClick={() => openModal(task)}
             >
               <div className="flex justify-between items-center">
-                <p className="font-semibold text-lg text-gray-800">{task.name}</p>
-                <p className={`text-sm px-2 py-1 rounded ${task.status === "Completed"
-                  ? "bg-green-100 text-green-800"
-                  : task.status === "In Progress"
-                    ? "bg-yellow-100 text-yellow-800"
-                    : "bg-gray-100 text-gray-800"
-                  }`}>
+                <p className="font-regular text-lg text-gray-400">{task.name}</p>
+                <p
+                  className={`text-sm px-2 py-1 rounded ${
+                    task.status === "Completed"
+                      ? "bg-green-100 text-green-800"
+                      : task.status === "In Progress"
+                      ? "bg-yellow-100 text-yellow-800"
+                      : "bg-gray-800 text-gray-500"
+                  }`}
+                >
                   {task.status}
                 </p>
-              </div>
-
-              {/* Inline Editable Description */}
-              <EditableDescription task={task} updateTask={updateTask} />
-
-
-              <div className="flex items-center space-x-4 mt-2">
-                {/* Mark as Bounty Button */}
-                <MarkAsBountyButton taskId={task.id} isBounty={task.isBounty} />
-
-                {/* Timer Controls */}
-                <TaskTimer task={task} project={project} updateTask={updateTask} />
-              </div>
-              
-              <div className="mt-4">
-                <TimeEntries task={task} />
               </div>
             </li>
           ))}
         </ul>
       )}
-    </div>
-  );
-};
 
-const EditableDescription = ({ task, updateTask }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [description, setDescription] = useState(task.description || "");
-  const [debouncedDescription, setDebouncedDescription] = useState(description);
-
-  // Debounce function
-  const debounce = (func, delay) => {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => func(...args), delay);
-    };
-  };
-
-  // Update the database with the debounced description
-  const saveDescription = useCallback(
-    debounce((newDescription) => {
-      updateTask(task.id, { description: newDescription });
-    }, 500), // Adjust the debounce delay as needed
-    [task.id, updateTask]
-  );
-
-  useEffect(() => {
-    // Only save when the debounced value changes
-    if (debouncedDescription !== task.description) {
-      saveDescription(debouncedDescription);
-    }
-  }, [debouncedDescription, task.description, saveDescription]);
-
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-    setDebouncedDescription(e.target.value); // Update the debounced value
-  };
-
-  return (
-    <div className="mt-2">
-      {isEditing ? (
-        <textarea
-          className="w-full p-2 border rounded text-sm"
-          value={description}
-          onChange={handleDescriptionChange}
-          onBlur={() => setIsEditing(false)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-              setIsEditing(false);
-            }
-          }}
-        />
-      ) : (
-        <p
-          className="text-sm text-gray-600 cursor-pointer hover:underline"
-          onClick={() => setIsEditing(true)}
+      {/* Modal for Task Details */}
+      {isModalOpen && selectedTask && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          title={`${selectedTask.name}`}
         >
-          {description || "Click to add a description..."}
-        </p>
+          <TaskDetails task={selectedTask} updateTask={updateTask} project={project} />
+        </Modal>
       )}
     </div>
   );
@@ -126,7 +74,4 @@ const EditableDescription = ({ task, updateTask }) => {
 
 
 
-
 export default ProjectTasks;
-
-
