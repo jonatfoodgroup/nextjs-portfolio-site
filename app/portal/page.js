@@ -8,7 +8,7 @@ import Link from "next/link";
 import UserList from "../components/users/UserList";
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
-    const [paddingSize, setPaddingSize] = useState(2);
+    const [paddingSize, setPaddingSize] = useState(4);
     const [filteredProjects, setFilteredProjects] = useState([]);
     const [filters, setFilters] = useState({
         search: "",
@@ -36,37 +36,29 @@ export default function PortalSelector() {
             {/* Display projects by company */}
             {companies.map((company) => {
                 const companyProjects = projects.filter((project) => project.hubspotId === company.id);
+                // const [showProjects, setShowProjects] = useState(false);
                 return (
                     <div key={company.id} className="mb-4 p-6 bg-gray-800 rounded-xl border border-gray-700">
-                        <div className="flex items-center space-x-2 mb-4">
-                            <Link className="text-xl font-semibold text-white mr-2"
-                                href={`/portal/${company.id}`}
-                            >{company.properties.name}
-                            </Link>
-                            <div className="opacity-80 text-gray-500 flex items-center space-x-3 hover:opacity-100">
-                                <HubspotLinkButton hubspotId={company.id} />
-                                <DriveLinkButton folderId={company.properties.drive_folder_id} />
-                            </div>
-                        </div>
-                        <table className="min-w-full divide-y divide-gray-600">
+                        <CompanyHeader company={company}  />
+                        <table className="min-w-full divide-y divide-gray-700">
                             {/* <ProjectTableHeader /> */}
-                            <tbody className="bg-gray-800">
+                            <tbody className="bg-gray-800 divide-y divide-gray-700 align-top">
                                 {companyProjects.map((project) => (
                                     <tr key={project.id}>
-                                        <td className={`px-6 py-${paddingSize} whitespace-nowrap text-center w-32`}>
+                                        <td className={`px-6 py-${paddingSize} whitespace-nowrap text-center w-12`}>
                                             <ProjectStatus status={project.status?.status} />
                                         </td>
-                                        <td className={`px-6 py-${paddingSize} whitespace-nowrap w-96`}>
+                                        <td className={`px-6 py-${paddingSize} whitespace-nowrap w-64`}>
                                             <Link
                                                 href={`/portal/${company.id}/projects/${project.id}`}
                                                 className="text-sm font-semibold text-gray-300 hover:text-white"
                                             >{project.title}</Link>
                                         </td>
-                                        
+
                                         {/* <td className={`px-6 py-${paddingSize} whitespace-nowrap`}>
                                             <span className="text-xs text-gray-400">{project.jobNumber.slice(-5)}</span>
                                         </td> */}
-                                        <td className={`px-6 py-${paddingSize}`}>
+                                        <td className={`px-6 py-${paddingSize} flex-grow`}>
                                             <StatusUpdate note={project.status?.note} status={project.status?.status} timestamp={project.status?.timestamp} />
                                         </td>
                                         <td className={`px-6 py-${paddingSize} text-xl whitespace-nowrap text-center`}>
@@ -83,11 +75,56 @@ export default function PortalSelector() {
     )
 }
 
+const CompaniesCard = ({ company }) => {
+    const [showProjects, setShowProjects] = useState(false);
+    return (
+        <div className="flex items-center space-x-2">
+            <Link
+                href={`/portal/${company.id}`}
+                className="text-xl font-semibold text-white"
+            >{company.properties.name}
+            </Link>
+            <div className="opacity-80 text-gray-500 flex items-center space-x-3 hover:opacity-100">
+                <HubspotLinkButton hubspotId={company.id} />
+                <DriveLinkButton folderId={company.properties.drive_folder_id} />
+            </div>
+        </div>
+    )
+}
+
+const CompanyHeader = ({
+    company,
+    showProjects,
+    setShowProjects,
+}) => {
+    
+    return (
+        <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2 mb-4">
+                <Link className="text-xl font-semibold text-white mr-2"
+                    href={`/portal/${company.id}`}
+                >{company.properties.name}
+                </Link>
+                <div className="opacity-80 text-gray-500 flex items-center space-x-3 hover:opacity-100">
+                    <HubspotLinkButton hubspotId={company.id} />
+                    <DriveLinkButton folderId={company.properties.drive_folder_id} />
+                </div>
+            </div>
+            <button
+                onClick={() => setShowProjects(!showProjects)}
+                className="text-sm font-semibold text-gray-300 hover:text-white"
+            >
+                {showProjects ? "Hide projects" : "Show projects"}
+            </button>
+        </div>
+    )
+}
+
 const ProjectTableHeader = () => {
     return (
         <thead className="bg-gray-800">
             <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">Status</th>
 
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-96">Project Title</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32">Job #</th>
