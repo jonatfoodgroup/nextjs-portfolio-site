@@ -12,6 +12,7 @@ import Breadcrumb from "./Breadcrumb";
 import StatusUpdates from "./StatusUpdates";
 import AddTask from "./AddTask";
 import ProjectResourceLinks from "./ProjectResourceLinks";
+import EditableTitle from "./EditableTitle";
 
 const ProjectPage = ({ project }) => {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
@@ -22,7 +23,8 @@ const ProjectPage = ({ project }) => {
       <div className="bg-gray-800 min-h-screen">
         <Breadcrumb hubspotId={project.hubspotId} />
         <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-regular mb-4 text-white">#{jobNumber} - {project.title}</h2>
+          <EditableTitle project={project} />
+          <p className="text-gray-400 text-sm">Job Number: {jobNumber}</p>
           <div className="flex space-x-4 justify-end">
             <AddTask showAddTaskForm={showAddTaskForm} setShowAddTaskForm={setShowAddTaskForm} />
             <DiscordLinkButton discordChannelId={project.discordChannelId} />
@@ -30,7 +32,7 @@ const ProjectPage = ({ project }) => {
         </div>
         <div className="flex items-start">
           <div className="w-2/3 pr-8">
-          <div className="border-b border-gray-700 pb-4"> 
+          <div className="border-b border-gray-700 pb-8 mb-8"> 
             <EditableDescription project={project} />
             </div>
            <StatusUpdates statuses={project.statuses} project={project} />

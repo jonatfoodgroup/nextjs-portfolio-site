@@ -16,7 +16,7 @@ const StepsList = ({ taskId }) => {
     });
 
     setNewStepName("");
-    setIsAddStepCollapsed(true); // Collapse the form after adding a step
+    // setIsAddStepCollapsed(true); // Collapse the form after adding a step
   };
 
   const handleToggleStep = async (step) => {
@@ -45,11 +45,11 @@ const StepsList = ({ taskId }) => {
         {loading ? (
           <p className="text-gray-500"></p>
         ) : (
-          <ul className="space-y-3 mt-2">
+          <ul className="space-y-1 mt-2">
             {steps.map((step) => (
               <li
                 key={step.id}
-                className="flex items-center justify-between p-2 bg-gray-800 rounded shadow-sm"
+                className="flex items-center justify-between py-1 bg-gray-800 rounded shadow-sm align-middle"
               >
                 <div className="flex items-center">
                   <input

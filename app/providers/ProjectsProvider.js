@@ -4,6 +4,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { collection, query, onSnapshot, where, getDoc, updateDoc, doc } from "firebase/firestore";
 import { firestore } from "../firebase/config";
 import { useHubspot } from "./HubspotProvider";
+import { toast } from "react-hot-toast";
 
 const ProjectsContext = createContext();
 
@@ -84,9 +85,11 @@ export const ProjectsProvider = ({ children, hubspotId }) => {
             await updateDoc(projectRef, updatedFields);
     
             console.log("Project successfully updated:", updatedFields);
+            toast.success("Project updated successfully!");
         } catch (error) {
             console.error("Error updating project:", error.message);
             throw new Error("Failed to update project");
+            toast.error("Failed to update project");
         }
     };
 

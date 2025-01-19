@@ -32,42 +32,40 @@ export default function PortalSelector() {
             })
     }, []);
     return (
-        <div className="">
+        <div className="grid grid-cols-1 gap-4">
             {/* Display projects by company */}
             {companies.map((company) => {
                 const companyProjects = projects.filter((project) => project.hubspotId === company.id);
                 // const [showProjects, setShowProjects] = useState(false);
                 return (
                     <div key={company.id} className="mb-4 p-6 bg-gray-800 rounded-xl border border-gray-700">
-                        <CompanyHeader company={company}  />
-                        <table className="min-w-full divide-y divide-gray-700">
-                            {/* <ProjectTableHeader /> */}
-                            <tbody className="bg-gray-800 divide-y divide-gray-700 align-top">
-                                {companyProjects.map((project) => (
-                                    <tr key={project.id}>
-                                        <td className={`px-6 py-${paddingSize} whitespace-nowrap text-center w-12`}>
-                                            <ProjectStatus status={project.status?.status} />
-                                        </td>
-                                        <td className={`px-6 py-${paddingSize} whitespace-nowrap w-64`}>
-                                            <Link
-                                                href={`/portal/${company.id}/projects/${project.id}`}
-                                                className="text-sm font-semibold text-gray-300 hover:text-white"
-                                            >{project.title}</Link>
-                                        </td>
+                        <CompanyHeader company={company} />
+                        {/* <ProjectTableHeader /> */}
+                        <div className="bg-gray-800 align-top grid grid-cols-1 md:grid-cols-4 gap-4">
+                            {companyProjects.map((project) => (
+                                <div key={project.id} className="border border-gray-700 rounded-xl p-4">
+                                    <div >
+                                        <ProjectStatus status={project.status?.status} />
+                                    </div>
+                                    <div className="py-1">
+                                        <Link
+                                            href={`/portal/${company.id}/projects/${project.id}`}
+                                            className="text-sm font-semibold text-gray-300 hover:text-white"
+                                        >{project.title}</Link>
+                                    </div>
 
-                                        {/* <td className={`px-6 py-${paddingSize} whitespace-nowrap`}>
+                                    {/* <td className={`px-6 py-${paddingSize} whitespace-nowrap`}>
                                             <span className="text-xs text-gray-400">{project.jobNumber.slice(-5)}</span>
                                         </td> */}
-                                        <td className={`px-6 py-${paddingSize} flex-grow`}>
-                                            <StatusUpdate note={project.status?.note} status={project.status?.status} timestamp={project.status?.timestamp} />
-                                        </td>
-                                        <td className={`px-6 py-${paddingSize} text-xl whitespace-nowrap text-center`}>
-                                            <DiscordLinkButton discordChannelId={project.discordChannelId} />
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                    <div >
+                                        <StatusUpdate note={project.status?.note} status={project.status?.status} timestamp={project.status?.timestamp} />
+                                    </div>
+                                    <div className="mt-4 flex">
+                                        <DiscordLinkButton discordChannelId={project.discordChannelId} />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )
             })}
@@ -97,10 +95,10 @@ const CompanyHeader = ({
     showProjects,
     setShowProjects,
 }) => {
-    
+
     return (
-        <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 mb-4">
+        <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-2">
                 <Link className="text-xl font-semibold text-white mr-2"
                     href={`/portal/${company.id}`}
                 >{company.properties.name}
@@ -120,21 +118,6 @@ const CompanyHeader = ({
     )
 }
 
-const ProjectTableHeader = () => {
-    return (
-        <thead className="bg-gray-800">
-            <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">Status</th>
-
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-96">Project Title</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32">Job #</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Note</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32 text-center">Actions</th>
-            </tr>
-        </thead>
-    )
-}
-
 const ProjectStatus = ({ status }) => {
     const badgeStyle = (status) => {
         switch (status) {
@@ -150,7 +133,7 @@ const ProjectStatus = ({ status }) => {
     };
 
     return (
-        <span className={`px-2 py-1 rounded-full text-xs font-medium ${badgeStyle(status)}`}>
+        <span className={`rounded-full text-xs font-medium ${badgeStyle(status)}`}>
             {status || "No status"}
         </span>
     );

@@ -57,7 +57,7 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
 
             <TaskEditableDescription task={task} />
 
-            <div className="mt-6">
+            <div className="mt-6 border-t border-gray-700">
                 <Subtasks parentTaskId={task.id} />
             </div>
 
@@ -122,7 +122,7 @@ const Subtasks = ({ parentTaskId }) => {
                 </ul>
 
                 {/* Add Subtask */}
-                <div className="mt-4 flex items-center space-x-2">
+                <div className="my-6 flex items-center space-x-2 w-full">
                     <input
                         type="text"
                         value={newSubtaskName}

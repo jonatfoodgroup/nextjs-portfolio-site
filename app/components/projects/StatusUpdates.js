@@ -10,7 +10,7 @@ const StatusUpdates = ({ project, statuses = [] }) => (
       {statuses.length === 0 ? (
         <p className="text-sm text-gray-500">No status updates yet.</p>
       ) : (
-        <ul className="space-y-2">
+        <ul className="space-y-2 mt-4">
           {statuses.map((status, index) => (
             <StatusItem key={index} status={status} />
           ))}

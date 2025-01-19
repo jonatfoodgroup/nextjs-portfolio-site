@@ -7,6 +7,14 @@ import { ProjectsProvider } from "../../providers/ProjectsProvider";
 import ProjectsList from "../projects/ProjectsList";
 
 const Sidebar = () => {
+    return (
+        <aside className="w-0 md:w-64 bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto pt-16">
+            <Projects />
+        </aside>
+    );
+};
+
+const Projects = () => {
     const { companies } = useHubspot();
     const [openClients, setOpenClients] = useState({});
     const [clients, setClients] = useState([]);
@@ -41,8 +49,7 @@ const Sidebar = () => {
         return null;
     }
     return (
-        <aside className="w-64 bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto">
-            <div className="p-4 text-xl font-bold">Clients</div>
+        <>
             <ul className="space-y-2 mt-2">
                 {clients.map((client) => (
                     <li key={client.id} className="whitespace-nowrap">
@@ -68,7 +75,7 @@ const Sidebar = () => {
                     </li>
                 ))}
             </ul>
-        </aside>
+        </>
     );
 };
 

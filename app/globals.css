@@ -533,3 +533,7 @@ input:hover {
 ::-webkit-scrollbar-vertical {
   width: 6px; /* Width for vertical scrollbars */
 }
+
+html body.dark {
+  @apply dark:bg-gray-800 dark:text-gray-300;
+}
