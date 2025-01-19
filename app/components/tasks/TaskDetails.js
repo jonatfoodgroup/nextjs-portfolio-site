@@ -33,43 +33,51 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
     };
 
     return (
-        <div>
-            <div className="mt-4 flex items-center space-x-2">
-                <TaskTimer task={task} updateTask={updateTask} project={project} />
-                <MarkAsBountyButton taskId={task.id} isBounty={task.isBounty} />
-            </div>
+        <div className="space-y-6">
+  {/* Action Row */}
+  <div className="flex items-center justify-between">
+    {/* Left Section */}
+    <div className="flex items-center space-x-4">
+      <TaskTimer task={task} updateTask={updateTask} project={project} />
+      <MarkAsBountyButton taskId={task.id} isBounty={task.isBounty} />
+    </div>
 
-            {/* Task Status Dropdown */}
-            <div className="mt-4">
-                <label className="text-gray-400 text-sm font-medium mr-2">
-                    Status:
-                </label>
-                <select
-                    value={status}
-                    onChange={handleStatusChange}
-                    className="p-2 border rounded bg-gray-900 text-white border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                >
-                    <option value="pending">Pending</option>
-                    <option value="in-progress">In Progress</option>
-                    <option value="completed">Completed</option>
-                </select>
-            </div>
+    {/* Right Section: Status Dropdown */}
+    <div className="flex items-center space-x-2">
+      <label className="text-gray-400 text-sm font-medium">Status:</label>
+      <select
+        value={status}
+        onChange={handleStatusChange}
+        className="px-2 py-1 bg-gray-900 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+      >
+        <option value="pending">Pending</option>
+        <option value="in-progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
+  </div>
 
-            <TaskEditableDescription task={task} />
+  {/* Editable Description */}
+  <TaskEditableDescription task={task} />
 
-            <div className="mt-6 border-t border-gray-700">
-                <Subtasks parentTaskId={task.id} />
-            </div>
+  {/* Subtasks Section */}
+  <div className="mt-6 border-t border-gray-700 pt-4">
+    <Subtasks parentTaskId={task.id} />
+  </div>
 
-            {/* Task id */}
-            <p className="text-gray-600 text-xs inline-flex space-x-2">
-                <span>Task ID: </span>
-                <span>{task.id}</span>
-                <button onClick={copyId} className="text-gray-600">
-                    <Icon icon="mdi:content-copy" className="w-4 h-4" />
-                </button>
-            </p>
-        </div>
+  {/* Task ID Section */}
+  <div className="flex items-center space-x-2 text-xs text-gray-600">
+    <span>Task ID:</span>
+    <span>{task.id}</span>
+    <button
+      onClick={copyId}
+      className="text-gray-500 hover:text-gray-400 transition"
+      aria-label="Copy Task ID"
+    >
+      <Icon icon="mdi:content-copy" className="w-4 h-4" />
+    </button>
+  </div>
+</div>
     );
 };
 
@@ -121,18 +129,22 @@ const Subtasks = ({ parentTaskId }) => {
                         ))}
                 </ul>
 
-                {/* Add Subtask */}
-                <div className="my-6 flex items-center space-x-2 w-full">
+                {/* Add Subtask Input */}
+                <div className="my-6 flex flex-row items-center w-full bg-gray-800 rounded-lg p-6 space-x-4">
+                    {/* Subtask Input */}
                     <input
                         type="text"
                         value={newSubtaskName}
                         onChange={(e) => setNewSubtaskName(e.target.value)}
-                        placeholder="New Subtask Name"
-                        className="p-2 border rounded bg-gray-900 text-white w-full border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                        placeholder="Enter subtask name..."
+                        className="flex-grow p-3 bg-gray-900 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                     />
+
+                    {/* Add Button */}
                     <Button
-                        variant="outline"
+                        variant="solid"
                         onClick={handleAddSubtask}
+                        className="bg-green-500 text-white px-8 py-3 rounded-lg shadow-md hover:bg-green-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50"
                     >
                         Add Subtask
                     </Button>
