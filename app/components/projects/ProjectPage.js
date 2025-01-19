@@ -30,7 +30,7 @@ const ProjectPage = ({ project }) => {
             <DiscordLinkButton discordChannelId={project.discordChannelId} />
           </div>
         </div>
-        <div className="flex items-start">
+        <div className="flex items-start flex-col md:flex-row">
           <div className="w-full md:w-2/3 pr-0 md:pr-8">
           <div className="border-b border-gray-700 pb-8 mb-8"> 
             <EditableDescription project={project} />
