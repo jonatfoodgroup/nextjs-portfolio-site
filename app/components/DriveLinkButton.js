@@ -16,7 +16,7 @@ const DriveLinkButton = ({ folderId }) => {
   return (
     <button
       onClick={() => window.open(driveUrl, "_blank")}
-      className="p-0"
+      className=""
     >
       <Icon icon="simple-icons:googledrive" />
     </button>

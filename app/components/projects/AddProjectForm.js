@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import { useProjects } from "../../providers/ProjectsProvider";
+import Button from "../Button";
 
-const AddProjectForm = () => {
+const AddProjectForm = ({ hubspotId }) => {
   const { addProject } = useProjects();
   const [title, setTitle] = useState("");
   const [owner, setOwner] = useState("");
@@ -16,7 +17,7 @@ const AddProjectForm = () => {
     setLoading(true);
 
     try {
-      await addProject({ title, owner, dueDate, notes });
+      await addProject({ title, owner, dueDate, notes, hubspotId });
       setTitle("");
       setOwner("");
       setDueDate("");
@@ -30,12 +31,17 @@ const AddProjectForm = () => {
 
   return (
     <form
-      className="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto space-y-4"
+      className="bg-gray-800 p-4 rounded-lg shadow-md mx-auto space-y-4"
       onSubmit={handleSubmit}
     >
-      <h2 className="text-xl font-bold text-gray-700">Add a New Project</h2>
-      <div className="flex flex-col">
-        <label htmlFor="title" className="text-sm font-medium text-gray-600">
+      {/* <h2 className="text-2xl font-semibold text-gray-200">Add a New Project</h2> */}
+
+      {/* Project Title */}
+      <div className="space-y-1">
+        <label
+          htmlFor="title"
+          className="block text-sm font-medium text-gray-400"
+        >
           Project Title
         </label>
         <input
@@ -44,12 +50,17 @@ const AddProjectForm = () => {
           placeholder="Enter project title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="w-full p-3 rounded-md bg-gray-900 text-gray-200 border border-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="owner" className="text-sm font-medium text-gray-600">
+
+      {/* Owner */}
+      <div className="space-y-1">
+        <label
+          htmlFor="owner"
+          className="block text-sm font-medium text-gray-400"
+        >
           Owner
         </label>
         <input
@@ -58,11 +69,16 @@ const AddProjectForm = () => {
           placeholder="Enter project owner"
           value={owner}
           onChange={(e) => setOwner(e.target.value)}
-          className="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="w-full p-3 rounded-md bg-gray-900 text-gray-200 border border-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="dueDate" className="text-sm font-medium text-gray-600">
+
+      {/* Due Date */}
+      <div className="space-y-1">
+        <label
+          htmlFor="dueDate"
+          className="block text-sm font-medium text-gray-400"
+        >
           Due Date
         </label>
         <input
@@ -70,11 +86,16 @@ const AddProjectForm = () => {
           id="dueDate"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
-          className="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="w-full p-3 rounded-md bg-gray-900 text-gray-200 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
-      <div className="flex flex-col">
-        <label htmlFor="notes" className="text-sm font-medium text-gray-600">
+
+      {/* Notes */}
+      <div className="space-y-1">
+        <label
+          htmlFor="notes"
+          className="block text-sm font-medium text-gray-400"
+        >
           Notes
         </label>
         <textarea
@@ -82,20 +103,18 @@ const AddProjectForm = () => {
           placeholder="Enter additional notes"
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          className="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="w-full p-3 h-28 rounded-md bg-gray-900 text-gray-200 border border-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         ></textarea>
       </div>
-      <button
-        className={`w-full py-2 px-4 text-white font-medium rounded-md ${
-          loading
-            ? "bg-gray-400 cursor-not-allowed"
-            : "bg-blue-600 hover:bg-blue-700"
-        }`}
-        type="submit"
-        disabled={loading}
+
+      {/* Submit Button */}
+      <Button
+        onClick={handleSubmit}
+        variant="primary"
+        size="lg"
       >
-        {loading ? "Adding..." : "Add Project"}
-      </button>
+        {loading ? "Adding Project..." : "Add Project"}
+      </Button>
     </form>
   );
 };

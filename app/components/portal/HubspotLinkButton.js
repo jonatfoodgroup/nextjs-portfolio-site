@@ -3,13 +3,11 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 const HubspotLinkButton = ({ hubspotId }) => {
     return (
-        <a
-            href={`https://app.hubspot.com/contacts/22555624/record/0-2/${hubspotId}`}
-            target="_blank"
-            rel="noopener noreferrer"
+        <button
+            onClick={() => window.open(`https://app.hubspot.com/contacts/22555624/record/0-2/${hubspotId}`, "_blank")}
         >
             <Icon icon="simple-icons:hubspot" />
-        </a>
+        </button>
     );
 }
 
