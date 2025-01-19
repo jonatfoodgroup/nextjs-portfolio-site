@@ -5,14 +5,27 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import DropdownMenu from "./Header/DropdownMenu";
+import Button from "../Button";
 
-const PortalHeader = () => {
+const PortalHeader = ({
+    setShowSidebar,
+    showSidebar
+}) => {
     return (
         <header className="bg-gray-900 text-white px-4 py-2 fixed top-0 left-0 w-full z-50 shadow-md">
             <div className="flex justify-between items-center">
-                <Link href="/portal" className="text-xl font-semibold">
-                    StrongStart
-                </Link>
+                <div className="flex items-center space-x-4">
+                    <Button
+                        onClick={() => setShowSidebar(!showSidebar)}
+                        variant="outline"
+                        icon="carbon:menu"
+                    >
+                        Menu
+                    </Button>
+                    <Link href="/portal" className="text-xl font-semibold">
+                        StrongStart
+                    </Link>
+                </div>
                 <ProjectSearch />
                 <nav className="flex items-center space-x-4">
                     <LoginButton />
