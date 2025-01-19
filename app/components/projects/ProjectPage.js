@@ -22,7 +22,7 @@ const ProjectPage = ({ project }) => {
     <TasksProvider projectId={project.id}>
       <div className="bg-gray-800 min-h-screen">
         <Breadcrumb hubspotId={project.hubspotId} />
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center md:flex-row flex-col">
           <EditableTitle project={project} />
           <p className="text-gray-400 text-sm">Job Number: {jobNumber}</p>
           <div className="flex space-x-4 justify-end">
@@ -31,14 +31,14 @@ const ProjectPage = ({ project }) => {
           </div>
         </div>
         <div className="flex items-start">
-          <div className="w-2/3 pr-8">
+          <div className="w-full md:w-2/3 pr-0 md:pr-8">
           <div className="border-b border-gray-700 pb-8 mb-8"> 
             <EditableDescription project={project} />
             </div>
            <StatusUpdates statuses={project.statuses} project={project} />
             
           </div>
-          <div className="w-1/3">
+          <div className="w-full md:w-1/3">
             <div className="mt-4">
               {showAddTaskForm && <AddTaskForm projectId={project.id} />}
               <ProjectTasks project={project} />

@@ -81,7 +81,7 @@ const ProjectSearch = () => {
     }, []);
 
     return (
-        <div className="relative w-full max-w-md mx-auto">
+        <div className="relative w-full max-w-md mx-auto hidden md:block">
             <input
                 type="text"
                 ref={searchRef}
