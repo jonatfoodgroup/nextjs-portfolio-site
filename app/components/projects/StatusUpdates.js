@@ -8,7 +8,7 @@ const StatusUpdates = ({ project, statuses = [] }) => (
       </div>
       <StatusUpdateComponent project={project} projectId={project.id} hubspotId={project.hubspotId} />
       {statuses.length === 0 ? (
-        <p className="text-sm text-gray-500">No status updates yet.</p>
+        <p className="text-sm text-gray-500 mt-4">No status updates yet.</p>
       ) : (
         <ul className="space-y-2 mt-4">
           {statuses.map((status, index) => (
