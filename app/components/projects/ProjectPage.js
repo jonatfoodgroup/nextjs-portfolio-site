@@ -13,6 +13,7 @@ import StatusUpdates from "./StatusUpdates";
 import AddTask from "./AddTask";
 import ProjectResourceLinks from "./ProjectResourceLinks";
 import EditableTitle from "./EditableTitle";
+import AssignPM from "./AssignPM";
 
 const ProjectPage = ({ project }) => {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
@@ -35,6 +36,8 @@ const ProjectPage = ({ project }) => {
           <div className="border-b border-gray-700 pb-8 mb-8"> 
             <EditableDescription project={project} />
             </div>
+            {/* Assign PM Component */}
+      <AssignPM projectId={project.id} currentPM={project.projectManager} />
            <StatusUpdates statuses={project.statuses} project={project} />
             
           </div>

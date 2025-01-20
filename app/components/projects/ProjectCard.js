@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import DiscordLinkButton from "../DiscordLinkButton";
+import PMAvatar from "./PMAvatar";
 
 
 const ProjectCard = ({ project, company, showClient = false }) => {
@@ -14,12 +15,14 @@ const ProjectCard = ({ project, company, showClient = false }) => {
         );
     }
 
+    const pm = project.projectManager;
+
     return (
         <Link
             href={`/portal/${company.id}/projects/${project.id}`}
             className={`border border-gray-700 rounded-xl p-4 ${project.status?.status === "Off track"
-                    ? "border-red-500"
-                    : "border-gray-800 bg-gray-800"
+                ? "border-red-500"
+                : "border-gray-800 bg-gray-800"
                 }`}
         >
             {/* Project Status */}
@@ -50,9 +53,13 @@ const ProjectCard = ({ project, company, showClient = false }) => {
                 />
             </div>
 
-            {/* Discord Button */}
-            <div className="mt-4 flex text-xl">
-                <DiscordLinkButton discordChannelId={project.discordChannelId} />
+            <div className="flex items-center justify-between mt-6 align-middle">
+                {/* Project Manager */}
+                <PMAvatar pmId={pm?.id} />
+                {/* Discord Button */}
+                <div className="text-xl">
+                    <DiscordLinkButton discordChannelId={project.discordChannelId} />
+                </div>
             </div>
         </Link>
     );
