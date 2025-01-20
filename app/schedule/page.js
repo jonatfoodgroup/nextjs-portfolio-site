@@ -3,6 +3,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useHubspot } from "../providers/HubspotProvider";
 import Select from "react-select";
 import ProjectCard from "../components/projects/ProjectCard";
+import Button from "../components/Button";
 
 // Custom styles for React Select
 const customStyles = {
@@ -41,6 +42,7 @@ export default function SchedulePage() {
     const { companies = [] } = useHubspot();
     const [projects, setProjects] = useState([]);
     const [schedule, setSchedule] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // Fetch projects and attach company info
     useEffect(() => {
@@ -81,6 +83,8 @@ export default function SchedulePage() {
             setSchedule(defaultSchedule);
             localStorage.setItem("dailySchedule", JSON.stringify(defaultSchedule));
         }
+
+        setLoading(false);
     }, []);
 
     // Save schedule to localStorage whenever it updates
@@ -130,9 +134,16 @@ export default function SchedulePage() {
             }));
     }, [projects]);
 
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <p className="text-white">Loading...</p>
+            </div>
+        );
+    }
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-gray-800 p-4 min-h-screen">
-            <div className="w-full md:col-span-1 bg-gray-900 p-4 rounded-md">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-gray-800 min-h-screen">
+            <div className="w-full md:col-span-1 bg-gray-900 p-6 rounded-md">
                 <Scheduler
                     schedule={schedule}
                     projectOptions={projectOptions}
@@ -153,7 +164,7 @@ const Scheduler = ({ schedule, projectOptions, handleProjectChange }) => {
             <div className="space-y-4">
                 {schedule.map((block, index) => (
                     <div key={index} className="flex items-center space-x-4">
-                        <span className="text-white">{block.time}</span>
+                        <span className="text-gray-600">{block.time}</span>
                         <div className="flex-1">
                             <Select
                                 options={projectOptions}
@@ -208,23 +219,42 @@ const Scheduler = ({ schedule, projectOptions, handleProjectChange }) => {
     );
 };
 const ProjectQueue = ({ schedule, projectOptions }) => {
+    const [view, setView] = useState("list");
+
     // Match the selected projects based on projectId in schedule
     const selectedProjects = schedule
         .map((block) => projectOptions.find((option) => option.value === block.projectId))
         .filter(Boolean); // Remove null or undefined values
 
     return (
-        <div className="bg-gray-900 p-4 rounded-md">
-            <h2 className="text-white text-lg font-bold mb-4">Project Queue</h2>
-            <div className="grid grid-cols-1 gap-4">
-            {selectedProjects.length > 0 ? (
-                selectedProjects.map((project, index) => (
-                    <ProjectCard key={index} project={project.project} company={project.company} />
-                ))
-            ) : (
-                <p className="text-gray-400">No projects selected yet.</p>
-            )}
+        <div className="bg-gray-900 p-6 rounded-md">
+            <div className="flex items-center justify-between mb-4">
+                <h2 className="text-white text-lg font-bold">Project Queue</h2>
+                <div className="flex items-center space-x-4">
+                    <Button
+                        onClick={() => setView("list")}
+                        icon={"carbon:grid-view-16"}
+                    >
+                        List
+                    </Button>
+                    <Button
+                        onClick={() => setView("grid")}
+                        icon={"carbon:grid-view-16"}
+                    >
+                        Grid
+                    </Button>
+
+                </div>
             </div>
-        </div>
-    );
+                <div className={`grid grid-cols-${(view == 'list') ? "1" : "3"} gap-6`}>
+                    {selectedProjects.length > 0 ? (
+                        selectedProjects.map((project, index) => (
+                            <ProjectCard key={index} project={project.project} company={project.company} />
+                        ))
+                    ) : (
+                        <p className="text-gray-400">No projects selected yet.</p>
+                    )}
+                </div>
+            </div>
+            );
 };

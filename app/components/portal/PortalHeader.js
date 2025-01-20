@@ -28,6 +28,12 @@ const PortalHeader = ({
                 </div>
                 <ProjectSearch />
                 <nav className="flex items-center space-x-4">
+                    <Link
+                    href="/schedule"
+                    >
+                        <Button icon={"carbon:calendar"} variant="outline">
+                        Today's Schedule
+                        </Button></Link>
                     <LoginButton />
                 </nav>
             </div>
