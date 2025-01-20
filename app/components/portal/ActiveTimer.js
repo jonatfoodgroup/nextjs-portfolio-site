@@ -41,7 +41,7 @@ const ActiveTimer = () => {
     }
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 bg-orange text-gray-900 p-4 shadow-md">
+        <div className="fixed bottom-0 left-0 right-0 bg-orange text-gray-900 p-4 shadow-md z-50">
             <div className="flex justify-between items-center">
                 <div>
                     <p className="text-sm font-semibold">Active Timer</p>

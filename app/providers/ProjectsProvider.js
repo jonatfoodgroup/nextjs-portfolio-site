@@ -29,13 +29,15 @@ export const ProjectsProvider = ({ children, hubspotId }) => {
     }, []);
 
     const addProject = async (project) => {
-
+      console.log('addProject', project);
         project.hubspotId = hubspotId;
 
         let discord_category_id = "";
+        let parentFolderId = "";
 
         if (hubspotId) {
             const company = await fetchCompanyById(hubspotId);
+            parentFolderId = company?.properties.drive_folder_id;
             discord_category_id = company?.properties.discord_category_id;   
         }
 
@@ -43,13 +45,20 @@ export const ProjectsProvider = ({ children, hubspotId }) => {
             throw new Error("Discord category ID not found for this company.");
         }
 
+        if (!parentFolderId) {
+            throw new Error("Parent folder ID not found for this company.");
+        }
+
         project.discord_category_id = discord_category_id;
+        project.parent_folder_id = parentFolderId;
         try {
             const response = await fetch("/api/projects/add-project", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(project),
             });
+
+            console.log('response', response);
 
             if (!response.ok) {
                 throw new Error("Failed to create project");

@@ -7,6 +7,7 @@ import ProjectCard from "../projects/ProjectCard"; // Import ProjectCard
 import Modal from "../Modal"; // Import Modal
 import AddProjectForm from "../projects/AddProjectForm";
 import Button from "../Button";
+import TimelineView from "../projects/Timeline";
 
 export default function PortalPage({ hubspotId }) {
     const [company, setCompany] = useState(null);
@@ -80,6 +81,8 @@ export default function PortalPage({ hubspotId }) {
                             </div>
                         </div>
                     
+
+                    <TimelineView projects={projects} />
 
                     {/* Modal for Adding Project */}
                     <Modal

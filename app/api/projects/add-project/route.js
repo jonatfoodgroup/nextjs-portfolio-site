@@ -6,9 +6,11 @@ import {createDiscordChannel} from "../../../utils/discord";
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { title, owner, dueDate, notes, hubspotId, discord_category_id } = body;
+    const { title, owner, dueDate, notes, hubspotId, discord_category_id, parent_folder_id } = body;
 
-    if (!title || !hubspotId || !discord_category_id) {
+    console.log("Creating project with title:", title);
+
+    if (!title || !hubspotId || !discord_category_id || !parent_folder_id) {
       return NextResponse.json({ error: "Missing required fields: title or hubspotId" }, { status: 400 });
     }
 
@@ -38,6 +40,26 @@ export async function POST(req) {
       { merge: true } // Ensure we don't overwrite other years
     );
 
+
+    console.log("Creating project with job number:", jobNumber);
+    console.log("The title is:", title);
+    // Step 2: Create Google Drive Folder
+    const folderResponse = await fetch(`${process.env.BASE_URL}/api/google-drive/create-folder`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        folderName: `${jobNumber.slice(-5)} - ${title}`, // Format: "00001 - Project Title"
+        parentFolderId: parent_folder_id,
+      }),
+    });
+
+    if (!folderResponse.ok) {
+      throw new Error("Failed to create Google Drive folder");
+    }
+
+    const { folderId } = await folderResponse.json();
+
+
     // get only the second part of the job number
     const jobNumberArray = jobNumber.split("-");
     const jobNumberPart = jobNumberArray[1];
@@ -51,6 +73,7 @@ export async function POST(req) {
       title,
       jobNumber,
       hubspotId,
+      googleDriveFolderId: folderId,
         discordChannelId,
       owner: owner || "Unassigned", // Default if no owner
       status: "Not Started", // Default status
