@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useTasks } from "../../providers/TasksProvider";
 import Modal from "../Modal";
 import TaskDetails from "./TaskDetails";
+import AssigneeAvatar from "./AssigneeAvatar";
 
 const ProjectTasks = ({ project }) => {
   const { tasks, loading, updateTask } = useTasks();
@@ -44,11 +45,12 @@ const ProjectTasks = ({ project }) => {
             >
               <div className="flex justify-between items-center">
                 <p className="font-regular text-lg text-gray-400 hover:text-white">{task.name}</p>
+                <AssigneeAvatar assignee={task.assignee} />
                 <p
                   className={`text-sm px-2 py-1 rounded ${
-                    task.status === "Completed"
+                    task.status === "completed"
                       ? "bg-green-100 text-green-800"
-                      : task.status === "In Progress"
+                      : task.status === "in progress"
                       ? "bg-yellow-100 text-yellow-800"
                       : "bg-gray-800 text-gray-500"
                   }`}

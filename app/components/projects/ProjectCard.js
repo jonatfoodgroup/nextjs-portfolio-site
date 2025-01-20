@@ -28,7 +28,7 @@ const ProjectCard = ({ project, company, showClient = false }) => {
             {/* Project Status */}
             <div className="flex items-center justify-between">
                 <ProjectStatus status={project.status?.status} />
-                <div className="text-xs text-gray-300 bg-gray-700 px-2 py-1 rounded">
+                <div className="text-xs text-gray-600 bg-transparent border border-gray-800 px-2 py-1 rounded">
                     {/* Display job number if available */}
                     {/* {project.jobNumber ? project.jobNumber.slice(-5) : "N/A"} */}
                     {company.properties.name}
@@ -88,9 +88,9 @@ const ProjectStatus = ({ status }) => {
 
 const StatusUpdate = ({ note, timestamp, status }) => {
     return (
-        <div className="flex flex-col space-y-1">
+        <div className="flex flex-col space-y-1 mt-1">
             <span
-                className={`text-sm ${(status === 'Off track') ? 'text-red-600 font-semibold' : 'text-gray-400'}`}
+                className={`text-sm ${(status === 'Off track') ? 'text-red-600 font-semibold' : 'text-gray-400'} break-words`}
             >{note}</span>
         </div>
     );

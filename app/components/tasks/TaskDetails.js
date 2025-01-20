@@ -11,6 +11,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import TaskEditableDescription from "./TaskEditableDescription";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
+import Assignee from "./Assignee";
 
 const TaskDetails = ({ task, updateTask, addTask, project }) => {
     const [description, setDescription] = useState(task.description || "");
@@ -55,10 +56,14 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
         <option value="completed">Completed</option>
       </select>
     </div>
+
   </div>
+
 
   {/* Editable Description */}
   <TaskEditableDescription task={task} />
+
+  <Assignee task={task} />
 
   {/* Subtasks Section */}
   <div className="mt-6 border-t border-gray-700 pt-4">
