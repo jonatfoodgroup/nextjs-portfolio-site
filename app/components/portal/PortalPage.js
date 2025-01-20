@@ -28,6 +28,8 @@ export default function PortalPage({ hubspotId }) {
             .then((res) => res.json())
             .then((data) => {
                 const filteredProjects = data.filter((project) => project.hubspotId === hubspotId);
+                // order by name
+                filteredProjects.sort((a, b) => a.title.localeCompare(b.title));
                 setProjects(filteredProjects);
             });
     }, [hubspotId]);
@@ -60,7 +62,7 @@ export default function PortalPage({ hubspotId }) {
 
                     {/* Projects Section */}
                     <ProjectsProvider hubspotId={hubspotId}>
-                        <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                        <div className="bg-gray-900 p-6 rounded-lg border border-gray-700">
                             <div className="flex items-center justify-between mb-4">
                                 <h2 className="text-xl font-regular text-gray-400">Projects</h2>
                                 <Button
@@ -71,7 +73,7 @@ export default function PortalPage({ hubspotId }) {
                                 </Button>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                                 {projects.map((project) => (
                                     <ProjectCard key={project.id} project={project} company={company} />
                                 ))}

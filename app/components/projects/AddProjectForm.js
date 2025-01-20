@@ -9,7 +9,7 @@ const AddProjectForm = ({ hubspotId }) => {
   const [title, setTitle] = useState("");
   const [owner, setOwner] = useState("");
   const [dueDate, setDueDate] = useState("");
-  const [notes, setNotes] = useState("");
+  const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -17,11 +17,11 @@ const AddProjectForm = ({ hubspotId }) => {
     setLoading(true);
 
     try {
-      await addProject({ title, owner, dueDate, notes, hubspotId });
+      await addProject({ title, owner, dueDate, description, hubspotId });
       setTitle("");
       setOwner("");
       setDueDate("");
-      setNotes("");
+      setDescription("");
     } catch (error) {
       console.error("Failed to add project:", error.message);
     } finally {
@@ -93,16 +93,16 @@ const AddProjectForm = ({ hubspotId }) => {
       {/* Notes */}
       <div className="space-y-1">
         <label
-          htmlFor="notes"
+          htmlFor="description"
           className="block text-sm font-medium text-gray-400"
         >
-          Notes
+          Description
         </label>
         <textarea
-          id="notes"
+          id="description"
           placeholder="Enter additional notes"
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           className="w-full p-3 h-28 rounded-md bg-gray-900 text-gray-200 border border-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         ></textarea>
       </div>

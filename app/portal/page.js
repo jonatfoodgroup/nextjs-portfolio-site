@@ -31,10 +31,10 @@ export default function PortalSelector() {
                 const companyProjects = projects.filter((project) => project.hubspotId === company.id);
                 // const [showProjects, setShowProjects] = useState(false);
                 return (
-                    <div key={company.id} className="mb-4 p-6 bg-gray-800 rounded-xl border border-gray-700">
+                    <div key={company.id} className="p-6 bg-gray-900 rounded-xl border border-gray-700">
                         <CompanyHeader company={company} />
                         {/* <ProjectTableHeader /> */}
-                        <div className="bg-gray-800 align-top grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div className="bg-gray-900 align-top grid grid-cols-1 md:grid-cols-6 gap-4">
                             {companyProjects.map((project) => (
                                 <ProjectCard key={project.id} project={project} company={company} />
                             ))}
@@ -70,7 +70,7 @@ const CompanyHeader = ({
 }) => {
 
     return (
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-2">
                 <Link className="text-xl font-semibold text-white mr-2"
                     href={`/portal/${company.id}`}

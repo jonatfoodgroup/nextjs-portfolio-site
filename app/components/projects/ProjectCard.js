@@ -4,30 +4,49 @@ import Link from "next/link";
 import DiscordLinkButton from "../DiscordLinkButton";
 
 
-const ProjectCard = ({ project, company }) => {
+const ProjectCard = ({ project, company, showClient = false }) => {
+    // Ensure project and company exist
+    if (!project || !company) {
+        return (
+            <div className="border border-gray-700 rounded-xl p-4 bg-gray-800">
+                <p className="text-gray-400">Loading project details...</p>
+            </div>
+        );
+    }
+
     return (
-        <div className="border border-gray-700 rounded-xl p-4 bg-gray-800">
+        <Link
+            href={`/portal/${company.id}/projects/${project.id}`}
+            className={`border border-gray-700 rounded-xl p-4 ${project.status?.status === "Off track"
+                    ? "border-red-500"
+                    : "border-gray-800 bg-gray-800"
+                }`}
+        >
             {/* Project Status */}
-            <div>
+            <div className="flex items-center justify-between">
                 <ProjectStatus status={project.status?.status} />
+                <div className="text-xs text-gray-300 bg-gray-700 px-2 py-1 rounded">
+                    {/* Display job number if available */}
+                    {/* {project.jobNumber ? project.jobNumber.slice(-5) : "N/A"} */}
+                    {company.properties.name}
+                </div>
             </div>
 
             {/* Project Title */}
             <div className="pt-2 pb-1">
-                <Link
-                    href={`/portal/${company.id}/projects/${project.id}`}
+                <h3
                     className="text-md font-semibold text-gray-300 hover:text-white"
                 >
-                    {project.title}
-                </Link>
+                    {project.title || "Untitled Project"}
+                </h3>
             </div>
 
             {/* Status Update */}
             <div>
-                <StatusUpdate 
-                    note={project.status?.note} 
-                    status={project.status?.status} 
-                    timestamp={project.status?.timestamp} 
+                <StatusUpdate
+                    note={project.status?.note}
+                    status={project.status?.status}
+                    timestamp={project.status?.timestamp}
                 />
             </div>
 
@@ -35,7 +54,7 @@ const ProjectCard = ({ project, company }) => {
             <div className="mt-4 flex text-xl">
                 <DiscordLinkButton discordChannelId={project.discordChannelId} />
             </div>
-        </div>
+        </Link>
     );
 };
 
