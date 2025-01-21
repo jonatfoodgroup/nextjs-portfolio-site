@@ -37,6 +37,8 @@ const ContentKanban = ({ columnsData, onDragEnd }) => {
                 iconType = "mdi:help-circle-outline"; // Default/unknown type icon
         }
 
+        item.title = item.name;
+
         return (
             <>
             <div className="flex items-center gap-2 mb-2">
@@ -47,7 +49,7 @@ const ContentKanban = ({ columnsData, onDragEnd }) => {
                     height={24}
                 />
                 <strong className="text-gray-200 text-sm font-semibold flex-grow">
-                    {item.title || item.name}
+                    {item.title}
                 </strong>
             </div>
             <p className="text-sm text-gray-400">{item.description}</p>

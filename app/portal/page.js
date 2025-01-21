@@ -5,6 +5,7 @@ import DriveLinkButton from "../components/DriveLinkButton";
 import HubspotLinkButton from "../components/portal/HubspotLinkButton";
 import Link from "next/link";
 import ProjectCard from "../components/projects/ProjectCard";
+import Button from "../components/Button";
 
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
@@ -79,6 +80,11 @@ const CompanyHeader = ({
                 <div className="opacity-80 text-gray-500 flex items-center space-x-3 hover:opacity-100">
                     <HubspotLinkButton hubspotId={company.id} />
                     <DriveLinkButton folderId={company.properties.drive_folder_id} />
+                    <Button>
+                        <Link href={`/portal/${company.id}/content`}>
+                            Content
+                        </Link>
+                    </Button>
                 </div>
             </div>
             <button

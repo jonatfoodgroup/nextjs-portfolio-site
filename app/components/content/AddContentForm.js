@@ -41,7 +41,6 @@ const AddContentForm = ({ onClose }) => {
 
     return (
         <form onSubmit={handleSubmit} className="p-4 bg-gray-800 rounded-lg shadow-md">
-
             <div className="mb-4">
                 <label htmlFor="title" className="block text-gray-400 mb-1">
                     Title

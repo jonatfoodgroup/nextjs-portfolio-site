@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useContent } from "../../providers/ContentProvider";
 
-const ContentDetails = ({ item, onSave }) => {
-    const { deleteContent } = useContent();
+const ContentDetails = ({ item }) => {
+    const { deleteContent, updateContent } = useContent();
     const [title, setTitle] = useState(item?.title || "");
     const [stage, setStage] = useState(item?.stage || "Unassigned");
     const [type, setType] = useState(item?.type || "Article");
@@ -11,19 +11,34 @@ const ContentDetails = ({ item, onSave }) => {
     const [content, setContent] = useState(item?.content || "");
 
     const handleSave = () => {
-        if (onSave) {
-            onSave({ ...item, title, type, stage, content });
-        }
+        console.log('handleSave', item.id, title, stage, type, description, content);
+        updateContent(item.id, {
+            title,
+            stage,
+            type,
+            description,
+            content,
+        });
+
+        console.log('post save', item.id, title, stage, type, description, content);
     };
 
     const handleDelete = () => {
         window.confirm("Are you sure you want to delete this item?") && deleteContent(item.id);
     };
 
+    useEffect(() => {
+        console.log(stage);
+    }, [stage]);
+
     // Update state when the `item` prop changes
     useEffect(() => {
+        if (!item) return;
+        if (title) return;
         if (item) {
-            setTitle(item.name || "");
+
+            console.log('item loaded', item);
+            setTitle(item.title || "");
             setDescription(item.description || "");
             setStage(item.stage || "Unassigned");
             setType(item.type || "Article");
@@ -42,10 +57,10 @@ const ContentDetails = ({ item, onSave }) => {
                     onChange={(e) => setStage(e.target.value)}
                     className="bg-gray-700 text-gray-200 rounded-md px-3 py-2"
                 >
-                    <option value="Idea">Idea</option>
-                    <option value="Draft">Draft</option>
-                    <option value="Review">Review</option>
-                    <option value="Published">Published</option>
+                    <option value="idea">Idea</option>
+                    <option value="draft">Draft</option>
+                    <option value="review">Review</option>
+                    <option value="published">Published</option>
                 </select>
             </div>
 
