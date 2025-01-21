@@ -15,6 +15,7 @@ import ProjectResourceLinks from "./ProjectResourceLinks";
 import EditableTitle from "./EditableTitle";
 import AssignPM from "./AssignPM";
 import DriveLinkButton from "./DriveFolderLink";
+import TaskKanban from "../tasks/TaskKanban";
 
 const ProjectPage = ({ project }) => {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
@@ -41,6 +42,10 @@ const ProjectPage = ({ project }) => {
             {/* Assign PM Component */}
             <AssignPM projectId={project.id} currentPM={project.projectManager} />
             <StatusUpdates statuses={project.statuses} project={project} />
+
+            <div className="mt-8">
+          <TaskKanban />
+        </div>
           </div>
           <div className="w-full md:w-1/3">
             <div className="mt-4">
@@ -50,8 +55,11 @@ const ProjectPage = ({ project }) => {
             <div className="mt-4">
               <ProjectResourceLinks projectId={project.id} links={project.resourceLinks} />
             </div>
+            
           </div>
         </div>
+
+        
       </div>
     </TasksProvider>
   );

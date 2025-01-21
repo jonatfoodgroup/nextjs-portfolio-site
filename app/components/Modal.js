@@ -36,7 +36,7 @@ export default function Modal({ isOpen, onClose, title, children, footer }) {
       >
         {/* Header */}
         <div className="flex items-center justify-between sticky top-0 bg-gray-800 z-10 p-4 border-b border-gray-700">
-          <h3 className="text-xl md:text-2xl font-regular text-gray-300">{title}</h3>
+          <h3 className="text-xl md:text-3xl font-regular text-gray-300">{title}</h3>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600"

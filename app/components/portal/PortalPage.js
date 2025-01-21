@@ -8,6 +8,7 @@ import Modal from "../Modal"; // Import Modal
 import AddProjectForm from "../projects/AddProjectForm";
 import Button from "../Button";
 import TimelineView from "../projects/Timeline";
+import Link from "next/link";
 
 export default function PortalPage({ hubspotId }) {
     const [company, setCompany] = useState(null);
@@ -58,6 +59,11 @@ export default function PortalPage({ hubspotId }) {
                         <div className="flex items-center space-x-2">
                             <HubspotLinkButton hubspotId={hubspotId} />
                             <DriveLinkButton folderId={company?.properties?.drive_folder_id} />
+                            <Link href={`/portal/${hubspotId}/content`}>
+                                <Button>
+                                    Content
+                                </Button>
+                            </Link>
                         </div>
                     </div>
 
@@ -80,18 +86,18 @@ export default function PortalPage({ hubspotId }) {
                                 ))}
                             </div>
                         </div>
-                    
 
-                    <TimelineView projects={projects} />
 
-                    {/* Modal for Adding Project */}
-                    <Modal
-                        isOpen={showAddProjectModal}
-                        onClose={() => setShowAddProjectModal(false)}
-                        title="Add Project"
-                    >
-                        <AddProjectForm onProjectAdded={handleProjectAdded} hubspotId={hubspotId} />
-                    </Modal>
+                        <TimelineView projects={projects} />
+
+                        {/* Modal for Adding Project */}
+                        <Modal
+                            isOpen={showAddProjectModal}
+                            onClose={() => setShowAddProjectModal(false)}
+                            title="Add Project"
+                        >
+                            <AddProjectForm onProjectAdded={handleProjectAdded} hubspotId={hubspotId} />
+                        </Modal>
                     </ProjectsProvider>
                 </div>
             )}
