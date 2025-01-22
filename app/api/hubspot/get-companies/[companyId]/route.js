@@ -7,7 +7,7 @@ export async function GET(req, { params }) {
   try {
     // Include desired properties in the request
     const url = new URL(HUBSPOT_API_URL);
-    url.searchParams.append("properties", "is_active,discord_category_id,name,drive_folder_id");
+    url.searchParams.append("properties", "is_active,discord_category_id,name,drive_folder_id,company_context");
 
     // Fetch specific company data from HubSpot API
     const response = await fetch(url.toString(), {

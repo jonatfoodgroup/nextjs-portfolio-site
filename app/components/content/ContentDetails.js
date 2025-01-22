@@ -46,7 +46,55 @@ const ContentDetails = ({ item }) => {
         }
     }, [item]); // Trigger useEff
     return (
-        <div className="p-6 bg-gray-800 rounded-lg shadow-md max-full mx-auto">
+        <div className="bg-gray-800 rounded-lg shadow-md w-full">
+
+            {/* Title Input */}
+            <div className="mb-4">
+                {/* <label htmlFor="title" className="block text-gray-400 mb-2">
+                    Give your idea a title
+                </label> */}
+                <input
+                    id="title"
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Starting is the hardest part..."
+                    className="w-full bg-gray-700 text-gray-200 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-500"
+                />
+            </div>
+
+
+            {/* Textare for description (brief) */}
+            <div className="mb-4">
+                {/* <label htmlFor="description" className="block text-gray-400 mb-2">
+                    Add a brief description
+                </label> */}
+                <textarea
+                    id="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Briefly describe your idea..."
+                    rows={3}
+                    className="w-full bg-gray-700 text-gray-200 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-500 resize-none"
+                ></textarea>
+            </div>
+
+
+            {/* Textarea for Content */}
+            <div className="mb-4">
+                <label htmlFor="content" className="block text-gray-400 mb-2">
+                    Add details or content
+                </label>
+                <textarea
+                    id="content"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    placeholder="Write your content here..."
+                    rows={6}
+                    className="w-full bg-gray-700 text-gray-200 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-500 resize-none"
+                ></textarea>
+            </div>
+
 
             {/* Stage Dropdown */}
             <div className="flex justify-between items-center mb-4">
@@ -79,52 +127,6 @@ const ContentDetails = ({ item }) => {
                 </select>
             </div>
 
-            {/* Title Input */}
-            <div className="mb-4">
-                <label htmlFor="title" className="block text-gray-400 mb-2">
-                    Give your idea a title
-                </label>
-                <input
-                    id="title"
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Starting is the hardest part..."
-                    className="w-full bg-gray-700 text-gray-200 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-500"
-                />
-            </div>
-
-
-            {/* Textare for description (brief) */}
-            <div className="mb-4">
-                <label htmlFor="description" className="block text-gray-400 mb-2">
-                    Add a brief description
-                </label>
-                <textarea
-                    id="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Briefly describe your idea..."
-                    rows={3}
-                    className="w-full bg-gray-700 text-gray-200 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-500 resize-none"
-                ></textarea>
-            </div>
-
-
-            {/* Textarea for Content */}
-            <div className="mb-4">
-                <label htmlFor="content" className="block text-gray-400 mb-2">
-                    Add details or content
-                </label>
-                <textarea
-                    id="content"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    placeholder="Write your content here..."
-                    rows={6}
-                    className="w-full bg-gray-700 text-gray-200 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-500 resize-none"
-                ></textarea>
-            </div>
 
             {/* Delete Button */}
             <div className="flex justify-between items-center mb-4">

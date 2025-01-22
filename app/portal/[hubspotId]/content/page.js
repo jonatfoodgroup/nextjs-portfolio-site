@@ -47,8 +47,8 @@ const PipelinePage = () => {
       }
       acc[item.stage].items.push({
         id: item.id,
-        name: item.title, // Normalize field usage
-        description: item.description || "",
+        name: item.title,
+        ...item,
       });
       return acc;
     }, {});

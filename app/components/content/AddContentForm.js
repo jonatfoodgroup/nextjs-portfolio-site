@@ -82,9 +82,9 @@ const AddContentForm = ({ onClose }) => {
                     onChange={handleInputChange}
                     className="w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-gray-200"
                 >
-                    <option value="blogPost">Blog Post</option>
+                    <option value="article">Blog Post</option>
                     <option value="email">Email</option>
-                    <option value="socialPost">Social Post</option>
+                    <option value="social">Social Post</option>
                 </select>
             </div>
 

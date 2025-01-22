@@ -21,16 +21,15 @@ const ContentKanban = ({ columnsData, onDragEnd }) => {
 
     const renderCardContent = (item) => {
         let iconType;
-
         // Dynamically determine the icon based on the item type
         switch (item.type) {
-            case "Email":
+            case "email":
                 iconType = "mdi:email-outline"; // Email icon
                 break;
-            case "Blog Post":
+            case "article":
                 iconType = "mdi:note-text-outline"; // Blog post icon
                 break;
-            case "Social Post":
+            case "social":
                 iconType = "mdi:share-variant"; // Social post icon
                 break;
             default:
@@ -52,7 +51,7 @@ const ContentKanban = ({ columnsData, onDragEnd }) => {
                     {item.title}
                 </strong>
             </div>
-            <p className="text-sm text-gray-400">{item.description}</p>
+            <p className="text-sm text-gray-400 line-clamp-3">{item.description}</p>
         </>
         );
     };
