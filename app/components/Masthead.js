@@ -140,6 +140,15 @@ const Masthead = () => {
                                 Get Started
                                 <span className="shiny-effect"></span>
                             </Link>
+                            {/* discover how button */}
+                            <Link
+                                href="/services/audit"
+                                className="shiny-button bg-black text-white text-lg font-bold px-6 py-3 flex items-center relative overflow-hidden rounded-lg hover:-translate-y-2 hover:shadow-xl transition-transform duration-300 border-2 border-gray-300"
+                            >
+                                <Icon icon="carbon:chat" className="mr-2" />
+                                Discover How
+                                <span className="shiny-effect"></span>
+                            </Link>
                         </motion.div>
                     </motion.div>
                 </motion.div>
