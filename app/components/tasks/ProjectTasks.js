@@ -12,10 +12,16 @@ const ProjectTasks = ({ project }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
 
+  // add subtasks to the task by parentTaskId
+  tasks.forEach((task) => {
+    task.subtasks = tasks.filter((subtask) => subtask.parentTaskId === task.id);
+  });
+
   // Filter out completed tasks and sort by start date
   let sortedTasks = [...tasks]
     .filter((task) => task.status !== "completed") // Exclude completed tasks
     .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+
 
   const openModal = (task) => {
     setSelectedTask(task);
@@ -40,7 +46,7 @@ const ProjectTasks = ({ project }) => {
         <p className="text-gray-500">Loading tasks...</p>
       ) : (
         <ul className="space-y-4">
-          {sortedTasks.map((task) => (
+          {sortedTasks.filter((task) => !task.parentTaskId).map((task) => (
             <li
               key={task.id}
               className="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border-gray-800 cursor-pointer"
@@ -56,13 +62,22 @@ const ProjectTasks = ({ project }) => {
                     </p>
                   </div>
                 </div>
+                <div className="flex flex-col">
+                  <ul className="flex flex-col mt-2 space-y-1">
+                    {task.subtasks.map((subtask, index) => (
+                      <li key={index} className="text-sm text-gray-500">
+                        {subtask.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
                 <p
                   className={`text-sm px-2 py-1 rounded font-semibold ${task.status === "completed"
-                      ? "bg-green-200 text-green-800"
-                      : task.status === "in progress"
-                        ? "bg-yellow-200 text-yellow-800"
-                        : "bg-gray-700 text-gray-400"
+                    ? "bg-green-200 text-green-800"
+                    : task.status === "in progress"
+                      ? "bg-yellow-200 text-yellow-800"
+                      : "bg-gray-700 text-gray-400"
                     }`}
                 >
                   {task.status}

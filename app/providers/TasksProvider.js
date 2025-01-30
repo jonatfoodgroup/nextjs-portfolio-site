@@ -24,7 +24,7 @@ export const TasksProvider = ({ children, projectId }) => {
       const tasksData = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      })).filter((task) => !task.parentTaskId); // Filter out subtasks
+      }));
       setTasks(tasksData);
       setLoading(false);
     });

@@ -40,7 +40,13 @@ const TaskKanban = () => {
     useEffect(() => {
         if (!tasks) return;
 
-        const groupedTasks = tasks.reduce((acc, task) => {
+        let tasksCopy = [...tasks];
+                // add subtasks to the task by parentTaskId
+        tasksCopy.forEach((task) => {
+            task.subtasks = tasksCopy.filter((subtask) => subtask.parentTaskId === task.id);
+        });
+
+        const groupedTasks = tasksCopy.filter((task) => !task.parentTaskId).reduce((acc, task) => {
             if (!acc[task.status]) acc[task.status] = [];
             acc[task.status].push(task);
             return acc;
@@ -147,6 +153,13 @@ const TaskKanban = () => {
                                                 <p className="text-sm text-gray-400 break-words">
                                                     {task.description}
                                                 </p>
+                                                <ul className="flex flex-col mt-2 space-y-1">
+                                                    {task.subtasks.map((subtask, index) => (
+                                                        <li key={index} className="text-sm text-gray-500">
+                                                            {subtask.name}
+                                                        </li>
+                                                    ))}
+                                                </ul>
                                                 
                                             </div>
                                         </Draggable>
