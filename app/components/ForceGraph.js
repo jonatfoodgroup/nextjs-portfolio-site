@@ -93,7 +93,7 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
             Graph.cameraPosition({ x, y: 300, z }, { x: 0, y: 0, z: 0 }, 0); // Set new camera position
             requestAnimationFrame(rotateGraph); // Continuously update the position
         };
-        rotateGraph(); // Start rotating the graph
+        // rotateGraph(); // Start rotating the graph
 
         // Show the label when hovering over a node
         Graph.onNodeHover((node) => {
