@@ -43,7 +43,7 @@ const ProjectResourceLinks = ({ projectId, links = [] }) => {
   };
 
   const handleRemoveLink = async (index) => {
-    window.confirm("Are you sure you want to remove this link?");
+    if (typeof window !== "undefined" && window.confirm("Are you sure you want to remove this link?")) {
     try {
       const updatedLinks = links.filter((_, i) => i !== index);
 
@@ -51,6 +51,7 @@ const ProjectResourceLinks = ({ projectId, links = [] }) => {
       await removeResourceLink(projectId, index);
     } catch (error) {
       console.error("Failed to remove link:", error.message);
+    }
     }
   };
 

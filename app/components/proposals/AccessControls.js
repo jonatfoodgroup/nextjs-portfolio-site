@@ -5,7 +5,9 @@ import { Tooltip } from "react-tooltip";
 
 const AccessControls = () => {
     const handlePrint = () => {
-      window.print();
+      if (typeof window !== "undefined") {
+        window.print();
+      }
     };
     return (
       <div className="flex flex-col mt-8 fixed bottom-0 left-0 p-4 w-full align-items justify-center z-50">
