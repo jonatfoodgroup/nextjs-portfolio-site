@@ -13,7 +13,10 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
             .backgroundColor(backgroundColor)
             .nodeLabel("label") // Show node label
             .nodeAutoColorBy("group") // Color nodes based on their group
-            .linkColor(() => "#ffffff"); // Set link color
+            .linkColor(() => "#ffffff") // Set link color
+            .linkDirectionalParticles(2) // Set the number of particles
+            .linkDirectionalParticleColor(() => 'cyan') // Set particle color
+            .linkDirectionalParticleWidth(4); // Set particle width
 
         // Add Z-layer dynamics to nodes
         graphData.nodes.forEach((node) => {
@@ -77,15 +80,6 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
             0 // No transition duration for immediate start position
         );
 
-        // Interactivity: Focus on a node when clicked
-        Graph.onNodeClick((node) => {
-            Graph.cameraPosition(
-                { x: node.x || 0, y: node.y - 200 || 0, z: 300 }, // Adjust camera position
-                node, // Focus on the node
-                2000 // Transition duration
-            );
-        });
-
         // Adjust forces for better layout
         Graph.d3Force("charge", d3.forceManyBody().strength(-500)); // Spread nodes further
         Graph.d3Force("link", d3.forceLink().distance(200).strength(1)); // Longer link distances
@@ -109,6 +103,18 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
                 setHoveredNode(null); // Reset label when hover is removed
             }
         });
+
+        // Emit particles every few seconds at random nodes
+        const emitParticlesPeriodically = () => {
+            setInterval(() => {
+                const randomNode = graphData.nodes[Math.floor(Math.random() * graphData.nodes.length)];
+                console.log("Emitting particle from random node", randomNode);
+                Graph.emitParticle(randomNode); // Emit particle from random node
+            }, 3000); // Adjust the interval (e.g., 3 seconds) to control how often particles are emitted
+        };
+
+        // Start emitting particles periodically
+        emitParticlesPeriodically();
 
         // Cleanup on unmount
         return () => {

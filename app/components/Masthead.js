@@ -111,14 +111,14 @@ const Masthead = () => {
                         variants={{ hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0 } }}
                     >
                         <motion.h1
-                            className="text-4xl md:text-6xl font-bold text-white pointer-events-none"
+                            className="text-4xl md:text-7xl font-bold text-white pointer-events-none"
                             variants={{ hidden: { opacity: 0, y: -20 }, visible: { opacity: 1, y: 0 } }}
                             transition={{ duration: 1, ease: "easeOut" }}
                         >
-                            Your Partner in Digital Transformation
+                            Your Partner For Digital Success
                         </motion.h1>
                         <motion.p
-                            className="text-md md:text-2xl text-gray-300 mt-4 md:mt-6"
+                            className="text-md md:text-xl text-gray-300 mt-4 md:mt-6"
                             style={{ lineHeight: "1.4" }}
                             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
