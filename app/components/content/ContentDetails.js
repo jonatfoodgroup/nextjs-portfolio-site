@@ -27,12 +27,8 @@ const ContentDetails = ({ item }) => {
     };
 
     const handleDelete = () => {
-        window.confirm("Are you sure you want to delete this item?") && deleteContent(item.id);
+        typeof window !== 'undefined' && window.confirm("Are you sure you want to delete this item?") && deleteContent(item.id);
     };
-
-    useEffect(() => {
-        console.log(stage);
-    }, [stage]);
 
     // Update state when the `item` prop changes
     useEffect(() => {

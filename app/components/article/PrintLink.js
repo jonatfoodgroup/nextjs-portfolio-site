@@ -5,7 +5,9 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 const PrintLink = ({ article }) => {
 
     const handlePrint = () => {
-        window.print();
+        if (typeof window !== "undefined") {
+            window.print();
+        }
     }
 
     return (

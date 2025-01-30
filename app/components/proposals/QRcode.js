@@ -5,7 +5,7 @@ import QRCode from "qrcode.react";
 const QRcode = () => {
     return (
         <div className="fixed top-8 right-8">
-        <QRCode value={window.location.href} size={48} />
+        {/* <QRCode value={window.location.href} size={48} /> */}
       </div>
     )
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Link from "next/link";
 
 const DiscordLinkButton = ({ discordChannelId }) => {
   if (!discordChannelId) {
@@ -13,12 +14,13 @@ const DiscordLinkButton = ({ discordChannelId }) => {
   // Construct the Discord channel URL
   const discordAppUrl = `discord://discord.com/channels/${process.env.NEXT_PUBLIC_DISCORD_GUILD_ID}/${discordChannelId}`;
   return (
-    <button
+    <Link
       className="text-gray-600 hover:text-white"
-      onClick={() => window.open(discordAppUrl, "_blank")}
+      href={discordAppUrl}
+      passHref={true}
     >
       <Icon icon="akar-icons:discord-fill" />
-    </button>
+    </Link>
   );
 };
 

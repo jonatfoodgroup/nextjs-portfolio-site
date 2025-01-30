@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Link from "next/link";
 
 const DriveLinkButton = ({ folderId }) => {
   if (!folderId) {
@@ -14,12 +15,13 @@ const DriveLinkButton = ({ folderId }) => {
   const driveUrl = `https://drive.google.com/drive/u/0/folders/${folderId}`;
 
   return (
-    <button
-      onClick={() => window.open(driveUrl, "_blank")}
+    <Link
+      href={driveUrl}
+      passHref={true}
       className=""
     >
       <Icon icon="simple-icons:googledrive" />
-    </button>
+    </Link>
   );
 };
 
