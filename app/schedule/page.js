@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
-import { useHubspot } from "../providers/HubspotProvider";
+// import { useHubspot } from "../providers/HubspotProvider";
 import Select from "react-select";
 import ProjectCard from "../components/projects/ProjectCard";
 import Button from "../components/Button";
@@ -8,7 +8,8 @@ import customStyles from "../utils/select-styles";
 
 
 export default function SchedulePage() {
-    const { companies = [] } = useHubspot();
+    const companies = useState([]);
+    // const { companies = [] } = useHubspot();
     const [projects, setProjects] = useState([]);
     const [schedule, setSchedule] = useState([]);
     const [loading, setLoading] = useState(true);
