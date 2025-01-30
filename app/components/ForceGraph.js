@@ -77,8 +77,8 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
 
             // Set initial camera position and focus
             Graph.cameraPosition(
-                { x: 200, y: 300, z: 400 }, // Adjust these values to match your desired view
-                { x: 0, y: 0, z: 0 }, // Target focus
+                { x: 200, y: 300, z: 1400 }, // Adjust the `z` value to zoom out more
+                { x: 0, y: 0, z: 0 }, // Target focus at the center
                 0 // No transition duration for immediate start position
             );
 
