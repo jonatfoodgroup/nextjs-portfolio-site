@@ -13,6 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { FirebaseProvider } from "./providers/FirebaseProvider";
 import { Toaster } from "react-hot-toast";
 import { HubspotProvider } from "./providers/HubspotProvider";
+import { ProposalProvider } from "./providers/ProposalProvider";
 
 const inter = Inter({
 subsets: ["latin"],
@@ -44,10 +45,12 @@ export default function RootLayout({ children }) {
                   <DrawerProvider>
                     <AuthProvider>
                       <FirebaseProvider>
-                        <Toaster position="top-right" reverseOrder={false} />
-                        <div>
-                          {children}
-                        </div>
+                        <ProposalProvider>
+                          <Toaster position="top-right" reverseOrder={false} />
+                          <div>
+                            {children}
+                          </div>
+                        </ProposalProvider>
                       </FirebaseProvider>
                     </AuthProvider>
                   </DrawerProvider>

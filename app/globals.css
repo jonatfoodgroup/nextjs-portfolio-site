@@ -626,3 +626,7 @@ html body *[data-testid="default-today-line"] {
 html body .rct-vl {
   background-color: transparent !important;
 }
+
+#forshizzle h1 {
+  font-size: x-large;
+}
