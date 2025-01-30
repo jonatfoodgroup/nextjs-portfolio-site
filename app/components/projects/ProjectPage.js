@@ -18,6 +18,7 @@ import DriveLinkButton from "./DriveFolderLink";
 import TaskKanban from "../tasks/TaskKanban";
 import { EndDate, StartDate } from "./StartEndDate";
 import TimelineView from "./TimelineView";
+import CalenderView from "./CalendarView";
 
 const ProjectPage = ({ project }) => {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
@@ -68,6 +69,12 @@ const ProjectPage = ({ project }) => {
                 Board
               </button>
               <button
+                className={`px-4 py-2 ${activeTab === 'calendar' ? 'bg-blue-500' : 'bg-gray-700'}`}
+                onClick={() => setActiveTab('calendar')}
+              >
+                Calendar
+              </button>
+              <button
                 className={`px-4 py-2 ${activeTab === 'timeline' ? 'bg-blue-500' : 'bg-gray-700'}`}
                 onClick={() => setActiveTab('timeline')}
               >
@@ -101,7 +108,7 @@ const ProjectPage = ({ project }) => {
             {activeTab === 'timeline' && <TimelineView project={project} />}
             {activeTab === 'updates' && <StatusUpdates statuses={project.statuses} project={project} />}
             {activeTab === 'resources' && <ProjectResourceLinks projectId={project.id} links={project.resourceLinks} />}
-            
+            {activeTab === 'calendar' && <CalenderView project={project} />}
 
           </div>
         </div>

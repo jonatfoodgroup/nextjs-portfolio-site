@@ -63,6 +63,13 @@ const PortalTimelineView = ({ companies }) => {
                     itemHeight: 30,
                 });
 
+                // sort by start date
+                items.sort((a, b) => {
+                    if (a.start_time < b.start_time) return -1;
+                    if (a.start_time > b.start_time) return 1;
+                    return 0;
+                });
+
                 groupIndex++;
             });
         }
