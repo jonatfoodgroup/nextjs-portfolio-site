@@ -25,8 +25,6 @@ const ProjectPage = ({ project }) => {
   const [activeTab, setActiveTab] = useState('tasks'); // State for the active tab
 
   let jobNumber = project.jobNumber.slice(-5);
-
-  console.log(project);
   return (
     <TasksProvider projectId={project.id}>
       <div className="bg-gray-800 min-h-screen">
