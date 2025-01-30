@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FirebaseProvider } from "./providers/FirebaseProvider";
 import { Toaster } from "react-hot-toast";
+import { HubspotProvider } from "./providers/HubspotProvider";
 
 const inter = Inter({
 subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} ${bebas_neue.className} bg-white text-black`}>
         <ServiceWorkerProvider>
             <WordpressProvider>
+            <HubspotProvider>
               <DataProvider>
               <BrandingProvider>
                 <AOSProvider>
@@ -52,6 +54,7 @@ export default function RootLayout({ children }) {
                 </AOSProvider>
               </BrandingProvider>
               </DataProvider>
+            </HubspotProvider>
             </WordpressProvider>
         </ServiceWorkerProvider>
         <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/22555624.js"></script>
