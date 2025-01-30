@@ -11,7 +11,7 @@ export async function subscribeUserToPush() {
 
     const userId = jwt.decode(token).sub;
     // Check if service workers and push are supported by the browser
-    if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+    if (typeof window === 'undefined' || !('serviceWorker' in navigator) || !('PushManager' in window)) {
       console.error('Push messaging is not supported');
       return;
     }
