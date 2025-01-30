@@ -14,9 +14,9 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
             .nodeLabel("label") // Show node label
             .nodeAutoColorBy("group") // Color nodes based on their group
             .linkColor(() => "#ffffff") // Set link color
-            .linkDirectionalParticles(2) // Set the number of particles
+            .linkDirectionalParticles(1) // Set the number of particles
             .linkDirectionalParticleColor(() => 'cyan') // Set particle color
-            .linkDirectionalParticleWidth(4); // Set particle width
+            .linkDirectionalParticleWidth(3); // Set particle width
 
         // Add Z-layer dynamics to nodes
         graphData.nodes.forEach((node) => {
@@ -110,7 +110,7 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
                 const randomNode = graphData.nodes[Math.floor(Math.random() * graphData.nodes.length)];
                 console.log("Emitting particle from random node", randomNode);
                 Graph.emitParticle(randomNode); // Emit particle from random node
-            }, 3000); // Adjust the interval (e.g., 3 seconds) to control how often particles are emitted
+        }, 3000); // Adjust the interval (e.g., 3 seconds) to control how often particles are emitted
         };
 
         // Start emitting particles periodically

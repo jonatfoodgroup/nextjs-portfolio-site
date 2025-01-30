@@ -1,3 +1,4 @@
+"use client";
 import jwt from 'jsonwebtoken';
 
 export async function subscribeUserToPush() {
