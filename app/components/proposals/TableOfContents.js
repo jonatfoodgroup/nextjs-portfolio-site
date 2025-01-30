@@ -24,7 +24,7 @@ const TableOfContents = ({ isOpen, setIsOpen }) => {
     // scrollspy
     useEffect(() => {
       const handleScroll = () => {
-        const scrollPosition = window.scrollY;
+        const scrollPosition = (typeof window !== "undefined" && window.scrollY) || 0;
         const el = data.find((item) => {
           const section = document.getElementById(item.id);
           if (!section) {
@@ -40,8 +40,10 @@ const TableOfContents = ({ isOpen, setIsOpen }) => {
         }
       };
   
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
+      if (typeof window !== "undefined") {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+      }
     }, []);
   
     return (
