@@ -1,14 +1,26 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useContent, ContentProvider } from "../../../providers/ContentProvider";
 import AddContentForm from "../../../components/content/AddContentForm";
 import Modal from "../../../components/Modal";
-import Button from "../../../components/Button";3
+import Button from "../../../components/Button"; 3
 import ContentKanban from "../../../components/content/ContentKanban";
+import AgendaView from "../../../components/Agenda";
 import Breadcrumb from "../../../components/projects/Breadcrumb";
 
 export default function Page({ params }) {
   const resolvedParams = React.use(params);
+  const [tabs, setTabs] = useState([
+    {
+      id: "create",
+      label: "Create",
+    },
+    {
+      id: "schedule",
+      label: "Schedule",
+    }
+  ])
+  const [activeTab, setActiveTab] = useState("create");
 
   if (!resolvedParams.hubspotId) {
     return <p className="mt-20">No company ID provided.</p>;
@@ -20,8 +32,27 @@ export default function Page({ params }) {
           resolvedParams.hubspotId ? (
             <ContentProvider hubspotId={resolvedParams.hubspotId}>
               <Breadcrumb hubspotId={resolvedParams.hubspotId} />
+            <div className="flex space-x-4 mb-4">
+              {
+                tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`py-1 ${activeTab === tab.id ? "bg-orange-500 text-white px-2" : "text-gray-500 px-2"}`}
+                  >
+                    {tab.label}
+                  </button>
+                ))
+              }
+            </div>
 
-              <PipelinePage />
+              {
+                activeTab === "create" ? (
+                  <PipelinePage />
+                ) : (
+                  <AgendaView />
+                )
+              }
             </ContentProvider>
           ) : (
             <p>Loading company details...</p>
@@ -55,9 +86,10 @@ const PipelinePage = () => {
 
     return {
       idea: groupedContent.idea || { title: "Idea", items: [] },
+      shortlist: groupedContent.shortlist || { title: "Shortlist", items: [] },
       draft: groupedContent.draft || { title: "Draft", items: [] },
       review: groupedContent.review || { title: "Review", items: [] },
-      publish: groupedContent.publish || { title: "Publish", items: [] },
+      publish: groupedContent.published || { title: "Published", items: [] },
     };
   }, [content]);
 

@@ -19,11 +19,11 @@ const MegaMenu = ({ activeMenu,  closeMenu }) => {
   }, [closeMenu]);
 
   return (
-    <div ref={menuRef} className="mega-menu bg-light-orange py-4 shadow-2xl border-t-2 border-primary pb-8">
+    <div ref={menuRef} className="mega-menu py-4 shadow-2xl border-t-2 border-gray-800 pb-8">
       <div className="mx-auto flex container p-4 lg:px-0" aria-label="Global">
         {/* Conditional rendering for Services menu */}
         {activeMenu === 'services' && (
-          <div id="services-menu" className="interior-menu">
+          <div id="services-menu" className="interior-menu w-full">
             <ServicesSection />
           </div>
         )}

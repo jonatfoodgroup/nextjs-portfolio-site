@@ -1,24 +1,21 @@
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useTasks } from "../../providers/TasksProvider";
 import Modal from "../Modal";
 import TaskDetails from "./TaskDetails";
 import AssigneeAvatar from "./AssigneeAvatar";
+// import TimelineView from "../TimelineView";
+import moment from "moment";
 
 const ProjectTasks = ({ project }) => {
   const { tasks, loading, updateTask } = useTasks();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
 
-  // Sort tasks by active timers
-  let sortedTasks = [...tasks].sort((a, b) => {
-    if (a.activeTimer && !b.activeTimer) return -1;
-    if (!a.activeTimer && b.activeTimer) return 1;
-    return 0;
-  });
-
-  // filter out tasks that have been completed
-  sortedTasks = sortedTasks.filter((task) => task.status !== "completed");
+  // Filter out completed tasks and sort by start date
+  let sortedTasks = [...tasks]
+    .filter((task) => task.status !== "completed") // Exclude completed tasks
+    .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 
   const openModal = (task) => {
     setSelectedTask(task);
@@ -32,7 +29,13 @@ const ProjectTasks = ({ project }) => {
 
   return (
     <div className="p-6 bg-gray-900 rounded-xl">
-      <h3 className="text-lg font-regular mb-4 text-gray-400">Tasks</h3>
+      <h3 className="text-lg font-semibold mb-4 text-gray-300">Tasks</h3>
+
+      {/* Timeline View */}
+      <div className="mb-6">
+        {/* <TimelineView project={{ ...project, tasks: sortedTasks }} /> */}
+      </div>
+
       {loading ? (
         <p className="text-gray-500">Loading tasks...</p>
       ) : (
@@ -44,16 +47,23 @@ const ProjectTasks = ({ project }) => {
               onClick={() => openModal(task)}
             >
               <div className="flex justify-between items-center">
-                <p className="font-regular text-lg text-gray-400 hover:text-white">{task.name}</p>
-                <AssigneeAvatar assignee={task.assignee} />
+                <div className="flex items-center space-x-4">
+                  <AssigneeAvatar assignee={task.assignee} />
+                  <div className="flex flex-col">
+                    <p className="font-medium text-lg text-gray-400 hover:text-white">{task.name}</p>
+                    <p className="text-sm text-gray-500">
+                      {moment(task.startDate).format("MMM D, YYYY")} - {moment(task.endDate).format("MMM D, YYYY")}
+                    </p>
+                  </div>
+                </div>
+
                 <p
-                  className={`text-sm px-2 py-1 rounded ${
-                    task.status === "completed"
-                      ? "bg-green-100 text-green-800"
+                  className={`text-sm px-2 py-1 rounded font-semibold ${task.status === "completed"
+                      ? "bg-green-200 text-green-800"
                       : task.status === "in progress"
-                      ? "bg-yellow-100 text-yellow-800"
-                      : "bg-gray-800 text-gray-500"
-                  }`}
+                        ? "bg-yellow-200 text-yellow-800"
+                        : "bg-gray-700 text-gray-400"
+                    }`}
                 >
                   {task.status}
                 </p>
@@ -65,18 +75,12 @@ const ProjectTasks = ({ project }) => {
 
       {/* Modal for Task Details */}
       {isModalOpen && selectedTask && (
-        <Modal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          title={`${selectedTask.name}`}
-        >
+        <Modal isOpen={isModalOpen} onClose={closeModal} title={selectedTask.name}>
           <TaskDetails task={selectedTask} updateTask={updateTask} project={project} />
         </Modal>
       )}
     </div>
   );
 };
-
-
 
 export default ProjectTasks;

@@ -58,9 +58,9 @@ const ProjectResourceLinks = ({ projectId, links = [] }) => {
     <div className="p-6 bg-gray-900 rounded-xl mt-4">
       <h3 className="text-lg font-regular text-gray-400">Resource Links</h3>
       {links.length > 0 ? (
-        <ul className="list-none space-y-2">
+        <ul className="list-none space-y-2 flex flex-col mt-4">
           {links.map((link, index) => (
-            <li key={index} className="flex items-center space-x-4">
+            <li key={index} className="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border-gray-800 cursor-pointer mb-4">
               {editingIndex === index ? (
                 <>
                   <input
@@ -94,11 +94,13 @@ const ProjectResourceLinks = ({ projectId, links = [] }) => {
                 </>
               ) : (
                 <>
-                  <span className="text-blue-600 underline text-lg">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-300 text-lg">
                     <a href={link.url} target="_blank" rel="noopener noreferrer">
                       {link.title}
                     </a>
                   </span>
+                  <div className="flex space-x-2">
                   <button
                     className="text-gray-600 hover:text-gray-800"
                     onClick={() => setEditingIndex(index)}
@@ -111,6 +113,8 @@ const ProjectResourceLinks = ({ projectId, links = [] }) => {
                   >
                     <Icon icon="mdi:delete" />
                   </button>
+                  </div>
+                </div>
                 </>
               )}
             </li>

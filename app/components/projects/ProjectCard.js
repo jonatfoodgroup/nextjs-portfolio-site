@@ -53,6 +53,22 @@ const ProjectCard = ({ project, company, showClient = false }) => {
                 />
             </div>
 
+            {/* start and end date */}
+            <div className="flex items-center space-x-2 mt-2">
+                <div className="flex flex-col">
+                    <span className="text-xs text-gray-500">Start Date:</span>
+                    <span className="text-xs text-gray-400">
+                        {new Date(project.startDate).toLocaleDateString()}
+                    </span>
+                </div>
+                <div className="flex flex-col">
+                    <span className="text-xs text-gray-500">End Date:</span>
+                    <span className="text-xs text-gray-400">
+                        {new Date(project.endDate).toLocaleDateString()}
+                    </span>
+                </div>
+            </div>
+
             <div className="flex items-center justify-between mt-6 align-middle">
                 {/* Project Manager */}
                 <PMAvatar pmId={pm?.id} />

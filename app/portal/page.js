@@ -6,45 +6,60 @@ import HubspotLinkButton from "../components/portal/HubspotLinkButton";
 import Link from "next/link";
 import ProjectCard from "../components/projects/ProjectCard";
 import Button from "../components/Button";
+import PortalTimelineView from "../components/portal/PortalTimelineView";
 
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
+    const [companiesWithProjects, setCompaniesWithProjects] = useState([]);
     const { companies } = useHubspot();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch("/api/projects/get-projects")
-            .then((res) => res.json())
-            .then((data) => {
-                const projectsWithCompany = data.map((project) => {
-                    const company = companies.find(
-                        (company) => company.id === project.hubspotId
-                    );
-                    return { ...project, company };
-                });
-                projectsWithCompany.sort((a, b) => a.title.localeCompare(b.title));
-                setProjects(projectsWithCompany);
-            })
-    }, []);
+        // Exit early if companies are not available or if loading is in progress
+        if (!companies || companies.length === 0 || loading) return;
+    
+        const fetchProjects = async () => {
+            setLoading(true); // Set loading to true to prevent further fetches during the current one
+            try {
+                const res = await fetch("/api/projects/get-projects");
+                const data = await res.json();
+    
+                // Map projects to their respective companies
+                const updatedCompanies = companies.map((company) => ({
+                    ...company,
+                    projects: data.filter((project) => project.hubspotId === company.id),
+                }));
+    
+                setProjects(data);
+                setCompaniesWithProjects(updatedCompanies);
+            } catch (error) {
+                console.error("Error fetching projects:", error);
+            } finally {
+                setLoading(false); // Reset loading state once the request completes
+            }
+        };
+    
+        fetchProjects();
+    }, [companies]); // Only depends on `companies`, not `loading` anymore// Now it only depends on `companies`ng` in dependency ensures effect runs after it is reset
+
     return (
         <div className="grid grid-cols-1 gap-4">
-            {/* Display projects by company */}
-            {companies.map((company) => {
-                const companyProjects = projects.filter((project) => project.hubspotId === company.id);
-                // const [showProjects, setShowProjects] = useState(false);
-                return (
-                    <div key={company.id} className="p-6 bg-gray-900 rounded-xl border border-gray-700">
-                        <CompanyHeader company={company} />
-                        {/* <ProjectTableHeader /> */}
-                        <div className="bg-gray-900 align-top grid grid-cols-1 md:grid-cols-6 gap-4">
-                            {companyProjects.map((project) => (
-                                <ProjectCard key={project.id} project={project} company={company} />
-                            ))}
-                        </div>
+            {/* Pass the updated companies list with projects to the Timeline */}
+            <PortalTimelineView companies={companiesWithProjects} />
+
+            {/* Display projects grouped by company */}
+            {companiesWithProjects.map((company) => (
+                <div key={company.id} className="p-6 bg-gray-900 rounded-xl border border-gray-700">
+                    <CompanyHeader company={company} />
+                    <div className="bg-gray-900 align-top grid grid-cols-1 md:grid-cols-6 gap-4">
+                        {company.projects.map((project) => (
+                            <ProjectCard key={project.id} project={project} company={company} />
+                        ))}
                     </div>
-                )
-            })}
+                </div>
+            ))}
         </div>
-    )
+    );
 }
 
 const CompaniesCard = ({ company }) => {
@@ -80,11 +95,16 @@ const CompanyHeader = ({
                 <div className="opacity-80 text-gray-500 flex items-center space-x-3 hover:opacity-100">
                     <HubspotLinkButton hubspotId={company.id} />
                     <DriveLinkButton folderId={company.properties.drive_folder_id} />
-                    <Button>
-                        <Link href={`/portal/${company.id}/content`}>
-                            Content
-                        </Link>
-                    </Button>
+
+                    {
+                        company.properties.managing_content_ == "true" ? (
+                            <Button>
+                                <Link href={`/portal/${company.id}/content`}>
+                                    Content
+                                </Link>
+                            </Button>
+                        ) : null
+                    }
                 </div>
             </div>
             <button

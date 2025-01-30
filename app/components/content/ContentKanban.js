@@ -40,19 +40,33 @@ const ContentKanban = ({ columnsData, onDragEnd }) => {
 
         return (
             <>
-            <div className="flex items-center gap-2 mb-2">
-                <Icon
-                    icon={iconType}
-                    className="text-gray-400 flex-shrink-0"
-                    width={24}
-                    height={24}
-                />
-                <strong className="text-gray-200 text-sm font-semibold flex-grow">
-                    {item.title}
-                </strong>
-            </div>
-            <p className="text-sm text-gray-400 line-clamp-3">{item.description}</p>
-        </>
+                <div className="flex items-center gap-2 mb-2">
+                    <Icon
+                        icon={iconType}
+                        className="text-gray-400 flex-shrink-0"
+                        width={24}
+                        height={24}
+                    />
+                    <strong className="text-gray-200 text-sm font-semibold flex-grow">
+                        {item.title}
+                    </strong>
+                </div>
+                <p className="text-sm text-gray-400 line-clamp-3">{item.description}</p>
+
+                {/* Render tags if they exist */}
+                {item.tags && item.tags.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                        {item.tags.map((tag, index) => (
+                            <span
+                                key={index}
+                                className="bg-gray-600 text-gray-200 text-xs py-1 px-3 rounded-full"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                )}
+            </>
         );
     };
 

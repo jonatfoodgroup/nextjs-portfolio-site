@@ -19,9 +19,9 @@ export default function ServiceView({ service, children }) {
                 <Breadcrumb service={service} />
                 <div className="container inner-container  mx-auto">
                     <div className="flex mt-0 md:mt-8 flex-col md:flex-row">
-                        <div className="w-full md:w-1/2 pr-0 md:pr-20">
-                            <h1 className="text-4xl md:text-5xl font-extrabold text-black mt-12">{service.acf.masthead?.masthead_title}</h1>
-                            <p className="mt-4 text-md md:text-lg leading-relaxed text-darker-gray font-regular">{(service.acf.masthead?.masthead_content) ? decode(service.acf.masthead.masthead_content) : decode(service.acf.masthead.masthead_title)}</p>
+                        <div className="w-full pr-0 md:pr-20 text-center max-w-4xl mx-auto">
+                            <h1 className="text-6xl md:text-5xl font-extrabold text-black mt-12">{service.acf.masthead?.masthead_title}</h1>
+                            <p className="mt-4 text-md md:text-xl leading-relaxed text-darker-gray font-regular">{(service.acf.masthead?.masthead_content) ? decode(service.acf.masthead.masthead_content) : decode(service.acf.masthead.masthead_title)}</p>
                             <Link href="/contact-us" className="inline-flex mt-8"
                                 data-aos="fade-in" data-aos-delay="400">
                                 <div className="px-8 py-4 text-lg font-bold bg-orange text-white flex items-center space-x-2 shiny-button">
@@ -31,10 +31,7 @@ export default function ServiceView({ service, children }) {
                                 </div>
                             </Link>
                         </div>
-                        <div className="w-1/2 hidden md:block" data-aos="fade-in" data-aos-delay="200">
-                            <div className="w-full h-96 bg-light-gray mt-8 rounded-md border-2 border-light-gray shadow-md">
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -103,15 +100,15 @@ export default function ServiceView({ service, children }) {
                     <LogoWall />
                 </div>
 
-                
+
 
 
             </div >
-            
+
             <div className="bg-light-orange py-20 my-20">
                 <ServiceList />
             </div>
-            
+
 
             <Footer />
         </>
@@ -130,55 +127,55 @@ const BackAndForth = ({ children }) => {
                                 data-aos-delay={index * 50}
                                 key={index}
                                 className="flex justify-center items-center">
-                            <Link
-                                href={`/services/${child.slug}`}
-                                className={`flex flex-col md:flex-row ${index % 2 === 0 ? "" : "md:flex-row-reverse"
-                                    } items-center justify-center space-x-8 p-8 py-16 bg-white rounded-md shadow-md group  my-4 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2`}
-                                
-                            >
-                                {/* Content Section */}
-                                <div
-                                    className={`w-full md:w-1/2 ${index % 2 === 0
-                                        ? "md:pr-20"
-                                        : "md:pl-10"
-                                        } md:p-8 p-2 bg-white rounded-md`}
+                                <Link
+                                    href={`/services/${child.slug}`}
+                                    className={`flex flex-col md:flex-row ${index % 2 === 0 ? "" : "md:flex-row-reverse"
+                                        } items-center justify-center space-x-8 p-8 py-16 bg-white rounded-md shadow-md group  my-4 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2`}
+
                                 >
-                                    <h2 className="text-xl md:text-4xl font-bold text-gray-900 transition-colors duration-300">
-                                        {decode(child.acf.masthead.masthead_title)}
-                                    </h2>
-                                    <p className="text-gray-700 mt-4">
-                                        {decode(child.acf.masthead.masthead_content)}
-                                    </p>
-                                    <div className="flex flex-row items-center space-x-2 mt-8">
-                                        <div
-                                            className={`flex justify-center items-center gradient-${index + 1
-                                                } w-12 h-12 rounded-md`}
-                                        >
+                                    {/* Content Section */}
+                                    <div
+                                        className={`w-full md:w-1/2 ${index % 2 === 0
+                                            ? "md:pr-20"
+                                            : "md:pl-10"
+                                            } md:p-8 p-2 bg-white rounded-md`}
+                                    >
+                                        <h2 className="text-xl md:text-4xl font-bold text-gray-900 transition-colors duration-300">
+                                            {decode(child.acf.masthead.masthead_title)}
+                                        </h2>
+                                        <p className="text-gray-700 mt-4">
+                                            {decode(child.acf.masthead.masthead_content)}
+                                        </p>
+                                        <div className="flex flex-row items-center space-x-2 mt-8">
+                                            <div
+                                                className={`flex justify-center items-center gradient-${index + 1
+                                                    } w-12 h-12 rounded-md`}
+                                            >
+                                                <Icon
+                                                    icon={child.acf.icon}
+                                                    className="text-white w-8 h-8"
+                                                />
+                                            </div>
+                                            <h4 className="text-xl font-semibold text-gray-900 hover:text-orange-500 transition-colors duration-300 mt-4 mb-4 md:pl-2 cursor-pointer">
+                                                {decode(child.title.rendered)}
+                                            </h4>
                                             <Icon
-                                                icon={child.acf.icon}
-                                                className="text-white w-8 h-8"
+                                                icon="bx:bx-right-arrow-alt"
+                                                className="text-2xl text-black"
                                             />
                                         </div>
-                                        <h4 className="text-xl font-semibold text-gray-900 hover:text-orange-500 transition-colors duration-300 mt-4 mb-4 md:pl-2 cursor-pointer">
-                                            {decode(child.title.rendered)}
-                                        </h4>
+                                    </div>
+
+                                    <div
+                                        className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${index + 1
+                                            } rounded-md h-64 md:h-96`}
+                                    >
                                         <Icon
-                                            icon="bx:bx-right-arrow-alt"
-                                            className="text-2xl text-black"
+                                            icon={child.acf.icon}
+                                            className="text-white h-48 w-48 md:h-64 md:w-64 transition-transform duration-300 group-hover:scale-110"
                                         />
                                     </div>
-                                </div>
-
-                                <div
-                                    className={`w-full relative md:w-1/2 flex justify-center items-center p-8 gradient-${index + 1
-                                        } rounded-md h-64 md:h-96`}
-                                >
-                                    <Icon
-                                        icon={child.acf.icon}
-                                        className="text-white h-48 w-48 md:h-64 md:w-64 transition-transform duration-300 group-hover:scale-110"
-                                    />
-                                </div>
-                            </Link>
+                                </Link>
                             </div>
                         ))}
                     </div>

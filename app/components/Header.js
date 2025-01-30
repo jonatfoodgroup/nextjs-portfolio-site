@@ -20,7 +20,7 @@ const Header = () => {
     {
       label: "What we do",
       menuName: "services",
-      icon: "carbon:grid"
+      icon: "carbon:ibm-cloud-kubernetes-service"
     },
     {
       label: "What we think",
@@ -32,6 +32,11 @@ const Header = () => {
       href: "/who-we-are", // Links directly without toggle
       icon: "carbon:group"
     },
+    {
+      label: "Portal",
+      href: "/portal", // Links directly without toggle
+      icon: "carbon:enterprise"
+    }
   ];
 
   const handleMenuToggle = (menuName) => {
@@ -78,24 +83,24 @@ const Header = () => {
   }, [activeMenu]);
 
   return (
-    <header className="bg-white fixed w-full border-b-2 border-primary" style={{ zIndex: 999 }}>
-      {/* <Topbar /> */}
-      <div className="relative bg-white" style={{ zIndex: 999 }}>
+    <header className="bg-black fixed w-full border-b-2 border-gray-800" style={{ zIndex: 999 }}>
+      <Topbar />
+      <div className="relative bg-black" style={{ zIndex: 999 }}>
         <nav
-          className="mx-auto container flex items-center justify-center md:justify-between py-2 md:py-4"
+          className="mx-auto container flex items-center justify-center md:justify-between py-2 md:py-0"
           aria-label="Global"
         >
           <div className="flex items-center flex-1">
-            <Logo />
+            {/* <Logo /> */}
           </div>
           <div className="flex lg:hidden">
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black relative z-50"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white relative z-50"
             >
               <span className="sr-only">Open main menu</span>
-              <Icon icon="bi:menu" className="h-6 w-6 text-black" />
+              <Icon icon="bi:menu" className="h-9 w-8 text-black" />
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-6">
@@ -104,9 +109,9 @@ const Header = () => {
                 <Link
                   key={index}
                   href={item.href}
-                  className="text-xl font-bold leading-6 text-black px-2 py-2 hover:text-orange-500 flex items-center gap-x-2 transition-all duration-200"
+                  className="text-xs uppercase font-regular leading-6 text-white px-2 py-2 hover:text-orange-500 flex items-center gap-x-2 transition-all duration-200"
                 >
-                  <Icon icon={item.icon} className="h-8 w-8" />
+                  {/* <Icon icon={item.icon} className="h-6 w-6" /> */}
                   <span>
                   {item.label}
                   </span>
@@ -118,23 +123,25 @@ const Header = () => {
                   onClick={() => handleMenuToggle(item.menuName)}
                   className={`flex items-center gap-x-2 text-xl 
                     transition-all duration-200
-                    leading-6 px-2 py-2 hover:text-orange-500 ${
-                    activeMenu === item.menuName ? "text-orange-500 font-bold" : "text-black font-bold"
+                    text-xs  font-bold
+                    border-b-2 border-transparent
+                    leading-6 px-2 py-2 ${
+                    activeMenu === item.menuName ? "text-orange-500 font-bold" : "text-white"
                   }`}
                 >
-                  <Icon icon={item.icon} className="h-8 w-8" />
+                  {/* <Icon icon={item.icon} className="h-6 w-6" /> */}
                   <span>
                   {item.label}
                   </span>
                   <Icon
                     icon={`${activeMenu === item.menuName ? "ic:round-check" : "bi:chevron-down"}`}
-                    className="h-4 w-4"
+                    className="h-2 w-2"
                   />
                 </button>
               )
             )}
           </div>
-          <NavIcons />
+          {/* <NavIcons /> */}
         </nav>
       </div>
       {activeMenu && <MegaMenu activeMenu={activeMenu} closeMenu={closeMenu} />}
@@ -162,7 +169,7 @@ const NavIcons = () => {
           data-tooltip-place="bottom"
           data-tooltip-content={item.tooltip}
         >
-          <Icon icon={item.icon} className="h-6 w-6" />
+          {/* <Icon icon={item.icon} className="h-6 w-6" /> */}
           <Tooltip id={item.tooltip} place="bottom" />
         </button>
       ))}

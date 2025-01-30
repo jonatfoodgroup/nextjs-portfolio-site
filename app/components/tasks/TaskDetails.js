@@ -11,6 +11,8 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import TaskEditableDescription from "./TaskEditableDescription";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
+import { StartDate } from "./StartDate";
+import { EndDate } from "./EndDate";
 import Assignee from "./Assignee";
 
 const TaskDetails = ({ task, updateTask, addTask, project }) => {
@@ -59,9 +61,13 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
 
   </div>
 
-
   {/* Editable Description */}
   <TaskEditableDescription task={task} />
+
+  <div className="flex items-center space-x-4">
+        <StartDate task={task} />
+        <EndDate task={task} />
+    </div>
 
   <Assignee task={task} />
 

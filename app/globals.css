@@ -130,6 +130,16 @@ html body .carousel {
   padding: 0 10px;
 }
 
+h1 {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -2px;
+  font-weight: 300 !important;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
 html body .showcase-content p {
   font-size: 1.25rem;
   /* Increase font size for better readability */
@@ -598,3 +608,17 @@ html body #timelineContainer .rct-vertical-lines .rct-vl.rct-day-0 {
   /* @apply bg-gray-900 border-gray-700; */
 }
 
+
+
+.no-select {
+  user-select: none; /* Disables text selection */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+}
+
+html body *[data-testid="default-today-line"] {
+  background-color: red !important; /* Ensure it is red */
+  width: 2px !important; /* Adjust thickness */
+  z-index: 100 !important; /* Make sure it appears above everything */
+}

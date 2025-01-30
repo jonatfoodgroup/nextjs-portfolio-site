@@ -16,17 +16,24 @@ import EditableTitle from "./EditableTitle";
 import AssignPM from "./AssignPM";
 import DriveLinkButton from "./DriveFolderLink";
 import TaskKanban from "../tasks/TaskKanban";
+import { EndDate, StartDate } from "./StartEndDate";
+import TimelineView from "./TimelineView";
 
 const ProjectPage = ({ project }) => {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
+  const [activeTab, setActiveTab] = useState('tasks'); // State for the active tab
+
   let jobNumber = project.jobNumber.slice(-5);
 
+  console.log(project);
   return (
     <TasksProvider projectId={project.id}>
       <div className="bg-gray-800 min-h-screen">
         <Breadcrumb hubspotId={project.hubspotId} />
         <div className="flex justify-between items-center md:flex-row flex-col">
-          <EditableTitle project={project} />
+          <div className="flex flex-col">
+            <EditableTitle project={project} />
+          </div>
           <p className="text-gray-400 text-sm">Job Number: {jobNumber}</p>
           <div className="flex space-x-4 justify-end text-2xl">
             <AddTask showAddTaskForm={showAddTaskForm} setShowAddTaskForm={setShowAddTaskForm} />
@@ -34,36 +41,74 @@ const ProjectPage = ({ project }) => {
             <DriveLinkButton driveFolderId={project.googleDriveFolderId} />
           </div>
         </div>
+
         <div className="flex items-start flex-col md:flex-row">
-          <div className="w-full md:w-2/3 pr-0 md:pr-8">
+          <div className="w-full pr-0">
             <div className="border-b border-gray-700 pb-8 mb-8">
               <EditableDescription project={project} />
             </div>
-            {/* Assign PM Component */}
             <AssignPM projectId={project.id} currentPM={project.projectManager} />
-            <StatusUpdates statuses={project.statuses} project={project} />
+            <div className="flex items-start space-x-4 mb-16">
+              <StartDate project={project} />
+              <EndDate project={project} />
+            </div>
 
-            <div className="mt-8">
-          <TaskKanban />
-        </div>
-          </div>
-          <div className="w-full md:w-1/3">
-            <div className="mt-4">
-              {showAddTaskForm && <AddTaskForm projectId={project.id} />}
-              <ProjectTasks project={project} />
+            {/* Tabs for tasks, board, timeline, and updates */}
+            <div className="flex space-x-4 mb-8">
+              <button
+                className={`px-4 py-2 ${activeTab === 'tasks' ? 'bg-blue-500' : 'bg-gray-700'}`}
+                onClick={() => setActiveTab('tasks')}
+              >
+                Tasks
+              </button>
+              <button
+                className={`px-4 py-2 ${activeTab === 'board' ? 'bg-blue-500' : 'bg-gray-700'}`}
+                onClick={() => setActiveTab('board')}
+              >
+                Board
+              </button>
+              <button
+                className={`px-4 py-2 ${activeTab === 'timeline' ? 'bg-blue-500' : 'bg-gray-700'}`}
+                onClick={() => setActiveTab('timeline')}
+              >
+                Timeline
+              </button>
+              <button
+                className={`px-4 py-2 ${activeTab === 'updates' ? 'bg-blue-500' : 'bg-gray-700'}`}
+                onClick={() => setActiveTab('updates')}
+              >
+                Updates
+              </button>
+              <button
+                // resource links
+                className={`px-4 py-2 ${activeTab === 'resources' ? 'bg-blue-500' : 'bg-gray-700'}`}
+                onClick={() => setActiveTab('resources')}
+              >
+                Resources
+              </button>
             </div>
-            <div className="mt-4">
-              <ProjectResourceLinks projectId={project.id} links={project.resourceLinks} />
-            </div>
+
+            {/* Conditional Rendering based on active tab */}
+            {activeTab === 'tasks' && (
+              <>
+                <div className="mt-4">
+                  {showAddTaskForm && <AddTaskForm projectId={project.id} />}
+                </div>
+                <ProjectTasks project={project} />
+              </>
+            )}
+            {activeTab === 'board' && <TaskKanban />}
+            {activeTab === 'timeline' && <TimelineView project={project} />}
+            {activeTab === 'updates' && <StatusUpdates statuses={project.statuses} project={project} />}
+            {activeTab === 'resources' && <ProjectResourceLinks projectId={project.id} links={project.resourceLinks} />}
             
+
           </div>
         </div>
 
-        
       </div>
     </TasksProvider>
   );
 };
-
 
 export default ProjectPage;

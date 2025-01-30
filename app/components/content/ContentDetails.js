@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useContent } from "../../providers/ContentProvider";
+import TagsInput from "./TagsInput"; // Import the TagsInput component
 
 const ContentDetails = ({ item }) => {
     const { deleteContent, updateContent } = useContent();
@@ -9,18 +10,20 @@ const ContentDetails = ({ item }) => {
     const [type, setType] = useState(item?.type || "Article");
     const [description, setDescription] = useState(item?.description || "");
     const [content, setContent] = useState(item?.content || "");
+    const [tags, setTags] = useState(item?.tags || []); // Added tags state
 
     const handleSave = () => {
-        console.log('handleSave', item.id, title, stage, type, description, content);
+        console.log('handleSave', item.id, title, stage, type, description, content, tags);
         updateContent(item.id, {
             title,
             stage,
             type,
             description,
             content,
+            tags, // Pass tags to update content
         });
 
-        console.log('post save', item.id, title, stage, type, description, content);
+        console.log('post save', item.id, title, stage, type, description, content, tags);
     };
 
     const handleDelete = () => {
@@ -36,23 +39,20 @@ const ContentDetails = ({ item }) => {
         if (!item) return;
         if (title) return;
         if (item) {
-
             console.log('item loaded', item);
             setTitle(item.title || "");
             setDescription(item.description || "");
             setStage(item.stage || "Unassigned");
             setType(item.type || "Article");
             setContent(item.content || "");
+            setTags(item.tags || []); // Update tags when the item prop changes
         }
-    }, [item]); // Trigger useEff
+    }, [item]);
+
     return (
         <div className="bg-gray-800 rounded-lg shadow-md w-full">
-
             {/* Title Input */}
             <div className="mb-4">
-                {/* <label htmlFor="title" className="block text-gray-400 mb-2">
-                    Give your idea a title
-                </label> */}
                 <input
                     id="title"
                     type="text"
@@ -63,12 +63,8 @@ const ContentDetails = ({ item }) => {
                 />
             </div>
 
-
-            {/* Textare for description (brief) */}
+            {/* Textarea for description (brief) */}
             <div className="mb-4">
-                {/* <label htmlFor="description" className="block text-gray-400 mb-2">
-                    Add a brief description
-                </label> */}
                 <textarea
                     id="description"
                     value={description}
@@ -78,7 +74,6 @@ const ContentDetails = ({ item }) => {
                     className="w-full bg-gray-700 text-gray-200 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-indigo-500 resize-none"
                 ></textarea>
             </div>
-
 
             {/* Textarea for Content */}
             <div className="mb-4">
@@ -95,6 +90,8 @@ const ContentDetails = ({ item }) => {
                 ></textarea>
             </div>
 
+            {/* Tags Input */}
+            <TagsInput tags={tags} onTagsChange={setTags} />
 
             {/* Stage Dropdown */}
             <div className="flex justify-between items-center mb-4">
@@ -126,7 +123,6 @@ const ContentDetails = ({ item }) => {
                     <option value="Podcast">Social</option>
                 </select>
             </div>
-
 
             {/* Delete Button */}
             <div className="flex justify-between items-center mb-4">

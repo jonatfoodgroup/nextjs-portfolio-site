@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { collection, query, onSnapshot, where, getDoc, updateDoc, doc } from "firebase/firestore";
+import { collection, query, onSnapshot, where, getDoc, updateDoc, doc, getDocs } from "firebase/firestore";
 import { firestore } from "../firebase/config";
 import { useHubspot } from "./HubspotProvider";
 import { toast } from "react-hot-toast";
@@ -21,6 +21,35 @@ export const ProjectsProvider = ({ children, hubspotId }) => {
                 id: doc.id,
                 ...doc.data(),
             }));
+
+            // secondary lookup to get the tasks and subtasks associatred with the project from the tasks collection by project id
+            updatedProjects.forEach(async (project) => {
+                const tasksQuery = query(collection(firestore, "tasks"), where("projectId", "==", project.id));
+                
+                const tasksSnapshot = await getDocs(tasksQuery);
+                const tasksData = tasksSnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+
+                // update the array of projects 
+                project.tasks = tasksData;
+                
+                // get subtasks for each task
+                project.tasks.forEach(async (task) => {
+                    const subtasksQuery = query(collection(firestore, "tasks"), where("parentTaskId", "==", task.id));
+                    const subtasksSnapshot = await getDocs(subtasksQuery);
+                    const subtasksData = subtasksSnapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        ...doc.data(),
+                    }));
+
+                    task.subtasks = subtasksData;
+                });
+
+            });              
+
+
             setProjects(updatedProjects);
             setLoading(false);
         });

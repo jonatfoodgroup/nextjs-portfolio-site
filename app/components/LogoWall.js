@@ -36,6 +36,7 @@ const LogoWall = () => {
       </button>
     );
   }
+
   return (
     <Swiper
       ref={sliderRef}
@@ -44,11 +45,13 @@ const LogoWall = () => {
       spaceBetween={30}
       slidesPerView={5} // Adjust the number of visible logos
       navigation
-      // pagination={{ clickable: true }}
-      keyboard={{ enabled: true }}
-      mousewheel={{ enabled: true }}
-      autoplay={{ delay: 3000 }} // Set to 0 to disable auto-play
+      autoplay={{
+        delay: 5000, // Increased autoplay speed for smoother transitions
+        disableOnInteraction: false,
+      }}
       loop
+      speed={800} // Transition speed (higher value means slower transition)
+      easing="ease-in-out" // Apply easing for smooth transitions
       breakpoints={{
         640: {
           slidesPerView: 2,
@@ -78,7 +81,5 @@ const LogoWall = () => {
     </Swiper>
   );
 };
-
-
 
 export default LogoWall;

@@ -35,12 +35,14 @@ const AuthorCard = ({ authorId, size = 32 }) => {
                         href={`/blog/authors/${author.slug}`}
                         className="flex items-center"
                     >
-                        {author.acf.profile_image && (
+                        {author.acf.profile_image ? (
                             <FeaturedImage
                                 mediaId={author.acf.profile_image}
                                 width={size}
                                 height={size}
                             />
+                        ) : (
+                            <div className="w-[32px] h-[32px] bg-gray-200 rounded-full"></div>
                         )}
                         <h4 className="text-md font-semibold text-black hover:underline ml-2">
                             {author.name}

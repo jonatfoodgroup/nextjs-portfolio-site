@@ -35,16 +35,17 @@ export default function FancyMasthead() {
 
     return (
         <div
-            className="masthead-container"
+            className="relative"
             style={{
-                height: "80vh",
+                paddingTop: "4rem",
+                height: "50vh",
                 width: "100%",
                 overflow: "hidden",
                 backgroundColor: "#000",
             }}
         >
             {/* <TestComponent /> */}
-            <video width="100&" height="100vh" controls preload="auto" autoPlay loop muted style={{ objectFit: "cover", width: "100%", height: "100%" }}>
+            <video widscth="100&" height="100vh" controls preload="auto" autoPlay loop muted style={{ objectFit: "cover", width: "100%", height: "100%" }}>
                 <source src="/masthead.mp4" type="video/mp4" />
             </video>
             <div className="bg-overlay" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, .4)" }}>

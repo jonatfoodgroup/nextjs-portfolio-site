@@ -8,13 +8,33 @@ import Modal from "../Modal"; // Import Modal
 import AddProjectForm from "../projects/AddProjectForm";
 import Button from "../Button";
 import TimelineView from "../projects/Timeline";
+import StepsTracker from "../Tracker";
 import Link from "next/link";
+
+let steps = [
+    {
+        title: "SoW & Proposal",
+        description: "Define the scope of work and create a proposal.",
+        icon: "carbon:document-pdf",
+    },
+    {
+        title: "Onboarding",
+        description: "Onboard the client and team members.",
+        icon: "carbon:user",
+    },
+    {
+        title: "Operating",
+        description: "Execute the project plan.",
+        icon: "carbon:tools",
+    }
+]
 
 export default function PortalPage({ hubspotId }) {
     const [company, setCompany] = useState(null);
     const [loadingCompany, setLoadingCompany] = useState(true);
     const [projects, setProjects] = useState([]);
     const [showAddProjectModal, setShowAddProjectModal] = useState(false);
+    const [currentStep, setCurrentStep] = useState(2);
 
     useEffect(() => {
         if (!hubspotId) return;
@@ -56,6 +76,9 @@ export default function PortalPage({ hubspotId }) {
                         <h1 className="text-2xl font-regular mb-2 text-white">
                             {company?.properties?.name || "Company Name"}
                         </h1>
+                        <div className="w-1/2">
+                            {/* <StepsTracker steps={steps} currentStep={currentStep} /> */}
+                        </div>
                         <div className="flex items-center space-x-2">
                             <HubspotLinkButton hubspotId={hubspotId} />
                             <DriveLinkButton folderId={company?.properties?.drive_folder_id} />

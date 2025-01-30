@@ -8,7 +8,7 @@ export async function GET(req) {
   async function fetchCompanies(after = null) {
     const url = new URL(HUBSPOT_API_URL);
     url.searchParams.append("limit", LIMIT);
-    url.searchParams.append("properties", "is_active,discord_category_id,name,drive_folder_id"); // Include is_active property
+    url.searchParams.append("properties", "is_active,discord_category_id,name,drive_folder_id,managing_content_"); // Include is_active property
     if (after) {
       url.searchParams.append("after", after);
     }

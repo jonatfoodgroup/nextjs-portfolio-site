@@ -3,19 +3,21 @@ import Link from 'next/link';
 import React from 'react';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
-const Topbar = ({
-    content = null
-}) => {
-    if (!content) null;
+const Topbar = ({ content = null }) => {
+    if (!content) return null; // Fixed the null return for missing content
+
     return (
-        <div>
+        <div className="hidden md:block"> {/* Hide on small screens, show on medium and larger */}
             <div className="bg-light-gray">
                 <div className="container mx-auto px-4">
-                    <div className='flex justify-end items-center py-2'>
+                    <div className="flex justify-end items-center py-2">
                         <Link href="/contact" className="text-sm font-semibold text-gray-700 hover:text-black">
                             Partner Login
                         </Link>
-                        <Link href="/contact" className="text-sm font-semibold text-gray-700 hover:text-black flex items-center ml-4">
+                        <Link
+                            href="/contact"
+                            className="text-sm font-semibold text-gray-700 hover:text-black flex items-center ml-4"
+                        >
                             <Icon icon="akar-icons:phone" className="text-xl" /> (888) 555-5555
                         </Link>
                     </div>
@@ -23,6 +25,6 @@ const Topbar = ({
             </div>
         </div>
     );
-}
+};
 
 export default Topbar;
