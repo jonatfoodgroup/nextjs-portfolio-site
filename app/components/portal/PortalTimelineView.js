@@ -80,13 +80,13 @@ const PortalTimelineView = ({ companies }) => {
             <Timeline
                 groups={groups}
                 items={items}
-                defaultTimeStart={moment().startOf('day')}
-                defaultTimeEnd={moment().add(1, 'day').startOf('day')}
+                defaultTimeStart={moment().subtract(7, 'days').startOf('day')}  // Zoom out to a week before
+                defaultTimeEnd={moment().add(60, 'days').startOf('day')} // Zoom out to show 2 months ahead
                 canMove={true}
                 traditionalZoom={true}
                 canResize={false}
-                visibleTimeStart={moment().startOf('day').toDate()}
-                // visibleTimeEnd={moment().endOf('day').toDate()}
+                visibleTimeStart={moment().subtract(7, 'days').toDate()} // Set start to a week before
+                visibleTimeEnd={moment().add(60, 'days').toDate()} // Show two months ahead
                 sidebarWidth={300}
                 stackItems
                 itemHeightRatio={0.75} // Adjusted for better fit

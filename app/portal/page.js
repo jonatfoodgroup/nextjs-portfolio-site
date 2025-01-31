@@ -8,6 +8,7 @@ import ProjectCard from "../components/projects/ProjectCard";
 import Button from "../components/Button";
 import PortalTimelineView from "../components/portal/PortalTimelineView";
 import { useTasks } from "../providers/TasksProvider";
+import { motion } from "framer-motion";
 
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
@@ -19,34 +20,48 @@ export default function PortalSelector() {
 
     useEffect(() => {
         if (!companies || companies.length === 0 || loading) return;
-
-        const fetchProjects = async () => {
-            setLoading(true);
+    
+        const bootAndFetch = async () => {
+            setLoading(true); // Ensure loading is set early to prevent UI flicker
+    
+            // Boot sequence duration (e.g., 3 seconds)
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+    
             try {
                 const res = await fetch("/api/projects/get-projects");
                 const data = await res.json();
-
+    
                 const updatedCompanies = companies.map((company) => ({
                     ...company,
                     projects: data.filter((project) => project.hubspotId === company.id),
                 }));
-
+    
                 setProjects(data);
                 setCompaniesWithProjects(updatedCompanies);
             } catch (error) {
                 console.error("Error fetching projects:", error);
             } finally {
-                setLoading(false);
+                setLoading(false); // Finish loading after boot + data fetch
             }
         };
-
-        fetchProjects();
+    
+        bootAndFetch();
     }, [companies]);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col items-center justify-center h-screen bg-black text-green-400 font-mono">
+                <div className="text-lg">
+                    <BootSequence />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="">
             {/* Tab Selector */}
-            <div className="flex space-x-4 border-b border-gray-700 mb-6 mt-1 sticky top-20 bg-gray-800 z-10">
+            <div className="flex space-x-4 border-b border-gray-700 mb-6 mt-1 sticky top-20 bg-black z-10">
                 <button
                     className={`px-4 py-2 text-sm font-medium ${
                         activeView === "board" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
@@ -153,3 +168,55 @@ const CompanyHeader = ({ company }) => {
         </div>
     );
 }
+
+// Boot Sequence Component
+const BootSequence = () => {
+    const [text, setText] = useState([]);
+    const bootLines = [
+        "Initializing StrongStart Portal...",
+        "Loading user settings...",
+        "Fetching projects from database...",
+        "Optimizing data...",
+        "Finalizing setup...",
+        "System Ready."
+    ];
+
+    useEffect(() => {
+        let i = 0;
+        setText([]);
+        console.log("Boot sequence started...");
+
+        const interval = setInterval(() => {
+            if (i < bootLines.length) {
+                setText((prev) => [...prev, bootLines[i]]);
+                console.log(bootLines[i]);
+                i++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 700);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="flex flex-col items-start text-left font-mono text-green-400 tracking-wide bg-black p-6 rounded-lg shadow-lg"
+        >
+            {text.map((line, index) => (
+                <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.3 }}
+                    className="text-sm md:text-lg"
+                >
+                    {line}
+                </motion.div>
+            ))}
+        </motion.div>
+    );
+};

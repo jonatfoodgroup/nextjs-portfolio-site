@@ -1,11 +1,7 @@
 "use client";
 
 import React from "react";
-import Timeline,
-{
-    TimelineMarkers,
-    TodayMarker,
-} from "react-calendar-timeline";
+import Timeline, { TimelineMarkers, TodayMarker } from "react-calendar-timeline";
 import moment from "moment";
 
 const TimelineView = ({ project }) => {
@@ -16,8 +12,8 @@ const TimelineView = ({ project }) => {
 
   // Groups: Each task is its own group
   const groups = project.tasks
-    .filter((task) => task.startDate && task.endDate) // Filter out tasks without start or end date
-    .sort((a, b) => new Date(a.startDate) - new Date(b.startDate)) // Order by start date
+    .filter((task) => task.startDate && task.endDate)
+    .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
     .map((task) => ({
       id: task.id,
       title: task.name,
@@ -26,11 +22,11 @@ const TimelineView = ({ project }) => {
 
   // Timeline items: Each task is an item
   const items = project.tasks
-    .filter((task) => task.startDate && task.endDate) // Filter out tasks without start or end date
-    .sort((a, b) => new Date(a.startDate) - new Date(b.startDate)) // Order by start date
+    .filter((task) => task.startDate && task.endDate)
+    .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
     .map((task) => ({
       id: task.id,
-      group: task.id, // Each task has its own row
+      group: task.id,
       title: task.name,
       start_time: moment(task.startDate).toDate(),
       end_time: moment(task.endDate).toDate(),
@@ -45,15 +41,22 @@ const TimelineView = ({ project }) => {
   return (
     <div className="bg-gray-800 p-6 rounded-xl" id="timelineContainer">
       <Timeline
-        groups={groups} // Now using tasks as groups
+        groups={groups}
         items={items}
-        defaultTimeStart={moment().subtract(7, "days")} // Zoomed-in view
+        defaultTimeStart={moment().subtract(7, "days")}
         defaultTimeEnd={moment().add(14, "days")}
         canMove={false}
         canResize={false}
-        sidebarWidth={250} // Wider sidebar for better task visibility
+        sidebarWidth={250}
         itemHeightRatio={0.8}
         stackItems
+        timeSteps={{
+          day: 1,
+        }}
+        headerLabelFormats={{
+          dayShort: "D", // Show only the day number
+          dayLong: "D", // Show only the day number
+        }}
         groupRenderer={({ group }) => (
           <div className="text-gray-300 font-semibold">{group.title}</div>
         )}
@@ -83,13 +86,13 @@ const TimelineView = ({ project }) => {
           );
         }}
       >
-         <TimelineMarkers>
-                    <TodayMarker
-                        date={moment().toDate()}
-                        className="today-marker"
-                        style={{ backgroundColor: "red", width: "2px", zIndex: 50 }}
-                    />
-                </TimelineMarkers>
+        <TimelineMarkers>
+          <TodayMarker
+            date={moment().toDate()}
+            className="today-marker"
+            style={{ backgroundColor: "red", width: "2px", zIndex: 50 }}
+          />
+        </TimelineMarkers>
       </Timeline>
     </div>
   );
