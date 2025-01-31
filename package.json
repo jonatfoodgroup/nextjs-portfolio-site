@@ -30,6 +30,7 @@
     "@tiptap/extension-underline": "^2.10.3",
     "@tiptap/react": "^2.10.3",
     "@tiptap/starter-kit": "^2.10.3",
+    "@vercel/speed-insights": "^1.1.0",
     "3d-force-graph": "^1.76.0",
     "aos": "^2.3.4",
     "autoprefixer": "^10.4.20",

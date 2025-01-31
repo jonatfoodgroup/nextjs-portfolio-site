@@ -14,6 +14,7 @@ import { FirebaseProvider } from "./providers/FirebaseProvider";
 import { Toaster } from "react-hot-toast";
 import { HubspotProvider } from "./providers/HubspotProvider";
 import { ProposalProvider } from "./providers/ProposalProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({
 subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
 
       <body className={`${inter.className} ${bebas_neue.className} bg-white text-black`}>
         <ServiceWorkerProvider>
+          <SpeedInsights>
             <WordpressProvider>
             <HubspotProvider>
               <DataProvider>
@@ -59,6 +61,7 @@ export default function RootLayout({ children }) {
               </DataProvider>
             </HubspotProvider>
             </WordpressProvider>
+          </SpeedInsights>
         </ServiceWorkerProvider>
         <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/22555624.js"></script>
       </body>

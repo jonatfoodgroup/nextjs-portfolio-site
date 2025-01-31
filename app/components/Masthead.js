@@ -7,57 +7,6 @@ import { useEffect, useState } from "react";
 import { useWordpress } from "../providers/WordpressProvider";
 import sampleData from "../data/sample-force-graph.json";
 
-const generateGraphData = (posts) => {
-    const nodes = [];
-    const links = [];
-
-    const tagNodes = new Set(); // To avoid duplicate tag nodes
-    const categoryNodes = new Set(); // To avoid duplicate category nodes
-
-    posts.forEach((post) => {
-        // Add post node
-        nodes.push({
-            id: `post-${post.id}`,
-            group: "posts",
-            label: post.title.rendered,
-        });
-
-        // Add tag nodes and links
-        post.tags.forEach((tag) => {
-            if (!tagNodes.has(tag)) {
-                nodes.push({
-                    id: `tag-${tag}`,
-                    group: "tags",
-                    label: `Tag: ${tag}`,
-                });
-                tagNodes.add(tag);
-            }
-            links.push({
-                source: `post-${post.id}`,
-                target: `tag-${tag}`,
-            });
-        });
-
-        // Add category nodes and links
-        post.categories.forEach((category) => {
-            if (!categoryNodes.has(category)) {
-                nodes.push({
-                    id: `category-${category}`,
-                    group: "categories",
-                    label: `Category: ${category}`,
-                });
-                categoryNodes.add(category);
-            }
-            links.push({
-                source: `post-${post.id}`,
-                target: `category-${category}`,
-            });
-        });
-    });
-
-    return { nodes, links };
-};
-
 const Masthead = () => {
     const [graphData, setGraphData] = useState({
         nodes: [
@@ -170,17 +119,18 @@ const Masthead = () => {
                     )
                 }
 
-                {graphData && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.5, ease: "easeInOut" }}
-                        style={{ width: "100%", height: "100vh", zIndex: 1 }}
-                        className="no-select"
-                    >
-                        <ForceGraph backgroundColor="black" graphData={sampleData} />
-                    </motion.div>
-                )}
+{graphData && (
+    <motion.div
+        initial={{ opacity: 0, scale: 0.95, rotateX: -10, rotateY: 10 }}
+        animate={{ opacity: 1, scale: 1, rotateX: 0, rotateY: 0 }}
+        whileHover={{ rotateX: 10, rotateY: -10, scale: 1.02 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        style={{ width: "100%", height: "100vh", zIndex: 1, perspective: 1000 }}
+        className="no-select"
+    >
+        <ForceGraph backgroundColor="black" graphData={sampleData} />
+    </motion.div>
+)}
             </div>
         </div>
     );
