@@ -15,7 +15,7 @@ const Masthead = () => {
             {
                 isVisible && (
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center 
-                bg-black/50 backdrop-blur-lg rounded-lg px-10 py-12 max-w-lg text-center z-10">
+                bg-black/10 backdrop-blur-lg rounded-lg px-10 py-20 max-w-3xl text-center z-10">
                 <motion.div
                     initial="hidden"
                     animate="visible"

@@ -76,84 +76,85 @@ const PortalTimelineView = ({ companies }) => {
     return (
         <div className="timeline-container" id="timelineContainer">
     <Timeline
-        groups={groups}
-        items={items}
-        defaultTimeStart={moment().subtract(1, 'months').startOf('isoWeek')}
-        defaultTimeEnd={moment().add(2, 'months').endOf('isoWeek')}
-        visibleTimeStart={moment().subtract(1, 'months').startOf('isoWeek').toDate()}
-        visibleTimeEnd={moment().add(2, 'months').endOf('isoWeek').toDate()}
-        canMove={true}
-        traditionalZoom={true}
-        canResize={false}
-        sidebarWidth={300}
-        timeSteps={{ day: 7 }}  // Weekly grid alignment
-        stackItems
-        itemHeightRatio={0.75}
-        headerLabelFormats={{
-            year: { long: "YYYY" },
-            month: { long: "MMMM YYYY" },
-            week: { long: "'Week' w" }, // Shows "Week X" instead of full date
-        }}
-        groupRenderer={({ group }) => (
-            <div
-                className={`p-2 ${group.isCompany ? "font-bold text-white" : "text-gray-400"}`}
-                style={{
-                    backgroundColor: group.color || "transparent",
-                    padding: "6px",
-                    borderRadius: "4px",
-                    fontSize: "14px",
-                    display: "flex",
-                    alignItems: "center",
-                    cursor: group.isCompany ? "pointer" : "default",
-                }}
-                onClick={() => group.isCompany && router.push(group.portalUrl)}
-            >
-                {group.isCompany ? (
-                    <a
-                        href={group.portalUrl}
-                        style={{ textDecoration: "none", color: "inherit", width: "100%" }}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        {group.title}
-                    </a>
-                ) : (
-                    group.title
-                )}
-            </div>
-        )}
-        itemRenderer={({ item, getItemProps }) => {
-            const { key, ...restProps } = getItemProps({
-                style: {
-                    background: item.backgroundColor,
-                    color: item.color,
-                    padding: "6px",
-                    borderRadius: "4px",
-                    textAlign: "center",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    height: "100%",
-                },
-            });
+    groups={groups}
+    items={items}
+    defaultTimeStart={moment().subtract(1, 'months').startOf('isoWeek')}
+    defaultTimeEnd={moment().add(2, 'months').endOf('isoWeek')}
+    visibleTimeStart={moment().subtract(1, 'months').startOf('isoWeek').toDate()}
+    visibleTimeEnd={moment().add(2, 'months').endOf('isoWeek').toDate()}
+    canMove={true}
+    traditionalZoom={true}
+    canResize={false}
+    sidebarWidth={300}
+    timeSteps={{ day: 7 }}  // Weekly grid alignment
+    stackItems
+    itemHeightRatio={0.75}
+    headerLabelFormats={{
+        year: { long: "YYYY" },
+        month: { long: "MMMM YYYY" },
+        week: { long: "'Week of' MMM D" }, // Shows "Week of Jan 1"
+    }}
+    groupRenderer={({ group }) => (
+        <div
+            className={`p-2 ${group.isCompany ? "font-bold text-white" : "text-gray-400"}`}
+            style={{
+                backgroundColor: group.color || "transparent",
+                padding: "6px",
+                borderRadius: "4px",
+                fontSize: "14px",
+                display: "flex",
+                alignItems: "center",
+                cursor: group.isCompany ? "pointer" : "default",
+            }}
+            onClick={() => group.isCompany && router.push(group.portalUrl)}
+        >
+            {group.isCompany ? (
+                <a
+                    href={group.portalUrl}
+                    style={{ textDecoration: "none", color: "inherit", width: "100%" }}
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    {group.title}
+                </a>
+            ) : (
+                group.title
+            )}
+        </div>
+    )}
+    itemRenderer={({ item, getItemProps }) => {
+        const { key, ...restProps } = getItemProps({
+            style: {
+                background: item.backgroundColor,
+                color: item.color,
+                padding: "6px",
+                borderRadius: "4px",
+                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+            },
+        });
 
-            return (
-                <div key={key} {...restProps}>
-                    <a href={item.projectUrl} style={{ textDecoration: "none", color: "inherit" }}>
-                        <span>{item.title}</span>
-                    </a>
-                </div>
-            );
-        }}
-    >
-        {/* Today Marker */}
-        <TimelineMarkers>
-            <TodayMarker
-                date={moment().toDate()}
-                className="today-marker"
-                style={{ backgroundColor: "red", width: "2px", zIndex: 50 }}
-            />
-        </TimelineMarkers>
-    </Timeline>
+        return (
+            <div key={key} {...restProps}>
+                <a href={item.projectUrl} style={{ textDecoration: "none", color: "inherit" }}>
+                    <span>{item.title}</span>
+                </a>
+            </div>
+        );
+    }}
+>
+    {/* Today Marker */}
+    <TimelineMarkers>
+        <TodayMarker
+            date={moment().toDate()}
+            className="today-marker"
+            style={{ backgroundColor: "red", width: "2px", zIndex: 50 }}
+        />
+    </TimelineMarkers>
+</Timeline>
+
 </div>
     );
 };

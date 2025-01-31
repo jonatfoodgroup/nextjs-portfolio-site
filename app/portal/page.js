@@ -23,7 +23,6 @@ export default function PortalSelector() {
         if (!companies || companies.length === 0) return;
     
         const bootAndFetch = async () => {
-            setLoading(true); // Ensure loading is set early to prevent UI flicker
     
             // Boot sequence duration (3 seconds)
             await new Promise((resolve) => setTimeout(resolve, 3000));
