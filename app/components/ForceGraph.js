@@ -5,125 +5,117 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 import * as THREE from "three";
 import * as d3 from "d3-force";
 
+const generateSampleData = () => {
+    const N = 300; // Number of nodes
+    const clusters = 6; // Number of groups/clusters
+    const nodes = [];
+    const links = [];
+
+    // Generate nodes with groups
+    for (let i = 0; i < N; i++) {
+        nodes.push({
+            id: i,
+            group: i % clusters, // Assign each node a group
+            label: `Node ${i}`,
+        });
+    }
+
+    // Generate links with logical structure
+    for (let i = 1; i < N; i++) {
+        links.push({
+            source: i,
+            target: Math.floor(Math.random() * i), // Random parent node from previous nodes
+        });
+
+        // Add additional inter-cluster links for a more connected graph
+        if (i % clusters === 0) {
+            const randomConnection = Math.floor(Math.random() * N);
+            links.push({
+                source: i,
+                target: randomConnection !== i ? randomConnection : (i + 1) % N,
+            });
+        }
+    }
+
+    return { nodes, links };
+};
 const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
     const graphRef = useRef();
-    const [hoveredNode, setHoveredNode] = useState(null); // To keep track of the hovered node
+    const [hoveredNode, setHoveredNode] = useState(null);
+    const [selectedNode, setSelectedNode] = useState(null);
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
+        if (typeof window !== "undefined" && graphRef.current) {
             const Graph = ForceGraph3D()(graphRef.current)
                 .backgroundColor(backgroundColor)
-                .nodeLabel("label") // Show node label
-                .nodeAutoColorBy("group") // Color nodes based on their group
-                .linkColor(() => "#ffffff") // Set link color
-                .linkDirectionalParticles(1) // Set the number of particles
-                .linkDirectionalParticleColor(() => 'cyan') // Set particle color
-                .linkDirectionalParticleWidth(3); // Set particle width
+                .nodeLabel("label")
+                .nodeAutoColorBy("group")
+                .linkColor(() => "#ffffff")
+                .linkDirectionalParticles(1)
+                .linkDirectionalParticleColor(() => "cyan")
+                .linkDirectionalParticleWidth(3);
 
-            // Add Z-layer dynamics to nodes
-            graphData.nodes.forEach((node) => {
-                node.z = Math.random() * 800 - 150; // Random Z-axis placement for depth
+            // Call generateSampleData() to get the returned object with nodes and links
+            const sampleData = generateSampleData();
+
+            sampleData.nodes.forEach((node) => {
+                node.z = Math.random() * 800 - 150;
             });
 
-            // Load graph data
-            Graph.graphData(graphData);
+            Graph.graphData(sampleData);
+
 
             // Node appearance
             Graph.nodeThreeObject((node) => {
                 const material = new THREE.MeshStandardMaterial({
                     color: node.color || node.group,
-                    emissive: node.color || node.group, // Glow effect
+                    emissive: node.color || node.group,
                     emissiveIntensity: 0.5,
                 });
-                const size = node.id === "entry-point" ? 15 : 7; // Highlight entry-point node
-                const sphere = new THREE.Mesh(
-                    new THREE.SphereGeometry(size, 32, 32), // Adjust size and detail
-                    material
-                );
-                return sphere;
+                const size = node.id === "entry-point" ? 15 : 7;
+                return new THREE.Mesh(new THREE.SphereGeometry(size, 32, 32), material);
             });
 
             // Link appearance
-            Graph.linkThreeObjectExtend(true); // Allow custom link objects
+            Graph.linkThreeObjectExtend(true);
             Graph.linkThreeObject((link) => {
                 const geometry = new THREE.BufferGeometry().setFromPoints([
-                    new THREE.Vector3(
-                        link.source.x,
-                        link.source.y,
-                        link.source.z || 0
-                    ),
-                    new THREE.Vector3(
-                        link.target.x,
-                        link.target.y,
-                        link.target.z || 0
-                    ),
+                    new THREE.Vector3(link.source.x, link.source.y, link.source.z || 0),
+                    new THREE.Vector3(link.target.x, link.target.y, link.target.z || 0),
                 ]);
 
-                const material = new THREE.LineBasicMaterial({
-                    color: "#ffffff", // White links
-                    linewidth: 1, // Link thickness
-                });
-
-                return new THREE.Line(geometry, material);
+                return new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: "#ffffff" }));
             });
 
-            // Add UnrealBloomPass for glow effect
+            // Glow Effect
             const bloomPass = new UnrealBloomPass();
-            bloomPass.strength = 2.5; // Glow intensity
-            bloomPass.radius = 1.0; // Glow spread
-            bloomPass.threshold = 0.2; // Glow threshold
+            bloomPass.strength = 2.5;
+            bloomPass.radius = 1.0;
+            bloomPass.threshold = 0.2;
             const composer = Graph.postProcessingComposer();
             composer.addPass(bloomPass);
 
-            // Set initial camera position and focus
-            Graph.cameraPosition(
-                { x: 200, y: 300, z: 1400 }, // Adjust the `z` value to zoom out more
-                { x: 0, y: 0, z: 0 }, // Target focus at the center
-                0 // No transition duration for immediate start position
-            );
+            // Set initial camera position
+            Graph.cameraPosition({ x: 200, y: 300, z: 1400 }, { x: 0, y: 0, z: 0 }, 0);
 
-            // Adjust forces for better layout
-            Graph.d3Force("charge", d3.forceManyBody().strength(-500)); // Spread nodes further
-            Graph.d3Force("link", d3.forceLink().distance(200).strength(1)); // Longer link distances
+            // Force layout adjustments
+            Graph.d3Force("charge", d3.forceManyBody().strength(-500));
+            Graph.d3Force("link", d3.forceLink().distance(200).strength(1));
 
-            // Slowly rotate the camera around the center of the graph
-            let angle = 0;
-            const rotateGraph = () => {
-                angle += 0.0002; // Control the speed of the rotation
-                const x = Math.sin(angle) * 500; // X-coordinate for camera rotation
-                const z = Math.cos(angle) * 500; // Z-coordinate for camera rotation
-                Graph.cameraPosition({ x, y: 300, z }, { x: 0, y: 0, z: 0 }, 0); // Set new camera position
-                requestAnimationFrame(rotateGraph); // Continuously update the position
-            };
-            // rotateGraph(); // Start rotating the graph
-
-            // Show the label when hovering over a node
-            Graph.onNodeHover((node) => {
-                if (node) {
-                    setHoveredNode(node.label); // Update hovered node state with the node's label
-                } else {
-                    setHoveredNode(null); // Reset label when hover is removed
-                }
+            // Handle node click
+            Graph.onNodeClick((node) => {
+                setSelectedNode(node.label);
+                console.log("Node Clicked:", node);
             });
 
-            // Emit particles every few seconds at random nodes
-            const emitParticlesPeriodically = () => {
-                setInterval(() => {
-                    const randomNode = graphData.nodes[Math.floor(Math.random() * graphData.nodes.length)];
-                    console.log("Emitting particle from random node", randomNode);
-                    Graph.emitParticle(randomNode); // Emit particle from random node
-                }, 3000); // Adjust the interval (e.g., 3 seconds) to control how often particles are emitted
-            };
+            // Handle node hover
+            Graph.onNodeHover((node) => setHoveredNode(node ? node.label : null));
 
-            // Start emitting particles periodically
-            emitParticlesPeriodically();
-
-            // Cleanup on unmount
+            // Cleanup
             return () => {
                 if (Graph) {
-                    Graph.pauseAnimation(); // Stops animation loop
-                    Graph._destructor && Graph._destructor(); // Internal cleanup function
-                    // graphRef.current.innerHTML = ""; // Clear the container
+                    Graph.pauseAnimation();
+                    Graph._destructor && Graph._destructor();
                 }
                 composer.removePass(bloomPass);
             };
@@ -133,7 +125,8 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
     return (
         <div style={{ position: "relative", width: "100%", height: "50vh" }}>
             <div ref={graphRef} />
-            {/* Display label when a node is hovered */}
+
+            {/* Display hovered node label */}
             {hoveredNode && (
                 <div
                     style={{
@@ -145,14 +138,34 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
                         borderRadius: "5px",
                         color: "#000",
                         fontWeight: "bold",
-                        zIndex: 8
+                        zIndex: 8,
                     }}
                 >
                     {hoveredNode}
                 </div>
             )}
+
+            {/* Display selected node label */}
+            {selectedNode && (
+                <div
+                    style={{
+                        position: "absolute",
+                        bottom: "10px",
+                        left: "10px",
+                        padding: "5px 10px",
+                        backgroundColor: "#ffcc00",
+                        borderRadius: "5px",
+                        color: "#000",
+                        fontWeight: "bold",
+                        zIndex: 8,
+                    }}
+                >
+                    Selected: {selectedNode}
+                </div>
+            )}
         </div>
     );
 };
+
 
 export default ForceGraph;
