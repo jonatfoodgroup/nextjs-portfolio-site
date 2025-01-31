@@ -12,8 +12,9 @@ const Tiptap = () => {
 
   if (!editor) return;
 
-  return <div>
-    <EditorContent id="forshizzle" editor={editor} /> <button onClick={console.log(editor.getJSON())}></button></div>
+  return <div className="bg-white p-4 rounded-md shadow-md">
+    <EditorContent id="forshizzle" editor={editor} /> <button onClick={console.log(editor.getJSON())}></button>
+    </div>
 }
 
 export default Tiptap
