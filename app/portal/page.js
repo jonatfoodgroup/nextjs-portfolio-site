@@ -16,7 +16,7 @@ export default function PortalSelector() {
     const [companiesWithProjects, setCompaniesWithProjects] = useState([]);
     const { companies } = useHubspot();
     const [loading, setLoading] = useState(false);
-    const [activeView, setActiveView] = useState("board"); // "board" or "timeline"
+    const [activeView, setActiveView] = useState("timeline"); // "board" or "timeline"
 
     useEffect(() => {
         if (!companies || companies.length === 0 || loading) return;

@@ -654,3 +654,13 @@ html body .rct-vl {
 #forshizzle li {
   @apply font-medium text-gray-800 list-disc;
 }
+
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-even,
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-odd {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1); /* Soft dashed line */
+    opacity: 0.4; /* Lower opacity for subtle effect */
+}
+
+.react-calendar-timeline .rct-horizontal-lines {
+    background-color: rgba(255, 255, 255, 0.02); /* Very faint background to blend */
+}
