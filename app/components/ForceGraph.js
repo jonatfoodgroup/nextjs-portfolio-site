@@ -2,43 +2,67 @@
 import React, { useEffect, useRef, useState } from "react";
 import ForceGraph3D from "3d-force-graph";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
+
+import graphData from "../data/large-sample-forcegraph.json";
 import * as THREE from "three";
 import * as d3 from "d3-force";
 
+const colorPalette = [
+    "#6A5ACD", "#8A2BE2", "#00CED1", "#9370DB",
+    "#7B68EE", "#32CD32", "#4169E1", "#20B2AA",
+    "#9370DB", "#008B8B"
+];
 const generateSampleData = () => {
-    const N = 300; // Number of nodes
-    const clusters = 6; // Number of groups/clusters
+    const N = 600; // Reduce node count slightly for clarity
+    const clusters = 10; // Number of galaxies
     const nodes = [];
     const links = [];
 
-    // Generate nodes with groups
+    // Define separate clusters ("galaxies") with extreme spread
+    const galaxyCenters = Array.from({ length: clusters }, () => ({
+        x: Math.random() * 12000 - 6000, // Huge spread
+        y: Math.random() * 12000 - 6000,
+        z: Math.random() * 12000 - 6000
+    }));
+
+    // Generate nodes within separate galaxies
     for (let i = 0; i < N; i++) {
+        const galaxy = i % clusters;
         nodes.push({
             id: i,
-            group: i % clusters, // Assign each node a group
+            group: galaxy,
             label: `Node ${i}`,
+            color: colorPalette[galaxy % colorPalette.length],
+            x: galaxyCenters[galaxy].x + Math.random() * 800 - 400, // Increased spread within galaxies
+            y: galaxyCenters[galaxy].y + Math.random() * 800 - 400,
+            z: galaxyCenters[galaxy].z + Math.random() * 800 - 400
         });
     }
 
-    // Generate links with logical structure
-    for (let i = 1; i < N; i++) {
-        links.push({
-            source: i,
-            target: Math.floor(Math.random() * i), // Random parent node from previous nodes
-        });
+    // Generate minimal intra-galaxy links
+    for (let i = 0; i < N; i++) {
+        if (Math.random() < 0.4) { // 40% chance of a connection
+            const target = Math.floor(Math.random() * (N / clusters)) + (Math.floor(i / (N / clusters)) * (N / clusters));
+            links.push({ source: i, target });
+        }
+    }
 
-        // Add additional inter-cluster links for a more connected graph
-        if (i % clusters === 0) {
-            const randomConnection = Math.floor(Math.random() * N);
-            links.push({
-                source: i,
-                target: randomConnection !== i ? randomConnection : (i + 1) % N,
-            });
+    // Very sparse inter-galaxy links
+    for (let i = 0; i < clusters; i++) {
+        for (let j = i + 1; j < clusters; j++) {
+            if (Math.random() < 0.1) { // 10% chance of cross-galaxy link
+                const source = Math.floor(Math.random() * (N / clusters)) + (i * (N / clusters));
+                const target = Math.floor(Math.random() * (N / clusters)) + (j * (N / clusters));
+                links.push({ source, target });
+            }
         }
     }
 
     return { nodes, links };
 };
+
+
+
 const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
     const graphRef = useRef();
     const [hoveredNode, setHoveredNode] = useState(null);
@@ -49,81 +73,68 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
             const Graph = ForceGraph3D()(graphRef.current)
                 .backgroundColor(backgroundColor)
                 .nodeLabel("label")
-                .nodeAutoColorBy("group")
-                .linkColor(() => "#ffffff")
-                .linkDirectionalParticles(1)
-                .linkDirectionalParticleColor(() => "cyan")
-                .linkDirectionalParticleWidth(3);
-
-            // Call generateSampleData() to get the returned object with nodes and links
+                .nodeColor(node => node.color)
+                .nodeRelSize(14) // **Increase size for larger dots**
+                .linkColor(() => "rgba(255, 255, 255, 0.2)") // Softer links
+                .linkDirectionalParticles(2)
+                .linkDirectionalParticleWidth(1)
+                .linkOpacity(0.2); // Reduce link brightness for contrast
+    
+            // **Generate and apply spread-out galaxy data**
             const sampleData = generateSampleData();
-
-            sampleData.nodes.forEach((node) => {
-                node.z = Math.random() * 800 - 150;
-            });
-
             Graph.graphData(sampleData);
-
-
-            // Node appearance
+    
+            // 🌟 **Brighter & Glowing Nodes**
             Graph.nodeThreeObject((node) => {
                 const material = new THREE.MeshStandardMaterial({
-                    color: node.color || node.group,
-                    emissive: node.color || node.group,
-                    emissiveIntensity: 0.5,
+                    color: node.color,
+                    emissive: node.color, // **Adds glow**
+                    emissiveIntensity: 2.5, // **Boost glow effect**
+                    transparent: true,
+                    opacity: 1
                 });
-                const size = node.id === "entry-point" ? 15 : 7;
+    
+                const size = node.id === "entry-point" ? 25 : 14; // **Larger node size**
                 return new THREE.Mesh(new THREE.SphereGeometry(size, 32, 32), material);
             });
-
-            // Link appearance
-            Graph.linkThreeObjectExtend(true);
-            Graph.linkThreeObject((link) => {
-                const geometry = new THREE.BufferGeometry().setFromPoints([
-                    new THREE.Vector3(link.source.x, link.source.y, link.source.z || 0),
-                    new THREE.Vector3(link.target.x, link.target.y, link.target.z || 0),
-                ]);
-
-                return new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: "#ffffff" }));
-            });
-
-            // Glow Effect
-            const bloomPass = new UnrealBloomPass();
-            bloomPass.strength = 2.5;
-            bloomPass.radius = 1.0;
-            bloomPass.threshold = 0.2;
+    
+            // 🌌 **Add Unreal Bloom Glow Effect**
+            const bloomPass = new UnrealBloomPass(
+                new THREE.Vector2(window.innerWidth, window.innerHeight),
+                2.0, // **Increase glow intensity**
+                1.0,
+                0.1
+            );
+            bloomPass.strength = 3.5; // **Stronger glow**
+            bloomPass.radius = 0.8;
+            bloomPass.threshold = 0.1; // **Glow at low brightness too**
             const composer = Graph.postProcessingComposer();
             composer.addPass(bloomPass);
-
-            // Set initial camera position
+    
+            // 🌠 **Improve galaxy separation**
+            Graph.d3Force("charge", d3.forceManyBody().strength(-2000)); // More repulsion
+            Graph.d3Force("link", d3.forceLink().distance(900).strength(0.05)); // Looser, more natural
+            Graph.d3Force("x", d3.forceX().strength(0.005));
+            Graph.d3Force("y", d3.forceY().strength(0.005));
+    
+            // 🚀 **Pull camera back for a grander view**
             Graph.cameraPosition(
-                { x: 0, y: 0, z: 1200 }, // Adjusted Y higher for a flatter look
-                { x: 0, y: 0, z: 0 }, // Look at the center
+                { x: 0, y: 0, z: 10000 }, // Zoom out
+                { x: 0, y: 0, z: 0 },
                 0
             );
-            // Force layout adjustments
-            Graph.d3Force("charge", d3.forceManyBody().strength(-500));
-            Graph.d3Force("link", d3.forceLink().distance(200).strength(1));
-
-            // Handle node click
-            Graph.onNodeClick((node) => {
-                setSelectedNode(node.label);
-                console.log("Node Clicked:", node);
-            });
-
-            // Handle node hover
-            Graph.onNodeHover((node) => setHoveredNode(node ? node.label : null));
-
-            // Cleanup
+    
             return () => {
                 if (Graph) {
                     Graph.pauseAnimation();
                     Graph._destructor && Graph._destructor();
                 }
-                composer.removePass(bloomPass);
             };
         }
     }, [backgroundColor, graphData]);
+    
+    
+    
 
     return (
         <div style={{ position: "relative", width: "100%", height: "100vh" }}>
@@ -169,6 +180,5 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
         </div>
     );
 };
-
 
 export default ForceGraph;
