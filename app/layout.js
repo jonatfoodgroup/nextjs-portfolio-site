@@ -15,6 +15,7 @@ import { Toaster } from "react-hot-toast";
 import { HubspotProvider } from "./providers/HubspotProvider";
 import { ProposalProvider } from "./providers/ProposalProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({
 subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
 
       <body className={`${inter.className} ${bebas_neue.className} bg-white text-black`}>
         <ServiceWorkerProvider>
+          <Analytics />
           <SpeedInsights>
             <WordpressProvider>
             <HubspotProvider>
