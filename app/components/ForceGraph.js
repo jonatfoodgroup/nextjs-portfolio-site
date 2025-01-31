@@ -97,7 +97,7 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
 
             // Set initial camera position
             Graph.cameraPosition(
-                { x: 0, y: 400, z: 1200 }, // Adjusted Y higher for a flatter look
+                { x: 0, y: 0, z: 1200 }, // Adjusted Y higher for a flatter look
                 { x: 0, y: 0, z: 0 }, // Look at the center
                 0
             );
@@ -126,7 +126,7 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
     }, [backgroundColor, graphData]);
 
     return (
-        <div style={{ position: "relative", width: "100%", height: "50vh" }}>
+        <div style={{ position: "relative", width: "100%", height: "100vh" }}>
             <div ref={graphRef} />
 
             {/* Display hovered node label */}
