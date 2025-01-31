@@ -14,6 +14,7 @@ import Button from "../Button";
 import { StartDate } from "./StartDate";
 import { EndDate } from "./EndDate";
 import Assignee from "./Assignee";
+import ImageUploader from "../ImageUploader";
 
 const TaskDetails = ({ task, updateTask, addTask, project }) => {
     const [description, setDescription] = useState(task.description || "");
@@ -70,6 +71,9 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
     </div>
 
   <Assignee task={task} />
+    
+    <ImageUploader task={task} />
+
 
   {/* Subtasks Section */}
   <div className="mt-6 border-t border-gray-700 pt-4">
