@@ -7,6 +7,7 @@ import { SessionProvider } from "next-auth/react";
 import { UserProvider } from "../providers/UserProvider";
 import ActiveTimer from "../components/portal/ActiveTimer";
 import { HubspotProvider } from "../providers/HubspotProvider";
+import { TasksProvider } from "../providers/TasksProvider";
 
 export default function PortalLayout({ children }) {
     useEffect(() => {
@@ -19,6 +20,7 @@ export default function PortalLayout({ children }) {
         <SessionProvider>
             <UserProvider>
                 <HubspotProvider>
+                    <TasksProvider>
                     <div className="flex flex-col min-h-screen bg-black py-16">
                         <PortalHeader setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
                         <Sidebar showSidebar={showSidebar} />
@@ -26,6 +28,7 @@ export default function PortalLayout({ children }) {
                             {children}
                         </div>
                     </div>
+                    </TasksProvider>
                 </HubspotProvider>
                 <ActiveTimer />
             </UserProvider>

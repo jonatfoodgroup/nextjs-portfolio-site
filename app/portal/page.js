@@ -7,9 +7,11 @@ import Link from "next/link";
 import ProjectCard from "../components/projects/ProjectCard";
 import Button from "../components/Button";
 import PortalTimelineView from "../components/portal/PortalTimelineView";
+import { useTasks } from "../providers/TasksProvider";
 
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
+    const {tasks } = useTasks();
     const [companiesWithProjects, setCompaniesWithProjects] = useState([]);
     const { companies } = useHubspot();
     const [loading, setLoading] = useState(false);
@@ -61,15 +63,33 @@ export default function PortalSelector() {
                 >
                     Timeline
                 </button>
+                <button
+                    className={`px-4 py-4 text-sm font-medium ${
+                        activeView === "tasks" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                    }`}
+                    onClick={() => setActiveView("tasks")}
+                >
+                    Tasks
+                </button>
+                <button
+                    className={`px-4 py-4 text-sm font-medium ${
+                        activeView === "calendar" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                    }`}
+                    onClick={() => setActiveView("calendar")}
+                >
+                    Calendar
+                </button>
             </div>
 
             {/* Content Based on Active View */}
-            {activeView === "timeline" ? (
+            {activeView === "timeline" && (
                 <PortalTimelineView companies={companiesWithProjects} />
-            ) : (
-                <div className="grid grid-cols-1 gap-4">
+            )}
+               
+            {activeView === "board" && (
+               <div className="grid grid-cols-1 gap-4">
                     {companiesWithProjects.map((company) => (
-                        <div key={company.id} className="p-6 bg-black rounded-xl border border-gray-700">
+                        <div key={company.id} className="p-6 bg-black border border-gray-700">
                             <CompanyHeader company={company} />
                             <div className="bg-black align-top grid grid-cols-1 md:grid-cols-6 gap-4">
                                 {company.projects.map((project) => (
@@ -80,6 +100,28 @@ export default function PortalSelector() {
                     ))}
                 </div>
             )}
+            {
+                activeView === "tasks" && (
+                    <div className="grid grid-cols-1 gap-4">
+                        {tasks.map((task) => (
+                            <div key={task.id} className="p-6 bg-black rounded-xl border border-gray-700">
+                                
+                            </div>
+                        ))}
+                    </div>
+                )
+            }
+            {
+                activeView === "calendar" && (
+                    <div className="grid grid-cols-1 gap-4">
+                        {tasks.map((task) => (
+                            <div key={task.id} className="p-6 bg-black rounded-xl border border-gray-700">
+                                
+                            </div>
+                        ))}
+                    </div>
+                )
+            }
         </div>
     );
 }
