@@ -12,7 +12,7 @@ const PortalHeader = ({
     showSidebar
 }) => {
     return (
-        <header className="bg-gray-900 text-white px-4 py-2 fixed top-0 left-0 w-full z-50 shadow-md">
+        <header className="bg-black text-white px-4 py-2 fixed top-0 left-0 w-full z-50 shadow-md">
             <div className="flex justify-between items-center">
                 <div className="flex items-center space-x-4">
                     <Button
@@ -29,10 +29,10 @@ const PortalHeader = ({
                 <ProjectSearch />
                 <nav className="flex items-center space-x-4">
                     <Link
-                    href="/schedule"
+                        href="/schedule"
                     >
                         <Button icon={"carbon:calendar"} variant="outline">
-                        Today's Schedule
+                            Today's Schedule
                         </Button></Link>
                     <LoginButton />
                 </nav>

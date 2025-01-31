@@ -76,8 +76,7 @@ const PortalTimelineView = ({ companies }) => {
     });
 
     return (
-        <div className="bg-gray-900 p-6 rounded-xl" id="timelineContainer">
-            <h2 className="text-white text-lg font-semibold mb-4">Portfolio Timeline</h2>
+        <div className="" id="timelineContainer">
             <Timeline
                 groups={groups}
                 items={items}

@@ -10,7 +10,7 @@ const Sidebar = ({
     showSidebar
 }) => {
     return (
-        <aside className={`w-0 bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto pt-16 transition-all duration-300 ${showSidebar ? "w-64" : "w-0"}`}>
+        <aside className={`w-0 bg-black text-white h-screen fixed top-0 left-0 overflow-y-auto pt-16 transition-all duration-300 ${showSidebar ? "w-64" : "w-0"}`}>
             <Projects />
         </aside>
     );

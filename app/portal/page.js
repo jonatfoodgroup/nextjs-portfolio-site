@@ -42,9 +42,9 @@ export default function PortalSelector() {
     }, [companies]);
 
     return (
-        <div className="mx-auto py-6 px-4">
+        <div className="">
             {/* Tab Selector */}
-            <div className="flex space-x-4 border-b border-gray-700 mb-6">
+            <div className="flex space-x-4 border-b border-gray-700 mb-6 mt-1 sticky top-20 bg-gray-800 z-10">
                 <button
                     className={`px-4 py-2 text-sm font-medium ${
                         activeView === "board" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
@@ -54,7 +54,7 @@ export default function PortalSelector() {
                     Board
                 </button>
                 <button
-                    className={`px-4 py-2 text-sm font-medium ${
+                    className={`px-4 py-4 text-sm font-medium ${
                         activeView === "timeline" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
                     }`}
                     onClick={() => setActiveView("timeline")}

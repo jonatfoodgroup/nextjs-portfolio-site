@@ -54,7 +54,7 @@ const DropdownMenu = ({ user }) => {
             {/* Trigger Button */}
             <button
                 onClick={toggleMenu}
-                className="flex items-center space-x-2 bg-gray-800 rounded-full px-2 py-1 shadow hover:bg-gray-700 focus:outline-none"
+                className="flex items-center space-x-2 bg-transparent rounded-full px-2 py-1 shadow hover:bg-gray-900 focus:outline-none transition duration-150"
             >
                 <img
                     src={user.image}
@@ -66,7 +66,7 @@ const DropdownMenu = ({ user }) => {
 
             {/* Dropdown Menu */}
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-10">
+                <div className="absolute right-0 mt-2 w-56 bg-black border border-gray-700 rounded-lg shadow-lg z-10">
                     <div className="px-4 py-2 border-b text-gray-800 border-gray-700">
                         <img src={user.image} alt="Profile" className="w-10 h-10 rounded-full" />
                         <p className="font-semibold mt-2 text-white">{user.name}

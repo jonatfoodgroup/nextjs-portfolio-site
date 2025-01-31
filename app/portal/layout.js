@@ -19,10 +19,10 @@ export default function PortalLayout({ children }) {
         <SessionProvider>
             <UserProvider>
                 <HubspotProvider>
-                    <div className="flex flex-col min-h-screen bg-gray-800 py-10">
+                    <div className="flex flex-col min-h-screen bg-gray-800 py-16">
                         <PortalHeader setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
                         <Sidebar showSidebar={showSidebar} />
-                        <div className={`flex-1 p-4 md:p-8 ${showSidebar ? "ml-64" : ""}`}>
+                        <div className={`flex-1 md:p-0 ${showSidebar ? "ml-64" : ""}`}>
                             {children}
                         </div>
                     </div>
