@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 const StepsTracker = ({ steps, currentStep }) => {
   return (
-    <div className="w-full p-6 bg-gray-900 rounded-xl shadow">
+    <div className="w-full p-6 bg-black rounded-xl shadow">
       <div className="flex justify-between items-center">
         {steps.map((step, index) => (
           <div key={index} className="flex flex-col items-center w-full">

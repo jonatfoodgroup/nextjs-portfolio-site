@@ -126,17 +126,17 @@ const TaskKanban = () => {
 
     return (
         <>
-        <div className="kanban-container flex gap-4 p-4 bg-gray-900">
+        <div className="kanban-container flex gap-4 p-4 bg-black">
             <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
             >
-                <div className="flex gap-4 w-full bg-gray-900 columns">
+                <div className="flex gap-4 w-full bg-black columns">
                     {Object.entries(columns).map(([columnId, column]) => (
                         <Droppable key={columnId} id={columnId}>
-                            <div className="w-80 bg-gray-800 p-4 rounded-lg shadow-md">
+                            <div className="w-80 bg-black p-4 rounded-lg shadow-md">
                                 <h3 className="text-lg font-semibold mb-4 text-gray-100">
                                     {column.title}
                                 </h3>
@@ -146,7 +146,7 @@ const TaskKanban = () => {
                                 >
                                     {column.tasks.map((task) => (
                                         <Draggable key={task.id} id={task.id}>
-                                            <div className="p-4 mb-3 bg-gray-700 rounded-md shadow-sm border border-gray-600">
+                                            <div className="p-4 mb-3 bg-black rounded-md shadow-sm border border-gray-600">
                                                 <strong className="block text-gray-200">
                                                     {task.name}
                                                 </strong>

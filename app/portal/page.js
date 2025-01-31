@@ -69,9 +69,9 @@ export default function PortalSelector() {
             ) : (
                 <div className="grid grid-cols-1 gap-4">
                     {companiesWithProjects.map((company) => (
-                        <div key={company.id} className="p-6 bg-gray-900 rounded-xl border border-gray-700">
+                        <div key={company.id} className="p-6 bg-black rounded-xl border border-gray-700">
                             <CompanyHeader company={company} />
-                            <div className="bg-gray-900 align-top grid grid-cols-1 md:grid-cols-6 gap-4">
+                            <div className="bg-black align-top grid grid-cols-1 md:grid-cols-6 gap-4">
                                 {company.projects.map((project) => (
                                     <ProjectCard key={project.id} project={project} company={company} />
                                 ))}

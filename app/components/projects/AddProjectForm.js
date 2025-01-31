@@ -31,7 +31,7 @@ const AddProjectForm = ({ hubspotId }) => {
 
   return (
     <form
-      className="bg-gray-800 p-4 rounded-lg shadow-md mx-auto space-y-4"
+      className="bg-black p-4 rounded-lg shadow-md mx-auto space-y-4"
       onSubmit={handleSubmit}
     >
       {/* <h2 className="text-2xl font-semibold text-gray-200">Add a New Project</h2> */}
@@ -50,7 +50,7 @@ const AddProjectForm = ({ hubspotId }) => {
           placeholder="Enter project title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full p-3 rounded-md bg-gray-900 text-gray-200 border border-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-3 rounded-md bg-black text-gray-200 border border-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         />
       </div>
@@ -69,7 +69,7 @@ const AddProjectForm = ({ hubspotId }) => {
           placeholder="Enter project owner"
           value={owner}
           onChange={(e) => setOwner(e.target.value)}
-          className="w-full p-3 rounded-md bg-gray-900 text-gray-200 border border-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-3 rounded-md bg-black text-gray-200 border border-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
@@ -86,7 +86,7 @@ const AddProjectForm = ({ hubspotId }) => {
           id="dueDate"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
-          className="w-full p-3 rounded-md bg-gray-900 text-gray-200 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-3 rounded-md bg-black text-gray-200 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
@@ -103,7 +103,7 @@ const AddProjectForm = ({ hubspotId }) => {
           placeholder="Enter additional notes"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="w-full p-3 h-28 rounded-md bg-gray-900 text-gray-200 border border-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-3 h-28 rounded-md bg-black text-gray-200 border border-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         ></textarea>
       </div>
 

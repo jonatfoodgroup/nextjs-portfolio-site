@@ -25,12 +25,35 @@ const ProjectPage = ({ project }) => {
   const [activeTab, setActiveTab] = useState('tasks'); // State for the active tab
 
   let jobNumber = project.jobNumber.slice(-5);
+
+  let tabs = [
+    { name: 'tasks', label: 'Tasks' },
+    { name: 'board', label: 'Board' },
+    { name: 'calendar', label: 'Calendar' },
+    { name: 'timeline', label: 'Timeline' },
+    { name: 'updates', label: 'Updates' },
+    { name: 'resources', label: 'Resources' }
+  ];
+
   return (
     <TasksProvider projectId={project.id}>
-      <div className="bg-gray-800 min-h-screen">
-        <Breadcrumb hubspotId={project.hubspotId} />
+      <div className="bg-black min-h-screen">
+        
+        
+            <div className="flex space-x-4 mb-8">
+              {tabs.map(tab => (
+                <button
+                  key={tab.name}
+                  className={`px-4 py-2 ${activeTab === tab.name ? 'bg-transparent' : 'bg-transparent'} text-sm font-medium ${activeTab === tab.name ? 'text-white border-b-2 border-blue-500' : 'text-gray-400'}`}
+                  onClick={() => setActiveTab(tab.name)}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
         <div className="flex justify-between items-center md:flex-row flex-col">
           <div className="flex flex-col">
+          <Breadcrumb hubspotId={project.hubspotId} />{/* Tabs for tasks, board, timeline, and updates */}
             <EditableTitle project={project} />
             <div className="flex items-center space-x-4">
               <DiscordLinkButton discordChannelId={project.discordChannelId} />
@@ -56,46 +79,7 @@ const ProjectPage = ({ project }) => {
               <EndDate project={project} />
             </div>
 
-            {/* Tabs for tasks, board, timeline, and updates */}
-            <div className="flex space-x-4 mb-8">
-              <button
-                className={`px-4 py-2 ${activeTab === 'tasks' ? 'bg-blue-500' : 'bg-gray-700'}`}
-                onClick={() => setActiveTab('tasks')}
-              >
-                Tasks
-              </button>
-              <button
-                className={`px-4 py-2 ${activeTab === 'board' ? 'bg-blue-500' : 'bg-gray-700'}`}
-                onClick={() => setActiveTab('board')}
-              >
-                Board
-              </button>
-              <button
-                className={`px-4 py-2 ${activeTab === 'calendar' ? 'bg-blue-500' : 'bg-gray-700'}`}
-                onClick={() => setActiveTab('calendar')}
-              >
-                Calendar
-              </button>
-              <button
-                className={`px-4 py-2 ${activeTab === 'timeline' ? 'bg-blue-500' : 'bg-gray-700'}`}
-                onClick={() => setActiveTab('timeline')}
-              >
-                Timeline
-              </button>
-              <button
-                className={`px-4 py-2 ${activeTab === 'updates' ? 'bg-blue-500' : 'bg-gray-700'}`}
-                onClick={() => setActiveTab('updates')}
-              >
-                Updates
-              </button>
-              <button
-                // resource links
-                className={`px-4 py-2 ${activeTab === 'resources' ? 'bg-blue-500' : 'bg-gray-700'}`}
-                onClick={() => setActiveTab('resources')}
-              >
-                Resources
-              </button>
-            </div>
+            
 
             {/* Conditional Rendering based on active tab */}
             {activeTab === 'tasks' && (

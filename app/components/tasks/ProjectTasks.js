@@ -34,7 +34,7 @@ const ProjectTasks = ({ project }) => {
   };
 
   return (
-    <div className="p-6 bg-gray-900 rounded-xl">
+    <div className="p-6 bg-black rounded-xl">
       <h3 className="text-lg font-semibold mb-4 text-gray-300">Tasks</h3>
 
       {/* Timeline View */}
@@ -45,47 +45,53 @@ const ProjectTasks = ({ project }) => {
       {loading ? (
         <p className="text-gray-500">Loading tasks...</p>
       ) : (
-        <ul className="space-y-4">
-          {sortedTasks.filter((task) => !task.parentTaskId).map((task) => (
-            <li
-              key={task.id}
-              className="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border-gray-800 cursor-pointer"
-              onClick={() => openModal(task)}
-            >
-              <div className="flex justify-between items-center">
-                <div className="flex items-center space-x-4">
-                  <AssigneeAvatar assignee={task.assignee} />
-                  <div className="flex flex-col">
-                    <p className="font-medium text-lg text-gray-400 hover:text-white">{task.name}</p>
-                    <p className="text-sm text-gray-500">
-                      {moment(task.startDate).format("MMM D, YYYY")} - {moment(task.endDate).format("MMM D, YYYY")}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-col">
-                  <ul className="flex flex-col mt-2 space-y-1">
-                    {task.subtasks.map((subtask, index) => (
-                      <li key={index} className="text-sm text-gray-500">
-                        {subtask.name}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+  {sortedTasks.filter((task) => !task.parentTaskId).map((task) => (
+    <div
+      key={task.id}
+      className="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border-gray-800 cursor-pointer bg-gray-900"
+      onClick={() => openModal(task)}
+    >
+      <div className="flex flex-col space-y-3">
+        {/* Assignee + Title */}
+        <div className="flex items-start space-x-4">
+          <AssigneeAvatar assignee={task.assignee} />
+          <div className="flex flex-col">
+            <p className="font-medium text-lg text-gray-300 hover:text-white">{task.name}</p>
+            <p className="text-sm text-gray-500">
+              {moment(task.startDate).format("MMM D, YYYY")} - {moment(task.endDate).format("MMM D, YYYY")}
+            </p>
+          </div>
+        </div>
 
-                <p
-                  className={`text-sm px-2 py-1 rounded font-semibold ${task.status === "completed"
-                    ? "bg-green-200 text-green-800"
-                    : task.status === "in progress"
-                      ? "bg-yellow-200 text-yellow-800"
-                      : "bg-gray-700 text-gray-400"
-                    }`}
-                >
-                  {task.status}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        {/* Subtasks */}
+        {task.subtasks.length > 0 && (
+          <div className="mt-2">
+            <h4 className="text-sm font-semibold text-gray-400 mb-1">Subtasks</h4>
+            <ul className="text-sm text-gray-500 space-y-1">
+              {task.subtasks.map((subtask, index) => (
+                <li key={index} className="pl-2 border-l-2 border-gray-700">{subtask.name}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Status Badge */}
+        <p
+          className={`text-sm px-2 py-1 rounded font-semibold self-start ${
+            task.status === "completed"
+              ? "bg-green-200 text-green-800"
+              : task.status === "in progress"
+              ? "bg-yellow-200 text-yellow-800"
+              : "bg-gray-700 text-gray-400"
+          }`}
+        >
+          {task.status}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
       )}
 
       {/* Modal for Task Details */}
