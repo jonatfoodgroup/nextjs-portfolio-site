@@ -1,16 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, Suspense, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ProposalProvider, useProposal } from "../../providers/ProposalProvider";
 import Tiptap from "../../components/TipTap";
 
 export default function ProposalPage({ params }) {
-  // const stuff = ProposalProvider();
-  // const { proposals } = ProposalProvider.getProposal()
-
-
   return (
-
     <Wrapper />
   );
 }
@@ -18,7 +13,9 @@ export default function ProposalPage({ params }) {
 const Wrapper = ({ children }) => {
   return (
     <ProposalProvider>
+      <div className="container mx-auto py-20">
       <TextEditor />
+      </div>
     </ProposalProvider>
   )
 }

@@ -628,5 +628,17 @@ html body .rct-vl {
 }
 
 #forshizzle h1 {
-  font-size: x-large;
+  @apply text-4xl font-bold text-gray-900 mb-6;
+}
+
+#forshizzle h2 {
+  @apply text-2xl font-semibold text-gray-800 mt-8 mb-4;
+}
+
+#forshizzle h3 {
+  @apply text-xl font-semibold text-gray-800 mt-8 mb-4;
+}
+
+#forshizzle p {
+  @apply text-base leading-relaxed text-gray-700 mb-4;
 }

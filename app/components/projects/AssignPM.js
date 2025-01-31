@@ -46,7 +46,7 @@ const AssignPM = ({ projectId, currentPM }) => {
 
     return (
         <div className="p-4 bg-gray-800 rounded-md">
-            <h3 className="text-white text-lg font-semibold mb-2">Assign Project Manager</h3>
+            <label className="text-gray-400 text-sm">Project Manager</label>
             {loading ? (
                 <p className="text-gray-400">Loading users...</p>
             ) : (

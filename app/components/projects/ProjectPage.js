@@ -32,12 +32,16 @@ const ProjectPage = ({ project }) => {
         <div className="flex justify-between items-center md:flex-row flex-col">
           <div className="flex flex-col">
             <EditableTitle project={project} />
+            <div className="flex items-center space-x-4">
+              <DiscordLinkButton discordChannelId={project.discordChannelId} />
+              <DriveLinkButton driveFolderId={project.googleDriveFolderId} />
+            </div>
           </div>
-          <p className="text-gray-400 text-sm">Job Number: {jobNumber}</p>
-          <div className="flex space-x-4 justify-end text-2xl">
-            <AddTask showAddTaskForm={showAddTaskForm} setShowAddTaskForm={setShowAddTaskForm} />
-            <DiscordLinkButton discordChannelId={project.discordChannelId} />
-            <DriveLinkButton driveFolderId={project.googleDriveFolderId} />
+          {/* <p className="text-gray-400 text-sm">Job Number: {jobNumber}</p> */}
+          
+          <div className="flex space-x-4 justify-end">
+
+          <AssignPM projectId={project.id} currentPM={project.projectManager} />
           </div>
         </div>
 
@@ -46,7 +50,7 @@ const ProjectPage = ({ project }) => {
             <div className="border-b border-gray-700 pb-8 mb-8">
               <EditableDescription project={project} />
             </div>
-            <AssignPM projectId={project.id} currentPM={project.projectManager} />
+
             <div className="flex items-start space-x-4 mb-16">
               <StartDate project={project} />
               <EndDate project={project} />
@@ -97,6 +101,7 @@ const ProjectPage = ({ project }) => {
             {activeTab === 'tasks' && (
               <>
                 <div className="mt-4">
+                  <AddTask showAddTaskForm={showAddTaskForm} setShowAddTaskForm={setShowAddTaskForm} />
                   {showAddTaskForm && <AddTaskForm projectId={project.id} />}
                 </div>
                 <ProjectTasks project={project} />
