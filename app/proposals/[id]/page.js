@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ProposalProvider, useProposal } from "../../providers/ProposalProvider";
 import Tiptap from "../../components/TipTap";
+import SignaturePad from "../../components/SignaturePad";
 
 export default function ProposalPage({ params }) {
   return (
@@ -15,6 +16,7 @@ const Wrapper = ({ children }) => {
     <ProposalProvider>
       <div className="container mx-auto py-10">
       <TextEditor />
+      <SignaturePad />
       </div>
     </ProposalProvider>
   )

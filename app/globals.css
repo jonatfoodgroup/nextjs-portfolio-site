@@ -646,7 +646,7 @@ html body .rct-vl {
 }
 
 #forshizzle ul {
-  margin-left: 1rem;
+  margin-left: 2.5rem;
   margin-bottom: 1.5rem !important;
   /* @apply list-disc list-inside pl-5 space-y-4 text-gray-700; */
 }
