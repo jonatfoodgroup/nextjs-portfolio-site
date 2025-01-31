@@ -39,8 +39,8 @@ export default function RootLayout({ children }) {
 
       <body className={`${inter.className} ${bebas_neue.className} bg-white text-black`}>
         <ServiceWorkerProvider>
-          <Analytics>
-          <SpeedInsights>
+          <Analytics />
+          <SpeedInsights />
             <WordpressProvider>
             <HubspotProvider>
               <DataProvider>
@@ -63,8 +63,6 @@ export default function RootLayout({ children }) {
               </DataProvider>
             </HubspotProvider>
             </WordpressProvider>
-          </SpeedInsights>
-          </Analytics>
         </ServiceWorkerProvider>
         <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/22555624.js"></script>
       </body>
