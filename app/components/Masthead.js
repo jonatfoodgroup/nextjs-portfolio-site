@@ -56,7 +56,7 @@ const Masthead = () => {
                     }}
                 >
                     <motion.div
-                        className="w-full max-w-6xl mx-auto text-left items-start justify-center"
+                        className="w-full max-w-6xl mx-auto text-left items-start justify-center pointer-events-none"
                         variants={{ hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0 } }}
                     >
                         <motion.h1
@@ -119,18 +119,18 @@ const Masthead = () => {
                     )
                 }
 
-{graphData && (
-    <motion.div
-        initial={{ opacity: 0, scale: 0.95, rotateX: -10, rotateY: 10 }}
-        animate={{ opacity: 1, scale: 1, rotateX: 0, rotateY: 0 }}
-        whileHover={{ rotateX: 10, rotateY: -10, scale: 1.02 }}
-        transition={{ duration: 1.5, ease: "easeInOut" }}
-        style={{ width: "100%", height: "100vh", zIndex: 1, perspective: 1000 }}
-        className="no-select"
-    >
-        <ForceGraph backgroundColor="black" graphData={sampleData} />
-    </motion.div>
-)}
+                {graphData && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95, rotateX: -10, rotateY: 10 }}
+                        animate={{ opacity: 1, scale: 1, rotateX: 0, rotateY: 0 }}
+                        whileHover={{ rotateX: 10, rotateY: -10, scale: 1.02 }}
+                        transition={{ duration: 1.5, ease: "easeInOut" }}
+                        style={{ width: "100%", height: "100vh", zIndex: 1, perspective: 1000 }}
+                        className="no-select"
+                    >
+                        <ForceGraph backgroundColor="black" graphData={sampleData} />
+                    </motion.div>
+                )}
             </div>
         </div>
     );

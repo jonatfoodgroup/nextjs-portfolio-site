@@ -96,8 +96,11 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
             composer.addPass(bloomPass);
 
             // Set initial camera position
-            Graph.cameraPosition({ x: 200, y: 300, z: 1400 }, { x: 0, y: 0, z: 0 }, 0);
-
+            Graph.cameraPosition(
+                { x: 0, y: 400, z: 1200 }, // Adjusted Y higher for a flatter look
+                { x: 0, y: 0, z: 0 }, // Look at the center
+                0
+            );
             // Force layout adjustments
             Graph.d3Force("charge", d3.forceManyBody().strength(-500));
             Graph.d3Force("link", d3.forceLink().distance(200).strength(1));
