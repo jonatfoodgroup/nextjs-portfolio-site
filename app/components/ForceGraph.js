@@ -120,8 +120,12 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
 
             // Cleanup on unmount
             return () => {
+                if (Graph) {
+                    Graph.pauseAnimation(); // Stops animation loop
+                    Graph._destructor && Graph._destructor(); // Internal cleanup function
+                    // graphRef.current.innerHTML = ""; // Clear the container
+                }
                 composer.removePass(bloomPass);
-                Graph.dispose();
             };
         }
     }, [backgroundColor, graphData]);
