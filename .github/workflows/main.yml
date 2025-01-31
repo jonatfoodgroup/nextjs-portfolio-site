@@ -1,0 +1,36 @@
+name: Discord Webhook Notification
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want notifications for
+
+jobs:
+  notify_discord:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord Notification
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{
+                  "username": "GitHubBot",
+                  "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+                  "embeds": [{
+                    "title": "🚀 Code Pushed!",
+                    "description": "**New push to `${{ github.repository }}` on branch `${{ github.ref_name }}`**",
+                    "color": 15258703,
+                    "fields": [
+                      { "name": "Commit Message", "value": "${{ github.event.head_commit.message }}", "inline": false },
+                      { "name": "Author", "value": "${{ github.event.head_commit.author.name }}", "inline": true },
+                      { "name": "Repository", "value": "[View on GitHub](https://github.com/${{ github.repository }})", "inline": true }
+                    ],
+                    "footer": {
+                      "text": "GitHub Actions - Auto Notification"
+                    }
+                  }]
+                }' \
+               "${{ secrets.DISCORD_WEBHOOK_URL }}"
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
