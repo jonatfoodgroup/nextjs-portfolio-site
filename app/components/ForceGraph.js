@@ -75,9 +75,10 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
                 .nodeLabel("label")
                 .nodeColor(node => node.color)
                 .nodeRelSize(14) // **Increase size for larger dots**
-                .linkColor(() => "rgba(255, 255, 255, 0.2)") // Softer links
+                .linkColor(() => "rgba(255, 255, 255, .2)") // Softer links
                 .linkDirectionalParticles(2)
                 .linkDirectionalParticleWidth(1)
+      .linkHoverPrecision(10)
                 .linkOpacity(0.2); // Reduce link brightness for contrast
     
             // **Generate and apply spread-out galaxy data**
@@ -123,16 +124,29 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
                 { x: 0, y: 0, z: 0 },
                 0
             );
-    
-            return () => {
-                if (Graph) {
-                    Graph.pauseAnimation();
-                    Graph._destructor && Graph._destructor();
-                }
-            };
+
+           // 🔥 **Emit Particles Randomly at Intervals**
+        function emitParticlesRandomly() {
+            const link = sampleData.links[Math.floor(Math.random() * sampleData.links.length)];
+            if (link) {
+                Graph.emitParticle(link);
+            }
+        }
+
+        // Set up interval for automatic particle emission
+        const particleInterval = setInterval(() => {
+            [...Array(10).keys()].forEach(() => emitParticlesRandomly());
+        }, 3000); // Emits particles every 3 seconds
+
+        return () => {
+            clearInterval(particleInterval);
+            if (Graph) {
+                Graph.pauseAnimation();
+                Graph._destructor && Graph._destructor();
+            }
+        };
         }
     }, [backgroundColor, graphData]);
-    
     
     
 
