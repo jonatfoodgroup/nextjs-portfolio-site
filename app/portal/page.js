@@ -12,19 +12,20 @@ import { motion } from "framer-motion";
 
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
-    const {tasks } = useTasks();
+    const { tasks } = useTasks();
     const [companiesWithProjects, setCompaniesWithProjects] = useState([]);
     const { companies } = useHubspot();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [bootComplete, setBootComplete] = useState(false);
     const [activeView, setActiveView] = useState("timeline"); // "board" or "timeline"
 
     useEffect(() => {
-        if (!companies || companies.length === 0 || loading) return;
+        if (!companies || companies.length === 0) return;
     
         const bootAndFetch = async () => {
             setLoading(true); // Ensure loading is set early to prevent UI flicker
     
-            // Boot sequence duration (e.g., 3 seconds)
+            // Boot sequence duration (3 seconds)
             await new Promise((resolve) => setTimeout(resolve, 3000));
     
             try {
@@ -48,18 +49,20 @@ export default function PortalSelector() {
         bootAndFetch();
     }, [companies]);
 
-    if (loading) {
+    if (loading || !bootComplete) {
         return (
             <div className="flex flex-col items-center justify-center h-screen bg-black text-green-400 font-mono">
-                <div className="text-lg">
-                    <BootSequence />
-                </div>
+                <BootSequence onComplete={() => setBootComplete(true)} />
             </div>
         );
     }
 
     return (
-        <div className="">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
             {/* Tab Selector */}
             <div className="flex space-x-4 border-b border-gray-700 mb-6 mt-1 sticky top-20 bg-black z-10">
                 <button
@@ -97,12 +100,9 @@ export default function PortalSelector() {
             </div>
 
             {/* Content Based on Active View */}
-            {activeView === "timeline" && (
-                <PortalTimelineView companies={companiesWithProjects} />
-            )}
-               
+            {activeView === "timeline" && <PortalTimelineView companies={companiesWithProjects} />}
             {activeView === "board" && (
-               <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                     {companiesWithProjects.map((company) => (
                         <div key={company.id} className="p-6 bg-black border border-gray-700">
                             <CompanyHeader company={company} />
@@ -115,31 +115,24 @@ export default function PortalSelector() {
                     ))}
                 </div>
             )}
-            {
-                activeView === "tasks" && (
-                    <div className="grid grid-cols-1 gap-4">
-                        {tasks.map((task) => (
-                            <div key={task.id} className="p-6 bg-black rounded-xl border border-gray-700">
-                                
-                            </div>
-                        ))}
-                    </div>
-                )
-            }
-            {
-                activeView === "calendar" && (
-                    <div className="grid grid-cols-1 gap-4">
-                        {tasks.map((task) => (
-                            <div key={task.id} className="p-6 bg-black rounded-xl border border-gray-700">
-                                
-                            </div>
-                        ))}
-                    </div>
-                )
-            }
-        </div>
+            {activeView === "tasks" && (
+                <div className="grid grid-cols-1 gap-4">
+                    {tasks.map((task) => (
+                        <div key={task.id} className="p-6 bg-black rounded-xl border border-gray-700"></div>
+                    ))}
+                </div>
+            )}
+            {activeView === "calendar" && (
+                <div className="grid grid-cols-1 gap-4">
+                    {tasks.map((task) => (
+                        <div key={task.id} className="p-6 bg-black rounded-xl border border-gray-700"></div>
+                    ))}
+                </div>
+            )}
+        </motion.div>
     );
 }
+
 
 const CompanyHeader = ({ company }) => {
     const [showProjects, setShowProjects] = useState(false);
@@ -170,8 +163,10 @@ const CompanyHeader = ({ company }) => {
 }
 
 // Boot Sequence Component
-const BootSequence = () => {
+const BootSequence = ({ onComplete }) => {
     const [text, setText] = useState([]);
+    const [isComplete, setIsComplete] = useState(false);
+    
     const bootLines = [
         "Initializing StrongStart Portal...",
         "Loading user settings...",
@@ -193,16 +188,18 @@ const BootSequence = () => {
                 i++;
             } else {
                 clearInterval(interval);
+                setIsComplete(true); // Marks boot sequence as complete
+                setTimeout(onComplete, 1000); // Delays removal for smooth fade-out
             }
         }, 700);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [onComplete]);
 
     return (
         <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: isComplete ? 0 : 1 }}
             transition={{ duration: 1 }}
             className="flex flex-col items-start text-left font-mono text-green-400 tracking-wide bg-black p-6 rounded-lg shadow-lg"
         >
