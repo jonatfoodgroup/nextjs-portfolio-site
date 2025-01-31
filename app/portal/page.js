@@ -13,98 +13,93 @@ export default function PortalSelector() {
     const [companiesWithProjects, setCompaniesWithProjects] = useState([]);
     const { companies } = useHubspot();
     const [loading, setLoading] = useState(false);
+    const [activeView, setActiveView] = useState("board"); // "board" or "timeline"
 
     useEffect(() => {
-        // Exit early if companies are not available or if loading is in progress
         if (!companies || companies.length === 0 || loading) return;
-    
+
         const fetchProjects = async () => {
-            setLoading(true); // Set loading to true to prevent further fetches during the current one
+            setLoading(true);
             try {
                 const res = await fetch("/api/projects/get-projects");
                 const data = await res.json();
-    
-                // Map projects to their respective companies
+
                 const updatedCompanies = companies.map((company) => ({
                     ...company,
                     projects: data.filter((project) => project.hubspotId === company.id),
                 }));
-    
+
                 setProjects(data);
                 setCompaniesWithProjects(updatedCompanies);
             } catch (error) {
                 console.error("Error fetching projects:", error);
             } finally {
-                setLoading(false); // Reset loading state once the request completes
+                setLoading(false);
             }
         };
-    
+
         fetchProjects();
-    }, [companies]); // Only depends on `companies`, not `loading` anymore// Now it only depends on `companies`ng` in dependency ensures effect runs after it is reset
+    }, [companies]);
 
     return (
-        <div className="grid grid-cols-1 gap-4">
-            {/* Pass the updated companies list with projects to the Timeline */}
-            <PortalTimelineView companies={companiesWithProjects} />
+        <div className="mx-auto py-6 px-4">
+            {/* Tab Selector */}
+            <div className="flex space-x-4 border-b border-gray-700 mb-6">
+                <button
+                    className={`px-4 py-2 text-sm font-medium ${
+                        activeView === "board" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                    }`}
+                    onClick={() => setActiveView("board")}
+                >
+                    Board
+                </button>
+                <button
+                    className={`px-4 py-2 text-sm font-medium ${
+                        activeView === "timeline" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                    }`}
+                    onClick={() => setActiveView("timeline")}
+                >
+                    Timeline
+                </button>
+            </div>
 
-            {/* Display projects grouped by company */}
-            {companiesWithProjects.map((company) => (
-                <div key={company.id} className="p-6 bg-gray-900 rounded-xl border border-gray-700">
-                    <CompanyHeader company={company} />
-                    <div className="bg-gray-900 align-top grid grid-cols-1 md:grid-cols-6 gap-4">
-                        {company.projects.map((project) => (
-                            <ProjectCard key={project.id} project={project} company={company} />
-                        ))}
-                    </div>
+            {/* Content Based on Active View */}
+            {activeView === "timeline" ? (
+                <PortalTimelineView companies={companiesWithProjects} />
+            ) : (
+                <div className="grid grid-cols-1 gap-4">
+                    {companiesWithProjects.map((company) => (
+                        <div key={company.id} className="p-6 bg-gray-900 rounded-xl border border-gray-700">
+                            <CompanyHeader company={company} />
+                            <div className="bg-gray-900 align-top grid grid-cols-1 md:grid-cols-6 gap-4">
+                                {company.projects.map((project) => (
+                                    <ProjectCard key={project.id} project={project} company={company} />
+                                ))}
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            ))}
+            )}
         </div>
     );
 }
 
-const CompaniesCard = ({ company }) => {
+const CompanyHeader = ({ company }) => {
     const [showProjects, setShowProjects] = useState(false);
-    return (
-        <div className="flex items-center space-x-2">
-            <Link
-                href={`/portal/${company.id}`}
-                className="text-xl font-semibold text-white"
-            >{company.properties.name}
-            </Link>
-            <div className="opacity-80 text-gray-500 flex items-center space-x-3 hover:opacity-100">
-                <HubspotLinkButton hubspotId={company.id} />
-                <DriveLinkButton folderId={company.properties.drive_folder_id} />
-            </div>
-        </div>
-    )
-}
-
-const CompanyHeader = ({
-    company,
-    showProjects,
-    setShowProjects,
-}) => {
-
     return (
         <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-2">
-                <Link className="text-xl font-semibold text-white mr-2"
-                    href={`/portal/${company.id}`}
-                >{company.properties.name}
+                <Link className="text-xl font-semibold text-white mr-2" href={`/portal/${company.id}`}>
+                    {company.properties.name}
                 </Link>
                 <div className="opacity-80 text-gray-500 flex items-center space-x-3 hover:opacity-100">
                     <HubspotLinkButton hubspotId={company.id} />
                     <DriveLinkButton folderId={company.properties.drive_folder_id} />
-
-                    {
-                        company.properties.managing_content_ == "true" ? (
-                            <Button>
-                                <Link href={`/portal/${company.id}/content`}>
-                                    Content
-                                </Link>
-                            </Button>
-                        ) : null
-                    }
+                    {company.properties.managing_content_ === "true" && (
+                        <Button>
+                            <Link href={`/portal/${company.id}/content`}>Content</Link>
+                        </Button>
+                    )}
                 </div>
             </div>
             <button
@@ -114,5 +109,5 @@ const CompanyHeader = ({
                 {showProjects ? "Hide projects" : "Show projects"}
             </button>
         </div>
-    )
+    );
 }
