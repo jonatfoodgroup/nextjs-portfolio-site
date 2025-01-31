@@ -13,7 +13,7 @@ export default function ProposalPage({ params }) {
 const Wrapper = ({ children }) => {
   return (
     <ProposalProvider>
-      <div className="container mx-auto py-20">
+      <div className="container mx-auto py-10">
       <TextEditor />
       </div>
     </ProposalProvider>
