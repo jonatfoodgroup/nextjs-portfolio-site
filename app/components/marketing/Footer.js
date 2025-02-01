@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import GetStarted from '../GetStarted';
-import Logo from '../Logo';
+import Logo from '../Logo/index.js';
 import Link from 'next/link';
 import { useWordpress } from '../../providers/WordpressProvider';
 import { decode } from 'html-entities';

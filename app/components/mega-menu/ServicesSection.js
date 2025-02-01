@@ -14,70 +14,38 @@ const ServicesSection = () => {
     <div className="flex flex-col md:flex-row items-start w-full">
       {/* Services Section */}
       <div className="ml-4 pt-4 md:pt-0 py-4 md:py-4 w-full">
-        <section className="w-full flex flex-row">
-          <div className="flex flex-col w-1/4  mb-4">
-            <h2 className="text-xl font-semibold text-white mb-2 border-b-2 border-gray-800 pb-2">Focus Areas</h2>
-            <div className="flex flex-col gap-y-2">
+        <section className="w-full flex flex-row container mx-auto">
+          <div className="flex flex-col w-3/4 mb-4">
+            <div className="flex flex-col">
+              <div className="flex items-center  border-b-2 border-gray-800 pb-2">
+                <h2 className="text-2xl font-semibold text-white">Focus Areas</h2>
+                <Link href="/services" className="text-sm font-light text-orange-500 hover:text-orange-600 transition-colors duration-300 ml-auto">
+                  View All
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
               {services.map((service, index) => (
                 <Link
                   key={service.title.rendered}
                   href={`/services/${service.slug}`}
-                  className="text-sm font-light text-slate-500 hover:text-orange-500 transition-colors duration-300"
+                  className="text-sm font-light text-slate-500 hover:text-orange-500 transition-colors duration-300 flex items-center gap-2"
                 >
-                  {decode(service.title.rendered)}
+                  <Icon
+                    icon={service.acf?.icon}
+                    className="text-4xl m-2 text-orange-500 drop-shadow-lg transition-transform transform hover:scale-125 hover:text-orange-600"
+                  />                  <span
+                    className="text-md font-light text-white hover:text-orange-500 transition-colors duration-300"
+                  >{decode(service.title.rendered)}</span>
                 </Link>
               ))}
             </div>
           </div>
           <div className="flex w-3/4">
-            <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 w-full">
-              <div className="flex justify-center items-start">
-                <img src="https://placehold.co/240x240" alt="placeholder" />
-              </div>
-              <div className="flex justify-center items-start">
-                <img src="https://placehold.co/240" alt="placeholder" />
-              </div>
-              <div className="flex justify-center items-start">
-                <img src="https://placehold.co/240" alt="placeholder" />
-              </div>
-            </div>
+
           </div>
-          {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
-            {services.map((service, index) => (
-              <div
-                data-aos="fade-up"
-                data-aos-delay={index * 50}
-                key={service.title.rendered}
-                className="flex justify-center items-center"
-              >
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="group p-4 bg-white shadow-md rounded-lg transition-transform duration-300 cursor-pointer border border-gray-200 flex flex-col justify-center items-center hover:-translate-y-2 hover:shadow-xl min-h-[240px] max-h-[240px]"
-                >
-                  <div className="flex flex-col justify-center items-center h-full w-full">
-                    <div className="flex items-center justify-center mb-4">
-                      <div
-                        className={`flex items-center justify-center rounded-md bg-light-orange text-orange`}
-                      >
-                        <Icon
-                          icon={service.acf?.icon}
-                          className={`text-3xl m-2 hover:transform hover:scale-110 transition-transform`}
-                        />
-                      </div>
-                    </div>
-                    <div className="text-center">
-                      <h4 className="text-xl font-bold text-black leading-6 group-hover:text-orange-500 transition-colors duration-300">
-                        {decode(service.title.rendered)}
-                      </h4>
-                      <p className="text-sm line-clamp-3 font-light text-slate-500 leading-normal mt-2">
-                        {decode(service.acf?.masthead?.masthead_content)}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div> */}
+
         </section>
       </div>
     </div>

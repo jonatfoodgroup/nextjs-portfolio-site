@@ -12,6 +12,7 @@ const ProjectTasks = ({ project }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
 
+
   // add subtasks to the task by parentTaskId
   tasks.forEach((task) => {
     task.subtasks = tasks.filter((subtask) => subtask.parentTaskId === task.id);

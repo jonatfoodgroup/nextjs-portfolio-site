@@ -24,7 +24,7 @@ const EditableTitle = ({ project }) => {
       <div className="flex items-center space-x-2 mb-4">
         {!isEditing ? (
           <>
-            <h2 className="text-2xl font-regular text-white">{title}</h2>
+            <h2 className="text-3xl font-regular text-white">{title}</h2>
             <button
               onClick={() => setIsEditing(true)}
               className="text-sm text-gray-500 hover:text-gray-400"

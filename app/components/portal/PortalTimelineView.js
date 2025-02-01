@@ -1,18 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Timeline, { TimelineMarkers, TodayMarker } from "react-calendar-timeline";
 import moment from "moment";
 
-// Refined color palette with blue, purple, and green tones
 const colorPalette = [
     "#6A5ACD", "#8A2BE2", "#00CED1", "#9370DB",
     "#7B68EE", "#32CD32", "#4169E1", "#20B2AA",
     "#9370DB", "#008B8B"
 ];
 
-// Function to assign a color to each company
 const getCompanyColor = (companyName) => {
     const hash = companyName.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
     return colorPalette[hash % colorPalette.length];
@@ -63,99 +61,133 @@ const PortalTimelineView = ({ companies }) => {
                     itemHeight: 30,
                 });
 
-                // Sort by start date
-                items.sort((a, b) => {
-                    return a.start_time - b.start_time;
-                });
-
+                items.sort((a, b) => a.start_time - b.start_time);
                 groupIndex++;
             });
         }
     });
 
+    // State to control zoom level & horizontal movement
+    const [visibleTimeStart, setVisibleTimeStart] = useState(moment().subtract(1, 'months').startOf('isoWeek').valueOf());
+    const [visibleTimeEnd, setVisibleTimeEnd] = useState(moment().add(2, 'months').endOf('isoWeek').valueOf());
+
+    // Function to handle trackpad zoom
+    const handleWheelZoom = (event) => {
+        if (event.ctrlKey || event.metaKey) {
+            event.preventDefault();
+            
+            const zoomFactor = event.deltaY > 0 ? 1.2 : 0.8;
+            const currentRange = visibleTimeEnd - visibleTimeStart;
+            const newRange = currentRange * zoomFactor;
+
+            const midPoint = visibleTimeStart + currentRange / 2;
+            setVisibleTimeStart(midPoint - newRange / 2);
+            setVisibleTimeEnd(midPoint + newRange / 2);
+        }
+    };
+
+    // Allow horizontal movement & zoom
+    const handleTimeChange = (start, end) => {
+        setVisibleTimeStart(start);
+        setVisibleTimeEnd(end);
+    };
+
+    // Attach event listener for trackpad zoom
+    useEffect(() => {
+        const timelineContainer = document.getElementById("timelineContainer");
+        if (timelineContainer) {
+            timelineContainer.addEventListener("wheel", handleWheelZoom, { passive: false });
+        }
+        return () => {
+            if (timelineContainer) {
+                timelineContainer.removeEventListener("wheel", handleWheelZoom);
+            }
+        };
+    }, [visibleTimeStart, visibleTimeEnd]);
+
     return (
         <div className="timeline-container" id="timelineContainer">
-    <Timeline
-    groups={groups}
-    items={items}
-    defaultTimeStart={moment().subtract(1, 'months').startOf('isoWeek')}
-    defaultTimeEnd={moment().add(2, 'months').endOf('isoWeek')}
-    visibleTimeStart={moment().subtract(1, 'months').startOf('isoWeek').toDate()}
-    visibleTimeEnd={moment().add(2, 'months').endOf('isoWeek').toDate()}
-    canMove={true}
-    traditionalZoom={true}
-    canResize={false}
-    sidebarWidth={300}
-    timeSteps={{ day: 7 }}  // Weekly grid alignment
-    stackItems
-    itemHeightRatio={0.75}
-    headerLabelFormats={{
-        year: { long: "YYYY" },
-        month: { long: "MMMM YYYY" },
-        week: { long: "'Week of' MMM D" }, // Shows "Week of Jan 1"
-    }}
-    groupRenderer={({ group }) => (
-        <div
-            className={`p-2 ${group.isCompany ? "font-bold text-white" : "text-gray-400"}`}
-            style={{
-                backgroundColor: group.color || "transparent",
-                padding: "6px",
-                borderRadius: "4px",
-                fontSize: "14px",
-                display: "flex",
-                alignItems: "center",
-                cursor: group.isCompany ? "pointer" : "default",
-            }}
-            onClick={() => group.isCompany && router.push(group.portalUrl)}
-        >
-            {group.isCompany ? (
-                <a
-                    href={group.portalUrl}
-                    style={{ textDecoration: "none", color: "inherit", width: "100%" }}
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    {group.title}
-                </a>
-            ) : (
-                group.title
-            )}
+            <Timeline
+                groups={groups}
+                items={items}
+                visibleTimeStart={visibleTimeStart}
+                visibleTimeEnd={visibleTimeEnd}
+                onTimeChange={handleTimeChange} // ✅ Allow smooth left/right movement
+                canMove={true}  // ✅ Enables horizontal scrolling
+                traditionalZoom={true}
+                canResize={true}
+                minZoom={7 * 24 * 60 * 60 * 1000} // ✅ Minimum zoom is 1 week
+                maxZoom={5 * 365 * 24 * 60 * 60 * 1000} // ✅ Max zoom is 5 years
+                sidebarWidth={300}
+                timeSteps={{ day: 7 }} 
+                stackItems
+                itemHeightRatio={0.75}
+                headerLabelFormats={{
+                    year: { long: "YYYY" },
+                    month: { long: "MMMM YYYY" },
+                    week: { long: "'Week of' MMM D" },
+                }}
+                groupRenderer={({ group }) => (
+                    <div
+                        className={`p-2 ${group.isCompany ? "font-bold text-white" : "text-gray-400"}`}
+                        style={{
+                            backgroundColor: group.color || "transparent",
+                            padding: "6px",
+                            borderRadius: "4px",
+                            fontSize: "14px",
+                            display: "flex",
+                            alignItems: "center",
+                            cursor: group.isCompany ? "pointer" : "default",
+                        }}
+                        onClick={() => group.isCompany && router.push(group.portalUrl)}
+                    >
+                        {group.isCompany ? (
+                            <a
+                                href={group.portalUrl}
+                                style={{ textDecoration: "none", color: "inherit", width: "100%" }}
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                {group.title}
+                            </a>
+                        ) : (
+                            group.title
+                        )}
+                    </div>
+                )}
+                itemRenderer={({ item, getItemProps }) => {
+                    const { key, ...restProps } = getItemProps({
+                        style: {
+                            background: item.backgroundColor,
+                            color: item.color,
+                            padding: "6px",
+                            borderRadius: "4px",
+                            textAlign: "center",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            height: "100%",
+                        },
+                    });
+
+                    return (
+                        <div key={key} {...restProps}>
+                            <a href={item.projectUrl} style={{ textDecoration: "none", color: "inherit" }}>
+                                <span>{item.title}</span>
+                            </a>
+                        </div>
+                    );
+                }}
+            >
+                {/* Today Marker */}
+                <TimelineMarkers>
+                    <TodayMarker
+                        date={moment().toDate()}
+                        className="today-marker"
+                        style={{ backgroundColor: "red", width: "2px", zIndex: 50 }}
+                    />
+                </TimelineMarkers>
+            </Timeline>
         </div>
-    )}
-    itemRenderer={({ item, getItemProps }) => {
-        const { key, ...restProps } = getItemProps({
-            style: {
-                background: item.backgroundColor,
-                color: item.color,
-                padding: "6px",
-                borderRadius: "4px",
-                textAlign: "center",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "100%",
-            },
-        });
-
-        return (
-            <div key={key} {...restProps}>
-                <a href={item.projectUrl} style={{ textDecoration: "none", color: "inherit" }}>
-                    <span>{item.title}</span>
-                </a>
-            </div>
-        );
-    }}
->
-    {/* Today Marker */}
-    <TimelineMarkers>
-        <TodayMarker
-            date={moment().toDate()}
-            className="today-marker"
-            style={{ backgroundColor: "red", width: "2px", zIndex: 50 }}
-        />
-    </TimelineMarkers>
-</Timeline>
-
-</div>
     );
 };
 

@@ -44,7 +44,6 @@ const CalendarView = ({
 
     return (
         <div style={{ width: '100%', margin: '0 auto' }}>
-            <h1>Project Task Calendar</h1>
             <FullCalendar
                 plugins={[dayGridPlugin, interactionPlugin]}
                 initialView="dayGridWeek"

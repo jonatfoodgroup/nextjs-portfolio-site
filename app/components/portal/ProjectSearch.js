@@ -24,7 +24,7 @@ const ProjectSearch = () => {
                 });
 
                 // sort by title
-                projectsWithCompany.sort((a, b) => a.title.localeCompare(b.title));
+                // projectsWithCompany.sort((a, b) => a.title.localeCompare(b.title));
                 setProjects(projectsWithCompany);
             })
 

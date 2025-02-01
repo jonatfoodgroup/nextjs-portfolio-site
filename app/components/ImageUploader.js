@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from "react";
+import { Icon } from "@iconify/react/dist/iconify";
 
 const ImageUploader = () => {
   const [images, setImages] = useState([]);
-
+  const [showImageUploader, setShowImageUploader] = useState(false);
+  
   // Handle file selection (both via button and drag-drop)
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);

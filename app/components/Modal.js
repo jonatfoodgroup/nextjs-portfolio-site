@@ -33,7 +33,7 @@ export default function Modal({ isOpen, onClose, title, children, footer }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
       <div
-        className="relative w-full h-full max-w-full max-h-full p-6 bg-gray-800 rounded-none shadow-lg overflow-y-auto md:rounded-lg md:max-w-3xl md:h-auto"
+        className="relative w-full h-full max-w-full max-h-full p-6 bg-gray-800 rounded-none shadow-lg overflow-y-auto md:rounded-lg md:w-full md:h-full"
         ref={ref}
       >
         {/* Header */}

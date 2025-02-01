@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import DropdownMenu from "./Header/DropdownMenu";
 import Button from "../Button";
+import Logo from "../Logo";
 
 const PortalHeader = ({
     setShowSidebar,
@@ -22,18 +23,16 @@ const PortalHeader = ({
                     >
                         Menu
                     </Button>
-                    <Link href="/portal" className="text-xl font-semibold">
-                        StrongStart
-                    </Link>
+                    <Logo />
                 </div>
-                <ProjectSearch />
+                {/* <ProjectSearch /> */}
                 <nav className="flex items-center space-x-4">
-                    <Link
+                    {/* <Link
                         href="/schedule"
                     >
                         <Button icon={"carbon:calendar"} variant="outline">
                             Today's Schedule
-                        </Button></Link>
+                        </Button></Link> */}
                     <LoginButton />
                 </nav>
             </div>
