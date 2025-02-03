@@ -8,6 +8,7 @@ import { UserProvider } from "../providers/UserProvider";
 import ActiveTimer from "../components/portal/ActiveTimer";
 import { HubspotProvider } from "../providers/HubspotProvider";
 import { TasksProvider } from "../providers/TasksProvider";
+import TranscriptionOverlay from "../components/TranscriptionOverlay";
 
 export default function PortalLayout({ children }) {
     useEffect(() => {
@@ -31,6 +32,7 @@ export default function PortalLayout({ children }) {
                     </TasksProvider>
                 </HubspotProvider>
                 <ActiveTimer />
+                <TranscriptionOverlay />
             </UserProvider>
         </SessionProvider>
 

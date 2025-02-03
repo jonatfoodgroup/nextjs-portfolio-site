@@ -76,7 +76,7 @@ const PortalTimelineView = ({ companies }) => {
         if (event.ctrlKey || event.metaKey) {
             event.preventDefault();
             
-            const zoomFactor = event.deltaY > 0 ? 1.2 : 0.8;
+            const zoomFactor = event.deltaY > 0 ? 1.1 : 0.9; // Adjusted zoom factor for smoother zoom
             const currentRange = visibleTimeEnd - visibleTimeStart;
             const newRange = currentRange * zoomFactor;
 
@@ -126,6 +126,7 @@ const PortalTimelineView = ({ companies }) => {
                     year: { long: "YYYY" },
                     month: { long: "MMMM YYYY" },
                     week: { long: "'Week of' MMM D" },
+                    day: { long: "dddd, MMM D" },
                 }}
                 groupRenderer={({ group }) => (
                     <div

@@ -116,7 +116,7 @@ export default function PortalSelector() {
                     {companiesWithProjects.map((company) => (
                         <div key={company.id} className="p-6 bg-black border border-gray-700">
                             <CompanyHeader company={company} />
-                            <div className="bg-black align-top grid grid-cols-1 md:grid-cols-6 gap-4">
+                            <div className="bg-black align-top grid grid-cols-1 md:grid-cols-5 gap-4">
                                 {company.projects.map((project) => (
                                     <ProjectCard key={project.id} project={project} company={company} />
                                 ))}
@@ -127,7 +127,7 @@ export default function PortalSelector() {
             )}
             {activeView === "tasks" && (
                 <div className="grid grid-cols-1 gap-4">
-                    <TasksView tasks={tasks} />
+                    {/* <TasksView tasks={tasks} /> */}
                 </div>
             )}
             {activeView === "calendar" && (
@@ -142,142 +142,141 @@ export default function PortalSelector() {
 }
 
 
-const TasksView = () => {
-    const { tasks } = useFirebase();
-    const router = useRouter();
+// const TasksView = () => {
+//     const { tasks } = useFirebase();
+//     const router = useRouter();
 
-    // Flatten tasks into a single list
-    const taskArrays = Object.values(tasks || {});
-    const flatTasks = taskArrays.flat();
+//     // Flatten tasks into a single list
+//     const taskArrays = Object.values(tasks || {});
+//     const flatTasks = taskArrays.flat();
 
-    // Group tasks by projectId
-    const groupedByProject = flatTasks.reduce((acc, task) => {
-        if (!task.projectId) return acc;
-        if (!acc[task.projectId]) acc[task.projectId] = [];
-        acc[task.projectId].push(task);
-        return acc;
-    }, {});
+//     // Group tasks by projectId
+//     const groupedByProject = flatTasks.reduce((acc, task) => {
+//         if (!task.projectId) return acc;
+//         if (!acc[task.projectId]) acc[task.projectId] = [];
+//         acc[task.projectId].push(task);
+//         return acc;
+//     }, {});
 
-    const scrollContainerRef = useRef(null);
-    const projectIds = Object.keys(groupedByProject);
+//     const scrollContainerRef = useRef(null);
+//     const projectIds = Object.keys(groupedByProject);
 
-    const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
-    const [selectedTaskIndex, setSelectedTaskIndex] = useState(0);
-    const taskContainerRefs = useRef({});
+//     const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+//     const [selectedTaskIndex, setSelectedTaskIndex] = useState(0);
+//     const taskContainerRefs = useRef({});
 
-    useEffect(() => {
-        if (!projectIds.length) return;
+//     useEffect(() => {
+//         if (!projectIds.length) return;
     
-        const handleKeyDown = (e) => {
-            if (projectIds.length === 0) return;
+//         const handleKeyDown = (e) => {
+//             if (projectIds.length === 0) return;
     
-            const currentProjectTasks = groupedByProject[projectIds[selectedProjectIndex]] || [];
-            const isAtLastTask = selectedTaskIndex === currentProjectTasks.length - 1;
-            const isAtFirstTask = selectedTaskIndex === 0;
+//             const currentProjectTasks = groupedByProject[projectIds[selectedProjectIndex]] || [];
+//             const isAtLastTask = selectedTaskIndex === currentProjectTasks.length - 1;
+//             const isAtFirstTask = selectedTaskIndex === 0;
     
-            if (e.key === "ArrowRight") {
-                setSelectedProjectIndex((prev) => Math.min(prev + 1, projectIds.length - 1));
-                setSelectedTaskIndex(0); // Reset task selection when switching projects
-            } else if (e.key === "ArrowLeft") {
-                setSelectedProjectIndex((prev) => Math.max(prev - 1, 0));
-                setSelectedTaskIndex(0);
-            } else if (e.key === "ArrowDown") {
-                setSelectedTaskIndex((prev) => (isAtLastTask ? prev : prev + 1));
-            } else if (e.key === "ArrowUp") {
-                setSelectedTaskIndex((prev) => (isAtFirstTask ? prev : prev - 1));
-            } else if (e.key === "Enter") {
-                if (currentProjectTasks[selectedTaskIndex]) {
-                    router.push(`/tasks/${currentProjectTasks[selectedTaskIndex].id}`);
-                }
-            }
-        };
+//             if (e.key === "ArrowRight") {
+//                 setSelectedProjectIndex((prev) => Math.min(prev + 1, projectIds.length - 1));
+//                 setSelectedTaskIndex(0); // Reset task selection when switching projects
+//             } else if (e.key === "ArrowLeft") {
+//                 setSelectedProjectIndex((prev) => Math.max(prev - 1, 0));
+//                 setSelectedTaskIndex(0);
+//             } else if (e.key === "ArrowDown") {
+//                 setSelectedTaskIndex((prev) => (isAtLastTask ? prev : prev + 1));
+//             } else if (e.key === "ArrowUp") {
+//                 setSelectedTaskIndex((prev) => (isAtFirstTask ? prev : prev - 1));
+//             } else if (e.key === "Enter") {
+//                 if (currentProjectTasks[selectedTaskIndex]) {
+//                     router.push(`/tasks/${currentProjectTasks[selectedTaskIndex].id}`);
+//                 }
+//             }
+//         };
     
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [selectedProjectIndex, selectedTaskIndex, groupedByProject, projectIds, router]);
+//         window.addEventListener("keydown", handleKeyDown);
+//         return () => window.removeEventListener("keydown", handleKeyDown);
+//     }, [selectedProjectIndex, selectedTaskIndex, groupedByProject, projectIds, router]);
 
-    // Scroll task into view when selected
-    useEffect(() => {
-        const selectedTaskRef = taskContainerRefs.current[selectedTaskIndex];
-        if (selectedTaskRef) {
-            selectedTaskRef.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        }
-    }, [selectedTaskIndex]);
+//     // Scroll task into view when selected
+//     useEffect(() => {
+//         const selectedTaskRef = taskContainerRefs.current[selectedTaskIndex];
+//         if (selectedTaskRef) {
+//             selectedTaskRef.scrollIntoView({ behavior: "smooth", block: "nearest" });
+//         }
+//     }, [selectedTaskIndex]);
 
-    return (
-        <div className="relative min-h-screen flex items-end">
-            <div
-                ref={scrollContainerRef}
-                className="flex overflow-x-auto space-x-6 pb-10 scrollbar-hide snap-x snap-mandatory pt-10"
-                style={{ scrollBehavior: "smooth", whiteSpace: "nowrap" }}
-            >
-                {projectIds.map((projectId, projectIndex) => {
-                    const projectTasks = groupedByProject[projectId] || [];
+//     return (
+//         <div className="relative min-h-screen flex items-end">
+//             <div
+//                 ref={scrollContainerRef}
+//                 className="flex overflow-x-auto space-x-6 pb-10 scrollbar-hide snap-x snap-mandatory pt-10"
+//                 style={{ scrollBehavior: "smooth", whiteSpace: "nowrap" }}
+//             >
+//                 {projectIds.map((projectId, projectIndex) => {
+//                     const projectTasks = groupedByProject[projectId] || [];
 
-                    return (
-                        <motion.div
-                            key={projectId}
-                            className={`p-6 rounded-xl border min-w-[400px] max-w-[400px] snap-center relative transition-all duration-300 ${
-                                projectIndex === selectedProjectIndex ? "bg-blue-800 border-blue-500 text-white" : "bg-black border-gray-700"
-                            }`}
-                        >
-                            {/* Project Name */}
-                            <div className="text-white font-semibold text-3xl mb-2">
-                                {projectTasks[0]?.projectName || "Unnamed Project"}
-                            </div>
+//                     return (
+//                         <motion.div
+//                             key={projectId}
+//                             className={`p-6 rounded-xl border min-w-[400px] max-w-[400px] snap-center relative transition-all duration-300 ${
+//                                 projectIndex === selectedProjectIndex ? "bg-blue-800 border-blue-500 text-white" : "bg-black border-gray-700"
+//                             }`}
+//                         >
+//                             {/* Project Name */}
+//                             <div className="text-white font-semibold text-3xl mb-2">
+//                                 {projectTasks[0]?.projectName || "Unnamed Project"}
+//                             </div>
 
-                            {/* Scrollable Task List */}
-                            <div className="space-y-2 max-h-[400px] overflow-y-auto">
-                                {projectTasks.map((task, taskIndex) => {
-                                    const isSelectedTask = projectIndex === selectedProjectIndex && taskIndex === selectedTaskIndex;
-                                    return (
-                                        <div
-                                            key={task.id}
-                                            ref={(el) => (taskContainerRefs.current[taskIndex] = el)}
-                                            className={`p-4 rounded-lg border transition-all duration-200 ${
-                                                isSelectedTask
-                                                    ? "bg-blue-500 border-blue-300 text-white"
-                                                    : "bg-gray-900 border-gray-600"
-                                            }`}
-                                        >
-                                            <div className="font-semibold">{task.name || "Unnamed Task"}</div>
-                                            <div className="text-gray-400">{task.description || "No description available."}</div>
-                                            <div className="text-gray-400">Status: {task.status}</div>
-                                            <div className="text-gray-400">Created: {task.createdAt}</div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </motion.div>
-                    );
-                })}
-            </div>
+//                             {/* Scrollable Task List */}
+//                             <div className="space-y-2 max-h-[400px] overflow-y-auto">
+//                                 {projectTasks.map((task, taskIndex) => {
+//                                     const isSelectedTask = projectIndex === selectedProjectIndex && taskIndex === selectedTaskIndex;
+//                                     return (
+//                                         <div
+//                                             key={task.id}
+//                                             ref={(el) => (taskContainerRefs.current[taskIndex] = el)}
+//                                             className={`p-4 rounded-lg border transition-all duration-200 ${
+//                                                 isSelectedTask
+//                                                     ? "bg-blue-500 border-blue-300 text-white"
+//                                                     : "bg-gray-900 border-gray-600"
+//                                             }`}
+//                                         >
+//                                             <div className="font-semibold">{task.name || "Unnamed Task"}</div>
+//                                             <div className="text-gray-400">{task.description || "No description available."}</div>
+//                                             <div className="text-gray-400">Status: {task.status}</div>
+//                                             <div className="text-gray-400">Created: {task.createdAt}</div>
+//                                         </div>
+//                                     );
+//                                 })}
+//                             </div>
+//                         </motion.div>
+//                     );
+//                 })}
+//             </div>
 
-            {/* Scroll Buttons */}
-            <div className="absolute top-1/2 -translate-y-1/2 left-2">
-                <button
-                    className="p-2 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-600"
-                    onClick={() => setSelectedProjectIndex((prev) => Math.max(prev - 1, 0))}
-                >
-                    ◀
-                </button>
-            </div>
-            <div className="absolute top-1/2 -translate-y-1/2 right-2">
-                <button
-                    className="p-2 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-600"
-                    onClick={() => setSelectedProjectIndex((prev) => Math.min(prev + 1, projectIds.length - 1))}
-                >
-                    ▶
-                </button>
-            </div>
-        </div>
-    );
-};
+//             {/* Scroll Buttons */}
+//             <div className="absolute top-1/2 -translate-y-1/2 left-2">
+//                 <button
+//                     className="p-2 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-600"
+//                     onClick={() => setSelectedProjectIndex((prev) => Math.max(prev - 1, 0))}
+//                 >
+//                     ◀
+//                 </button>
+//             </div>
+//             <div className="absolute top-1/2 -translate-y-1/2 right-2">
+//                 <button
+//                     className="p-2 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-600"
+//                     onClick={() => setSelectedProjectIndex((prev) => Math.min(prev + 1, projectIds.length - 1))}
+//                 >
+//                     ▶
+//                 </button>
+//             </div>
+//         </div>
+//     );
+// };
 
 
 
 const CompanyHeader = ({ company }) => {
-    const [showProjects, setShowProjects] = useState(false);
     return (
         <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-2">
@@ -294,12 +293,6 @@ const CompanyHeader = ({ company }) => {
                     )}
                 </div>
             </div>
-            <button
-                onClick={() => setShowProjects(!showProjects)}
-                className="text-sm font-semibold text-gray-300 hover:text-white"
-            >
-                {showProjects ? "Hide projects" : "Show projects"}
-            </button>
         </div>
     );
 }

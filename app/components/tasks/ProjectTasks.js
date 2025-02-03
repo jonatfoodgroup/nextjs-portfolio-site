@@ -46,7 +46,7 @@ const ProjectTasks = ({ project }) => {
       {loading ? (
         <p className="text-gray-500">Loading tasks...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-6">
   {sortedTasks.filter((task) => !task.parentTaskId).map((task) => (
     <div
       key={task.id}

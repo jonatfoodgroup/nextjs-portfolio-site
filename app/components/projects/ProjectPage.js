@@ -66,17 +66,25 @@ const ProjectPage = ({ project }) => {
           <div className="w-full pr-0 container">
             {
               activeTab === 'overview' && (
-                <>
-                  <div className="border-b border-gray-700 pb-8 mb-8">
-                    <EditableDescription project={project} />
-                  </div>
+                <div className="flex items-start space-x-4 mb-8">
+                  <div className="w-2/3">
+                    <div className="border-b border-gray-700 pb-8 mb-8">
+                      <EditableDescription project={project} />
+                    </div>
 
-                  <div className="flex items-start space-x-4 mb-16">
-                    <StartDate project={project} />
-                    <EndDate project={project} />
+
+
                   </div>
-                  <AssignPM projectId={project.id} currentPM={project.projectManager} />
-                </>
+                  <div className="w-1/3">
+
+                    <div className="flex items-start space-x-4 mb-16">
+                      <StartDate project={project} />
+                      <EndDate project={project} />
+                    </div>
+                    <AssignPM projectId={project.id} currentPM={project.projectManager} />
+                    <StatusUpdates statuses={project.statuses} project={project} />
+                  </div>
+                </div>
               )
             }
 
