@@ -18,6 +18,10 @@ export default function Page({ params }) {
     {
       id: "schedule",
       label: "Schedule",
+    },
+    {
+      id: "news",
+      label: "News",
     }
   ])
   const [activeTab, setActiveTab] = useState("create");
