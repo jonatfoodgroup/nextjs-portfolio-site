@@ -39,11 +39,13 @@ const ProjectsList = () => {
 const ProjectItem = ({ project }) => {
   const { id } = useParams();
   // take the first 5 characters off of the project.jobNumber and return it as a string 2025-0001 => 0001
-  const jobNumber = project.jobNumber.slice(-5);
+  // const jobNumber = project.jobNumber.slice(-4);
+  // jobNumber exists
+  
 
   return (
     <Link href={`/portal/${project.hubspotId}/projects/${project.id}`} className={`${(id === project.id) ? 'text-gray-300' : 'text-gray-500'} hover:text-gray-300`}>
-      <h3 className="text-sm font-semibold">#{jobNumber}-{project.title}</h3>
+      <h3 className="text-sm font-semibold">{project.title}</h3>
     </Link>
   );
 };

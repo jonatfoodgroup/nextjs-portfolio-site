@@ -40,10 +40,10 @@ const ProjectPage = ({ project }) => {
     <TasksProvider projectId={project.id}>
       <div className="bg-black min-h-screen">
         <div className="flex justify-between items-center md:flex-col flex-col">
-          <div className="flex flex-col">
+          <div className="flex flex-col md:flex-row items-start md:items-center align-middle space-y-4 md:space-y-0 md:space-x-4">
             {/* <Breadcrumb hubspotId={project.hubspotId} /> */}
             <EditableTitle project={project} />
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 mb-4 text-2xl">
               <DiscordLinkButton discordChannelId={project.discordChannelId} />
               <DriveLinkButton driveFolderId={project.googleDriveFolderId} />
             </div>

@@ -46,7 +46,7 @@ const ProjectTasks = ({ project }) => {
       {loading ? (
         <p className="text-gray-500">Loading tasks...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-6">
   {sortedTasks.filter((task) => !task.parentTaskId).map((task) => (
     <div
       key={task.id}
@@ -55,9 +55,9 @@ const ProjectTasks = ({ project }) => {
     >
       <div className="flex flex-col space-y-3">
         {/* Assignee + Title */}
-        <div className="flex items-start space-x-4">
-          <AssigneeAvatar assignee={task.assignee} />
-          <div className="flex flex-col">
+        <div className="flex items-center flex-col">
+          <span className="text-3xl"><AssigneeAvatar assignee={task.assignee} /></span>
+          <div className="flex flex-col items-center space-y-1">
             <p className="font-medium text-lg text-gray-300 hover:text-white">{task.name}</p>
             <p className="text-sm text-gray-500">
               {moment(task.startDate).format("MMM D, YYYY")} - {moment(task.endDate).format("MMM D, YYYY")}

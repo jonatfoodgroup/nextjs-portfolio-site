@@ -11,7 +11,7 @@ const AssigneeAvatar = ({ assignee }) => {
     }
 
     return (
-        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 text-white">
+        <div className="w-16 h-16 flex items-center justify-center rounded-full bg-gray-700 text-white">
             {assignee.avatar &&
                 <img
                     src={assignee.avatar}
@@ -19,6 +19,11 @@ const AssigneeAvatar = ({ assignee }) => {
                     className="w-full h-full rounded-full object-cover"
                 />
             }
+
+            {/* add username badge */}
+            <span className="absolute bottom-0 right-0 bg-blue-500 text-white text-xs font-medium px-1 rounded-bl-lg rounded-tr-lg">
+                {assignee.username}
+            </span>
         </div>
     );
 };
