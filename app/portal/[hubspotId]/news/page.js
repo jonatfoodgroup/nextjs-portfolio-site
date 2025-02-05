@@ -59,12 +59,12 @@ export default function NewsSelection() {
   };
 
   return (
-    <div className="p-8 bg-gray-900 min-h-screen text-white">
+    <div className="p-8 text-center min-h-screen text-white">
       <h1 className="text-3xl font-bold mb-6 text-gray-200">📌 Select News for Content Calendar</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {newsArticles.map((article, index) => (
-          <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+          <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 text-start">
             <h2 className="text-xl font-semibold text-gray-100">{article.title}</h2>
             <p className="text-sm text-gray-400 mt-2">{article.description}</p>
             <a

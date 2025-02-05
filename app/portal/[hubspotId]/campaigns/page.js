@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import CampaignList from "../components/campaigns/CampaignList";
+import CampaignList from "../../../components/campaigns/CampaignList";
 
 
 export default function CampaignsPage() {

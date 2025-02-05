@@ -35,7 +35,7 @@ const ProjectTasks = ({ project }) => {
   };
 
   return (
-    <div className="p-6 bg-black rounded-xl">
+    <div className="p-6 rounded-xl">
       <h3 className="text-lg font-semibold mb-4 text-gray-300">Tasks</h3>
 
       {/* Timeline View */}
@@ -53,16 +53,29 @@ const ProjectTasks = ({ project }) => {
               className="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border-gray-800 cursor-pointer bg-gray-900"
               onClick={() => openModal(task)}
             >
-              <div className="flex flex-col space-y-3">
+              <div className="flex flex-col space-y-4">
                 {/* Assignee + Title */}
                 <div className="flex items-center flex-col">
-                  <span className="text-3xl"><AssigneeAvatar assignee={task.assignee} /></span>
+                  <span className="text-3xl my-4"><AssigneeAvatar assignee={task.assignee} /></span>
                   <div className="flex flex-col items-center space-y-1">
                     <p className="font-medium text-lg text-gray-300 hover:text-white">{task.name}</p>
                     <p className="text-sm text-gray-500">
                       {moment(task.startDate).format("MMM D, YYYY")} - {moment(task.endDate).format("MMM D, YYYY")}
                     </p>
                   </div>
+                </div>
+                <div className="flex w-full items-center text-center justify-center">
+                {/* Status Badge */}
+                <p
+                  className={`text-xs px-2 py-1 rounded font-semibold self-start ${task.status === "completed"
+                      ? "bg-green-200 text-green-800"
+                      : task.status === "in progress"
+                        ? "bg-yellow-200 text-yellow-800"
+                        : "bg-gray-700 text-gray-400 mx-auto"
+                    }`}
+                >
+                  {task.status.toUpperCase()}
+                </p>
                 </div>
 
                 {/* Subtasks */}
@@ -77,17 +90,7 @@ const ProjectTasks = ({ project }) => {
                   </div>
                 )}
 
-                {/* Status Badge */}
-                <p
-                  className={`text-sm px-2 py-1 rounded font-semibold self-start ${task.status === "completed"
-                      ? "bg-green-200 text-green-800"
-                      : task.status === "in progress"
-                        ? "bg-yellow-200 text-yellow-800"
-                        : "bg-gray-700 text-gray-400"
-                    }`}
-                >
-                  {task.status}
-                </p>
+                
               </div>
             </div>
           ))}

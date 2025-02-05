@@ -58,6 +58,14 @@ export default function PortalSelector() {
         >
             {/* Tab Selector */}
             <div className="flex space-x-4 border-b border-gray-700 mb-6  sticky top-0 bg-black z-10">
+                <button 
+                    className={`px-4 py-2 text-sm font-medium ${
+                        activeView === "list" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                    }`}
+                    onClick={() => setActiveView("list")}
+                >
+                    List
+                </button>
                 <button
                     className={`px-4 py-2 text-sm font-medium ${
                         activeView === "board" ? "text-white border-b-2 border-blue-500" : "text-gray-400"

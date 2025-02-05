@@ -4,13 +4,14 @@ import { useState, useEffect, useCallback } from "react";
 import { useProjects } from "../../providers/ProjectsProvider";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import debounce from "lodash.debounce"; // Add lodash debounce
+import debounce from "lodash.debounce"; // Debounce added
 
 const EditableDescription = ({ project }) => {
   const { updateProject } = useProjects();
   const [description, setDescription] = useState(project?.description || "<p>Describe your project here...</p>");
+  const [isSaving, setIsSaving] = useState(false); // Track save state
 
-  // Initialize TipTap Editor
+  // TipTap Editor
   const editor = useEditor({
     extensions: [StarterKit],
     content: description,
@@ -20,24 +21,38 @@ const EditableDescription = ({ project }) => {
       },
     },
     onUpdate: ({ editor }) => {
-      setDescription(editor.getHTML()); // Only update description state
+      const newContent = editor.getHTML();
+      if (newContent !== description) {
+        setDescription(newContent); // Update state only if content changes
+      }
     },
   });
 
   // Debounced Save Function
   const saveDescription = useCallback(
     debounce(async (content) => {
-      await updateProject(project.id, { description: content });
-    }, 1000), // Only saves after 1 second of inactivity
+      if (content !== project?.description) {
+        setIsSaving(true);
+        await updateProject(project.id, { description: content });
+        setIsSaving(false);
+      }
+    }, 1000), // 1 second delay
     [project.id, updateProject]
   );
 
-  // Auto-save when description updates
+  // Auto-save when `description` updates
   useEffect(() => {
     if (description !== project?.description) {
       saveDescription(description);
     }
-  }, [description, saveDescription]);
+  }, [description, saveDescription, project?.description]);
+
+  // Ensure the editor syncs with the project’s latest description
+  useEffect(() => {
+    if (editor && project?.description !== description) {
+      editor.commands.setContent(project.description);
+    }
+  }, [project?.description, editor]);
 
   return (
     <div className="mt-4">
@@ -45,6 +60,7 @@ const EditableDescription = ({ project }) => {
       <div className="w-full min-h-[300px] border border-gray-700 rounded-md bg-gray-900 p-4">
         {editor ? <EditorContent editor={editor} /> : <p className="text-gray-400">Loading editor...</p>}
       </div>
+      {isSaving && <p className="text-gray-500 text-sm mt-2">Saving...</p>}
     </div>
   );
 };
