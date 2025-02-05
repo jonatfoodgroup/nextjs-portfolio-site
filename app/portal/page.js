@@ -50,14 +50,9 @@ export default function PortalSelector() {
         bootAndFetch();
     }, [companies]);
 
-    // if (loading || !bootComplete) {
-    //     return (
-    //         <div className="flex flex-col items-center justify-center h-screen bg-black text-green-400 font-mono">
-    //             <BootSequence onComplete={() => setBootComplete(true)} />
-    //         </div>
-    //     );
-    // }
-
+    if (loading) {
+        return <BootSequence onComplete={() => setBootComplete(true)} />;
+    }
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -114,9 +109,9 @@ export default function PortalSelector() {
             {activeView === "board" && (
                 <div className="grid grid-cols-1 gap-4">
                     {companiesWithProjects.map((company) => (
-                        <div key={company.id} className="p-6 bg-black border border-gray-700">
+                        <div key={company.id} className="p-6 bg-transparent border border-gray-700">
                             <CompanyHeader company={company} />
-                            <div className="bg-black align-top grid grid-cols-1 md:grid-cols-5 gap-4">
+                            <div className="bg-transparent align-top grid grid-cols-1 md:grid-cols-5 gap-4">
                                 {company.projects.map((project) => (
                                     <ProjectCard key={project.id} project={project} company={company} />
                                 ))}
@@ -278,9 +273,9 @@ export default function PortalSelector() {
 
 const CompanyHeader = ({ company }) => {
     return (
-        <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center space-x-2">
-                <Link className="text-xl font-semibold text-white mr-2" href={`/portal/${company.id}`}>
+        <div className="flex flex-col items-center mb-6">
+            <div className="flex flex-col text-center items-center">
+                <Link className="text-4xl flex font-semibold text-white mr-2" href={`/portal/${company.id}`}>
                     {company.properties.name}
                 </Link>
                 <div className="opacity-80 text-gray-500 flex items-center space-x-3 hover:opacity-100">
@@ -298,57 +293,57 @@ const CompanyHeader = ({ company }) => {
 }
 
 // Boot Sequence Component
-// const BootSequence = ({ onComplete }) => {
-//     const [text, setText] = useState([]);
-//     const [isComplete, setIsComplete] = useState(false);
+const BootSequence = ({ onComplete }) => {
+    const [text, setText] = useState([]);
+    const [isComplete, setIsComplete] = useState(false);
     
-//     const bootLines = [
-//         "Initializing StrongStart Portal...",
-//         "Loading user settings...",
-//         "Fetching projects from database...",
-//         "Optimizing data...",
-//         "Finalizing setup...",
-//         "System Ready."
-//     ];
+    const bootLines = [
+        "Initializing StrongStart Portal...",
+        "Loading user settings...",
+        "Fetching projects from database...",
+        "Optimizing data...",
+        "Finalizing setup...",
+        "System Ready."
+    ];
 
-//     useEffect(() => {
-//         let i = 0;
-//         setText([]);
-//         console.log("Boot sequence started...");
+    useEffect(() => {
+        let i = 0;
+        setText([]);
+        console.log("Boot sequence started...");
 
-//         const interval = setInterval(() => {
-//             if (i < bootLines.length) {
-//                 setText((prev) => [...prev, bootLines[i]]);
-//                 console.log(bootLines[i]);
-//                 i++;
-//             } else {
-//                 clearInterval(interval);
-//                 setIsComplete(true); // Marks boot sequence as complete
-//                 setTimeout(onComplete, 500); // Delays removal for smooth fade-out
-//             }
-//         }, 700);
+        const interval = setInterval(() => {
+            if (i < bootLines.length) {
+                setText((prev) => [...prev, bootLines[i]]);
+                console.log(bootLines[i]);
+                i++;
+            } else {
+                clearInterval(interval);
+                setIsComplete(true); // Marks boot sequence as complete
+                setTimeout(onComplete, 500); // Delays removal for smooth fade-out
+            }
+        }, 700);
 
-//         return () => clearInterval(interval);
-//     }, [onComplete]);
+        return () => clearInterval(interval);
+    }, [onComplete]);
 
-//     return (
-//         <motion.div
-//             initial={{ opacity: 1 }}
-//             animate={{ opacity: isComplete ? 0 : 1 }}
-//             transition={{ duration: 1 }}
-//             className="flex flex-col items-start text-left font-mono text-green-400 tracking-wide bg-black p-6 rounded-lg shadow-lg"
-//         >
-//             {text.map((line, index) => (
-//                 <motion.div
-//                     key={index}
-//                     initial={{ opacity: 0, y: 5 }}
-//                     animate={{ opacity: 1, y: 0 }}
-//                     transition={{ duration: 0.5, delay: index * 0.3 }}
-//                     className="text-sm md:text-lg"
-//                 >
-//                     {line}
-//                 </motion.div>
-//             ))}
-//         </motion.div>
-//     );
-// };
+    return (
+        <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: isComplete ? 0 : 1 }}
+            transition={{ duration: 1 }}
+            className="flex flex-col items-start text-left font-mono text-green-400 tracking-wide bg-black p-6 rounded-lg shadow-lg"
+        >
+            {text.map((line, index) => (
+                <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.3 }}
+                    className="text-sm md:text-lg"
+                >
+                    {line}
+                </motion.div>
+            ))}
+        </motion.div>
+    );
+};

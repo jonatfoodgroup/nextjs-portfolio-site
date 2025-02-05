@@ -1,0 +1,67 @@
+const campaignsData = [
+    {
+      id: 1,
+      title: "Sponsor Engagement & Follow-Up",
+      description: "Strengthen relationships with sponsors and drive renewals.",
+      tasks: [],
+      assets: 0,
+      channels: ["Email", "Landing Page", "LinkedIn"],
+      statusUpdates: [],
+    },
+    {
+      id: 2,
+      title: "Workforce Awareness & Community Colleges",
+      description: "Highlight the role of community colleges in workforce development.",
+      tasks: [],
+      assets: 0,
+      channels: ["LinkedIn", "Facebook", "Twitter", "Instagram"],
+      statusUpdates: [],
+    },
+    {
+      id: 3,
+      title: "Student Success & Career Pathways",
+      description: "Promote student achievements and career readiness.",
+      tasks: [],
+      assets: 0,
+      channels: ["Instagram", "LinkedIn", "Facebook"],
+      statusUpdates: [],
+    },
+    {
+      id: 4,
+      title: "Houston Strategic Alliance",
+      description: "Develop partnerships and strategic initiatives for Houston-based growth.",
+      tasks: [],
+      assets: 0,
+      channels: ["Email", "LinkedIn", "Twitter"],
+      statusUpdates: [],
+    },
+    {
+      id: 5,
+      title: "Texas Business Spotlight Series",
+      description: "Showcase businesses in Texas that are making an impact in their industry.",
+      tasks: [],
+      assets: 0,
+      channels: ["Instagram", "Facebook", "LinkedIn"],
+      statusUpdates: [],
+    },
+    {
+      id: 6,
+      title: "Economic Insights & Market Trends",
+      description: "Provide valuable insights into Texas' economic landscape and business growth trends.",
+      tasks: [],
+      assets: 0,
+      channels: ["LinkedIn", "Twitter", "Facebook"],
+      statusUpdates: [],
+    },
+    {
+      id: 7,
+      title: "Texas Expansion Support Program",
+      description: "Assist businesses looking to expand operations in Texas with key resources and networking.",
+      tasks: [],
+      assets: 0,
+      channels: ["Email", "LinkedIn", "Website"],
+      statusUpdates: [],
+    }
+  ];
+  
+  export default campaignsData;

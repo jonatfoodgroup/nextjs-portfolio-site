@@ -34,7 +34,7 @@ const PortalTimelineView = ({ companies }) => {
                 id: groupIndex,
                 title: company.properties.name,
                 portalUrl,
-                height: 50,
+                height: 70,
                 isCompany: true,
                 color: companyColor,
             });
@@ -58,7 +58,7 @@ const PortalTimelineView = ({ companies }) => {
                     end_time: moment(project.endDate).toDate(),
                     backgroundColor: companyColor,
                     color: "#fff",
-                    itemHeight: 30,
+                    itemHeight: 60,
                 });
 
                 items.sort((a, b) => a.start_time - b.start_time);
@@ -67,16 +67,28 @@ const PortalTimelineView = ({ companies }) => {
         }
     });
 
-    // State to control zoom level & horizontal movement
-    const [visibleTimeStart, setVisibleTimeStart] = useState(moment().subtract(1, 'months').startOf('isoWeek').valueOf());
-    const [visibleTimeEnd, setVisibleTimeEnd] = useState(moment().add(2, 'months').endOf('isoWeek').valueOf());
+    // Keep Today Fixed at the Leftmost Position
+    const today = moment().startOf("day").valueOf();
+    const defaultViewRange = 30 * 24 * 60 * 60 * 1000; // 30-day range
 
-    // Function to handle trackpad zoom
+    // Always start the timeline at "Today"
+    const [visibleTimeStart, setVisibleTimeStart] = useState(today);
+    const [visibleTimeEnd, setVisibleTimeEnd] = useState(today + defaultViewRange);
+
+    const handleTimeChange = (start, end) => {
+        // Prevent the timeline from shifting past today
+        if (start !== today) {
+            setVisibleTimeStart(today);
+            setVisibleTimeEnd(today + defaultViewRange);
+        }
+    };
+
+    // Function to handle zooming with trackpad
     const handleWheelZoom = (event) => {
         if (event.ctrlKey || event.metaKey) {
             event.preventDefault();
-            
-            const zoomFactor = event.deltaY > 0 ? 1.1 : 0.9; // Adjusted zoom factor for smoother zoom
+
+            const zoomFactor = event.deltaY > 0 ? 1.1 : 0.9;
             const currentRange = visibleTimeEnd - visibleTimeStart;
             const newRange = currentRange * zoomFactor;
 
@@ -86,11 +98,17 @@ const PortalTimelineView = ({ companies }) => {
         }
     };
 
-    // Allow horizontal movement & zoom
-    const handleTimeChange = (start, end) => {
-        setVisibleTimeStart(start);
-        setVisibleTimeEnd(end);
-    };
+    // Handle horizontal movement
+    // const handleTimeChange = (start, end) => {
+    //     // Prevent moving too far past today
+    //     if (start > today - (defaultViewRange * 0.1)) {
+    //         setVisibleTimeStart(today - (defaultViewRange * 0.1));
+    //         setVisibleTimeEnd(today + (defaultViewRange * 0.9));
+    //     } else {
+    //         setVisibleTimeStart(start);
+    //         setVisibleTimeEnd(end);
+    //     }
+    // };
 
     // Attach event listener for trackpad zoom
     useEffect(() => {
@@ -112,14 +130,14 @@ const PortalTimelineView = ({ companies }) => {
                 items={items}
                 visibleTimeStart={visibleTimeStart}
                 visibleTimeEnd={visibleTimeEnd}
-                onTimeChange={handleTimeChange} // ✅ Allow smooth left/right movement
-                canMove={true}  // ✅ Enables horizontal scrolling
+                onTimeChange={handleTimeChange}
+                canMove={true}
                 traditionalZoom={true}
                 canResize={true}
-                minZoom={7 * 24 * 60 * 60 * 1000} // ✅ Minimum zoom is 1 week
-                maxZoom={5 * 365 * 24 * 60 * 60 * 1000} // ✅ Max zoom is 5 years
+                minZoom={7 * 24 * 60 * 60 * 1000}
+                maxZoom={5 * 365 * 24 * 60 * 60 * 1000}
                 sidebarWidth={300}
-                timeSteps={{ day: 7 }} 
+                timeSteps={{ day: 7 }}
                 stackItems
                 itemHeightRatio={0.75}
                 headerLabelFormats={{
@@ -128,15 +146,19 @@ const PortalTimelineView = ({ companies }) => {
                     week: { long: "'Week of' MMM D" },
                     day: { long: "dddd, MMM D" },
                 }}
+                headerLabelGroupHeight={50} // ✅ Increase header height
+                headerLabelHeight={40} // ✅ I
                 groupRenderer={({ group }) => (
                     <div
-                        className={`p-2 ${group.isCompany ? "font-bold text-white" : "text-gray-400"}`}
+                        className={`${group.isCompany ? "font-bold text-white" : "text-gray-400"}`}
                         style={{
                             backgroundColor: group.color || "transparent",
-                            padding: "6px",
-                            borderRadius: "4px",
-                            fontSize: "14px",
+                            // padding: "6px",
+                            textAlign: "center",
+                            fontSize: "18px",
+                            margin: "0",
                             display: "flex",
+                            width: "100%",
                             alignItems: "center",
                             cursor: group.isCompany ? "pointer" : "default",
                         }}

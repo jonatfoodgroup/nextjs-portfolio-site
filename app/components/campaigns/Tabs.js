@@ -1,0 +1,5 @@
+const tabs = [
+    {
+        label: "Campaigns",
+    }
+]

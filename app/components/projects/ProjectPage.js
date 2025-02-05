@@ -4,7 +4,7 @@ import { TasksProvider } from "../../providers/TasksProvider";
 import AddTaskForm from "../tasks/AddTaskForm";
 import DiscordLinkButton from "../DiscordLinkButton";
 import ProjectTasks from "../tasks/ProjectTasks";
-import { useState } from "react";
+import { use, useState } from "react";
 import EditableDescription from "./EditableDescription";
 import StatusUpdateComponent from "./StatusUpdateComponent";
 import DueDate from "./DueDate";
@@ -18,13 +18,16 @@ import DriveLinkButton from "./DriveFolderLink";
 import TaskKanban from "../tasks/TaskKanban";
 import { EndDate, StartDate } from "./StartEndDate";
 import TimelineView from "./TimelineView";
+import { useHubspot } from "../../providers/HubspotProvider";
 import CalenderView from "./CalendarView";
-
+import { useEffect } from "react";
+import Link from "next/link";
 const ProjectPage = ({ project }) => {
   console.log('ProjectPage', project);
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview'); // State for the active tab
-
+  const [company, setCompany] = useState(null);
+  const [activeTab, setActiveTab] = useState('calendar'); // State for the active tab
+  const { fetchCompanyById } = useHubspot();
   let jobNumber = project?.jobNumber ? project.jobNumber.slice(-5) : "N/A";
   let tabs = [
     { name: 'overview', label: 'Overview' },
@@ -36,18 +39,44 @@ const ProjectPage = ({ project }) => {
     { name: 'resources', label: 'Resources' }
   ];
 
+  useEffect(() => {
+    // Fetch the company by ID async with try/catch
+    const fetchCompany = async () => {
+      try {
+        const companyTmp = await fetchCompanyById(project.hubspotId);
+        console.log('Company:', companyTmp);
+
+        setCompany(companyTmp);
+      } catch (err) {
+        console.error(err);
+
+      }
+    };
+
+    fetchCompany();
+
+  }, [project.hubspotId]);
+
   return (
     <TasksProvider projectId={project.id}>
       <div className="bg-black min-h-screen">
-        <div className="flex justify-between items-center md:flex-col flex-col">
-          <div className="flex flex-col md:flex-row items-start md:items-center align-middle space-y-4 md:space-y-0 md:space-x-4">
-            {/* <Breadcrumb hubspotId={project.hubspotId} /> */}
-            <EditableTitle project={project} />
-            <div className="flex items-center space-x-4 mb-4 text-2xl">
+        <div className="flex justify-between items-center md:flex-col flex-col md:space-y-4 md:space-x-0 space-x-4 p-8">
+          <div className="flex flex-col">
+            <Link href={`/portal/${project.hubspotId}`}>
+            <h3 className="uppercase text-2xl font-bold text-white">
+              {company?.properties?.name || 'N/A'}
+            </h3>
+            </Link>
+          </div>
+        <div className="flex items-center space-x-4 mb-4 text-2xl">
               <DiscordLinkButton discordChannelId={project.discordChannelId} />
               <DriveLinkButton driveFolderId={project.googleDriveFolderId} />
             </div>
+          <div className="flex flex-col md:flex-row items-start md:items-center align-middle space-y-4 md:space-y-0 md:space-x-4">
+            {/* <Breadcrumb hubspotId={project.hubspotId} /> */}
+            <EditableTitle project={project} />
           </div>
+          
           {/* <p className="text-gray-400 text-sm">Job Number: {jobNumber}</p> */}
           <div className="flex space-x-4 mb-8">
             {tabs.map(tab => (

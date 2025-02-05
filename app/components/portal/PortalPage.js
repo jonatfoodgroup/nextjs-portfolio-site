@@ -72,22 +72,19 @@ export default function PortalPage({ hubspotId }) {
                 <p>Loading company details...</p>
             ) : (
                 <div className="space-y-10">
-                    <div className="flex items-center justify-between">
-                        <h1 className="text-2xl font-regular mb-2 text-white">
+                    <div className="flex items-center flex-col space-y-8">
+                        <h1 className="text-4xl font-regular mb-2 mt-20 text-white text-centerw">
                             {company?.properties?.name || "Company Name"}
                         </h1>
-                        <div className="w-1/2">
-                            {/* <StepsTracker steps={steps} currentStep={currentStep} /> */}
-                        </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex flex-col items-center text-4xl">
                             <HubspotLinkButton hubspotId={hubspotId} />
                             <DriveLinkButton folderId={company?.properties?.drive_folder_id} />
-                            <Link href={`/portal/${hubspotId}/content`}>
+                        </div>
+                        <Link href={`/portal/${hubspotId}/content`}>
                                 <Button>
                                     Content
                                 </Button>
                             </Link>
-                        </div>
                     </div>
 
                     {/* Projects Section */}

@@ -10,6 +10,8 @@ import ActiveTimer from "../components/portal/ActiveTimer";
 import { HubspotProvider } from "../providers/HubspotProvider";
 import { TasksProvider } from "../providers/TasksProvider";
 import TranscriptionOverlay from "../components/TranscriptionOverlay";
+import ForceGraph from "../components/ForceGraph";
+import sampleData from "../data/sampleData";
 
 export default function PortalLayout({ children }) {
     useEffect(() => {
@@ -50,8 +52,17 @@ export default function PortalLayout({ children }) {
                                 transition={{ duration: 1, ease: "easeOut" }}
                             >
                                 {children}
+                                {/* 3D Force Graph - Kept Interactive */}
+                                <div
+                                    className="fixed inset-0 flex justify-center items-center top-0 left-0 right-0 bottom-0 sticky min-h-screen"
+                                    style={{ zIndex: -1 }}
+                                >
+                                    <ForceGraph backgroundColor="black" graphData={sampleData} />
+                                </div>
                             </motion.div>
                         </motion.div>
+
+
                     </TasksProvider>
                 </HubspotProvider>
                 <ActiveTimer />

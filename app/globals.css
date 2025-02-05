@@ -576,6 +576,10 @@ html body #timelineContainer .rct-dateHeader {
   @apply bg-gray-800 !important;
 }
 
+html body #timelineContainer {
+  background-color: transparent !important;
+}
+
 html body #timelineContainer .rct-dateHeader:first-child {
   display: none !important;
 }
