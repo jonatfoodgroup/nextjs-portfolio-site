@@ -124,7 +124,7 @@ const PortalTimelineView = ({ companies }) => {
     }, [visibleTimeStart, visibleTimeEnd]);
 
     return (
-        <div className="timeline-container" id="timelineContainer">
+        <div className="timeline-container container mx-auto" id="timelineContainer">
             <Timeline
                 groups={groups}
                 items={items}
@@ -159,6 +159,7 @@ const PortalTimelineView = ({ companies }) => {
                             margin: "0",
                             display: "flex",
                             width: "100%",
+                            MARGINTOP: "10px",
                             alignItems: "center",
                             cursor: group.isCompany ? "pointer" : "default",
                         }}
@@ -206,7 +207,7 @@ const PortalTimelineView = ({ companies }) => {
                     <TodayMarker
                         date={moment().toDate()}
                         className="today-marker"
-                        style={{ backgroundColor: "red", width: "2px", zIndex: 50 }}
+                        // style={{ backgroundColor: "red", width: "2px", zIndex: 50 }}
                     />
                 </TimelineMarkers>
             </Timeline>

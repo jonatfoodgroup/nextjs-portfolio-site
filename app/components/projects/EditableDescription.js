@@ -1,43 +1,52 @@
 "use client";
-import { useState } from "react";
+
+import { useState, useEffect, useCallback } from "react";
 import { useProjects } from "../../providers/ProjectsProvider";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import debounce from "lodash.debounce"; // Add lodash debounce
 
 const EditableDescription = ({ project }) => {
-    const [isEditing, setIsEditing] = useState(false);
-    const [description, setDescription] = useState(project.description);
-    const { updateProject } = useProjects();
-    const handleSave = async () => {
-      setIsEditing(false);
-      await updateProject(project.id, { description });
-    };
-  
-    return (
-      <div className="mt-4">
-        <h4 className="text-lg font-regular text-gray-200 flex items-center space-x-2 mb-4"><span>About Project</span> <button
-          onClick={() => setIsEditing(!isEditing)}
-          className="text-xs text-gray-500"
-        >
-          {isEditing ? <Icon icon="mdi:close" /> : <Icon icon="mdi:pencil" />}{" "}
-        </button></h4>
-        {isEditing ? (
-          <div className="flex">
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="w-full p-2 border bg-gray-800 text-white rounded text-sm border-gray-700"
-            />
-            <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded ml-2">
-              Save
-            </button>
-          </div>
-        ) : (
-          <p className="text-md text-gray-400 leading-relaxed
-          ">{description}</p>
-        )}
-        
-      </div>
-    );
-  }
+  const { updateProject } = useProjects();
+  const [description, setDescription] = useState(project?.description || "<p>Describe your project here...</p>");
 
-  export default EditableDescription;
+  // Initialize TipTap Editor
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content: description,
+    editorProps: {
+      attributes: {
+        class: "w-full min-h-[300px] p-4 bg-gray-900 text-white rounded-md border border-gray-700 focus:outline-none",
+      },
+    },
+    onUpdate: ({ editor }) => {
+      setDescription(editor.getHTML()); // Only update description state
+    },
+  });
+
+  // Debounced Save Function
+  const saveDescription = useCallback(
+    debounce(async (content) => {
+      await updateProject(project.id, { description: content });
+    }, 1000), // Only saves after 1 second of inactivity
+    [project.id, updateProject]
+  );
+
+  // Auto-save when description updates
+  useEffect(() => {
+    if (description !== project?.description) {
+      saveDescription(description);
+    }
+  }, [description, saveDescription]);
+
+  return (
+    <div className="mt-4">
+      <h4 className="text-lg font-semibold text-gray-200 mb-4">About Project</h4>
+      <div className="w-full min-h-[300px] border border-gray-700 rounded-md bg-gray-900 p-4">
+        {editor ? <EditorContent editor={editor} /> : <p className="text-gray-400">Loading editor...</p>}
+      </div>
+    </div>
+  );
+};
+
+export default EditableDescription;

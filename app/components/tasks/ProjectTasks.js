@@ -47,52 +47,51 @@ const ProjectTasks = ({ project }) => {
         <p className="text-gray-500">Loading tasks...</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-6">
-  {sortedTasks.filter((task) => !task.parentTaskId).map((task) => (
-    <div
-      key={task.id}
-      className="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border-gray-800 cursor-pointer bg-gray-900"
-      onClick={() => openModal(task)}
-    >
-      <div className="flex flex-col space-y-3">
-        {/* Assignee + Title */}
-        <div className="flex items-center flex-col">
-          <span className="text-3xl"><AssigneeAvatar assignee={task.assignee} /></span>
-          <div className="flex flex-col items-center space-y-1">
-            <p className="font-medium text-lg text-gray-300 hover:text-white">{task.name}</p>
-            <p className="text-sm text-gray-500">
-              {moment(task.startDate).format("MMM D, YYYY")} - {moment(task.endDate).format("MMM D, YYYY")}
-            </p>
-          </div>
+          {sortedTasks.filter((task) => !task.parentTaskId).map((task) => (
+            <div
+              key={task.id}
+              className="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border-gray-800 cursor-pointer bg-gray-900"
+              onClick={() => openModal(task)}
+            >
+              <div className="flex flex-col space-y-3">
+                {/* Assignee + Title */}
+                <div className="flex items-center flex-col">
+                  <span className="text-3xl"><AssigneeAvatar assignee={task.assignee} /></span>
+                  <div className="flex flex-col items-center space-y-1">
+                    <p className="font-medium text-lg text-gray-300 hover:text-white">{task.name}</p>
+                    <p className="text-sm text-gray-500">
+                      {moment(task.startDate).format("MMM D, YYYY")} - {moment(task.endDate).format("MMM D, YYYY")}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Subtasks */}
+                {task.subtasks.length > 0 && (
+                  <div className="mt-2">
+                    <h4 className="text-sm font-semibold text-gray-400 mb-1">Subtasks</h4>
+                    <ul className="text-sm text-gray-500 space-y-1">
+                      {task.subtasks.map((subtask, index) => (
+                        <li key={index} className="pl-2 border-l-2 border-gray-700">{subtask.name}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Status Badge */}
+                <p
+                  className={`text-sm px-2 py-1 rounded font-semibold self-start ${task.status === "completed"
+                      ? "bg-green-200 text-green-800"
+                      : task.status === "in progress"
+                        ? "bg-yellow-200 text-yellow-800"
+                        : "bg-gray-700 text-gray-400"
+                    }`}
+                >
+                  {task.status}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-
-        {/* Subtasks */}
-        {task.subtasks.length > 0 && (
-          <div className="mt-2">
-            <h4 className="text-sm font-semibold text-gray-400 mb-1">Subtasks</h4>
-            <ul className="text-sm text-gray-500 space-y-1">
-              {task.subtasks.map((subtask, index) => (
-                <li key={index} className="pl-2 border-l-2 border-gray-700">{subtask.name}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Status Badge */}
-        <p
-          className={`text-sm px-2 py-1 rounded font-semibold self-start ${
-            task.status === "completed"
-              ? "bg-green-200 text-green-800"
-              : task.status === "in progress"
-              ? "bg-yellow-200 text-yellow-800"
-              : "bg-gray-700 text-gray-400"
-          }`}
-        >
-          {task.status}
-        </p>
-      </div>
-    </div>
-  ))}
-</div>
       )}
 
       {/* Modal for Task Details */}

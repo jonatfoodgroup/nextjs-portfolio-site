@@ -25,7 +25,7 @@ const PortalHeader = ({
                     </Button>
                     
                 </div>
-                <Logo />
+                {/* <Logo /> */}
                 {/* <ProjectSearch /> */}
                 <nav className="flex items-center space-x-4">
                     {/* <Link

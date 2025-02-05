@@ -59,24 +59,25 @@ const ProjectPage = ({ project }) => {
 
   return (
     <TasksProvider projectId={project.id}>
-      <div className="bg-black min-h-screen">
+      <div className="min-h-screen">
         <div className="flex justify-between items-center md:flex-col flex-col md:space-y-4 md:space-x-0 space-x-4 p-8">
           <div className="flex flex-col">
             <Link href={`/portal/${project.hubspotId}`}>
-            <h3 className="uppercase text-2xl font-bold text-white">
-              {company?.properties?.name || 'N/A'}
-            </h3>
+              <h3 className="uppercase text-md font-light text-gray-500">
+                {company?.properties?.name || 'N/A'} - #{jobNumber}
+              </h3>
             </Link>
           </div>
-        <div className="flex items-center space-x-4 mb-4 text-2xl">
-              <DiscordLinkButton discordChannelId={project.discordChannelId} />
-              <DriveLinkButton driveFolderId={project.googleDriveFolderId} />
-            </div>
+         
           <div className="flex flex-col md:flex-row items-start md:items-center align-middle space-y-4 md:space-y-0 md:space-x-4">
             {/* <Breadcrumb hubspotId={project.hubspotId} /> */}
             <EditableTitle project={project} />
           </div>
-          
+          <div className="flex items-center space-x-4 mb-4 text-2xl">
+            <DiscordLinkButton discordChannelId={project.discordChannelId} />
+            <DriveLinkButton driveFolderId={project.googleDriveFolderId} />
+          </div>
+
           {/* <p className="text-gray-400 text-sm">Job Number: {jobNumber}</p> */}
           <div className="flex space-x-4 mb-8">
             {tabs.map(tab => (

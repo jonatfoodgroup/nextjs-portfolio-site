@@ -19,7 +19,7 @@ export default function PortalSelector() {
     const { companies } = useHubspot();
     const [loading, setLoading] = useState(false);
     const [bootComplete, setBootComplete] = useState(false);
-    const [activeView, setActiveView] = useState("timeline"); // "board" or "timeline"
+    const [activeView, setActiveView] = useState("board"); // "board" or "timeline"
 
     useEffect(() => {
         if (!companies || companies.length === 0) return;
@@ -50,9 +50,6 @@ export default function PortalSelector() {
         bootAndFetch();
     }, [companies]);
 
-    if (loading) {
-        return <BootSequence onComplete={() => setBootComplete(true)} />;
-    }
     return (
         <motion.div
             initial={{ opacity: 0 }}

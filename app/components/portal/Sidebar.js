@@ -39,6 +39,23 @@ const Projects = () => {
         }
     });
 
+    // cmd + k to open
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === "k" && e.metaKey) {
+                setOpenClients((prev) => ({
+                    ...prev,
+                    [clients[0].id]: true,
+                }));
+            }
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [clients]);
+
+
 
     const toggleClient = (clientId) => {
         setOpenClients((prev) => ({

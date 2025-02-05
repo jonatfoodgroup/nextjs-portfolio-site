@@ -3,6 +3,8 @@ import React from "react";
 import Link from "next/link";
 import DiscordLinkButton from "../DiscordLinkButton";
 import PMAvatar from "./PMAvatar";
+import { motion } from "framer-motion";
+
 
 
 const ProjectCard = ({ project, company, showClient = false }) => {
@@ -18,66 +20,56 @@ const ProjectCard = ({ project, company, showClient = false }) => {
     const pm = project.projectManager;
 
     return (
-        <Link
-            href={`/portal/${company.id}/projects/${project.id}`}
-            className={`border border-gray-700 rounded-xl p-4 ${project.status?.status === "Off track"
-                ? "border-red-500"
-                : "border-gray-800 bg-gray-800"
-                }`}
+        <motion.div
+            initial={{ opacity: 0.9, scale: 1 }}
+            whileHover={{
+                scale: 1.05,
+                y: -5,
+                boxShadow: "0px 0px 20px rgba(255, 255, 255, 0.3)",
+                background: "linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03))",
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="relative bg-black/40 backdrop-blur-md border border-gray-700 rounded-xl p-4 transition-all 
+        hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/50 min-h-[420px]"
         >
             {/* Project Status */}
-            <div className="flex items-center justify-between">
-                <ProjectStatus status={project.status?.status} />
-                <div className="text-xs text-gray-600 bg-transparent border border-gray-800 px-2 py-1 rounded">
-                    {/* Display job number if available */}
-                    {/* {project.jobNumber ? project.jobNumber.slice(-5) : "N/A"} */}
-                    {company.properties.name}
-                </div>
+            <div className="absolute bottom-2 left-2 bg-yellow-600 text-xs px-2 py-1 rounded-lg text-white">
+                {project.status?.status || "On hold"}
             </div>
 
-            {/* Project Title */}
-            <div className="pt-2 pb-1">
-                <h3
-                    className="text-md font-semibold text-gray-300 hover:text-white"
-                >
-                    {project.title || "Untitled Project"}
-                </h3>
+            <div className="absolute top-2 right-2 bg-gray-800 text-xs px-2 py-1 rounded-lg text-white">
+                {company.properties.name}
             </div>
 
-            {/* Status Update */}
-            <div>
-                <StatusUpdate
-                    note={project.status?.note}
-                    status={project.status?.status}
-                    timestamp={project.status?.timestamp}
-                />
+            <div className="absolute top-2 left-2 bg-gray-800 text-xs px-2 py-1 rounded-lg text-white">
+                {project.id}
             </div>
 
-            {/* start and end date */}
-            <div className="flex items-center space-x-2 mt-2">
-                <div className="flex flex-col">
-                    <span className="text-xs text-gray-500">Start Date:</span>
-                    <span className="text-xs text-gray-400">
-                        {new Date(project.startDate).toLocaleDateString()}
-                    </span>
-                </div>
-                <div className="flex flex-col">
-                    <span className="text-xs text-gray-500">End Date:</span>
-                    <span className="text-xs text-gray-400">
-                        {new Date(project.endDate).toLocaleDateString()}
-                    </span>
-                </div>
-            </div>
+            <div className="absolute top-24 left-4 right-4 flex flex-col items-center justify-end space-y-2">
+                {/* Title */}
+                <Link 
+                    href={`/portal/${company.id}/projects/${project.id}`}
+                className="text-lg font-semibold text-white">{project.title || "Untitled Project"}</Link>
 
-            <div className="flex items-center justify-between mt-6 align-middle">
-                {/* Project Manager */}
-                <PMAvatar pmId={pm?.id} />
-                {/* Discord Button */}
-                <div className="text-xl">
-                    <DiscordLinkButton discordChannelId={project.discordChannelId} />
+                {/* Description */}
+                <p className="text-sm text-gray-400">{project.status?.note || "No details available."}</p>
+
+                {/* Dates */}
+                <div className="flex justify-between text-xs text-gray-500 w-full px-4">
+                    {/* 
+                     */}
+                </div>
+
+                {/* Bottom Avatar & Discord Icon */}
+                <div className="flex items-center text-center mt-4 w-full px-4">
+                    <img
+                        src={project.manager?.avatar || "/default-avatar.png"}
+                        alt="Manager"
+                        className="w-8 h-8 rounded-full border border-gray-600"
+                    />
                 </div>
             </div>
-        </Link>
+        </motion.div>
     );
 };
 
