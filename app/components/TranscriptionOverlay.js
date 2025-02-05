@@ -82,8 +82,8 @@ const TranscriptionOverlay = () => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-            {/* Floating Pulsing Mic Button */}
+        <>
+            {/* Floating Pulsing Mic Button - Always Clickable */}
             <button
                 onClick={() => setIsOverlayOpen(true)}
                 className="fixed bottom-6 right-6 p-4 rounded-full shadow-lg bg-blue-500 hover:bg-blue-600 focus:outline-none animate-pulse z-50"
@@ -91,17 +91,17 @@ const TranscriptionOverlay = () => {
                 <Icon icon="akar-icons:microphone" className="w-8 h-8 text-white" />
             </button>
 
-            {/* Full-Screen Overlay */}
+            {/* Full-Screen Overlay - Only Blocks Interaction When Open */}
             {isOverlayOpen && (
                 <div className="fixed inset-0 flex flex-col items-center justify-center p-4 bg-black bg-opacity-90 backdrop-blur-lg animate-fadeIn" style={{ zIndex: 999 }}>
-
+                    
                     {/* Floating Animated Glow */}
                     <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-blue-500 opacity-30 rounded-full blur-3xl animate-pulse"></div>
                     <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500 opacity-30 rounded-full blur-3xl animate-pulse"></div>
 
                     {/* Modal Container */}
                     <div className="bg-black/70 backdrop-blur-md p-6 rounded-lg shadow-lg w-full max-w-lg relative border border-gray-700 animate-scaleUp">
-
+                        
                         {/* Topic Display */}
                         <h2 className="text-2xl font-bold text-white text-center mb-6">
                             {topics[currentTopicIndex]}
@@ -164,7 +164,7 @@ const TranscriptionOverlay = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 };
 
