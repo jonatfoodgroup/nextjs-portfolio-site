@@ -82,11 +82,11 @@ const TranscriptionOverlay = () => {
     };
 
     return (
-        <div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
             {/* Floating Pulsing Mic Button */}
             <button
                 onClick={() => setIsOverlayOpen(true)}
-                className="fixed bottom-6 right-6 p-4 rounded-full shadow-lg bg-blue-500 hover:bg-blue-600 focus:outline-none animate-pulse"
+                className="fixed bottom-6 right-6 p-4 rounded-full shadow-lg bg-blue-500 hover:bg-blue-600 focus:outline-none animate-pulse z-50"
             >
                 <Icon icon="akar-icons:microphone" className="w-8 h-8 text-white" />
             </button>
