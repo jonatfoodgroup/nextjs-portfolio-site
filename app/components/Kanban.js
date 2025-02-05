@@ -92,7 +92,7 @@ const Kanban = ({
     };
 
     return (
-        <div className="kanban-container flex gap-4 p-4 bg-black">
+        <div className="kanban-container flex gap-4 p-4">
             <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}

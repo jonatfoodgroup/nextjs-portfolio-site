@@ -74,11 +74,11 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
                 .backgroundColor(backgroundColor)
                 .nodeLabel("label")
                 .nodeColor(node => node.color)
-                .nodeRelSize(14) // **Increase size for larger dots**
+                .nodeRelSize(64) // **Increase size for larger dots**
                 .linkColor(() => "rgba(255, 255, 255, .2)") // Softer links
                 .linkDirectionalParticles(2)
                 .linkDirectionalParticleWidth(1)
-      .linkHoverPrecision(10)
+                .linkHoverPrecision(10)
                 .linkOpacity(0.2); // Reduce link brightness for contrast
     
             // **Generate and apply spread-out galaxy data**
@@ -106,9 +106,9 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
                 1.0,
                 0.1
             );
-            bloomPass.strength = 3.5; // **Stronger glow**
+            bloomPass.strength = 10.5; // **Stronger glow**
             bloomPass.radius = 0.8;
-            bloomPass.threshold = 0.1; // **Glow at low brightness too**
+            bloomPass.threshold = 0.01; // **Glow at low brightness too**
             const composer = Graph.postProcessingComposer();
             composer.addPass(bloomPass);
     
@@ -125,6 +125,11 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
                 0
             );
 
+            // 🎨 **Hover Effects*
+            Graph.onNodeHover(node => {
+                setHoveredNode(node ? node.label : null);
+            });
+
            // 🔥 **Emit Particles Randomly at Intervals**
         function emitParticlesRandomly() {
             const link = sampleData.links[Math.floor(Math.random() * sampleData.links.length)];
@@ -132,6 +137,7 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
                 Graph.emitParticle(link);
             }
         }
+
 
         // Set up interval for automatic particle emission
         const particleInterval = setInterval(() => {

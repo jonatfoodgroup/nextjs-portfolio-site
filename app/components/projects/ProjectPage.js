@@ -23,7 +23,6 @@ import CalenderView from "./CalendarView";
 import { useEffect } from "react";
 import Link from "next/link";
 const ProjectPage = ({ project }) => {
-  console.log('ProjectPage', project);
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
   const [company, setCompany] = useState(null);
   const [activeTab, setActiveTab] = useState('calendar'); // State for the active tab
@@ -93,7 +92,7 @@ const ProjectPage = ({ project }) => {
         </div>
 
         <div className="flex items-start flex-col md:flex-row">
-          <div className="w-full pr-0 container">
+          <div className="pr-0 container max-w-4xl mx-auto">  
             {
               activeTab === 'overview' && (
                 <div className="flex items-start space-x-4 mb-8">

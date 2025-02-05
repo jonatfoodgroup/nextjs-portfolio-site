@@ -1,4 +1,4 @@
-import { Playfair_Display, Inter, Bebas_Neue } from "next/font/google";
+import { Playfair_Display, Inter, Bebas_Neue, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 import { DataProvider } from "./providers/DataProvider";
 import { BrandingProvider } from "./providers/BrandingProvider";
@@ -22,6 +22,11 @@ subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
 
+const press2p = Press_Start_2P({
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 const bebas_neue = Bebas_Neue({
   subsets: ["latin"],
   weight: ["400"],
@@ -37,7 +42,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <link rel="icon" href="/favicon.ico" sizes="any" />
 
-      <body className={`${inter.className} ${bebas_neue.className} bg-white text-black`}>
+      <body className={`${inter.className} ${bebas_neue.className} ${press2p.className}
+      bg-white text-black`}>
         <ServiceWorkerProvider>
           <Analytics />
           <SpeedInsights />
