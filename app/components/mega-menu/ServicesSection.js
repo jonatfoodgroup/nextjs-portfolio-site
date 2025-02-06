@@ -15,7 +15,7 @@ const ServicesSection = () => {
       {/* Services Section */}
       <div className="ml-4 pt-4 md:pt-0 py-4 md:py-4 w-full">
         <section className="w-full flex flex-row container mx-auto">
-          <div className="flex flex-col w-3/4 mb-4">
+          <div className="flex flex-col w-1/4 mb-4">
             <div className="flex flex-col">
               <div className="flex items-center  border-b-2 border-gray-800 pb-2">
                 <h2 className="text-2xl font-semibold text-white">Focus Areas</h2>
@@ -25,7 +25,7 @@ const ServicesSection = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-4 mt-4">
               {services.map((service, index) => (
                 <Link
                   key={service.title.rendered}

@@ -16,9 +16,11 @@ import { HubspotProvider } from "./providers/HubspotProvider";
 import { ProposalProvider } from "./providers/ProposalProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
+import ForceGraph from "./components/ForceGraph";
+import sampleData from "./data/sampleData";
 
 const inter = Inter({
-subsets: ["latin"],
+  subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
 
@@ -47,28 +49,29 @@ export default function RootLayout({ children }) {
         <ServiceWorkerProvider>
           <Analytics />
           <SpeedInsights />
-            <WordpressProvider>
+          <WordpressProvider>
             <HubspotProvider>
               <DataProvider>
-              <BrandingProvider>
-                <AOSProvider>
-                  <DrawerProvider>
-                    <AuthProvider>
-                      <FirebaseProvider>
-                        <ProposalProvider>
-                          <Toaster position="top-right" reverseOrder={false} />
-                          <div>
-                            {children}
-                          </div>
-                        </ProposalProvider>
-                      </FirebaseProvider>
-                    </AuthProvider>
-                  </DrawerProvider>
-                </AOSProvider>
-              </BrandingProvider>
+                <BrandingProvider>
+                  <AOSProvider>
+                    <DrawerProvider>
+                      <AuthProvider>
+                        <FirebaseProvider>
+                          <ProposalProvider>
+                            <Toaster position="top-right" reverseOrder={false} />
+                              {children}
+                            <div className="fixed inset-0 flex justify-center items-center top-0 left-0 right-0 bottom-0 sticky min-h-screen" style={{ zIndex: -1 }}>
+                              <ForceGraph backgroundColor="black" graphData={sampleData} />
+                            </div>
+                          </ProposalProvider>
+                        </FirebaseProvider>
+                      </AuthProvider>
+                    </DrawerProvider>
+                  </AOSProvider>
+                </BrandingProvider>
               </DataProvider>
             </HubspotProvider>
-            </WordpressProvider>
+          </WordpressProvider>
         </ServiceWorkerProvider>
         <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/22555624.js"></script>
       </body>

@@ -15,21 +15,21 @@ import SaveLink from "../service/SaveLink";
 export default function ServiceView({ service, children }) {
     return (
         <>
-            <div className="relative bg-white">
+            <div className="relative">
                 <Breadcrumb service={service} />
                 <div className="container inner-container  mx-auto">
                     <div className="flex mt-0 md:mt-8 flex-col md:flex-row">
                         <div className="w-full pr-0 md:pr-20 text-center max-w-4xl mx-auto">
-                            <h1 className="text-6xl md:text-5xl font-bold text-black mt-12">{service.acf.masthead?.masthead_title}</h1>
-                            <p className="mt-4 text-md md:text-xl leading-relaxed text-darker-gray font-regular">{(service.acf.masthead?.masthead_content) ? decode(service.acf.masthead.masthead_content) : decode(service.acf.masthead.masthead_title)}</p>
-                            <Link href="/contact-us" className="inline-flex mt-8"
-                                data-aos="fade-in" data-aos-delay="400">
-                                <div className="px-8 py-4 text-lg font-bold bg-orange text-white flex items-center space-x-2 shiny-button">
-                                    <Icon icon="bx:bx-chat" className="text-white w-6 h-6 mr-2" />
-                                    Chat With Us
-                                    <span className="shiny-effect"></span>
-                                </div>
-                            </Link>
+                            <h1 className="text-6xl md:text-6xl font-bold text-white mt-24">{service.acf.masthead?.masthead_title}</h1>
+                            <p className="mt-4 text-md md:text-lg leading-relaxed text-gray-200 font-regular">{(service.acf.masthead?.masthead_content) ? decode(service.acf.masthead.masthead_content) : decode(service.acf.masthead.masthead_title)}</p>
+                            <Link href="/contact-us" className="inline-flex mt-8" data-aos="fade-in" data-aos-delay="400">
+    <div className="relative px-8 py-4 text-lg font-bold text-white flex items-center space-x-2 futuristic-button">
+        <Icon icon="bx:bx-chat" className="text-white w-6 h-6 mr-2" />
+        Chat With Us
+        <div className="neon-glow"></div>
+    </div>
+</Link>
+
                         </div>
 
                     </div>
@@ -223,3 +223,4 @@ const EditPageLink = ({ service }) => {
         </Link>
     );
 }
+

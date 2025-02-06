@@ -16,7 +16,7 @@ import TaskSidebar from "./TaskSidebar";
 const TaskDetails = ({ task, updateTask, addTask, project }) => {
     const [status, setStatus] = useState(task.status || "pending");
     const [tabs, setTabs] = useState(["description", "subtasks", "files"]);
-    const [activeTab, setActiveTab] = useState("description");
+    const [activeTab, setActiveTab] = useState("subtasks");
 
     const handleStatusChange = (e) => {
         const newStatus = e.target.value;
@@ -31,23 +31,23 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
 
     return (
         <div className="space-y-6">
-            
+
             <div className="w-full flex flex-row justify-between">
                 <div className="w-3/4">
-                {/* Action Row */}
-            <div className="flex items-center justify-between">
-                {/* Left Section */}
-                <div className="flex items-center space-x-4">
-                    <TaskTimer task={task} updateTask={updateTask} project={project} />
-                    <MarkAsBountyButton taskId={task.id} isBounty={task.isBounty} />
-                </div>
+                    {/* Action Row */}
+                    <div className="flex items-center justify-between">
+                        {/* Left Section */}
+                        <div className="flex items-center space-x-4">
+                            <TaskTimer task={task} updateTask={updateTask} project={project} />
+                            <MarkAsBountyButton taskId={task.id} isBounty={task.isBounty} />
+                        </div>
 
-                {/* Right Section: Status Dropdown */}
-                <div className="flex items-center space-x-2">
-                    <StatusSelector status={status} handleStatusChange={handleStatusChange} />
-                </div>
+                        {/* Right Section: Status Dropdown */}
+                        <div className="flex items-center space-x-2">
+                            <StatusSelector status={status} handleStatusChange={handleStatusChange} />
+                        </div>
 
-            </div>
+                    </div>
                     {
                         tabs.map((tab) => (
                             <button

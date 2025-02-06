@@ -37,7 +37,7 @@ export default function PortalLayout({ children }) {
 
                         {/* Content with Blur & Motion */}
                         <motion.div
-                            className="flex flex-col min-h-screen bg-black py-16 relative z-10"
+                            className="flex flex-col min-h-screen py-16 relative z-10"
                             initial={{ opacity: 0.5, scale: 0.98, filter: "blur(10px)" }}
                             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                             transition={{ duration: 1, ease: "easeOut" }}
@@ -53,12 +53,12 @@ export default function PortalLayout({ children }) {
                             >
                                 {children}
                                 {/* 3D Force Graph - Kept Interactive */}
-                                <div
+                                {/* <div
                                     className="fixed inset-0 flex justify-center items-center top-0 left-0 right-0 bottom-0 sticky min-h-screen"
                                     style={{ zIndex: -1 }}
                                 >
                                     <ForceGraph backgroundColor="black" graphData={sampleData} />
-                                </div>
+                                </div> */}
                             </motion.div>
                         </motion.div>
 

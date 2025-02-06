@@ -7,7 +7,7 @@ const TaskSidebar = () => {
     const [activeTab, setActiveTab] = useState("chat");
     return (
         <div className="w-1/4 flex flex-col h-full bg-gray-800 p-4 w-full">
-            <div className="flex items-center space-x-4">
+            {/* <div className="flex items-center space-x-4">
             {
                 tabs.map((tab) => (
                     <button
@@ -26,7 +26,7 @@ const TaskSidebar = () => {
                         <TaskChat />
                     )
                 }
-            </div>
+            </div> */}
         </div>
     )
 }
