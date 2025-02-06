@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const Button = ({ children, onClick, variant = "outline", size = "sm", disabled = false, icon, width }) => {
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("/sound/sword.m4a"); // Ensure the path is correct
+  }, []);
+
+  const handleClick = (event) => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0; // Rewind audio to start for rapid clicks
+      audioRef.current.play().catch((err) => console.error("Playback error:", err));
+    }
+
+    if (onClick) {
+      onClick(event); // Call the original onClick handler
+    }
+  };
+
   const baseStyles =
-    "relative inline-flex items-center justify-center font-bold rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 space-x-0 shadow-lg   transform hover:scale-105 active:scale-95";
+    "relative inline-flex items-center justify-center font-bold rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 space-x-0 shadow-lg transform hover:scale-105 active:scale-95";
 
   const variants = {
     primary: "bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-500 shadow-[0_0_15px_rgba(0,140,255,0.7)] hover:shadow-[0_0_25px_rgba(0,140,255,1)]",
@@ -24,10 +41,10 @@ const Button = ({ children, onClick, variant = "outline", size = "sm", disabled 
 
   return (
     <button
-      onClick={onClick}
+      onClick={handleClick}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} shiny-button ${
         disabled ? disabledStyles : ""
-            }      }`}
+      }`}
       disabled={disabled}
     >
       <span className="shiny-effect"></span>

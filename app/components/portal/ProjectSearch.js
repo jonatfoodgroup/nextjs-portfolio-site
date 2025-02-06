@@ -100,13 +100,15 @@ const ProjectSearch = () => {
     return (
         <div className="relative w-full max-w-md mx-auto hidden md:block">
             <input
-                type="text"
-                ref={searchRef}
-                placeholder={`Use "cmd+k" to search`}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="border border-gray-600 text-center rounded px-4 py-2 w-full bg-transparent text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-            />
+    type="text"
+    ref={searchRef}
+    placeholder={`Use "cmd+k" to search`}
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="border border-gray-600 text-center rounded px-4 py-2 w-full bg-transparent 
+               text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 
+               focus:shadow-[0_0_15px_rgba(0,140,255,0.7)] transition-all text-sm"
+/>
             {filteredProjects.length > 0 && (
                 <div className="absolute top-full left-0 w-full bg-gray-800 border border-gray-500 rounded mt-2 z-10 bg-gray-800 text-gray-300 shadow-lg">
                     {filteredProjects.map((project) => (

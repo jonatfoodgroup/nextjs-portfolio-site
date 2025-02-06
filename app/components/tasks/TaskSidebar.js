@@ -9,12 +9,12 @@ import { EndDate } from "./EndDate";
 import TaskTimer from "./TaskTimer";
 import { useTasks } from "../../providers/TasksProvider";
 import StatusSelector from "./StatusSelector";
-const TaskSidebar = ({ task }) => {
+const TaskSidebar = ({ task, project }) => {
     const [status, setStatus] = useState(task.status || "pending");
 
     const [tabs, setTabs] = useState(["chat", "activity"]);
     const [activeTab, setActiveTab] = useState("chat");
-    const { updateTask, project } = useTasks();
+    const { updateTask } = useTasks();
     const handleStatusChange = (e) => {
         const newStatus = e.target.value;
         setStatus(newStatus);

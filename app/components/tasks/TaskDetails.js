@@ -73,7 +73,7 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
                 </div>
 
                 <div className="w-1/4">
-                    <TaskSidebar task={task} />
+                    <TaskSidebar task={task} project={project} />
                 </div>
 
             </div>
