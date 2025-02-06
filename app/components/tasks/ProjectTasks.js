@@ -35,14 +35,7 @@ const ProjectTasks = ({ project }) => {
   };
 
   return (
-    <div className="p-6 rounded-xl">
-      <h3 className="text-lg font-semibold mb-4 text-gray-300">Tasks</h3>
-
-      {/* Timeline View */}
-      <div className="mb-6">
-        {/* <TimelineView project={{ ...project, tasks: sortedTasks }} /> */}
-      </div>
-
+    <div className="rounded-xl">
       {loading ? (
         <p className="text-gray-500">Loading tasks...</p>
       ) : (

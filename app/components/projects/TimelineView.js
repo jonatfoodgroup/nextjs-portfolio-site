@@ -39,7 +39,7 @@ const TimelineView = ({ project }) => {
     }));
 
   return (
-    <div className="bg-gray-800 p-6 rounded-xl" id="timelineContainer">
+    <div className="bg-gray-800 rounded-xl" id="timelineContainer">
       <Timeline
         groups={groups}
         items={items}

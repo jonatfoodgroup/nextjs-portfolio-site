@@ -16,27 +16,44 @@ const ProjectSearch = () => {
             .then((res) => res.json())
             .then((data) => {
                 // loop over projects and attach the company name to each project by matching the hubspotId
-                const projectsWithCompany = data.map((project) => {
+                let projectsWithCompany = data.map((project) => {
                     const company = companies.find(
                         (company) => company.id === project.hubspotId
                     );
                     return { ...project, company };
                 });
 
-                // sort by title
-                // projectsWithCompany.sort((a, b) => a.title.localeCompare(b.title));
+                // if the project doesn't have a title or company, filter it out
+                projectsWithCompany = projectsWithCompany.filter(
+                    (project) => project.title && project.company
+                );
+
+                // if no job number, set it to the project id
+                projectsWithCompany = projectsWithCompany.map((project) => {
+                    if (!project.jobNumber) {
+                        project.jobNumber = project.id;
+                    }
+                    return project;
+                });
+
+
                 setProjects(projectsWithCompany);
             })
 
     }, [companies]);
 
     const handleSearch = () => {
-        setFilteredProjects(
-            projects.filter((project) =>
-                project.title.toLowerCase().includes(search.toLowerCase()) ||
-                project.jobNumber.slice(-5).includes(search) || project.company.properties.name.toLowerCase().includes(search.toLowerCase())
-            )
+       console.log("search", search);
+        if (search === "") {
+            setFilteredProjects([]);
+            return;
+        }
+
+        const filtered = projects.filter((project) =>
+            project.title.toLowerCase().includes(search.toLowerCase())
         );
+
+        setFilteredProjects(filtered);
     };
 
     useEffect(() => {

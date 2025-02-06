@@ -59,7 +59,7 @@ const ProjectPage = ({ project }) => {
   return (
     <TasksProvider projectId={project.id}>
       <div className="min-h-screen">
-        <div className="flex justify-between items-center md:flex-col flex-col md:space-y-4 md:space-x-0 space-x-4 p-8">
+        <div className="flex justify-between items-center md:flex-col flex-col md:space-y-0 md:space-x-0 space-x-4 p-8">
           <div className="flex flex-col">
             <Link href={`/portal/${project.hubspotId}`}>
               <h3 className="uppercase text-md font-light text-gray-500">
@@ -67,32 +67,34 @@ const ProjectPage = ({ project }) => {
               </h3>
             </Link>
           </div>
-         
-          <div className="flex flex-col md:flex-row items-start md:items-center align-middle space-y-4 md:space-y-0 md:space-x-4">
+
+          <div className="flex flex-col md:flex-row items-start md:items-center align-middle space-y-0 md:space-y-0 md:space-x-4">
             {/* <Breadcrumb hubspotId={project.hubspotId} /> */}
             <EditableTitle project={project} />
           </div>
-          <div className="flex items-center space-x-4 mb-4 text-2xl">
+          <div className="flex items-center space-x-4 mb-8 text-2xl">
             <DiscordLinkButton discordChannelId={project.discordChannelId} />
             <DriveLinkButton driveFolderId={project.googleDriveFolderId} />
           </div>
 
-          {/* <p className="text-gray-400 text-sm">Job Number: {jobNumber}</p> */}
-          <div className="flex space-x-4 mb-8">
-            {tabs.map(tab => (
-              <button
-                key={tab.name}
-                className={`px-4 py-2 ${activeTab === tab.name ? 'bg-transparent' : 'bg-transparent'} text-sm font-medium ${activeTab === tab.name ? 'text-white border-b-2 border-blue-500' : 'text-gray-400'}`}
-                onClick={() => setActiveTab(tab.name)}
-              >
-                {tab.label}
-              </button>
-            ))}
+          <div >
+            {/* <p className="text-gray-400 text-sm">Job Number: {jobNumber}</p> */}
+            <div className="flex space-x-4 mb-4 mt-4 flex-wrap">
+              {tabs.map(tab => (
+                <button
+                  key={tab.name}
+                  className={`px-4 py-2 ${activeTab === tab.name ? 'bg-transparent' : 'bg-transparent'} text-sm font-medium ${activeTab === tab.name ? 'text-white border-b-2 border-blue-500' : 'text-gray-400'}`}
+                  onClick={() => setActiveTab(tab.name)}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="flex items-start flex-col md:flex-row">
-          <div className="pr-0 container max-w-4xl mx-auto">  
+          <div className="pr-0 container max-w-4xl mx-auto">
             {
               activeTab === 'overview' && (
                 <div className="flex items-start space-x-4 mb-8">
@@ -120,11 +122,13 @@ const ProjectPage = ({ project }) => {
             {/* Conditional Rendering based on active tab */}
             {activeTab === 'tasks' && (
               <>
+              <ProjectTasks project={project} />
                 <div className="mt-4">
                   <AddTask showAddTaskForm={showAddTaskForm} setShowAddTaskForm={setShowAddTaskForm} />
                   {showAddTaskForm && <AddTaskForm projectId={project.id} />}
+
                 </div>
-                <ProjectTasks project={project} />
+                
               </>
             )}
             {activeTab === 'board' && <TaskKanban />}

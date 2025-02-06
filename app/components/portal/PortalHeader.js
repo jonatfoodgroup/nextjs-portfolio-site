@@ -21,12 +21,12 @@ const PortalHeader = ({
                         variant="outline"
                         icon="carbon:menu"
                     >
-                        Menu
+                        {/* Menu */}
                     </Button>
                     
                 </div>
-                {/* <Logo /> */}
-                {/* <ProjectSearch /> */}
+                <Logo />
+                <ProjectSearch />
                 <nav className="flex items-center space-x-4">
                     {/* <Link
                         href="/schedule"

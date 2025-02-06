@@ -89,7 +89,7 @@ export default function PortalPage({ hubspotId }) {
 
                     {/* Projects Section */}
                     <ProjectsProvider hubspotId={hubspotId}>
-                        <div className="bg-black p-6 rounded-lg border border-gray-700">
+                        <div className="p-6 rounded-lg border border-gray-700">
                             <div className="flex items-center justify-between mb-4">
                                 <h2 className="text-xl font-regular text-gray-400">Projects</h2>
                                 <Button
