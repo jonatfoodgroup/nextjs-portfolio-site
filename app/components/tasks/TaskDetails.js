@@ -1,28 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import MarkAsBountyButton from "./MarkAsBounty";
+
 import TaskTimer from "./TaskTimer";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import TaskEditableDescription from "./TaskEditableDescription";
 import { toast } from "react-hot-toast";
-import { StartDate } from "./StartDate";
-import { EndDate } from "./EndDate";
 import Assignee from "./Assignee";
 import ImageUploader from "../ImageUploader";
 import Subtasks from "./Subtasks";
 import StatusSelector from "./StatusSelector";
 import TaskSidebar from "./TaskSidebar";
+import TaskEditableDescription from "./TaskEditableDescription";
+
 
 const TaskDetails = ({ task, updateTask, addTask, project }) => {
-    const [status, setStatus] = useState(task.status || "pending");
-    const [tabs, setTabs] = useState(["description", "subtasks", "files"]);
+    const [tabs, setTabs] = useState(["subtasks", "files"]);
     const [activeTab, setActiveTab] = useState("subtasks");
-
-    const handleStatusChange = (e) => {
-        const newStatus = e.target.value;
-        setStatus(newStatus);
-        updateTask(task.id, { status: newStatus });
-    };
 
     const copyId = () => {
         navigator.clipboard.writeText(task.id);
@@ -32,46 +24,35 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
     return (
         <div className="space-y-6">
 
-            <div className="w-full flex flex-row justify-between">
+            <div className="w-full flex flex-row justify-between items-start">
                 <div className="w-3/4">
                     {/* Action Row */}
                     <div className="flex items-center justify-between">
                         {/* Left Section */}
-                        <div className="flex items-center space-x-4">
-                            <TaskTimer task={task} updateTask={updateTask} project={project} />
-                            <MarkAsBountyButton taskId={task.id} isBounty={task.isBounty} />
-                        </div>
-
-                        {/* Right Section: Status Dropdown */}
-                        <div className="flex items-center space-x-2">
-                            <StatusSelector status={status} handleStatusChange={handleStatusChange} />
-                        </div>
-
+                        <TaskEditableDescription task={task} />
                     </div>
-                    {
-                        tabs.map((tab) => (
-                            <button
-                                key={tab}
-                                onClick={() => setActiveTab(tab)}
-                                className={`text-sm px-4 py-2
+                    <div className="mt-4">
+                        {
+                            tabs.map((tab) => (
+                                <button
+                                    key={tab}
+                                    onClick={() => setActiveTab(tab)}
+                                    className={`text-sm px-4 py-2
                             font-medium text-gray-400 hover:text-white transition ${tab === activeTab ? "text-white border-b border-white" : ""
-                                    }`}
-                            >
-                                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                            </button>
-                        ))
-                    }
+                                        }`}
+                                >
+                                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                                </button>
+                            ))
+                        }
+                    </div>
 
-                    <div className="mt-6 border-t border-gray-700 pt-4">
+                    <div className="flex flex-col h-full w-full">
                         {
                             activeTab === "description" && (
                                 <>
-                                    <TaskEditableDescription task={task} />
-                                    <div className="flex items-center space-x-4">
-                                        <StartDate task={task} />
-                                        <EndDate task={task} />
-                                    </div>
-                                    <Assignee task={task} />
+
+
                                 </>
                             )
                         }
@@ -92,7 +73,7 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
                 </div>
 
                 <div className="w-1/4">
-                    <TaskSidebar />
+                    <TaskSidebar task={task} />
                 </div>
 
             </div>

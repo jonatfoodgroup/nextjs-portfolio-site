@@ -86,7 +86,7 @@ const TranscriptionOverlay = () => {
             {/* Floating Pulsing Mic Button - Always Clickable */}
             <button
                 onClick={() => setIsOverlayOpen(true)}
-                className="fixed bottom-6 right-6 p-4 rounded-full shadow-lg bg-blue-500 hover:bg-blue-600 focus:outline-none animate-pulse z-50"
+                className="fixed bottom-6 right-6 p-4 rounded-full shadow-lg bg-black hover:bg-gray-900 focus:outline-none animate-pulse z-50"
             >
                 <Icon icon="akar-icons:microphone" className="w-8 h-8 text-white" />
             </button>
@@ -103,9 +103,9 @@ const TranscriptionOverlay = () => {
                     <div className="bg-black/70 backdrop-blur-md p-6 rounded-lg shadow-lg w-full max-w-lg relative border border-gray-700 animate-scaleUp">
                         
                         {/* Topic Display */}
-                        <h2 className="text-2xl font-bold text-white text-center mb-6">
+                        {/* <h2 className="text-2xl font-bold text-white text-center mb-6">
                             {topics[currentTopicIndex]}
-                        </h2>
+                        </h2> */}
 
                         {/* Glowing Mic & Input */}
                         <div className="flex flex-col items-center">
@@ -118,7 +118,7 @@ const TranscriptionOverlay = () => {
                             <textarea
                                 className="w-full h-48 p-4 border border-gray-600 rounded-md text-white bg-gray-900 bg-opacity-50 text-lg focus:ring-2 focus:ring-blue-500 transition"
                                 value={text}
-                                placeholder="Start speaking..."
+                                placeholder="Tap start and speak..."
                                 onChange={(e) => setText(e.target.value)}
                             />
                         </div>
@@ -153,6 +153,7 @@ const TranscriptionOverlay = () => {
                             </button>
                             <button
                                 onClick={() => {
+                                    setText("");
                                     setIsOverlayOpen(false);
                                     stopListening();
                                 }}

@@ -44,19 +44,9 @@ const Subtasks = ({ parentTaskId }) => {
     return (
         <>
             {/* Subtasks Section */}
-            < div className="mt-6" >
-                <h3 className="text-lg font-semibold text-white">Subtasks</h3>
-                <ul className="mt-4 space-y-2">
-                    {subtasks
-                        .map((subtask) => (
-                            <StepsProvider key={subtask.id} taskId={subtask.id}>
-                                <SubTaskItem key={subtask.id} subtask={subtask} />
-                            </StepsProvider>
-                        ))}
-                </ul>
-
-                {/* Add Subtask Input */}
-                <div className="my-6 flex flex-row items-center w-full bg-gray-800 rounded-lg p-6 space-x-4">
+            < div className="space-y-4" >
+             {/* Add Subtask Input */}
+             <div className="flex flex-row items-center w-full bg-gray-800 rounded-lg my-4 space-x-4">
                     {/* Subtask Input */}
                     <input
                         type="text"
@@ -75,6 +65,17 @@ const Subtasks = ({ parentTaskId }) => {
                         Add Subtask
                     </Button>
                 </div>
+                <h3 className="text-lg font-semibold text-white">Subtasks</h3>
+                <ul className="space-y-2">
+                    {subtasks
+                        .map((subtask) => (
+                            <StepsProvider key={subtask.id} taskId={subtask.id}>
+                                <SubTaskItem key={subtask.id} subtask={subtask} />
+                            </StepsProvider>
+                        ))}
+                </ul>
+
+               
             </div >
         </>
     )

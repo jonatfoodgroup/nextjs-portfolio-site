@@ -23,7 +23,7 @@ export const StartDate = ({ task }) => {
                 type="date"
                 value={startDate}
                 onChange={handleStartDateChange}
-                className="border border-gray-300 bg-gray-800 border-gray-600  rounded-md p-2"
+                className="border border-gray-300 bg-gray-800 border-gray-600  rounded-md p-2"  
             />
         </div>
 

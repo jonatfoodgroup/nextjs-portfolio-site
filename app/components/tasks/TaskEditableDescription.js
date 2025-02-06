@@ -13,8 +13,8 @@ const TaskEditableDescription = ({ task }) => {
     };
   
     return (
-      <div className="mt-4">
-        <h4 className="text-lg font-regular text-gray-200 flex items-center space-x-2 mb-4"><span>Description</span> <button
+      <div className="border-b border-gray-700 pb-8 mt-4">
+        <h4 className="text-md font-regular text-gray-200 flex items-center space-x-2 mb-4"><span>Description</span> <button
           onClick={() => setIsEditing(!isEditing)}
           className="text-xs text-gray-500"
         >
@@ -32,7 +32,7 @@ const TaskEditableDescription = ({ task }) => {
             </button>
           </div>
         ) : (
-          <p className="text-md text-gray-400">{description}</p>
+          <p className="text-xl leading-relaxed text-gray-400">{description}</p>
         )}
         
       </div>
