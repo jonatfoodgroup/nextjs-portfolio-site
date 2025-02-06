@@ -15,7 +15,7 @@ const PortalHeader = ({
     return (
         <header className="bg-black text-white px-4 py-2 fixed top-0 left-0 w-full z-50 shadow-md">
             <div className="flex justify-between items-center">
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 mr-2">
                     <Button
                         onClick={() => setShowSidebar(!showSidebar)}
                         variant="outline"
@@ -23,7 +23,7 @@ const PortalHeader = ({
                     >
                         {/* Menu */}
                     </Button>
-                    
+
                 </div>
                 <Logo />
                 <ProjectSearch />
