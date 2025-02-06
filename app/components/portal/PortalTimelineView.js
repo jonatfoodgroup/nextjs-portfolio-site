@@ -155,7 +155,7 @@ const PortalTimelineView = ({ companies }) => {
                             backgroundColor: group.color || "transparent",
                             // padding: "6px",
                             textAlign: "center",
-                            fontSize: "18px",
+                            // fontSize: "18px",
                             margin: "0",
                             display: "flex",
                             width: "100%",

@@ -86,14 +86,14 @@ const TranscriptionOverlay = () => {
             {/* Floating Pulsing Mic Button - Always Clickable */}
             <button
                 onClick={() => setIsOverlayOpen(true)}
-                className="fixed bottom-6 right-6 p-4 rounded-full shadow-lg bg-black hover:bg-gray-900 focus:outline-none animate-pulse z-50"
+                className="fixed bottom-6 right-6 p-4 rounded-full shadow-lg hover:bg-gray-900 focus:outline-none animate-pulse z-50"
             >
                 <Icon icon="akar-icons:microphone" className="w-8 h-8 text-white" />
             </button>
 
             {/* Full-Screen Overlay - Only Blocks Interaction When Open */}
             {isOverlayOpen && (
-                <div className="fixed inset-0 flex flex-col items-center justify-center p-4 bg-black bg-opacity-90 backdrop-blur-lg animate-fadeIn" style={{ zIndex: 999 }}>
+                <div className="fixed inset-0 flex flex-col items-center justify-center p-4 bg-opacity-90 backdrop-blur-lg animate-fadeIn" style={{ zIndex: 999 }}>
                     
                     {/* Floating Animated Glow */}
                     <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-blue-500 opacity-30 rounded-full blur-3xl animate-pulse"></div>
