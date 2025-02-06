@@ -27,7 +27,7 @@ export default function PortalLayout({ children }) {
                     <TasksProvider>
                         {/* Animated Background */}
                         <motion.div
-                            className="absolute inset-0 z-0 opacity-50"
+                            className="fixed inset-0 z-0 opacity-50"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 2 }}

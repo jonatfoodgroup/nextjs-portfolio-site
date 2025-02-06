@@ -28,7 +28,7 @@ const TaskSidebar = ({ task, project }) => {
                 <MarkAsBountyButton taskId={task.id} isBounty={task.isBounty} />
             </div>
             <Assignee task={task} />
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center flex-col space-y-4">
                 <StartDate task={task} />
                 <EndDate task={task} />
             </div>
