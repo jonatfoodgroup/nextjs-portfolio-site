@@ -11,6 +11,8 @@ import { useTasks } from "../providers/TasksProvider";
 import { motion } from "framer-motion";
 import { useFirebase } from "../providers/FirebaseProvider";
 import { useRouter } from "next/navigation";
+import BountyPage from "../bounties/page";
+import { BountyProvider } from "../providers/BountyProvider";
 
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
@@ -92,6 +94,14 @@ export default function PortalSelector() {
                 </button>
                 <button
                     className={`px-4 py-4 text-sm font-medium ${
+                        activeView === "bounties" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                    }`}
+                    onClick={() => setActiveView("bounties")}
+                >
+                    Bounties
+                </button>
+                <button
+                    className={`px-4 py-4 text-sm font-medium ${
                         activeView === "calendar" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
                     }`}
                     onClick={() => setActiveView("calendar")}
@@ -111,7 +121,7 @@ export default function PortalSelector() {
 
             {activeView === "list" && <ListView companies={companiesWithProjects} />}
 
-            {/* Content Based on Active View */}
+            {/* Content Based    on Active View */}
             {activeView === "timeline" && <PortalTimelineView companies={companiesWithProjects} />}
             {activeView === "board" && (
                 <div className="grid grid-cols-1 gap-4">
@@ -132,6 +142,13 @@ export default function PortalSelector() {
                     {/* <TasksView tasks={tasks} /> */}
                 </div>
             )}
+
+            {activeView === "bounties" && (
+                <BountyProvider>
+                    <BountyPage />
+                </BountyProvider>
+            )}
+
             {activeView === "calendar" && (
                 <div className="grid grid-cols-1 gap-4">
                     {tasks.map((task) => (
