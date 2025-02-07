@@ -3,8 +3,7 @@ import { motion } from "framer-motion"; // Framer Motion for animations
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
 import ForceGraph from "./ForceGraph";
-import { useEffect, useState } from "react";
-import { useWordpress } from "../providers/WordpressProvider";
+import { useState } from "react";
 import sampleData from "../data/sample-force-graph.json";
 
 const Masthead = () => {

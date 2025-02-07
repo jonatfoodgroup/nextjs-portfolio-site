@@ -17,7 +17,6 @@ import { ProposalProvider } from "./providers/ProposalProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import ForceGraph from "./components/ForceGraph";
-import sampleData from "./data/sampleData";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -61,7 +60,7 @@ export default function RootLayout({ children }) {
                             <Toaster position="top-right" reverseOrder={false} />
                               {children}
                             <div className="fixed inset-0 flex justify-center items-center top-0 left-0 right-0 bottom-0 sticky min-h-screen" style={{ zIndex: -1 }}>
-                              <ForceGraph backgroundColor="black" graphData={sampleData} />
+                              <ForceGraph backgroundColor="black" />
                             </div>
                           </ProposalProvider>
                         </FirebaseProvider>

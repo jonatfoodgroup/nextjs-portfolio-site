@@ -13,19 +13,6 @@ export default function Home() {
     <>
       <Header />
       <Masthead />
-      {/* <div className="container mx-auto inner-container -mt-16 bg-white relative z-50 shadow-lg">
-        <LogoWall />
-      </div> */}
-      {/* <WhoWeAreBanner />
-      <LatestArticles />
-      <div className="bg-light-orange py-8 md:py-8">
-        <ServiceList />
-      </div>
-      <div className="bg-light-orange py-8 md:py-16">
-        <ProcessSteps />
-      </div>
-      <SoftwareList /> */}
-      {/* <Footer /> */}
     </>
   );
 }

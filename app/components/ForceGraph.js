@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import ForceGraph3D from "3d-force-graph";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
 
-import graphData from "../data/large-sample-forcegraph.json";
 import * as THREE from "three";
 import * as d3 from "d3-force";
 
