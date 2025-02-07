@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useBounties } from "../../providers/BountyProvider";
 import Button from "../Button";
 import { useSession } from "next-auth/react";
+import PointsCount from "./PointsCount";
 
 const BountyDetails = ({ bounty }) => {
     const { data: session, status } = useSession();
@@ -35,7 +36,7 @@ const BountyDetails = ({ bounty }) => {
             <div className="mt-4 space-y-2 text-sm">
                 <p><span className="font-medium text-white">Start Date:</span> {bounty.startDate}</p>
                 <p><span className="font-medium text-white">End Date:</span> {bounty.endDate}</p>
-                <p><span className="font-medium text-white">Reward:</span> {bounty.reward}</p>
+                <p><span className="font-medium text-white">Reward:</span> <PointsCount points={bounty.reward} /></p>
             </div>
 
             {
@@ -46,7 +47,7 @@ const BountyDetails = ({ bounty }) => {
                 )
             }
             {
-                bounty.claimedBy && (
+                !bounty.claimedBy && (
                     <Button
                         className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-md"
                         onClick={() => claimBounty(bounty.id, session.user.id)}
