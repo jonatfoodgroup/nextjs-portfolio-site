@@ -7,7 +7,7 @@ import TaskTimer from "./TaskTimer";
 
 
 const SubTaskItem = ({ subtask }) => {
-    const { updateTask } = useTasks();
+    const { updateTask, removeTask } = useTasks();
     const [isEditing, setIsEditing] = useState(false);
     const [editedName, setEditedName] = useState(subtask.name);
     const [showSteps, setShowSteps] = useState(false); // Tracks if StepsList is visible
@@ -89,6 +89,14 @@ const SubTaskItem = ({ subtask }) => {
                             </span>
                         )
                     }
+                    {/* rmoevce button */}
+                    <button
+                        onClick={() => removeTask(subtask.id)}
+                        className="text-gray-300 hover:text-red-500"
+                        aria-label="Delete Task"
+                    >
+                        <Icon icon="mdi:delete" className="w-5 h-5" />
+                    </button>
                     <Icon
                         icon={showSteps ? "mdi:chevron-up" : "mdi:chevron-down"}
                         className="w-5 h-5"

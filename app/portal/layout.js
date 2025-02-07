@@ -10,8 +10,6 @@ import ActiveTimer from "../components/portal/ActiveTimer";
 import { HubspotProvider } from "../providers/HubspotProvider";
 import { TasksProvider } from "../providers/TasksProvider";
 import TranscriptionOverlay from "../components/TranscriptionOverlay";
-import ForceGraph from "../components/ForceGraph";
-import sampleData from "../data/sampleData";
 
 export default function PortalLayout({ children }) {
     useEffect(() => {

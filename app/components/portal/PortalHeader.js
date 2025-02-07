@@ -12,6 +12,15 @@ const PortalHeader = ({
     setShowSidebar,
     showSidebar
 }) => {
+    const { data: session, status } = useSession();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            if (typeof window !== "undefined") {
+                window.location.href = "/api/auth/signin";
+            }
+            }
+    }, [status]);
     return (
         <header className="bg-black text-white px-4 py-2 fixed top-0 left-0 w-full z-50 shadow-md">
             <div className="flex justify-between items-center">

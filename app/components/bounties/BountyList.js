@@ -1,29 +1,76 @@
 "use client";
-import { useWordpress } from "../../providers/WordpressProvider";
-import { useEffect } from "react";
-import BountyCard from "./BountyCard";
+import { motion } from "framer-motion";
+import { useBounties } from "../../providers/BountyProvider";
+import Modal from "../Modal";
+import React from "react";
+import BountyDetails from "./BountyDetails";
 
-const BountyList = () => {
-    const { bounties, fetchBounties } = useWordpress();
-
-    useEffect(() => {
-        fetchBounties();
-    }, []);
-
-    if (!bounties) {
-        return <p>Loading...</p>;
-    }
+export default function BountyList() {
+    const [showModal, setShowModal] = React.useState(false);
+    const [selectedBounty, setSelectedBounty] = React.useState(null);
+    const { bounties } = useBounties();
     return (
-        <div>
-            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4">
-                {bounties.map((bounty) => (
-                    <div key={bounty.id} data-aos="fade-up">
-                        <BountyCard bounty={bounty} />
-                    </div>
-                ))}
+        <div className="bg-transparent min-h-screen">
+            <div className="container mx-auto py-8">
+                <table>
+                <tbody>
+                    <tr className="bg-gray-800 text-gray-400">
+                        <th className="p-4">Bounty Name</th>
+                        <th className="p-4">Start Date</th>
+                        <th className="p-4">End Date</th>
+                        <th className="p-4">Description</th>
+                        <th className="p-4">Reward</th>
+                        <th className="p-4">Created At</th>
+                        <th className="p-4">Actions</th>
+                    </tr>
+                    {bounties.length > 0 ? (
+                        bounties.map((bounty, index) => (
+                            <motion.tr
+                                key={bounty.id}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
+                                className="border border-gray-700 hover:bg-gray-700 transition"
+                            >
+                                <td className="p-4">
+                                    <button
+                                        className="text-left text-blue-500"
+                                        onClick={() => {
+                                            setSelectedBounty(bounty);
+                                            setShowModal(true);
+                                        }}
+                                    >
+                                        {bounty.name}
+                                    </button>
+                                </td>
+                                <td className="p-4">{bounty.startDate}</td>
+                                <td className="p-4">{bounty.endDate}</td>
+                                <td className="p-4">{bounty.description}</td>
+                                <td className="p-4">{bounty.reward}</td>
+                                <td className="p-4">{new Date(bounty.createdAt).toLocaleDateString()}</td>
+                                <td className="p-4 space-y-2 flex flex-col">
+                                    <button className="btn btn-sm btn-primary">View</button>
+                                    <button className="btn btn-sm btn-primary">Edit</button>
+                                    <button className="btn btn-sm btn-danger">Delete</button>
+                                </td>
+                            </motion.tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="3" className="p-4 text-center text-gray-400">
+                                No bounties available.
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+                </table>
             </div>
+            {showModal && (
+                <Modal isOpen={showModal} onClose={() => setShowModal(false)} title={selectedBounty.name}>
+                    <BountyDetails bounty={selectedBounty} />
+                </Modal>
+            )}
         </div>
     );
 }
 
-export default BountyList;

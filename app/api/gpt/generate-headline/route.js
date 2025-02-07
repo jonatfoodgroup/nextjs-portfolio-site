@@ -1,5 +1,5 @@
 // /app/api/gpt/generate-headline.js
-import { callGPT } from '..utils/utils/callGPT';
+import { callGPT } from '../utils/callGPT';
 
 export async function POST(req) {
   try {

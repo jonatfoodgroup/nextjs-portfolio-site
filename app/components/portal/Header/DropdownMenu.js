@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import PointsCount from "./PointsCount";
+import { signOut } from "next-auth/react";
 
 const DropdownMenu = ({ user }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,7 @@ const DropdownMenu = ({ user }) => {
         },
         {
             title: "Log Out",
-            onClick: () => alert("Log Out"),
+            onClick: () => signOut(),
             icon: "carbon:logout",
         }
     ]
