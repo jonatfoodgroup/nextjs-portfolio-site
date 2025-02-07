@@ -9,7 +9,7 @@ import Button from "../components/Button";
 import PortalTimelineView from "../components/portal/PortalTimelineView";
 import { useTasks } from "../providers/TasksProvider";
 import { motion } from "framer-motion";
-import BountyPage from "../bounties/page";
+import BountyList from "../components/bounties/BountyList";
 import { BountyProvider } from "../providers/BountyProvider";
 
 export default function PortalSelector() {
@@ -143,7 +143,7 @@ export default function PortalSelector() {
 
             {activeView === "bounties" && (
                 <BountyProvider>
-                    <BountyPage />
+                    <BountyList />
                 </BountyProvider>
             )}
 
