@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useHubspot } from "../providers/HubspotProvider";
 import DriveLinkButton from "../components/DriveLinkButton";
 import HubspotLinkButton from "../components/portal/HubspotLinkButton";
@@ -9,8 +9,6 @@ import Button from "../components/Button";
 import PortalTimelineView from "../components/portal/PortalTimelineView";
 import { useTasks } from "../providers/TasksProvider";
 import { motion } from "framer-motion";
-import { useFirebase } from "../providers/FirebaseProvider";
-import { useRouter } from "next/navigation";
 import BountyPage from "../bounties/page";
 import { BountyProvider } from "../providers/BountyProvider";
 
@@ -21,7 +19,7 @@ export default function PortalSelector() {
     const { companies } = useHubspot();
     const [loading, setLoading] = useState(false);
     const [bootComplete, setBootComplete] = useState(false);
-    const [activeView, setActiveView] = useState("board"); // "board" or "timeline"
+    const [activeView, setActiveView] = useState("bounties"); // "board" or "timeline"
 
     useEffect(() => {
         if (!companies || companies.length === 0) return;

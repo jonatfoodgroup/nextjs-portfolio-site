@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { collection, onSnapshot, query, where, doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase/config";
 
 const BountyContext = createContext();
@@ -27,8 +27,17 @@ export const BountyProvider = ({ children }) => {
       return () => unsubscribe();
     }, []);
 
+    const claimBounty = async (bountyId, userId) => {
+        // Update the bounty with the claimed status
+        const bountyRef = doc(firestore, "tasks", bountyId);
+        await updateDoc(bountyRef, {
+            claimed: true,
+            claimedBy: userId,
+        });
+    };
+
     return (
-        <BountyContext.Provider value={{ bounties, loading }}>
+        <BountyContext.Provider value={{ bounties, loading, claimBounty }}>
             {children}
         </BountyContext.Provider>
     );

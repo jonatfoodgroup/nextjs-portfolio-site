@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useBounties } from "../providers/BountyProvider";
 import Modal from "../components/Modal";
 import React from "react";
+import BountyDetails from "../components/bounties/BountyDetails";
 
 export default function BountyPage() {
     const [showModal, setShowModal] = React.useState(false);
@@ -11,6 +12,7 @@ export default function BountyPage() {
     return (
         <div className="bg-transparent min-h-screen">
             <div className="container mx-auto py-8">
+                <table>
                 <tbody>
                     <tr className="bg-gray-800 text-gray-400">
                         <th className="p-4">Bounty Name</th>
@@ -18,6 +20,7 @@ export default function BountyPage() {
                         <th className="p-4">End Date</th>
                         <th className="p-4">Description</th>
                         <th className="p-4">Reward</th>
+                        <th className="p-4">Created At</th>
                         <th className="p-4">Actions</th>
                     </tr>
                     {bounties.length > 0 ? (
@@ -44,6 +47,7 @@ export default function BountyPage() {
                                 <td className="p-4">{bounty.endDate}</td>
                                 <td className="p-4">{bounty.description}</td>
                                 <td className="p-4">{bounty.reward}</td>
+                                <td className="p-4">{new Date(bounty.createdAt).toLocaleDateString()}</td>
                                 <td className="p-4 space-y-2 flex flex-col">
                                     <button className="btn btn-sm btn-primary">View</button>
                                     <button className="btn btn-sm btn-primary">Edit</button>
@@ -59,6 +63,7 @@ export default function BountyPage() {
                         </tr>
                     )}
                 </tbody>
+                </table>
             </div>
             {showModal && (
                 <Modal isOpen={showModal} onClose={() => setShowModal(false)} title={selectedBounty.name}>
@@ -69,13 +74,3 @@ export default function BountyPage() {
     );
 }
 
-const BountyDetails = ({ bounty }) => {
-    return (
-        <div className="p-4 bg-gray-800">
-            <p className="text-gray-400">{bounty.description}</p>
-            <p className="text-gray-400">Start Date: {bounty.startDate}</p>
-            <p className="text-gray-400">End Date: {bounty.endDate}</p>
-            <p className="text-gray-400">Reward: {bounty.reward}</p>
-        </div>
-    );
-}

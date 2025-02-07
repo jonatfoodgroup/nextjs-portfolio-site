@@ -7,6 +7,11 @@ export default function Modal({ isOpen, onClose, title, children, footer }) {
 
   // Close modal on Escape key press
   useEffect(() => {
+    // scroll to top of the page
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
+
     const handleKeyDown = (event) => {
       if (event.key === "Escape" && isOpen) {
         onClose();
@@ -20,6 +25,7 @@ export default function Modal({ isOpen, onClose, title, children, footer }) {
 
   // Close modal on click outside
   useEffect(() => {
+
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target) && isOpen) {
         onClose();

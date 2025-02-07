@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import PointsCount from "./PointsCount";
 
 const DropdownMenu = ({ user }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,6 +63,7 @@ const DropdownMenu = ({ user }) => {
                     className="w-10 h-10 rounded-full"
                 />
                 <span className="font-semibold text-sm">{user.username}</span>
+                <PointsCount />
             </button>
 
             {/* Dropdown Menu */}
