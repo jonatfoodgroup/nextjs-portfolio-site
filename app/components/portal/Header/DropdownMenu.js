@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import PointsCount from "./PointsCount";
 import { signOut } from "next-auth/react";
+import { toast } from "react-hot-toast"
 
 const DropdownMenu = ({ user }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,22 @@ const DropdownMenu = ({ user }) => {
         },
         {
             title: "Invite to StrongStart",
-            onClick: () => alert("Invite to StrongStart"),
+            onClick: () => {
+                const discordInviteLink = "https://discord.gg/agjH8sPa"; // Replace with actual invite link
+                navigator.clipboard.writeText(discordInviteLink)
+                    .then(() => toast.success("Copied invite link to clipboard"))
+                    .catch(err => console.error("Failed to copy text: ", err));
+
+                // also open the native share of the browser
+                if (navigator.share) {
+                    navigator.share({
+                        title: "Join StrongStart on Discord",
+                        text: "Join the StrongStart community on Discord",
+                        url: discordInviteLink,
+                    }).then(() => console.log("Shared successfully"))
+                        .catch((error) => console.error("Share failed", error));
+                }
+            },
             icon: "carbon:send-alt",
         },
         {

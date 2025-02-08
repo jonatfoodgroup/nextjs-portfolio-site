@@ -36,8 +36,16 @@ export const BountyProvider = ({ children }) => {
         });
     };
 
+    const markInterested = async (bountyId, userId) => {
+        // Update the user with the interested bounty in an array
+        const userRef = doc(firestore, "users", userId);
+        await updateDoc(userRef, {
+            interestedBounties: [bountyId],
+        });
+    };
+
     return (
-        <BountyContext.Provider value={{ bounties, loading, claimBounty }}>
+        <BountyContext.Provider value={{ bounties, loading, claimBounty, markInterested }}>
             {children}
         </BountyContext.Provider>
     );

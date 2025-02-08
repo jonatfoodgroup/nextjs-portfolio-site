@@ -23,7 +23,18 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
 
     return (
         <div className="space-y-6">
-
+            {/* Task ID Section */}
+            <div className="flex items-center space-x-2 text-xs text-gray-600">
+                <span>Task ID:</span>
+                <span>{task.id}</span>
+                <button
+                    onClick={copyId}
+                    className="text-gray-500 hover:text-gray-400 transition"
+                    aria-label="Copy Task ID"
+                >
+                    <Icon icon="mdi:content-copy" className="w-4 h-4" />
+                </button>
+            </div>
             <div className="w-full flex flex-row justify-between items-start">
                 <div className="w-3/4">
                     {/* Action Row */}
@@ -77,18 +88,7 @@ const TaskDetails = ({ task, updateTask, addTask, project }) => {
                 </div>
 
             </div>
-            {/* Task ID Section */}
-            <div className="flex items-center space-x-2 text-xs text-gray-600">
-                <span>Task ID:</span>
-                <span>{task.id}</span>
-                <button
-                    onClick={copyId}
-                    className="text-gray-500 hover:text-gray-400 transition"
-                    aria-label="Copy Task ID"
-                >
-                    <Icon icon="mdi:content-copy" className="w-4 h-4" />
-                </button>
-            </div>
+            
         </div>
     );
 };

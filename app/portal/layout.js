@@ -49,7 +49,7 @@ export default function PortalLayout({ children }) {
                                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                                 transition={{ duration: 1, ease: "easeOut" }}
                             >
-                                {children}
+                                <div className="min-h-screen overflow-auto">{children}</div>
                                 {/* 3D Force Graph - Kept Interactive */}
                                 {/* <div
                                     className="fixed inset-0 flex justify-center items-center top-0 left-0 right-0 bottom-0 sticky min-h-screen"

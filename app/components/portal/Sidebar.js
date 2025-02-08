@@ -69,6 +69,27 @@ const Projects = () => {
     }
     return (
         <>
+            <button className="btn btn-primary w-full">Create Project</button>
+
+            {/* learn about bounties */}
+            <div className="flex items-center justify-between p-3 bg-gray-800 mt-4">
+                <Link href="/learn">
+                    Learn about Bounties
+                </Link>
+                <Icon icon="akar-icons:chevron-right" className="w-4" />
+            </div>
+
+            {/* Find a project */}
+            <div className="flex items-center justify-between p-3 bg-gray-800 mt-4">
+                <Link href="/projects">
+                    Find a Project
+                </Link>
+                <Icon icon="akar-icons:chevron-right" className="w-4" />
+            </div>
+
+            {/* clients */}
+
+            <h2 className="text-gray-100 text-sm font-regular mt-4">Clients</h2>
             <ul className="space-y-2 mt-2">
                 {clients.map((client) => (
                     <li key={client.id} className="whitespace-nowrap">

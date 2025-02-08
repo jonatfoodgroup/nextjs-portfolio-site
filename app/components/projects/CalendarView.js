@@ -39,6 +39,7 @@ const CalendarView = ({ project }) => {
                             title: subtask.name,
                             start: subtask.startDate,
                             end: subtask.endDate,
+                            steps: subtask.steps || []
                         }))
                     }
                 };
@@ -81,7 +82,15 @@ const CalendarView = ({ project }) => {
 
                     // Styled list of subtasks
                     const subtaskList = subtasks.map((subtask, index) => (
-                        <li key={index} className="text-gray-300">{subtask.title}</li>
+                        <li key={index} className="text-gray-300">{subtask.title}
+                            {subtask.steps.length > 0 && (
+                                <ul className="text-xs list-disc pl-4 mt-2">
+                                    {subtask.steps.map((step, index) => (
+                                        <li key={index}>{step}</li>
+                                    ))}
+                                </ul>
+                            )}
+                        </li>
                     ));
 
                     return (

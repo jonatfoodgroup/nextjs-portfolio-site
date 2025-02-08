@@ -4,6 +4,7 @@ import { useBounties } from "../../providers/BountyProvider";
 import Button from "../Button";
 import { useSession } from "next-auth/react";
 import PointsCount from "./PointsCount";
+import MarkInterestedButton from "./MarkInterestedButton";
 
 const BountyDetails = ({ bounty }) => {
     const { data: session, status } = useSession();
@@ -26,9 +27,16 @@ const BountyDetails = ({ bounty }) => {
             <p className="mt-2">{bounty.description}</p>
 
             {
-                bounty.claimedBy && (
+                bounty.claimedBy && bounty.claimedBy !== session.user.id && (
                     <div className="mt-4 bg-red-600 text-white p-2 rounded-md">
                         <p>This bounty has been claimed by {bounty.claimedBy}</p>
+                    </div>
+                )
+            }
+            {
+                bounty.claimedBy && bounty.claimedBy === session.user.id && (
+                    <div className="mt-4 bg-green-600 text-white p-2 rounded-md">
+                        <p>You have claimed this bounty</p>
                     </div>
                 )
             }
@@ -39,13 +47,8 @@ const BountyDetails = ({ bounty }) => {
                 <p><span className="font-medium text-white">Reward:</span> <PointsCount points={bounty.reward} /></p>
             </div>
 
-            {
-                bounty.claimedBy && bounty.claimedBy === session.user.id && (
-                    <div className="mt-4 bg-green-600 text-white p-2 rounded-md">
-                        <p>You have claimed this bounty</p>
-                    </div>
-                )
-            }
+            <MarkInterestedButton bounty={bounty} />
+
             {
                 !bounty.claimedBy && (
                     <Button
@@ -54,6 +57,37 @@ const BountyDetails = ({ bounty }) => {
                     >
                         Claim Bounty
                     </Button>
+                )
+            }
+
+            {
+                bounty.timeEntries && (
+                    <div className="mt-4">
+                        <h4 className="text-white">Work Log</h4>
+                        <ul className="space-y-2">
+                            {bounty.timeEntries.map((entry) => (
+                                <li key={entry.id} className
+                                    ="bg-gray-700 p-2 rounded-md">
+                                    <p>{entry.description}</p>
+                                    <p>{entry.duration * .01}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )
+            }
+            {
+                bounty.comments?.length > 0 && (
+                    <div className="mt-4">
+                        <h4 className="text-white">Public Comments</h4>
+                        <ul className="space-y-2">
+                            {bounty.comments.map((comment) => (
+                                <li key={comment.id} className="bg-gray-700 p-2 rounded-md">
+                                    <p>{comment.content}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 )
             }
 

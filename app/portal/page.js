@@ -11,6 +11,7 @@ import { useTasks } from "../providers/TasksProvider";
 import { motion } from "framer-motion";
 import BountyList from "../components/bounties/BountyList";
 import { BountyProvider } from "../providers/BountyProvider";
+import BountyCardList from "../components/bounties/BountyCardList";
 
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
@@ -143,6 +144,7 @@ export default function PortalSelector() {
 
             {activeView === "bounties" && (
                 <BountyProvider>
+                    <BountyCardList />
                     <BountyList />
                 </BountyProvider>
             )}
