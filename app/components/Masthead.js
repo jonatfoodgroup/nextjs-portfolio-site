@@ -9,12 +9,12 @@ import sampleData from "../data/sample-force-graph.json";
 const Masthead = () => {
     const [isVisible, setIsVisible] = useState(true);
     return (
-        <div className="min-h-screen bg-black relative flex items-center justify-center">
+        <div className="min-h-screen bg-transparent pointer-events-none relative flex items-center justify-center">
             {/* Centered Text Box */}
             {
                 isVisible && (
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center 
-                bg-black/10 backdrop-blur-lg rounded-lg px-10 py-20 max-w-3xl text-center z-10">
+                bg-black/10 backdrop-blur-lg rounded-lg px-10 py-10 max-w-3xl text-center z-10">
                 <motion.div
                     initial="hidden"
                     animate="visible"
@@ -79,13 +79,13 @@ const Masthead = () => {
                 )
             }
 
-            {/* 3D Force Graph - Kept Interactive */}
+            {/* 3D Force Graph - Kept Interactive
             <div
                 className="absolute inset-0 flex justify-center items-center"
                 style={{ zIndex: 0 }}
             >
                 <ForceGraph backgroundColor="black" graphData={sampleData} />
-            </div>
+            </div> */}
         </div>
     );
 };

@@ -13,7 +13,21 @@ export const TasksProvider = ({ children, projectId }) => {
   const [subtasks, setSubtasks] = useState([]);
 
   useEffect(() => {
-    if (!projectId) return;
+    if (!projectId) {
+      // get all tasks if no project is selected
+      const q = query(collection(firestore, "tasks"), orderBy("createdAt", "desc"));
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        const tasksData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setTasks(tasksData);
+        setLoading(false);
+      });
+
+      // Cleanup listener on component unmount
+      return () => unsubscribe();
+    } else {
 
     // Firestore real-time listener for tasks related to this project
     const q = query(
@@ -31,6 +45,9 @@ export const TasksProvider = ({ children, projectId }) => {
 
     // Cleanup listener on component unmount
     return () => unsubscribe();
+  }
+
+    
   }, [projectId]);
 
   const getAllTasks = async () => {

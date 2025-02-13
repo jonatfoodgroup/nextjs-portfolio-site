@@ -38,47 +38,49 @@ const LogoWall = () => {
   }
 
   return (
-    <Swiper
-      ref={sliderRef}
-      onSwiper={it => (sliderRef.current = it)}
-      modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, Grid]}
-      spaceBetween={30}
-      slidesPerView={5} // Adjust the number of visible logos
-      navigation
-      autoplay={{
-        delay: 5000, // Increased autoplay speed for smoother transitions
-        disableOnInteraction: false,
-      }}
-      loop
-      speed={800} // Transition speed (higher value means slower transition)
-      easing="ease-in-out" // Apply easing for smooth transitions
-      breakpoints={{
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 4,
-          spaceBetween: 30,
-        },
-        1440: {
-          slidesPerView: 4,
-          spaceBetween: 10,
-        },
-      }}
-    >
-      {staticLogos.map((logo, index) => (
-        <SwiperSlide key={index} className='flex justify-center items-center'>
-          <img
-            src={logo.src}
-            alt={logo.alt}
-            className="h-48 w-48 object-contain rounded-lg mx-auto"
-          />
-        </SwiperSlide>
-      ))}
-      <NextButton />
-      <PrevButton />
-    </Swiper>
+    <div className="relative bg-gray-50 py-8">
+      <Swiper
+        ref={sliderRef}
+        onSwiper={it => (sliderRef.current = it)}
+        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, Grid]}
+        spaceBetween={30}
+        slidesPerView={5} // Adjust the number of visible logos
+        navigation
+        autoplay={{
+          delay: 5000, // Increased autoplay speed for smoother transitions
+          disableOnInteraction: false,
+        }}
+        loop
+        speed={800} // Transition speed (higher value means slower transition)
+        easing="ease-in-out" // Apply easing for smooth transitions
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+          1440: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
+        }}
+      >
+        {staticLogos.map((logo, index) => (
+          <SwiperSlide key={index} className='flex justify-center items-center'>
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              className="h-48 w-48 object-contain rounded-lg mx-auto"
+            />
+          </SwiperSlide>
+        ))}
+        <NextButton />
+        <PrevButton />
+      </Swiper>
+    </div>
   );
 };
 

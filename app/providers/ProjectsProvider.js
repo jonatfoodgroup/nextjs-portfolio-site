@@ -15,6 +15,23 @@ export const ProjectsProvider = ({ children, hubspotId }) => {
 
     // Firestore subscription
     useEffect(() => {
+
+      if (!hubspotId) {
+        const q = query(collection(firestore, "projects"));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const updatedProjects = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+
+            setProjects(updatedProjects);
+            setLoading(false);
+        });
+
+        return () => unsubscribe();
+
+            
+      } else {
         const q = query(collection(firestore, "projects"), where("hubspotId", "==", hubspotId));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const updatedProjects = snapshot.docs.map((doc) => ({
@@ -55,6 +72,7 @@ export const ProjectsProvider = ({ children, hubspotId }) => {
         });
 
         return () => unsubscribe();
+      }
     }, []);
 
     const addProject = async (project) => {
@@ -164,11 +182,17 @@ export const ProjectsProvider = ({ children, hubspotId }) => {
         }
       };
 
-    const getProjectById = (projectId) => {
-        // query from database
-        const projectRef = collection(firestore, "projects").doc(projectId);
-        const projectDoc = getDoc(projectRef);
-        return projectDoc;
+    const getProjectById = async (projectId) => {
+        const existingProject = projects.find((p) => p.id === projectId);
+        if (existingProject) {
+          return existingProject;
+        }
+        const projectRef = doc(firestore, "projects", projectId);
+        const docSnap = await getDoc(projectRef);
+        if (!docSnap.exists()) {
+          return null;
+        }
+        return { id: docSnap.id, ...docSnap.data() };
     };
 
     const updateStatus = async (projectId, updatedStatus) => {

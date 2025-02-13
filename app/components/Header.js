@@ -17,7 +17,6 @@ const Header = () => {
     { label: "What we do", menuName: "services", icon: "carbon:ibm-cloud-kubernetes-service" },
     { label: "What we think", menuName: "insights", icon: "carbon:machine-learning-model" },
     { label: "Who we are", href: "/who-we-are", icon: "carbon:group" },
-    { label: "Portal", href: "/portal", icon: "carbon:enterprise" },
   ];
 
   useEffect(() => {
@@ -70,7 +69,7 @@ const Header = () => {
                 <Link
                   key={index}
                   href={item.href}
-                  className="text-xs uppercase font-medium text-white px-2 py-2 hover:text-orange-500 transition-all duration-200 flex items-center gap-x-2"
+                  className="text-xs font-medium text-white px-2 py-2 hover:text-orange-500 transition-all duration-200 flex items-center gap-x-2"
                 >
                   {item.label}
                 </Link>

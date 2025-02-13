@@ -407,7 +407,7 @@ html body .article-content a {
 
 .shiny-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0px 4px 15px rgba(255, 87, 1, 0.5);
+  /* box-shadow: 0px 4px 15px rgba(255, 87, 1, 0.5); */
 }
 
 /* Shiny Effect */
@@ -425,7 +425,7 @@ html body .article-content a {
 }
 
 .shiny-button:hover .shiny-effect {
-  left: 110%;
+  left: 150%;
   opacity: 1; /* Show only on hover */
   transition: all 0.75s ease;
 }

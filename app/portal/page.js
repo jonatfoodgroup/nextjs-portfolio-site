@@ -7,11 +7,13 @@ import Link from "next/link";
 import ProjectCard from "../components/projects/ProjectCard";
 import Button from "../components/Button";
 import PortalTimelineView from "../components/portal/PortalTimelineView";
-import { useTasks } from "../providers/TasksProvider";
+import { TasksProvider, useTasks } from "../providers/TasksProvider";
 import { motion } from "framer-motion";
 import BountyList from "../components/bounties/BountyList";
 import { BountyProvider } from "../providers/BountyProvider";
 import BountyCardList from "../components/bounties/BountyCardList";
+import TasksView from "../components/tasks/TasksView";
+import { ProjectsProvider } from "../providers/ProjectsProvider";
 
 export default function PortalSelector() {
     const [projects, setProjects] = useState([]);
@@ -24,21 +26,21 @@ export default function PortalSelector() {
 
     useEffect(() => {
         if (!companies || companies.length === 0) return;
-    
+
         const bootAndFetch = async () => {
-    
+
             // Boot sequence duration (3 seconds)
             await new Promise((resolve) => setTimeout(resolve, 1000));
-    
+
             try {
                 const res = await fetch("/api/projects/get-projects");
                 const data = await res.json();
-    
+
                 const updatedCompanies = companies.map((company) => ({
                     ...company,
                     projects: data.filter((project) => project.hubspotId === company.id),
                 }));
-    
+
                 setProjects(data);
                 setCompaniesWithProjects(updatedCompanies);
             } catch (error) {
@@ -47,7 +49,7 @@ export default function PortalSelector() {
                 setLoading(false); // Finish loading after boot + data fetch
             }
         };
-    
+
         bootAndFetch();
     }, [companies]);
 
@@ -59,59 +61,52 @@ export default function PortalSelector() {
         >
             {/* Tab Selector */}
             <div className="flex space-x-4 border-b border-gray-700 mb-6  sticky top-0 bg-black z-10">
-                <button 
-                    className={`px-4 py-2 text-sm font-medium ${
-                        activeView === "list" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
-                    }`}
+                <button
+                    className={`px-4 py-2 text-sm font-medium ${activeView === "list" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                        }`}
                     onClick={() => setActiveView("list")}
                 >
                     List
                 </button>
                 <button
-                    className={`px-4 py-2 text-sm font-medium ${
-                        activeView === "board" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
-                    }`}
+                    className={`px-4 py-2 text-sm font-medium ${activeView === "board" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                        }`}
                     onClick={() => setActiveView("board")}
                 >
                     Board
                 </button>
                 <button
-                    className={`px-4 py-4 text-sm font-medium ${
-                        activeView === "timeline" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
-                    }`}
+                    className={`px-4 py-4 text-sm font-medium ${activeView === "timeline" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                        }`}
                     onClick={() => setActiveView("timeline")}
                 >
                     Timeline
                 </button>
                 <button
-                    className={`px-4 py-4 text-sm font-medium ${
-                        activeView === "tasks" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
-                    }`}
+                    className={`px-4 py-4 text-sm font-medium ${activeView === "tasks" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                        }`}
                     onClick={() => setActiveView("tasks")}
                 >
                     Tasks
                 </button>
                 <button
-                    className={`px-4 py-4 text-sm font-medium ${
-                        activeView === "bounties" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
-                    }`}
+                    className={`px-4 py-4 text-sm font-medium ${activeView === "bounties" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                        }`}
                     onClick={() => setActiveView("bounties")}
                 >
                     Bounties
                 </button>
                 <button
-                    className={`px-4 py-4 text-sm font-medium ${
-                        activeView === "calendar" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
-                    }`}
+                    className={`px-4 py-4 text-sm font-medium ${activeView === "calendar" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                        }`}
                     onClick={() => setActiveView("calendar")}
                 >
                     Calendar
                 </button>
                 {/* Documents */}
                 <button
-                    className={`px-4 py-4 text-sm font-medium ${
-                        activeView === "documents" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
-                    }`}
+                    className={`px-4 py-4 text-sm font-medium ${activeView === "documents" ? "text-white border-b-2 border-blue-500" : "text-gray-400"
+                        }`}
                     onClick={() => setActiveView("documents")}
                 >
                     Documents
@@ -138,7 +133,11 @@ export default function PortalSelector() {
             )}
             {activeView === "tasks" && (
                 <div className="grid grid-cols-1 gap-4">
-                    {/* <TasksView tasks={tasks} /> */}
+                    <ProjectsProvider>
+                    <TasksProvider>
+                        <TasksView />
+                    </TasksProvider>
+                    </ProjectsProvider>
                 </div>
             )}
 
@@ -235,7 +234,7 @@ const CompanyHeader = ({ company }) => {
 const BootSequence = ({ onComplete }) => {
     const [text, setText] = useState([]);
     const [isComplete, setIsComplete] = useState(false);
-    
+
     const bootLines = [
         "Initializing StrongStart Portal...",
         "Loading user settings...",

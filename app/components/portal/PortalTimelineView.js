@@ -124,7 +124,7 @@ const PortalTimelineView = ({ companies }) => {
     }, [visibleTimeStart, visibleTimeEnd]);
 
     return (
-        <div className="timeline-container container mx-auto" id="timelineContainer">
+        <div className="timeline-container" id="timelineContainer">
             <Timeline
                 groups={groups}
                 items={items}
