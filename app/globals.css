@@ -421,13 +421,13 @@ html body .article-content a {
   background: linear-gradient(120deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
   transform: skewX(-30deg);
   opacity: 0; /* Hide by default */
-  transition: all 0.5s ease, opacity 0.3s ease;
+  transition: all 0.3s ease, opacity 0.3s ease;
 }
 
 .shiny-button:hover .shiny-effect {
   left: 150%;
   opacity: 1; /* Show only on hover */
-  transition: all 0.75s ease;
+  transition: all 0.35s ease-in-out;
 }
 
 /* Pulsing Animation */

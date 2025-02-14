@@ -30,7 +30,7 @@ const Header = () => {
   }, []);
 
   // Handle mouse enter (Open menu)
-  const handleMouseEnter = (menuName) => {
+  const handleOnClick = (menuName) => {
     clearTimeout(menuCloseTimeout); // Cancel any scheduled close
     setActiveMenu(menuName);
   };
@@ -77,8 +77,8 @@ const Header = () => {
               ) : (
                 <div
                   key={index}
-                  className="relative"
-                  onMouseEnter={() => handleMouseEnter(item.menuName)} // Open on hover
+                  className="relative shiny-button text-md uppercase font-medium text-white px-2 py-2 hover:text-orange-500 transition-all duration-200 flex items-center gap-x-2"
+                  onClick={() => handleOnClick(item.menuName)} // Open menu on click
                 >
                   <button
                     className={`flex items-center gap-x-2 text-xs font-bold px-2 py-2 border-b-2 border-transparent transition-all duration-200
@@ -87,6 +87,7 @@ const Header = () => {
                     {item.label}
                     <Icon icon={activeMenu === item.menuName ? "ic:round-check" : "bi:chevron-down"} className="h-2 w-2" />
                   </button>
+                  <div className="shiny-effect"></div>
                 </div>
               )
             )}

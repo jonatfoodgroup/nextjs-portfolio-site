@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useWordpress } from "../../providers/WordpressProvider";
 import { decode } from "html-entities";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -18,19 +18,19 @@ const ServicesSection = () => {
   const featuredServices = [
     {
       title: { rendered: "Digital Marketing Management" },
-      slug: "service-1",
+      slug: "/digital-marketing-and-strategy",
       acf: { icon: "carbon:service-icon-1" },
       excerpt: { rendered: "This is a brief description of Service 1." },
     },
     {
       title: { rendered: "Product Design & Development" },
-      slug: "service-2",
+      slug: "/hardware-software-engineering",
       acf: { icon: "carbon:service-icon-2" },
       excerpt: { rendered: "This is a brief description of Service 2." },
     },
     {
       title: { rendered: "Data & AI Support" },
-      slug: "service-2",
+      slug: "ai-strategy-implementation",
       acf: { icon: "carbon:service-icon-2" },
       excerpt: { rendered: "This is a brief description of Service 2." },
     }
@@ -41,8 +41,12 @@ const ServicesSection = () => {
       {/* Services Section */}
       <div className="ml-4 pt-4 md:pt-0 py-4 md:py-4 w-full">
         <section className="w-full flex flex-row mx-auto">
-          {/* Left Side - List of Services */}
-          <div className="flex flex-col w-1/4 mb-4">
+         
+
+          
+
+           {/* Left Side - List of Services */}
+           <div className="flex flex-col w-1/6">
             <div className="flex flex-col">
               <div className="flex items-center  border-b-2 border-gray-800 pb-2">
                 <h2 className="text-md font-semibold text-white">Services</h2>
@@ -52,35 +56,42 @@ const ServicesSection = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-1 gap-3 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-2 mt-4">
               {services.map((service, index) => (
                 <Link
                   key={service.title.rendered}
                   href={`/services/${service.slug}`}
-                  className="text-lg border-gray-700 font-light text-slate-500 hover:text-orange-500 transition-colors duration-300 flex items-center gap-2"
+                  className="text-lg border-gray-700 font-light text-slate-500 hover:text-orange-500 transition-colors duration-300 flex items-center gap-2 group"
                 >
                   <Icon
                     icon={service.acf?.icon}className="
-                    text-4xl p-2 
+                    h-10 w-10 p-1 
                     rounded-full
-                    bg-gradient-to-r from-pink-500 to-orange-500  /* gradient */
+                    border-2 border-gray-700
+                    group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-yellow-500
+                    group-hover:shadow-lg
+                    group-hover:rotate-6
+                    group-hover:text-black
                     shadow-lg
                     text-white
                     transition-transform transform hover:scale-125 hover:rotate-6
                   "
                     // className="text-3xl text-orange-500 p-1 bg-slate-800 drop-shadow-lg transition-transform transform hover:scale-125 hover:text-orange-600"
                   />                  <span
-                    className="text-md font-light text-white hover:text-orange-500 transition-colors duration-300"
+                    className="text-sm font-light text-slate-300 hover:text-orange-500 transition-colors duration-300"
                   >{decode(service.title.rendered)}</span>
                 </Link>
               ))}
             </div>
           </div>
 
+          <div className="w-2/6">
+          </div>
+
           {/* Right Side - Swiper Slider for Featured Services */}
-          <div className="flex w-3/4">
+          <div className="flex w-1/2">
             <Swiper
-              modules={[Pagination]}
+              modules={[Pagination,Navigation]}
               spaceBetween={0}
               slidesPerView={2}
               pagination={{ clickable: true }}
@@ -103,6 +114,7 @@ const ServicesSection = () => {
             </Swiper>
           </div>
 
+          
         </section>
       </div>
     </div>

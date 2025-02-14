@@ -23,10 +23,11 @@ export default function ServiceView({ service, children }) {
                             <h1 className="text-6xl md:text-6xl font-bold text-white mt-24">{service.acf.masthead?.masthead_title}</h1>
                             <p className="mt-4 text-md md:text-lg leading-relaxed text-gray-200 font-regular">{(service.acf.masthead?.masthead_content) ? decode(service.acf.masthead.masthead_content) : decode(service.acf.masthead.masthead_title)}</p>
                             <Link href="/contact-us" className="inline-flex mt-8" data-aos="fade-in" data-aos-delay="400">
-                                <div className="relative px-8 py-4 text-lg font-bold text-white flex items-center space-x-2 futuristic-button">
+                                <div className="relative px-8 py-4 text-lg font-bold text-white bg-black flex items-center space-x-2 futuristic-button shiny-button bg-opacity-80 backdrop-blur-md rounded-lg">
                                     <Icon icon="bx:bx-chat" className="text-white w-6 h-6 mr-2" />
                                     Chat With Us
                                     <div className="neon-glow"></div>
+                                    <div className="shiny-effect"></div>
                                 </div>
                             </Link>
 

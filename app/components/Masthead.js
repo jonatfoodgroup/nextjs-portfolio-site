@@ -60,18 +60,18 @@ const Masthead = () => {
                     >
                         <Link
                             href="/services/audit"
-                            className="shiny-button bg-orange text-black text-lg font-bold px-6 py-3 flex items-center rounded-lg hover:-translate-y-2 hover:shadow-xl transition-transform duration-300"
+                            className="shiny-button bg-black text-white text-lg font-bold px-6 py-3 flex items-center rounded-lg hover:-translate-y-2 hover:shadow-xl transition-transform duration-300"
                         >
                             <Icon icon="carbon:chat" className="mr-2" />
                             Launch With Us
                         </Link>
-                        <Link
+                        {/* <Link
                             href="/services/audit"
                             className="shiny-button bg-black border border-white text-white text-lg font-bold px-6 py-3 flex items-center rounded-lg hover:-translate-y-2 hover:shadow-xl transition-transform duration-300"
                         >
                             <Icon icon="carbon:chat" className="mr-2" />
                             Discover How
-                        </Link>
+                        </Link> */}
                     </motion.div>
                 </motion.div>
             </div>
