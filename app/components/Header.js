@@ -14,7 +14,7 @@ const Header = () => {
   let menuCloseTimeout = null;
 
   const middleMenuItems = [
-    { label: "Need a product or service?", menuName: "services", icon: "carbon:ibm-cloud-kubernetes-service" },
+    { label: "Looking for Services?", menuName: "services", icon: "carbon:ibm-cloud-kubernetes-service" },
     // { label: "What we think", menuName: "insights", icon: "carbon:machine-learning-model" },
     // { label: "Who we are", href: "/who-we-are", icon: "carbon:group" },
     // { label: "Portal", href: "/portal", icon: "carbon:enterprise" },
@@ -100,13 +100,15 @@ const Header = () => {
       {/* Mega Menu (Only appears when hovered) */}
       {activeMenu && (
         <div
-          className={`absolute left-0 w-full bg-gray-900 text-white transition-all duration-300 ease-in-out ${
+          className={`absolute left-0 w-full bg-black bg-opacity-95 backdrop-blur-sm z-50 shadow-lg border-t-2 border-gray-800
+            text-white transition-all duration-300 ease-in-out 
+            ${
             activeMenu ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
           onMouseEnter={() => clearTimeout(menuCloseTimeout)} // Keep open on hover
           onMouseLeave={handleMouseLeave} // Close when mouse leaves
         >
-          <MegaMenu activeMenu={activeMenu} />
+          <MegaMenu activeMenu={activeMenu} closeMenu={() => setActiveMenu(null)} />
         </div>
       )}
     </header>

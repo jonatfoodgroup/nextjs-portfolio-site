@@ -64,7 +64,7 @@ export default function ArticleContent({ article }) {
 
     return (
         <div>
-            <div className="container inner-container mx-auto">
+            <div className="container inner-container mx-auto bg-white py-10">
                 <h1 className="text-4xl font-bold" data-aos="fade-in">{decode(article.title.rendered)}</h1>
                 <div className="text-sm text-gray-500 mt-2 flex items-center">
                     {components.map(({ Component, props }, index) => (

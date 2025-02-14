@@ -75,7 +75,7 @@ const TableOfContents = ({ article, title = "In this article" }) => {
     }, [headings]);
 
     return (
-        <div className="table-of-contents">
+        <div className="table-of-contents bg-white">
             <h2 className="font-bold text-lg mb-4">{title}</h2>
             <ul className="list-none">
                 {headings.map((heading) => (

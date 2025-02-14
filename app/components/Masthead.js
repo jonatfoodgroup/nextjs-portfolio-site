@@ -41,7 +41,7 @@ const Masthead = () => {
                         variants={{ hidden: { opacity: 0, y: -20 }, visible: { opacity: 1, y: 0 } }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
-                        Your Partner For Digital Success
+                        Digital Success<br />Starts Here
                     </motion.h1>
                     <motion.p
                         className="text-md md:text-lg text-gray-300 mt-4"

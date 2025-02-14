@@ -22,7 +22,7 @@ const SmallerName = () => {
     }, []);
 
     return (
-        <Link className="smaller-name text-2xl" ref={textRef} style={{ display: "inline-block", overflow: "hidden" }} href="/portal">
+        <Link className="smaller-name text-2xl text-white" ref={textRef} style={{ display: "inline-block", overflow: "hidden" }} href="/">
             {Array.from("StrongStart").map((char, i) => (
                 <span key={i} style={{ display: "inline-block" }}>
                     {char}

@@ -156,7 +156,7 @@ const ForceGraph = ({ backgroundColor = "#000003", graphData }) => {
     
 
     return (
-        <div style={{ position: "relative", width: "100%", height: "100vh" }}>
+        <div style={{ position: "relative", width: "100%", height: "100vh", cursor: "pointer" }}>
             <div ref={graphRef} />
 
             {/* Display hovered node label */}

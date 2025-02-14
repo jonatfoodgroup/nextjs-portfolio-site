@@ -59,7 +59,7 @@ export default function RootLayout({ children }) {
                           <ProposalProvider>
                             <Toaster position="top-right" reverseOrder={false} />
                               {children}
-                            <div className="fixed inset-0 flex justify-center items-center top-0 left-0 right-0 bottom-0 sticky min-h-screen" style={{ zIndex: -1 }}>
+                            <div className="fixed inset-0 flex justify-center items-center top-0 left-0 right-0 bottom-0 sticky min-h-screen cursor-pointer" style={{ zIndex: -1 }}>
                               <ForceGraph backgroundColor="black" />
                             </div>
                           </ProposalProvider>

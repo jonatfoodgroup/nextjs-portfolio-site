@@ -425,7 +425,7 @@ html body .article-content a {
 }
 
 .shiny-button:hover .shiny-effect {
-  left: 110%;
+  left: 150%;
   opacity: 1; /* Show only on hover */
   transition: all 0.75s ease;
 }

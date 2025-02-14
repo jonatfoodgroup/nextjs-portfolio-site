@@ -45,23 +45,30 @@ const ServicesSection = () => {
           <div className="flex flex-col w-1/4 mb-4">
             <div className="flex flex-col">
               <div className="flex items-center  border-b-2 border-gray-800 pb-2">
-                <h2 className="text-2xl font-semibold text-white">Focus Areas</h2>
+                <h2 className="text-md font-semibold text-white">Services</h2>
                 <Link href="/services" className="text-sm font-light text-orange-500 hover:text-orange-600 transition-colors duration-300 ml-auto">
                   View All
                 </Link>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-1 gap-4 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-3 mt-4">
               {services.map((service, index) => (
                 <Link
                   key={service.title.rendered}
                   href={`/services/${service.slug}`}
-                  className="text-sm font-light text-slate-500 hover:text-orange-500 transition-colors duration-300 flex items-center gap-2"
+                  className="text-lg border-gray-700 font-light text-slate-500 hover:text-orange-500 transition-colors duration-300 flex items-center gap-2"
                 >
                   <Icon
-                    icon={service.acf?.icon}
-                    className="text-4xl m-2 text-orange-500 drop-shadow-lg transition-transform transform hover:scale-125 hover:text-orange-600"
+                    icon={service.acf?.icon}className="
+                    text-4xl p-2 
+                    rounded-full
+                    bg-gradient-to-r from-pink-500 to-orange-500  /* gradient */
+                    shadow-lg
+                    text-white
+                    transition-transform transform hover:scale-125 hover:rotate-6
+                  "
+                    // className="text-3xl text-orange-500 p-1 bg-slate-800 drop-shadow-lg transition-transform transform hover:scale-125 hover:text-orange-600"
                   />                  <span
                     className="text-md font-light text-white hover:text-orange-500 transition-colors duration-300"
                   >{decode(service.title.rendered)}</span>
@@ -80,16 +87,16 @@ const ServicesSection = () => {
               className="w-full"
             >
               {featuredServices.map((service) => (
-                <SwiperSlide key={service.title.rendered} className="bg-gray-900 p-6 rounded-lg shadow-lg w-full">
+                <SwiperSlide key={service.title.rendered} className=" p-4 rounded-lg shadow-lg w-full">
                   <Link href={`/services/${service.slug}`} className="flex flex-col items-center shiny-button  text-center w-full">
-                    <div className="bg-gray-700 h-[400px] w-full p-4 rounded-lg mb-4 flex items-center justify-center flex flex-col">
-                      <h3 className="text-6xl font-semibold text-white">{decode(service.title.rendered)}</h3>
+                    <div className="bg-gray-700 h-[400px] w-full p-4 rounded-lg flex items-center justify-center flex flex-col">
+                      <h3 className="text-5xl font-semibold text-white">{decode(service.title.rendered)}</h3>
                     </div>
                     <span className="shiny-effect"></span>
                   </Link>
-                  <div className="flex justify-center mt-4">
+                  {/* <div className="flex justify-center mt-4">
                     <h1 className="text-2xl font-semibold text-white">{decode(service.title.rendered)}</h1>
-                  </div>
+                  </div> */}
                   
                 </SwiperSlide>
               ))}
