@@ -14,7 +14,7 @@ const Header = () => {
   let menuCloseTimeout = null;
 
   const middleMenuItems = [
-    { label: "Looking for Services?", menuName: "services", icon: "carbon:ibm-cloud-kubernetes-service" },
+    { label: "Service List", menuName: "services", icon: "carbon:ibm-cloud-kubernetes-service" },
     // { label: "What we think", menuName: "insights", icon: "carbon:machine-learning-model" },
     // { label: "Who we are", href: "/who-we-are", icon: "carbon:group" },
     // { label: "Portal", href: "/portal", icon: "carbon:enterprise" },
@@ -51,10 +51,6 @@ const Header = () => {
           aria-label="Global"
           onMouseLeave={handleMouseLeave} // Close menu smoothly when mouse leaves nav
         >
-          {/* Left: Logo */}
-          <div className="flex items-center flex-1">
-            <Logo />
-          </div>
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden">
@@ -63,35 +59,44 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Center Navigation Links */}
-          <div className="hidden lg:flex lg:gap-x-6">
-            {middleMenuItems.map((item, index) =>
-              item.href ? (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className="text-md uppercase font-medium text-white px-2 py-2 hover:text-orange-500 transition-all duration-200 flex items-center gap-x-2"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <div
-                  key={index}
-                  className="relative shiny-button text-md uppercase font-medium text-white px-2 py-2 hover:text-orange-500 transition-all duration-200 flex items-center gap-x-2"
-                  onClick={() => handleOnClick(item.menuName)} // Open menu on click
-                >
-                  <button
-                    className={`flex items-center gap-x-2 text-xs font-bold px-2 py-2 border-b-2 border-transparent transition-all duration-200
-                      ${activeMenu === item.menuName ? "text-orange-500 border-orange-500" : "text-white"}`}
+
+
+          {/* Left: Logo */}
+          <div className="flex items-center flex-1">
+            <Logo />
+            {/* Center Navigation Links */}
+            <div className="hidden lg:flex lg:gap-x-6 ml-6">
+              {middleMenuItems.map((item, index) =>
+                item.href ? (
+                  <Link
+                    key={index}
+                    href={item.href}
+                    className="text-md uppercase font-medium text-white px-2 py-2 hover:text-orange-500 transition-all duration-200 flex items-center gap-x-2"
                   >
                     {item.label}
-                    <Icon icon={activeMenu === item.menuName ? "ic:round-check" : "bi:chevron-down"} className="h-2 w-2" />
-                  </button>
-                  <div className="shiny-effect"></div>
-                </div>
-              )
-            )}
+                  </Link>
+                ) : (
+                  <div
+                    key={index}
+                    className="relative shiny-button text-md uppercase font-medium text-white px-2 py-2 hover:text-orange-500 transition-all duration-200 flex items-center gap-x-2"
+                    onClick={() => handleOnClick(item.menuName)} // Open menu on click
+                  >
+                    <button
+                      className={`flex items-center gap-x-2 text-xs font-bold px-2 py-2 border-b-2 border-transparent transition-all duration-200
+                      ${activeMenu === item.menuName ? "text-orange-500 border-orange-500" : "text-white"}`}
+                    >
+                      {item.label}
+                      <Icon icon={activeMenu === item.menuName ? "ic:round-check" : "bi:chevron-down"} className="h-2 w-2" />
+                    </button>
+                    <div className="shiny-effect"></div>
+                  </div>
+                )
+              )}
+            </div>
           </div>
+
+
+
 
           {/* Right Side Navigation Icons & "Let's Connect" Button */}
           <NavIcons />
@@ -103,9 +108,8 @@ const Header = () => {
         <div
           className={`absolute left-0 w-full bg-black bg-opacity-95 backdrop-blur-sm z-50 shadow-lg border-t-2 border-gray-800
             text-white transition-all duration-300 ease-in-out 
-            ${
-            activeMenu ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
+            ${activeMenu ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}
           onMouseEnter={() => clearTimeout(menuCloseTimeout)} // Keep open on hover
           onMouseLeave={handleMouseLeave} // Close when mouse leaves
         >
